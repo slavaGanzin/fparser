@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+process.env.DEBUG = process.env.DEBUG || '*'
+global.ARGV = require('commander')
+R = require('ramda')
+debug = require('debug')
+for (let name in R) {
+  global[name] = R[name]
+}
+global.promisify = require("promisify-node")
+
+range = compose(map(Number), split('..'))
+  
+ARGV
+  .version(require('./package.json').version)
+  .option('-S, --no-skip'           , 'Do not skip on parse')
+  .option('-s, --no-save'           , 'Do not save results')
+  .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
+  .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', range)
+  .option('-v, --verbose'           , 'Verbosity level')
+  .option('-p, --nopretty'          , 'Disable formatting of output')
+  .option('-d, --debug'             , 'Display debug info')
+  .option('-l, --placeholders'      , 'List placeholders')
+  
+  .usage('<parsername> [placeholders...]')
+  .action((name, ...placeholders) =>
+    require('./lib/parser')
+      .parse(name, R.dropLast(1, placeholders))
+      .then(debug('out'))
+      .catch(debug('err'))
+  )
+  .parse(process.argv)
