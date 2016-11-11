@@ -21,6 +21,6 @@ ARGV
   .action((name, ...placeholders) =>
       parse(name, R.dropLast(1, placeholders))
       .then(debug('out'))
-      // .catch(debug('err'))
+      .catch(debug('err'))
   )
   .parse(process.argv)

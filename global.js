@@ -1,4 +1,4 @@
-process.env.DEBUG = '*'+process.env.DEBUG
+process.env.DEBUG = '*'+(process.env.DEBUG||'')
 global.debug = require('debug')
 
 global.ARGV = require('commander')
@@ -12,7 +12,7 @@ global.coerceArray = unless(isArrayLike, of)
 openPromiseArray = when(isArrayLike, Promise.all)
 
 global.then = (promise, f) => {
-  if(! R.is(Function, promise.then)) return Promise.resolve(f(promise))
+  if(! is(Function, promise.then)) return Promise.resolve(f(promise))
   return promise.then(...coerceArray(f)).then(openPromiseArray)
 }
 
