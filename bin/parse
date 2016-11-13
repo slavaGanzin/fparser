@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-// require('./promise')
-require('./listeners')
-require('./global')
-let {parse} = require('./lib/parser')
+require('../lib/listeners')
+require('../lib/global')
+let {parse} = require('../lib/parser')
           
 range = compose(map(Number), split('..'))
   
 ARGV
-  .version(require('./package.json').version)
+  .version(require('../package.json').version)
   .option('-S, --no-skip'           , 'Do not skip on parse')
   .option('-s, --no-save'           , 'Do not save results')
   .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
@@ -19,7 +18,7 @@ ARGV
   
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-      parse(name, R.dropLast(1, placeholders))
+    parse({name, placeholders: R.dropLast(1, placeholders)})
       .then(debug('out'))
       .catch(debug('err'))
   )

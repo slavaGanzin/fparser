@@ -1,0 +1,37 @@
+default:
+  placeholders:
+    $protocol: https
+    $base: $protocol://bandcamp.com
+    $q: $$1
+
+artistUrl:
+  steps:
+    - get:
+        url: '$base/search'
+        data:
+          q: '#q'
+    - find: '.searchresult.band'
+    - text: '.itemurl a'
+  
+# artistDiscography:
+#   steps: [
+#     get
+#       url: 'https://#q.bandcamp.com/music'
+#     parallel
+#       albums: [
+#         find '.music-grid-item'
+#         parallel
+#           art:
+#             src '.art img'
+#           url: [
+#             href '> a'
+#             replace /(.*)/, 'https://$$1.bandcamp.com/$1'
+#           ]
+#           name: [
+#             text '.title'
+#             replace /(^\s+|\s+$)/gim, ''
+#           ]
+#       ]
+#       image:
+#         src '.desktop-header img'
+#   ]
