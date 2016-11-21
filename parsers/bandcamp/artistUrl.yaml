@@ -1,0 +1,8 @@
+steps:
+  - get:
+      url: '$base/search'
+      data:
+        q: '#q'
+  - find: '.searchresult.band'
+  - text: '.itemurl a'
+  

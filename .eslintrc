@@ -9,7 +9,9 @@ env:
 extends: eslint:recommended
 rules:
   block-scoped-var : error
-  space-in-parens: [error, never]
+  space-in-parens:
+    - error
+    - never
   no-shadow: error
   no-undef: off
   no-unused-vars:
@@ -35,10 +37,7 @@ rules:
     - property
   no-implicit-coercion: error
   no-magic-numbers: warn
-  no-multi-spaces:
-    - error
-    - exceptions:
-        VariableDeclarator: true
+  # no-multi-spaces: [ error, { exceptions: {VariableDeclarator: true}}]
   no-useless-escape: error
   prefer-arrow-callback: warn
   # no-useless-return: error
