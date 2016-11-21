@@ -1,0 +1,55 @@
+globals:
+  R: false
+  debug: false
+  process: false
+env:
+  node: true
+  commonjs: true
+  es6: true
+extends: eslint:recommended
+rules:
+  block-scoped-var : error
+  space-in-parens: [error, never]
+  no-shadow: error
+  no-undef: off
+  no-unused-vars:
+    - warn
+  no-console:
+    - warn
+  indent:
+    - warn
+    - 2
+  camelcase:
+    - warn
+    - properties: always
+  complexity:
+    - error
+    - 3
+  linebreak-style:
+    - error
+    - unix
+  no-var: error
+  prefer-spread: error
+  dot-location:
+    - error
+    - property
+  no-implicit-coercion: error
+  no-magic-numbers: warn
+  no-multi-spaces:
+    - error
+    - exceptions:
+        VariableDeclarator: true
+  no-useless-escape: error
+  prefer-arrow-callback: warn
+  # no-useless-return: error
+  callback-return: error
+  no-use-before-define: error
+  curly:
+    - error
+    - multi-or-nest
+  quotes:
+    - off
+    - double
+  semi:
+    - warn
+    - never
