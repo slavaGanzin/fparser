@@ -1,8 +1,4 @@
 needle = promisify('needle')
 
-module.exports = ({
-  method, url, data
-} = options) =>
-  needle.request(method, url, data, options)
-
-  
+module.exports = (options) => () =>
+  needle.request(options.method, options.url, options.data, options)
