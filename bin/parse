@@ -3,14 +3,20 @@ require('../lib/listeners')
 require('../lib/global')
 let {parse} = require('../lib/parser')
           
-range = compose(map(Number), split('..'))
-  
+parseRange = compose(map(Number), split('..'))
+parsePlaceholders = compose(
+  fromPairs,
+  map(adjust(x => '$'+x, 0)),
+  map(split('=')),
+  dropLast(1)
+)
+
 ARGV
   .version(require('../package.json').version)
   .option('-S, --no-skip'           , 'Do not skip on parse')
   .option('-s, --no-save'           , 'Do not save results')
   .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
-  .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', range)
+  .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose'           , 'Verbosity level')
   .option('-p, --nopretty'          , 'Disable formatting of output')
   .option('-d, --debug'             , 'Display debug info')
@@ -18,7 +24,7 @@ ARGV
   
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-    parse({name, placeholders: R.dropLast(1, placeholders)})
+    parse({name, placeholders: parsePlaceholders(placeholders)})
       .then(debug('out'))
       .catch(debug('err'))
   )

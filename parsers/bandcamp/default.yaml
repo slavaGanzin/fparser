@@ -1,6 +1,7 @@
 placeholders:
   $protocol: https
   $base: $protocol://bandcamp.com
-  $q: $$1
   $url: $base/asdasd/$protocol/$q
-  
+
+get:
+  method: 'GET'

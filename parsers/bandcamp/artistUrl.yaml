@@ -3,7 +3,7 @@ steps:
       method: 'GET'
       url: '$base/search'
       data:
-        q: '#q'
+        q: '$q'
   # - json: {}
   # - input: '1'
   # - input: '2'
