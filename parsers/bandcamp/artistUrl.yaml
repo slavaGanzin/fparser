@@ -4,6 +4,7 @@ steps:
       url: '$base/search'
       data:
         q: '$q'
+  - html: ' '
   # - json: {}
   # - input: '1'
   # - input: '2'
