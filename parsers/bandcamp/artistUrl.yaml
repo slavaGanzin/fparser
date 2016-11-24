@@ -5,4 +5,4 @@ steps:
       data:
         q: '$q'
   - html: ' '
-  - find: '*Satan*'
+  - text: 'title'

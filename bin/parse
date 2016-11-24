@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 require('../lib/listeners')
 require('../lib/global')
-let {parse} = require('../lib/parser')
+parser = require('../lib/parser')
           
 parseRange = compose(map(Number), split('..'))
+increaseVerbosity = (_, total) => ++total
+
 parsePlaceholders = compose(
   fromPairs,
   map(adjust(x => '$'+x, 0)),
@@ -11,20 +13,21 @@ parsePlaceholders = compose(
   dropLast(1)
 )
 
+
 ARGV
   .version(require('../package.json').version)
   .option('-S, --no-skip'           , 'Do not skip on parse')
   .option('-s, --no-save'           , 'Do not save results')
   .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
-  .option('-v, --verbose'           , 'Verbosity level')
+  .option('-v, --verbose'           , 'Verbosity level', increaseVerbosity, 0)
   .option('-p, --nopretty'          , 'Disable formatting of output')
   .option('-d, --debug'             , 'Display debug info')
   .option('-l, --placeholders'      , 'List placeholders')
   
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-    parse({name, placeholders: parsePlaceholders(placeholders)})
+    parser.parse({ARGV, name, placeholders: parsePlaceholders(placeholders)})
       .then(debug('out'))
       .catch(debug('err'))
   )
