@@ -5,10 +5,4 @@ steps:
       data:
         q: '$q'
   - html: ' '
-  # - json: {}
-  # - input: '1'
-  # - input: '2'
-  # - input: '3'
-  # - find: '.searchresult.band'
-  # - text: '.itemurl a'
-  
+  - find: '*Satan*'
