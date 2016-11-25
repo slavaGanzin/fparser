@@ -6,4 +6,4 @@ steps:
         q: '$q'
   - html
   - find: 'title:contains(Bandcamp)'
-  - path: ''
+  - path
