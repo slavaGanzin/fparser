@@ -1,1 +1,2 @@
-module.exports = 
+module.exports = () => el =>
+  el.path()

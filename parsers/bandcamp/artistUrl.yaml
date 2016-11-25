@@ -4,5 +4,6 @@ steps:
       url: '$base/search'
       data:
         q: '$q'
-  - html: ' '
-  - text: 'title'
+  - html
+  - find: 'title:contains(Bandcamp)'
+  - path: ''

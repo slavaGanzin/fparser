@@ -1,4 +1,7 @@
 c2x = require('css-to-xpath')
 
-module.exports = text => xmldoc =>
-  xmldoc.find(c2x(select))
+module.exports = selector => xmldoc => {
+  el = xmldoc.get(c2x(selector))
+  if (! el) throw selector + ' not found'
+  return el
+}
