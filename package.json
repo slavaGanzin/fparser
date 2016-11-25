@@ -29,6 +29,7 @@
     "pretty-error": "^2.0.2",
     "promisify-node": "^0.4.0",
     "ramda": "^0.22.1",
-    "readdirrsync": "0.0.3"
+    "readdirrsync": "0.0.3",
+    "xpath-to-css": "^1.0.2"
   }
 }

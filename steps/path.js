@@ -1,2 +1,4 @@
+x2c = require('xpath-to-css')
+
 module.exports = () => el =>
-  el.path()
+  x2c(el.path())
