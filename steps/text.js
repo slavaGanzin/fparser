@@ -1,2 +1,1 @@
-module.exports = () => el =>
-  el.text()
+module.exports = () => R.map(el => el.text())

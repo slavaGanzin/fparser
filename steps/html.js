@@ -1,5 +1,6 @@
 libxml        = require('libxmljs')
 
-module.exports = options => input =>
+module.exports = options => map(input =>
   libxml.parseHtml(input.body, {errors: false})
+)
   
