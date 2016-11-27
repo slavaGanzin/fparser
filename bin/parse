@@ -28,7 +28,7 @@ ARGV
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
     parser.parse({ARGV, name, placeholders: parsePlaceholders(placeholders)})
-      .then(debug('out'))
+      .then(compose(console.log, join('\n')))
       .catch(debug('err'))
   )
   .parse(process.argv)

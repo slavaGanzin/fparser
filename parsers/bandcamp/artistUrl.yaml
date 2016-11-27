@@ -5,8 +5,6 @@ steps:
       data:
         q: '$q'
   - html
-  - find: 'div' #:contains(Bandcamp)'
-  - find: 'div.search > div.leftcol > div > ul > li'
-  - find: 'div > div.heading > a'
+  - find: '.searchresult.band .heading>a'
   - attr: 'href'
   # - path
