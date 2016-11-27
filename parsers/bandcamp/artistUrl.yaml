@@ -7,4 +7,3 @@ steps:
   - html
   - find: '.searchresult.band .heading>a'
   - attr: 'href'
-  # - path

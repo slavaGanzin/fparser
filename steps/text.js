@@ -1,1 +1,1 @@
-module.exports = () => flatMap(el => el.toString('xhtml'))
+module.exports = () => flatMap(el => el.text())
