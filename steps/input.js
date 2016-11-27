@@ -1,1 +1,1 @@
-module.exports = options => x => x+options
+module.exports = options => D(map(x => options))
