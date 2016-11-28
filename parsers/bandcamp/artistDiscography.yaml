@@ -11,12 +11,12 @@ steps:
             url:
               - find: '> a'
               - attr: href
+              - replace: [/(.*)/i, https://$q.bandcamp.com$1]
             name:
               - find: '.title'
               - text
-              - replace: [(^\s+|\s+$), '']
+              - replace: [/(^\s+|\s+$)/gim, '']
       image:
         - find: .desktop-header img
         - attr: src
-        # - replace: [/(.*)/, 'https://$$1.bandcamp.com/$1']
         
