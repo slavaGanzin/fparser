@@ -14,7 +14,7 @@ steps:
             name:
               - find: '.title'
               - text
-              # - replace: [/(^\s+|\s+$), '']
+              - replace: [(^\s+|\s+$), '']
       image:
         - find: .desktop-header img
         - attr: src
