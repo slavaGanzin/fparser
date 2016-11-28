@@ -1,12 +1,11 @@
 steps:
   - parallel:
       a:
-        - input: '1'
-  #     b:
-  #       - input: '2'
+        - input: a
+  # #     b:
+  # #       - input: '2'
       c:
-        - input: '3'
-  - input: '1'
+        - input: c
 placeholders:
   aaaa: '1'
 
