@@ -6,8 +6,8 @@ steps = require('../lib/steps')
 headIfOneElement = when(x => x.length<2, head)
 
 module.exports = options =>
-map(input =>
+flatMap(input =>
   promiseAll(mapObjIndexed(
-    _steps => steps.run(_steps)(input)//.then(headIfOneElement)
+    _steps => steps.run(_steps)(input).then(headIfOneElement)
   , options))
 )
