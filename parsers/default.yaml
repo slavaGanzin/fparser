@@ -1,0 +1,4 @@
+request:
+  follow_max: 5
+get:
+  folow_max: 5

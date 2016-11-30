@@ -1,0 +1,7 @@
+steps:
+  - get:
+      url: $host/wiki/$q
+  - parallel:
+      heading:
+        - find: '#firstHeading'
+        - text
