@@ -2,7 +2,6 @@ needle = promisify('needle')
 libxml = require('libxmljs')
 
 module.exports = (options) => () => {
-  _debug =
   debug('request')(`${options.url}`)
   console.log(options)
   
