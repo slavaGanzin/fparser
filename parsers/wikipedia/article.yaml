@@ -5,6 +5,12 @@ steps:
       heading:
         - find: '#firstHeading'
         - text
-      # content:
-      #   - find: '#bodyContent'
-      #   - text
+      content:
+        - find: '#mw-content-text'
+        - html
+      infobox:
+        - find: .infobox
+        - html
+      img:
+        - find: .infobox img
+        - attr: src
