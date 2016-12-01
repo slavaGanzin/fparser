@@ -16,4 +16,4 @@ steps:
       imgs:
         - find: '#mw-content-text img'
         - attr: src
-        # - replace: [ /a/i, b ]
+        - filter: [ /a/i, b ]

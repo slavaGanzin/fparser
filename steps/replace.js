@@ -4,5 +4,5 @@ parse = compose(
   split(/,?\s+/)
 )
 
-module.exports = replacers =>
-  flatMap(compose(...map(parse, replacers)))
+module.exports = options =>
+  flatMap(apply(compose, map(parse, options)))

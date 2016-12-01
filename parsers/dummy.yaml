@@ -1,8 +1,10 @@
 steps:
   - input: aaaaaaaaaeeeeeeee
-  - replace:
-    - /a/ig, b
-    - /e/ig, c
+  - filter:
+    - /a/i
+    - /e/i
+  - reject:
+    - /asdd/i
 placeholders:
   aaaa: '1'
 
