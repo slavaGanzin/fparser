@@ -5,3 +5,6 @@ steps:
       heading:
         - find: '#firstHeading'
         - text
+      # content:
+      #   - find: '#bodyContent'
+      #   - text

@@ -1,4 +1,10 @@
 request:
   follow_max: 5
+  compressed: true
+  rejectUnauthorized: false
+  method: 'GET'
 get:
-  folow_max: 5
+  follow_max: 5
+  compressed: true
+  rejectUnauthorized: false
+  method: 'GET'
