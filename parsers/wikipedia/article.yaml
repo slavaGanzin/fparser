@@ -8,9 +8,12 @@ steps:
       content:
         - find: '#mw-content-text'
         - html
+        # - markdown
       infobox:
         - find: .infobox
         - html
-      img:
-        - find: .infobox img
+        # - markdown
+      imgs:
+        - find: '#mw-content-text img'
         - attr: src
+        # - replace: [ /a/i, b ]

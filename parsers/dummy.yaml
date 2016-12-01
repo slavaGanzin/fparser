@@ -1,11 +1,8 @@
 steps:
-  - parallel:
-      a:
-        - input: a
-  # #     b:
-  # #       - input: '2'
-      c:
-        - input: c
+  - input: aaaaaaaaaeeeeeeee
+  - replace:
+    - /a/i, b
+    - /e/i, c
 placeholders:
   aaaa: '1'
 
