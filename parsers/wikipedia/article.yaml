@@ -16,4 +16,14 @@ steps:
       imgs:
         - find: '#mw-content-text img'
         - attr: src
-        - filter: [ /a/i, b ]
+        - reject:
+          - /Commons-logo/i
+          - /Special:CentralAutoLogin/
+      links:
+        - find: 'a'
+        - parallel:
+            href:
+              - attr: href
+            text:
+              - text
+          

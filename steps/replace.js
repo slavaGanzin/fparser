@@ -1,6 +1,5 @@
-regex = r => new RegExp(split('/', r)[1], split('/', r)[2])
 parse = compose(
-  ([r,s]) => replace(regex(r), s),
+  ([r,s]) => replace(require('./regex')(r), s),
   split(/,?\s+/)
 )
 
