@@ -1,8 +1,8 @@
 steps:
   - input: aaaaaaaaaeeeeeeee
   - replace:
-    - /a/i, b
-    - /e/i, c
+    - /a/ig, b
+    - /e/ig, c
 placeholders:
   aaaa: '1'
 

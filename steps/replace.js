@@ -1,2 +1,8 @@
 regex = r => new RegExp(split('/', r)[1], split('/', r)[2])
-module.exports = ([r, s]) => flatMap(replace(regex(r), s))
+parse = compose(
+  ([r,s]) => replace(regex(r), s),
+  split(/,?\s+/)
+)
+
+module.exports = replacers =>
+  flatMap(compose(...map(parse, replacers)))
