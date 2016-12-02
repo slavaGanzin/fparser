@@ -1,10 +1,10 @@
 steps:
-  - input: aaaaaaaaaeeeeeeee
-  - filter:
-    - /a/i
-    - /e/i
-  - reject:
-    - /asdd/i
+  - input:
+      - {$q: Venetian_Snares}
+      - {$q: Aphex_Twin}
+  - forward:
+      name: parsers/wikipedia/article.yaml
+      
 placeholders:
   aaaa: '1'
 
