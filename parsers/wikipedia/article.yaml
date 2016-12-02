@@ -10,11 +10,16 @@ steps:
         - remove:
           - '#toctitle'
         - html
+      reflist:
+        - find: .reflist
+        - html
+        - markdown
       content:
         - find: '#mw-content-text'
         - remove:
           - '#toc'
           - .infobox
+          - .reflist
         - html
         - markdown
       infobox:
