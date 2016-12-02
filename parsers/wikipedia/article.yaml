@@ -5,14 +5,21 @@ steps:
       heading:
         - find: '#firstHeading'
         - text
+      toc:
+        - find: '#toc'
+        - remove:
+          - '#toctitle'
+        - html
       content:
         - find: '#mw-content-text'
+        - remove:
+          - '#toc'
+          - .infobox
         - html
-        # - markdown
+        - markdown
       infobox:
         - find: .infobox
         - html
-        # - markdown
       imgs:
         - find: '#mw-content-text img'
         - attr: src

@@ -1,10 +1,2 @@
-request:
-  follow_max: 5
-  compressed: true
-  rejectUnauthorized: false
-  method: 'GET'
-get:
-  follow_max: 5
-  compressed: true
-  rejectUnauthorized: false
-  method: 'GET'
+placeholders:
+  $q: PLACE YOUR QUERY IN $q
