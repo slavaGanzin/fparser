@@ -1,2 +1,16 @@
+request:
+  method:             get
+  follow:             5
+  rejectUnauthorized: false
+  compressed:         true
+  parse:              false
+
+get:
+  method:             get
+  follow:             5
+  rejectUnauthorized: false
+  compressed:         true
+  parse:              false
+
 placeholders:
   $q: PLACE YOUR QUERY IN $q
