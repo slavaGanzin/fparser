@@ -1,15 +1,18 @@
 steps:
-  - parallel:
-      id:
-        - input: 2000
-      content:
-        - script:
-            command: ls -a
-  - db:
-      provider: file
-      id: id
-      key: /tmp/12
-      
+  - get:
+      url: http://vk.com
+      # output: /tmp/1
+  # - parallel:
+  #     id:
+  #       - input: 2000
+  #     content:
+  #       - script:
+  #           command: ls -a
+  # - db:
+  #     provider: file
+  #     id: id
+  #     key: /tmp/12
+  #
       
       
   # - input:

@@ -1,6 +1,6 @@
 preprocessors = {
   json: JSON.stringify,
-  jsonPretty: x => JSON.stringify(x, null, ' ')
+  jsonPretty: JSON.pretty
 }
 module.exports = ({preprocessor}, data) =>
   preprocessors[preprocessor](data)
