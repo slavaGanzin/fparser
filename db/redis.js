@@ -4,7 +4,8 @@ redis = null
 connect = unless(() => redis, tap(options => redis = new Redis(options)))
 
 actions = {
-  save: ({key, id, data}) => redis.hset(key, id, data)
+  save: ({key, id, data}) =>
+    redis.hset(key, data[id], JSON.stringify(data))
 }
 
 dispatch = options => data =>

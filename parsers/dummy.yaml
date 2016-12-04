@@ -1,11 +1,13 @@
 steps:
-  - input:
-      - Venetian_Snares
-      - Aphex_Twin
-  - db:
-      key: test
-      id: id
-  - input: 'a'
+  - script:
+      command: ls -a
+  # - input:
+  #     - Venetian_Snares
+  #     - Aphex_Twin
+  # - db:
+  #     key: test
+  #     id: id
+  # - input: 'a'
       
   # - forward:
   #     name: parsers/wikipedia/article.yaml

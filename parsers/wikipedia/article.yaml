@@ -38,4 +38,6 @@ steps:
               - attr: href
             text:
               - text
-  - db
+  - db:
+      key: wiki
+      id:  heading
