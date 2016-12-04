@@ -1,7 +1,8 @@
 db:
-  name:               redis
+  provider:           redis
   action:             save
   db:                 0
+  preprocessor:       json
 
 request:
   method:             get

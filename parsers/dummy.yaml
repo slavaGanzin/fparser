@@ -1,6 +1,17 @@
 steps:
-  - script:
-      command: ls -a
+  - parallel:
+      id:
+        - input: 2000
+      content:
+        - script:
+            command: ls -a
+  - db:
+      provider: file
+      id: id
+      key: /tmp/12
+      
+      
+      
   # - input:
   #     - Venetian_Snares
   #     - Aphex_Twin
