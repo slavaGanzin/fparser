@@ -1,13 +1,15 @@
 steps:
   - input:
-      - {$q: Venetian_Snares}
-      - {$q: Aphex_Twin}
-  - forward:
-      name: parsers/wikipedia/article.yaml
+      - Venetian_Snares
+      - Aphex_Twin
+  - db:
+      key: test
+      id: id
+  - input: 'a'
       
-placeholders:
-  aaaa: '1'
-
+  # - forward:
+  #     name: parsers/wikipedia/article.yaml
+      
 # steps:
 #   - get:
 #       method: 'GET'

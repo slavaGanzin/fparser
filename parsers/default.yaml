@@ -1,3 +1,8 @@
+db:
+  name:               redis
+  action:             save
+  db:                 0
+
 request:
   method:             get
   follow:             5
@@ -13,4 +18,4 @@ get:
   parse:              false
 
 placeholders:
-  $q: PLACE YOUR QUERY IN $q
+  $q:                 ''
