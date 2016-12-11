@@ -6,6 +6,8 @@ parser = require('../lib/parser')
 parseRange = compose(map(Number), split('..'))
 increaseVerbosity = (_, total) => ++total
 
+global.finishHandlers = []
+
 parsePlaceholders = compose(
   fromPairs,
   map(adjust(x => '$'+x, 0)),
@@ -28,8 +30,8 @@ ARGV
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
     parser.parse({name, placeholders: parsePlaceholders(placeholders)})
-      // .then(debug('out'))
       .then(compose(console.log, x=>JSON.stringify(x, null, ' '), flatten))
+      .then(() => map(call, global.finishHandlers))
       .catch(debug('err'))
   )
   .parse(process.argv)

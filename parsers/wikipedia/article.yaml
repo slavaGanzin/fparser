@@ -30,7 +30,7 @@ steps:
         - attr: src
         - reject:
           - /Commons-logo/i
-          - /Special:CentralAutoLogin/
+          - /Special:CentralAutoLogin/i
       links:
         - find: 'a'
         - parallel:

@@ -1,6 +1,10 @@
 steps:
-  - get:
-      url: http://vk.com
+  - input:
+      heading: 23
+  - db:
+      key: wiki
+      id:  heading
+      
       # output: /tmp/1
   # - parallel:
   #     id:
