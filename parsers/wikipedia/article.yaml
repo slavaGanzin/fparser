@@ -30,8 +30,8 @@ steps:
         - find: '#mw-content-text img'
         - attr: src
         - reject:
-          - /Commons-logo/i
-          - /Special:CentralAutoLogin/i
+          # - /Commons-logo/i
+          - /Special/i
       links:
         - remove:
           - '#catlinks'
