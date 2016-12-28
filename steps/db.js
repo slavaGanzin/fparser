@@ -8,14 +8,6 @@ dispatch = (options, actions) => data =>
   .then(() => data)
 
 module.exports = options => {
-  const {actions,connect} = require('../db/'+options.provider)
-  return flatMap(compose(dispatch(options, actions), connect))
+  provider = require('../db/'+options.provider)
+  return flatMap(compose(dispatch(options, provider.actions), provider.connect))
 }
-
-// module.exports = options =>
-//   flatMap(
-//     converge(compose, [
-//       require('../db/'+options.provider),
-//       require('../db/preprocessor')
-//     ])(options)
-//   )

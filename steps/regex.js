@@ -1,1 +1,2 @@
-module.exports = r => new RegExp(split('/', r)[1], split('/', r)[2])
+module.exports = (r,k) =>
+  [new RegExp(split('/', r)[1], split('/', r)[2]), k]

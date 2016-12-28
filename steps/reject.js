@@ -1,2 +1,2 @@
 module.exports = options =>
-  apply(compose, map(compose(reject, test, require('./regex')), options))
+  apply(compose, values(mapObjIndexed(compose(reject, require('./testStringOrObject'), require('./regex')), options)))

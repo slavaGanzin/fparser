@@ -1,6 +1,7 @@
 steps:
   - get:
       url: $host/wiki/$q
+  - find: '#bodyContent'
   - parallel:
       heading:
         - find: '#firstHeading'
@@ -32,12 +33,17 @@ steps:
           - /Commons-logo/i
           - /Special:CentralAutoLogin/i
       links:
+        - remove:
+          - '#catlinks'
         - find: 'a'
         - parallel:
             href:
               - attr: href
             text:
               - text
+        - reject:
+            href: /^#|index.php/i
+            text: /^$/
   - db:
       key: wiki
       id:  heading
