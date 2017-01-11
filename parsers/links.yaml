@@ -1,0 +1,8 @@
+steps:
+  - get:
+      url: $q
+  - find: 'a'
+  - attr: href
+  - reject:
+      - /^$/
+  - uniq
