@@ -1,0 +1,9 @@
+steps:
+  - input:
+    - mouse
+    - cat
+  - filter:
+    - /mouse/i
+  - expect:
+      eql:
+        - mouse

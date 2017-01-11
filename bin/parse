@@ -15,7 +15,6 @@ parsePlaceholders = compose(
   dropLast(1)
 )
 
-
 ARGV
   .version(require('../package.json').version)
   .option('-S, --no-skip'           , 'Do not skip on parse')
@@ -32,6 +31,5 @@ ARGV
     parser.parse({name, placeholders: parsePlaceholders(placeholders)})
       .then(compose(console.log, x=>JSON.stringify(x, null, ' '), flatten))
       .then(() => map(call, global.finishHandlers))
-      .catch(debug('err'))
   )
   .parse(process.argv)

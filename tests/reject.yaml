@@ -1,0 +1,9 @@
+steps:
+  - input:
+    - mouse
+    - cat
+  - reject:
+    - /a/i
+  - expect:
+      eql:
+        - mouse

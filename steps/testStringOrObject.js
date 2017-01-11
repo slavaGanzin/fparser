@@ -1,5 +1,4 @@
-module.exports = ([r,k]) =>
+module.exports = (r,k) =>
   test(/^\d+$/, k)
-   ? test(r)
-   : compose(test(r), path(split('.', k)))
- 
+   ? test(regex(r))
+   : compose(test(regex(r)), path(split('.', k)))

@@ -1,1 +1,1 @@
-module.exports = options => map(x => Promise.resolve(options))
+module.exports = options => () => Promise.resolve(options)
