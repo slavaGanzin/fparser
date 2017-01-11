@@ -33,6 +33,7 @@
     "promisify-node": "^0.4.0",
     "ramda": "^0.22.1",
     "readdirrsync": "0.0.3",
+    "regex-parser": "^2.2.5",
     "to-markdown": "^3.0.3",
     "xpath-to-css": "^1.0.2"
   }

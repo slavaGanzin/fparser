@@ -1,8 +1,16 @@
 steps:
-  - get:
-      url: $q
-  - find: 'a'
-  - attr: href
+  # - get:
+  #     url: $q
+  # - find: 'a'
+  # - attr: href
+  # - reject:
+  #     - /^$/
+  # - uniq
+  - input:
+      - ch.o1
+      - http://asd
   - reject:
-      - /^$/
-  - uniq
+      - /a/
+  # - replace:
+  #     - /^(\w.*)/, $q$1
+  #
