@@ -1,0 +1,5 @@
+steps:
+  - get:
+      url: http://www.nltk.org/book/
+  - expectEach:
+      property: root

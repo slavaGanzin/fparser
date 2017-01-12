@@ -1,0 +1,8 @@
+steps:
+  - get:
+      url: http://www.nltk.org/book/
+  - find: 'title'
+  - text
+  - expect:
+      eql:
+        - "NLTK Book"
