@@ -1,10 +1,20 @@
 steps:
   - parallel:
       a:
-        - input: a
+        - input:
+          - a
       b:
         - input: b
+      c:
+        - input:
+          - c
+          - c
+      d:
+        - input:
+            d: d
   - expect:
       eql:
         - a: a
           b: b
+          c: [ c, c ]
+          d: { d: d }
