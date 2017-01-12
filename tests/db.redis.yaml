@@ -1,0 +1,17 @@
+steps:
+  - input:
+      id: id
+      value: value
+  - db:
+      key: test
+      id: id
+  - input:
+      id: id
+  - db:
+      action: get
+      id: id
+      key: test
+  - expect:
+      eql:
+        - id: id
+          value: value

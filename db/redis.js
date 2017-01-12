@@ -3,8 +3,10 @@ redis = null
 
 connect = unless(() => redis, tap(options => redis = new Redis(options)))
 actions = {
-  save: ({key, id, data}) =>
-    new Promise(r => redis.hset(key, id, data).then(x => r(data)))
+  save: ({key, id, _data, data}) =>
+    new Promise(r => redis.hset(key, id, _data).then(() => r(data))),
+  get: ({key, id}) =>
+    new Promise(r => redis.hget(key, id).then(r)).then(JSON.parse)
 }
 
 module.exports = {

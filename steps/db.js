@@ -1,11 +1,14 @@
 preprocessor = require('../db/preprocessor')
 
+getId = (data, id) =>
+  when(isNil, () => { throw `empty key ${id} in ${JSON.pretty(data)}` }, data[id])
+
 dispatch = (options, actions) => data =>
   actions[options.action](merge(options, {
-    data: preprocessor(options, data),
-    id: data[options.id]
+    data,
+    _data: preprocessor(options, data),
+    id: getId(data, options.id)
   }))
-  .then(() => data)
 
 module.exports = options => {
   provider = require('../db/'+options.provider)

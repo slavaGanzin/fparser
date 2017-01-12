@@ -3,6 +3,7 @@ db:
   action:             save
   db:                 0
   preprocessor:       json
+  key:                default_key
 
 request:
   method:             get
