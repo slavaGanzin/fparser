@@ -15,7 +15,10 @@ runTests =
           : resolve({file, result})
     )})
     .then(compose(console.log, path(['file'])))
-    .catch(console.log)
+    .catch(error => {
+      console.error(error)
+      process.exit(1)
+    })
 )
 
 fs.readdir(TEST_PATH).then(runTests)
