@@ -1,0 +1,7 @@
+steps:
+  - input:
+      $forwardInput: 'forward'
+  - forward:
+      name: tests/placeholders.yaml
+      placeholders:
+        $forwardPlaceholders: 'forwardPlaceholders'

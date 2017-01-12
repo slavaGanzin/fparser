@@ -1,0 +1,18 @@
+placeholders:
+  $q: q
+  $forwardInput: ''
+  $forwardPlaceholders: ''
+  
+steps:
+  - input:
+     - value
+     - $q
+     - $forwardInput
+     - $forwardPlaceholders
+  - expect:
+      eql:
+        - value
+        - q
+        - $forwardInput
+        - $forwardPlaceholders
+    

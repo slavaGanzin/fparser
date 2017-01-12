@@ -1,5 +1,3 @@
-parser = require('../lib/parser')
-  
 module.exports = options => flatMap(input =>
-  parser.parse(merge(options, {placeholders: input}))
+  require('../lib/parser').parse(deepmerge(options, {placeholders: input}))
 )
