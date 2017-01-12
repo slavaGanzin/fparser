@@ -1,0 +1,5 @@
+steps:
+  - script: echo "Test script"
+  - expect:
+      eql:
+        - "Test script\n"

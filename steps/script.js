@@ -1,9 +1,10 @@
 cp = require('child_process')
 
-module.exports = options => flatMap( obj =>
+module.exports = command => flatMap( obj =>
   new Promise((resolve, reject) =>
-    cp.exec(options.command, options.options,
-      (error, stdout, stderr) => {
-        if (error) return reject({error, stdout, stderr})
-        resolve(split('\n',stdout.replace(/\n$/, '')))
-      })))
+    cp.exec(command,
+      (error, stdout, stderr) =>
+        error
+          ? reject({error, stdout, stderr})
+          : resolve(stdout)
+      )))
