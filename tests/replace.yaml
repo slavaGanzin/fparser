@@ -1,0 +1,15 @@
+steps:
+  - input:
+    - 'aaaaaa'
+    - 'bbbbbb'
+    - '3333 4444'
+  - replace:
+    - /a/, b
+    - /b/g, B
+    - /\d+/, 1
+    - /\d+/g, 2
+  - expect:
+      eql:
+        - baaaaa
+        - BBBBBB
+        - 1 2

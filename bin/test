@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+require('../lib/global')
+require('../lib/listeners')
+cp = require('child_process')
+fs = promisify('fs')
+TEST_PATH = './tests'
+
+runTests =
+  map(test =>
+    new Promise((resolve, reject) => {
+      const file = ['bin/parse ', TEST_PATH, require('path').sep, test].join('')
+      return cp.exec(file, (error, result) =>
+        error
+          ? reject({file, error, result})
+          : resolve({file, result})
+    )})
+    .then(compose(console.log, path(['file'])))
+    .catch(console.log)
+)
+
+fs.readdir(TEST_PATH).then(runTests)
