@@ -1,0 +1,10 @@
+steps:
+  - parallel:
+      a:
+        - input: a
+      b:
+        - input: b
+  - expect:
+      eql:
+        - a: a
+          b: b

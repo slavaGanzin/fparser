@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/slavaGanzin/fparser#readme",
   "dependencies": {
+    "chai": "^3.5.0",
     "commander": "^2.9.0",
     "css-to-xpath": "git@github.com:tlrobinson/css-to-xpath.git#contains-pseudo-selector",
     "debug": "^2.2.0",
