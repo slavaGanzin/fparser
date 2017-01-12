@@ -1,4 +1,4 @@
 module.exports = options =>
   apply(compose, values(mapObjIndexed(
-    compose(filter, require('./testStringOrObject')),
+    compose(filter, require('../lib/testStringOrObject')),
   options)))
