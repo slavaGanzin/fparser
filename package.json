@@ -36,6 +36,7 @@
     "readdirrsync": "0.0.3",
     "regex-parser": "^2.2.5",
     "to-markdown": "^3.0.3",
+    "xml2json": "^0.10.0",
     "xpath-to-css": "^1.0.2"
   }
 }

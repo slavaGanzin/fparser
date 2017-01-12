@@ -1,0 +1,9 @@
+steps:
+  - input: "<a><b>b</b><c><d>d</d></c></a>"
+  - xml2json
+  - expect:
+      eql:
+        - a:
+            b: b
+            c:
+              d: d

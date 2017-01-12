@@ -1,3 +1,1 @@
-module.exports = options => data => data
-
-// Promise.resolve(JSON.parse(data))
+module.exports = options => JSON.parse

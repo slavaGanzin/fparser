@@ -20,3 +20,11 @@ get:
 
 placeholders:
   $q:                 ''
+  
+xml2json:
+  object: true
+  reversible: false
+  coerce: false
+  sanitize: true
+  trim: true
+  arrayNotation: false
