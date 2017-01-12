@@ -1,0 +1,8 @@
+steps:
+  - get:
+      url: //www.nltk.org/book/
+  - find: p a
+  - attr: href
+  - expect:
+      eql:
+        - 'http://nltk.org/book_1ed/'

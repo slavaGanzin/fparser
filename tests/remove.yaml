@@ -1,0 +1,7 @@
+steps:
+  - get:
+      url: //www.nltk.org/book/
+  - remove: a
+  - find: a
+  - expect:
+      eql: [[]]
