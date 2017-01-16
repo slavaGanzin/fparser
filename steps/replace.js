@@ -1,5 +1,5 @@
 parse = compose(
-  ([r,s]) => replace(regex(r), s),
+  ([r,s='']) => replace(regex(r), s),
   split(/,?\s+/)
 )
 

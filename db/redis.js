@@ -1,7 +1,6 @@
-Redis = require('ioredis')
 redis = null
 
-connect = unless(() => redis, tap(options => redis = new Redis(options)))
+connect = unless(() => redis, tap(options => redis = new require('ioredis')(options)))
 actions = {
   save: ({key, id, _data, data}) =>
     new Promise(r => redis.hset(key, id, _data).then(() => r(data))),

@@ -11,7 +11,9 @@ actions = {
     ).then(() =>r(data)))
   },
   get: ({key, id}) =>
-    new Promise(r => fs.readFile(key + sep + id, 'utf8').then(r)).then(JSON.parse)
+    new Promise(r =>
+      fs.readFile(key + sep + id, 'utf8').then(r)
+    ).then(JSON.parse)
 }
             
 connect = identity

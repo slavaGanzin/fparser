@@ -1,0 +1,9 @@
+steps:
+  - script: ./bin/parse -l parsers/wikipedia/article.yaml
+  - json
+  - expectEach:
+      eql:
+        $q: ''
+        $protocol: https://
+        $country: en
+        $host: https://en.wikipedia.org

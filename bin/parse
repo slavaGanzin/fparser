@@ -23,7 +23,7 @@ ARGV
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose'           , 'Verbosity level', increaseVerbosity, 0)
   .option('-p, --nopretty'          , 'Disable formatting of output')
-  .option('-d, --debug'             , 'Display debug info')
+  // .option('-d, --debug'             , 'Display debug info')
   .option('-l, --placeholders'      , 'List placeholders')
   
   .usage('<parsername> [placeholders...]')
