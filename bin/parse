@@ -15,6 +15,11 @@ parsePlaceholders = compose(
   dropLast(1)
 )
 
+prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
+output = compose(console.log, prepareOutput, flatten)
+
+runFinishHandlers = () => map(call, global.finishHandlers)
+
 ARGV
   .version(require('../package.json').version)
   .option('-S, --no-skip'           , 'Do not skip on parse')
@@ -22,14 +27,14 @@ ARGV
   .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose'           , 'Verbosity level', increaseVerbosity, 0)
-  .option('-p, --nopretty'          , 'Disable formatting of output')
+  .option('-P, --nopretty'          , 'Disable formatting of output')
   // .option('-d, --debug'             , 'Display debug info')
   .option('-l, --placeholders'      , 'List placeholders')
   
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
     parser.parse({name, placeholders: parsePlaceholders(placeholders)})
-      .then(compose(console.log, x=>JSON.stringify(x, null, ' '), flatten))
-      .then(() => map(call, global.finishHandlers))
+      .then(output)
+      .then(runFinishHandlers)
   )
   .parse(process.argv)

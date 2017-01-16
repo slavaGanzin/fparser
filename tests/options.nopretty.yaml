@@ -1,0 +1,4 @@
+steps:
+  - script: ./bin/parse tests/json.yaml -P
+  - expectEach:
+      eql: '[{"a":1}]'

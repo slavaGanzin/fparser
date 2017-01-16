@@ -1,7 +1,6 @@
 steps:
   - get:
       url: $host/wiki/$q
-  - find: '#bodyContent'
   - parallel:
       heading:
         - find: '#firstHeading'
@@ -34,7 +33,7 @@ steps:
       links:
         - remove:
           - '#catlinks'
-        - find: 'a'
+        - find: '#bodyContent a'
         - parallel:
             href:
               - attr: href

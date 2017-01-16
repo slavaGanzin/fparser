@@ -6,5 +6,5 @@ module.exports = command => flatMap( obj =>
       (error, stdout, stderr) =>
         error
           ? reject({error, stdout, stderr})
-          : resolve(stdout)
+          : resolve(stdout.replace(/\n$/m, ''))
       )))
