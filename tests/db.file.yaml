@@ -3,7 +3,8 @@ steps:
       id: id
       value: value
   - db:
-      key: test
+      provider: file
+      key: /tmp/test
       id: id
   - expect:
       eql:
@@ -14,9 +15,10 @@ steps:
   - input:
       id: id
   - db:
+      provider: file
       action: get
       id: id
-      key: test
+      key: /tmp/test
   - expect:
       eql:
         - id: id
