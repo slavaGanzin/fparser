@@ -6,10 +6,73 @@ steps:
   - replace:
     - /a/, b
     - /b/g, B
-    - /\d+/, 1
+    - /\d+/ 1
     - /\d+/g, 2
   - expect:
       eql:
         - baaaaa
         - BBBBBB
         - 1 2
+        
+  - input:
+    - a a
+  
+  - replace:
+      - /(a)/ c$1t
+  - expect:
+      eql:
+        - cat a
+
+  - input:
+    - /
+    - /join
+    - /restore
+    - /restore
+    - https://play.google.com/store/apps/details?id=com.vkontakte.android
+    - http://windowsphone.com/s?appid=edd920e2-b671-41b5-a9db-b89caccfa69c
+    - https://itunes.apple.com/ru/app/id564177498
+    - https://m.vk.com
+    - /about
+    - /about
+    - /support?act=home
+    - /terms
+    - /ads
+    - /dev
+    - /jobs
+    - /about
+    - /about
+    - /support?act=home
+    - /terms
+    - /ads
+    
+    - /dev
+    - /jobs
+    
+  - replace:
+    - /^/(.*)/ vk.com/$1
+    
+  - expect:
+      eql:
+        - vk.com/
+        - vk.com/join
+        - vk.com/restore
+        - vk.com/restore
+        - https://play.google.com/store/apps/details?id=com.vkontakte.android
+        - http://windowsphone.com/s?appid=edd920e2-b671-41b5-a9db-b89caccfa69c
+        - https://itunes.apple.com/ru/app/id564177498
+        - https://m.vk.com
+        - vk.com/about
+        - vk.com/about
+        - vk.com/support?act=home
+        - vk.com/terms
+        - vk.com/ads
+        - vk.com/dev
+        - vk.com/jobs
+        - vk.com/about
+        - vk.com/about
+        - vk.com/support?act=home
+        - vk.com/terms
+        - vk.com/ads
+        - vk.com/dev
+        - vk.com/jobs
+        
