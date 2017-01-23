@@ -1,3 +1,3 @@
-module.exports = attr => flatMap(el =>
-  defaultTo('', el.attr(attr) && el.attr(attr).value())
-)
+module.exports = attr => compose(reject(either(isNil, isEmpty)), flatMap(el =>
+   el.attr(attr) && el.attr(attr).value()
+))
