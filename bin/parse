@@ -1,24 +1,24 @@
 #!/usr/bin/env node
 require('../lib/listeners')
 require('../lib/global')
-parser = require('../lib/parser')
+const parser = require('../lib/parser')
           
-parseRange = compose(map(Number), split('..'))
-increaseVerbosity = (_, total) => ++total
+const parseRange = compose(map(Number), split('..'))
+const increaseVerbosity = (_, total) => ++total
 
 global.finishHandlers = []
 
-parsePlaceholders = compose(
+const parsePlaceholders = compose(
   fromPairs,
   map(adjust(x => '$'+x, 0)),
   map(split('=')),
   dropLast(1)
 )
 
-prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
-output = compose(console.log, prepareOutput, flatten)
+const prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
+const output = compose(console.log, prepareOutput, flatten)
 
-runFinishHandlers = () => map(call, global.finishHandlers)
+const runFinishHandlers = () => map(call, global.finishHandlers)
 
 ARGV
   .version(require('../package.json').version)
@@ -28,7 +28,6 @@ ARGV
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose'           , 'Verbosity level', increaseVerbosity, 0)
   .option('-P, --nopretty'          , 'Disable formatting of output')
-  // .option('-d, --debug'             , 'Display debug info')
   .option('-l, --placeholders'      , 'List placeholders')
   
   .usage('<parsername> [placeholders...]')
