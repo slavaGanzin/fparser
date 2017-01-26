@@ -3,49 +3,61 @@ steps:
       id: id
       value: value
   - db:
-      key: test
+      keyPrefix: test
   - expect:
       eql:
         - id: id
           value: value
-      
-      
+  
+  
   - input:
       id: id
   - db:
       action: get
-      key: test
+      keyPrefix: test
   - expect:
       eql:
         - id: id
           value: value
-          
+  
   - input:
       id: asdasd
   - db:
       action: has
-      key: test
+      keyPrefix: test
   - expect:
       eql:
         - false
-          
+  
   - input:
       id: id
   - db:
       action: has
-      key: test
+      keyPrefix: test
   - expect:
       eql:
         - true
-        
+  
   - input:
     - id: id
     - id: not_present
   - db:
       action: reject
-      key: test
+      keyPrefix: test
   - expect:
       eql:
         - id: not_present
   
   
+  - input:
+    - id: idValue
+      key: keyValue
+  - db:
+      keyPrefix: keyPrefix_
+      key: key
+      idPrefix: idPrefix_
+      id: id
+  
+  - db:
+      keyPrefix: keyPrefix_keyValue
+      

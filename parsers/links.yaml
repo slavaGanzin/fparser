@@ -1,9 +1,23 @@
 steps:
   - get:
       url: $url
-  - find: a
-  - attr: href
-  - replace:
-    - /^/(.*)/ $url/$1
-  - filter:
-    - $url
+  - parallel:
+      # links:
+      #   - find: a
+      #   - attr: href
+      #   - replace:
+      #     - /^/(.*)/ $url/$1
+      #   - filter:
+      #     - $url
+      #   - db:
+      #       action: reject
+      #       key: pages:$url
+      baseurl:
+        - input:
+          - //$url
+        - url: host
+      html:
+        - html
+  - db:
+      key: pages
+      id: baseurl

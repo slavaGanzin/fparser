@@ -3,8 +3,10 @@ db:
   action:             save
   db:                 0
   preprocessor:       json
-  key:                default_key
+  keyPrefix:          ''
+  idPrefix:           ''
   id:                 id
+  key:                ''
 
 request:
   method:             get
@@ -24,9 +26,9 @@ placeholders:
   $q:                 ''
   
 xml2json:
-  object: true
-  reversible: false
-  coerce: false
-  sanitize: true
-  trim: true
+  object:        true
+  reversible:    false
+  coerce:        false
+  sanitize:      true
+  trim:          true
   arrayNotation: false
