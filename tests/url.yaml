@@ -1,0 +1,7 @@
+steps:
+  - input: http://hostname.com/any/page.tar.gz#hash
+  - url: host
+  - expect:
+      eql:
+        - hostname.com
+  
