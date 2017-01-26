@@ -4,7 +4,6 @@ steps:
       value: value
   - db:
       key: test
-      id: id
   - expect:
       eql:
         - id: id
@@ -15,9 +14,38 @@ steps:
       id: id
   - db:
       action: get
-      id: id
       key: test
   - expect:
       eql:
         - id: id
           value: value
+          
+  - input:
+      id: asdasd
+  - db:
+      action: has
+      key: test
+  - expect:
+      eql:
+        - false
+          
+  - input:
+      id: id
+  - db:
+      action: has
+      key: test
+  - expect:
+      eql:
+        - true
+        
+  - input:
+    - id: id
+    - id: not_present
+  - db:
+      action: reject
+      key: test
+  - expect:
+      eql:
+        - id: not_present
+  
+  

@@ -4,6 +4,7 @@ db:
   db:                 0
   preprocessor:       json
   key:                default_key
+  id:                 id
 
 request:
   method:             get

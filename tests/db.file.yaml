@@ -6,6 +6,7 @@ steps:
       provider: file
       key: /tmp/test
       id: id
+      # preprocessor: json
   - expect:
       eql:
         - id: id
