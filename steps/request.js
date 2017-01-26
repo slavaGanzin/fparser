@@ -20,4 +20,5 @@ module.exports = (options) => () => {
   )
   .then(logErrors)
   .then(parse)
+  .then(coerceArray)
 }
