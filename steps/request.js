@@ -13,7 +13,10 @@ const parse = when(
 
 const logErrors = when(x => x.statusCode != 200, debugRequest)
 
-module.exports = (options) => () => {
+module.exports = options => input => {
+  if (isEmpty(reject(equals(false), input)))
+    return Promise.reject(`skipped ${options.url}`)
+  
   debug('request')(`${options.url}`)
   return needle.request(
     options.method, options.url, options.data, options

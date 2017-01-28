@@ -1,5 +1,5 @@
 const url = require('url')
-const addSlashes = unless(match(/\/\//), x=>'//'+x)
+const addSlashes = unless(test(/\/\//g), x=>'http://'+x)
 
 module.exports = options =>
   flatMap(compose(path([options]), url.parse, addSlashes))

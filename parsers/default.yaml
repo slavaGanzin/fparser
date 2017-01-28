@@ -3,10 +3,8 @@ db:
   action:             save
   db:                 0
   preprocessor:       json
-  keyPrefix:          ''
-  idPrefix:           ''
-  id:                 id
-  key:                ''
+  id:                 $id
+  key:                DEFAULT_KEY
 
 request:
   method:             get

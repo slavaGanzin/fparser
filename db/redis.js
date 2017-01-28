@@ -14,9 +14,12 @@ const has = ({key, id}) =>
 const reject = ({key, id, data}) =>
   has({key, id}).then(has => has ? null : data)
 
+// const delete = ({key, id}) =>
+//   new Promise(r => redis.hdel(key, id).then(r))
+  
 module.exports = {
   actions: {
-    save, get, has, reject
+    save, get, has, reject, hasnt: composeP(not, has)
   },
   connect
 }

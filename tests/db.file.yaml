@@ -4,7 +4,7 @@ steps:
       value: value
   - db:
       provider: file
-      keyPrefix: /tmp/test
+      key: /tmp/test
       id: id
   - expect:
       eql:
@@ -18,7 +18,7 @@ steps:
       provider: file
       action: get
       id: id
-      keyPrefix: /tmp/test
+      key: /tmp/test
   - expect:
       eql:
         - id: id

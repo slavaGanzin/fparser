@@ -3,7 +3,7 @@ steps:
       id: id
       value: value
   - db:
-      keyPrefix: test
+      key: test
   - expect:
       eql:
         - id: id
@@ -14,7 +14,7 @@ steps:
       id: id
   - db:
       action: get
-      keyPrefix: test
+      key: test
   - expect:
       eql:
         - id: id
@@ -24,7 +24,7 @@ steps:
       id: asdasd
   - db:
       action: has
-      keyPrefix: test
+      key: test
   - expect:
       eql:
         - false
@@ -33,7 +33,7 @@ steps:
       id: id
   - db:
       action: has
-      keyPrefix: test
+      key: test
   - expect:
       eql:
         - true
@@ -43,7 +43,7 @@ steps:
     - id: not_present
   - db:
       action: reject
-      keyPrefix: test
+      key: test
   - expect:
       eql:
         - id: not_present
@@ -53,11 +53,15 @@ steps:
     - id: idValue
       key: keyValue
   - db:
-      keyPrefix: keyPrefix_
-      key: key
-      idPrefix: idPrefix_
-      id: id
+      key: prefix_$key
+      id: prefix_$id
   
   - db:
-      keyPrefix: keyPrefix_keyValue
+      key: prefix_keyValue
+      id: prefix_idValue
+      action: get
       
+  - expect:
+      eql:
+        - id: idValue
+          key: keyValue

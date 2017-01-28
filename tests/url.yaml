@@ -11,4 +11,9 @@ steps:
       eql:
         - '#hash'
         
+  - input: curl.haxx.se
+  - url: host
+  - expect:
+      eql:
+        - curl.haxx.se
   

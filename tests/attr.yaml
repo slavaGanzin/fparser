@@ -1,6 +1,6 @@
 steps:
   - get:
-      url: //www.nltk.org/book/
+      url: www.nltk.org/book/
   - find: p a
   - attr: href
   - expect:
