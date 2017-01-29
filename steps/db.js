@@ -7,7 +7,7 @@ const preprocessor = require('../db/preprocessor')
 
 
 const dispatch = (options, actions) => data => {
-  const replacer = data
+  const replacer = is(Object, data)
   ? compose(...values(mapObjIndexed((v,k) => replace('$'+k, String(v)), data)))
   : identity
   

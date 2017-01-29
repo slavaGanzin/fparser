@@ -1,6 +1,6 @@
 steps:
   - db:
-      action: hasnt
+      action: reject
       key: pages
       id: $url
   - get:
