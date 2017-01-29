@@ -1,8 +1,8 @@
 steps:
-  # - db:
-  #     action: hasnt
-  #     key: pages
-  #     id: $url
+  - db:
+      action: hasnt
+      key: pages
+      id: $url
   - get:
       url: $url
   - parallel:
