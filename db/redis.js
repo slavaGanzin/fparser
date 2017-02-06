@@ -11,15 +11,15 @@ const get = ({key, id}) =>
 const has = ({key, id}) =>
   new Promise(r => redis.hget(key, id).then(r)).then(Boolean)
   
-const reject = ({key, id, data}) =>
-  has({key, id}).then(x => !x?Promise.resolve(x) : Promise.reject(`skipped ${id}`))
+const skip = (arg) =>
+  has(arg).then(has => has ? Promise.resolve(has) : save(arg))
 
 // const delete = ({key, id}) =>
 //   new Promise(r => redis.hdel(key, id).then(r))
   
 module.exports = {
   actions: {
-    save, get, has, reject//, hasnt: composeP(not, has)
+    save, get, has, skip//, hasnt: composeP(not, has)
   },
   connect
 }

@@ -13,13 +13,18 @@ const parse = when(
 
 const logErrors = when(x => x.statusCode != 200, debugRequest)
 
-module.exports = options => input => {
-  console.error('request', `${options.url}`)
+module.exports = options => skip => {
+  if (head(skip)) {
+    console.error('skipped', options.url)
+    return Promise.resolve([])
+  }
+  console.error('request', options.url)
   return needle.request(
     options.method, options.url, options.data, options
   )
   .then(logErrors)
   .then(parse)
+  .then(tap(document => document.url = options.url))
   .then(coerceArray)
-  .catch(x => Promise.resolve())
+  .catch(x => console.log(x) || Promise.resolve([null]))
 }
