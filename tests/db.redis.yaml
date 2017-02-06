@@ -38,15 +38,15 @@ steps:
       eql:
         - true
   
-  - input:
-    - id: id
-    - id: not_present
-  - db:
-      action: reject
-      key: test
-  - expect:
-      eql:
-        - id: not_present
+  # - input:
+  #   - id: id
+  #   - id: not_present
+  # - db:
+  #     action: reject
+  #     key: test
+  # - expect:
+  #     eql:
+  #       - id: not_present
   
   
   - input:

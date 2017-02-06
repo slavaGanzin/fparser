@@ -14,12 +14,9 @@ const has = ({key, id}) =>
 const skip = (arg) =>
   has(arg).then(has => has ? Promise.resolve(has) : save(arg))
 
-// const delete = ({key, id}) =>
-//   new Promise(r => redis.hdel(key, id).then(r))
-  
 module.exports = {
   actions: {
-    save, get, has, skip//, hasnt: composeP(not, has)
+    save, get, has, skip
   },
   connect
 }
