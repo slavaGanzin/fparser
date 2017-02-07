@@ -3,12 +3,12 @@ const url = require('url')
 module.exports = attr => flatMap(el => {
   if (!el.attr(attr)) return null
   let value = el.attr(attr).value()
-  console.log(value)
-  if (attr == 'href' && value && !url.parse(value).host) {
-    console.log(value)
-    // const _url = url.parse(value)
-    // _url.host = el.doc().url
-    // value = _url.format()
+  
+  if (attr == 'href' && value) {
+    const URL = url.parse(value)
+    if (! URL.protocol) URL.protocol = url.parse(el.doc().url).protocol
+    if (! URL.host) URL.host =  url.parse(el.doc().url).host
+    value = URL.format()
   }
   
   return value

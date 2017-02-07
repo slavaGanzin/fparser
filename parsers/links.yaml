@@ -10,7 +10,7 @@ steps:
         - input: $url
       links:
         - find: a
-        - href
+        - attr: href
         # - url: fullpath
       #   - replace:
       #     - /(.*)/ $url$1
