@@ -10,9 +10,16 @@ request:
   method:             get
   follow:             5
   rejectUnauthorized: false
+  open_timeout:       5000
   compressed:         true
   parse:              false
 
+forward:
+  tap: false
+
+tap:
+  tap: true
+  
 get:
   method:             get
   follow:             5
