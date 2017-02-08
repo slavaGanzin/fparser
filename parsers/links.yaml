@@ -1,8 +1,8 @@
 steps:
-  # - db:
-  #     action: skip
-  #     key: processed_pages
-  #     id: $url
+  - db:
+      action: skip
+      key: processed_pages
+      id: $url
   - get:
       url: $url
   - parallel:
@@ -11,21 +11,21 @@ steps:
       links:
         - find: a
         - attr: href
-        # - url: fullpath
-      #   - replace:
-      #     - /(.*)/ $url$1
-      #     - /#.*/
-      #   # - filter:
-      #   #   - $url
-      #   - forward:
-      #       name: parsers/links.yaml
-      #       placeholders:
-      #         $url: $1
-      # baseurl:
-      #   - input: $url
-      #   - url: host
-      # html:
-      #   - html
-  # - db:
-  #     key: pages
-  #     id:  $url
+        - uniq
+        - replace:
+          - /#.*/
+          - /\/$/
+        # - filter:
+        #   - $url
+        - tap:
+            name: parsers/links.yaml
+            placeholders:
+              $url: $1
+      baseurl:
+        - input: $url
+        - url: host
+      html:
+        - html
+  - db:
+      key: pages
+      id:  $url

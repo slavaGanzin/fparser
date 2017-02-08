@@ -1,4 +1,4 @@
-module.exports = command => flatMap( obj =>
+module.exports = command => flatMap(obj =>
   new Promise((resolve, reject) =>
     require('child_process').exec(command,
       (error, stdout, stderr) =>

@@ -4,16 +4,15 @@ steps:
   - expect:
       eql:
         - hostname.com
-        
+
   - input: hostname.com#hash
   - url: hash
   - expect:
       eql:
         - '#hash'
-        
-  - input: curl.haxx.se
+  
+  - input: http://curl.haxx.se
   - url: host
   - expect:
       eql:
         - curl.haxx.se
-  

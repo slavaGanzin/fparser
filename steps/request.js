@@ -26,5 +26,5 @@ module.exports = options => skip => {
   .then(parse)
   .then(tap(document => document.url = options.url))
   .then(coerceArray)
-  .catch(x => console.log(x) || Promise.resolve([null]))
+  .catch(x => console.log(options.url,x) || Promise.resolve([null]))
 }
