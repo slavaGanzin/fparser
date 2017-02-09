@@ -1,4 +1,2 @@
-module.exports = ({
-  message
-}) =>
-  tap(debug(message))
+module.exports = message =>
+  flatMap(tap(debug(defaultTo('debug', message))))
