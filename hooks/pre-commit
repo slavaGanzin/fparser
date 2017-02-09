@@ -1,2 +1,2 @@
-eslint --fix .
+eslint --fix . &
 bin/test
