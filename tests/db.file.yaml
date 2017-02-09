@@ -1,9 +1,11 @@
+db:
+  provider: file
+  
 steps:
   - input:
       id: id
       value: value
   - db:
-      provider: file
       key: /tmp/test
       id: id
   - expect:
@@ -15,7 +17,6 @@ steps:
   - input:
       id: id
   - db:
-      provider: file
       action: get
       id: id
       key: /tmp/test
@@ -23,3 +24,22 @@ steps:
       eql:
         - id: id
           value: value
+
+  - input:
+      id: asdasd
+  - db:
+      action: has
+      key: test
+  - expect:
+      eql:
+        - false
+        
+  - input:
+      id: id
+  - db:
+      action: has
+      key: /tmp/test
+  - expect:
+      eql:
+        - true
+        
