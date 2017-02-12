@@ -3,7 +3,7 @@ module.exports = options =>
     placeholders = clone(input)
     if (is(String, placeholders)) {
       placeholders = mapObjIndexed(
-          (v,k) => replace('$1', placeholders, v), options.placeholders)
+        v => replace('$1', placeholders, v), options.placeholders)
     }
     return require('../lib/parser').parse(
       deepmerge(options, { placeholders })

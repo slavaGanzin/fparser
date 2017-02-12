@@ -27,6 +27,7 @@ get:
   rejectUnauthorized: false
   compressed:         true
   parse:              false
+  limit:              10
 
 placeholders:
   $q:                 ''

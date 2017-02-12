@@ -1,6 +1,7 @@
 steps:
   - db:
       action: skip
+      provider: memory
       key: processed_pages
       id: $url
   - get:
