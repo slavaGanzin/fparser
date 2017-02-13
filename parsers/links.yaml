@@ -12,12 +12,13 @@ steps:
       links:
         - find: a
         - attr: href
-        - uniq
         - replace:
           - /#.*/
+          - /\?.*/
           - /\/$/
-        # - filter:
-        #   - $url
+        - filter:
+          - $url
+        - uniq
         - tap:
             name: parsers/links.yaml
             placeholders:
@@ -28,5 +29,6 @@ steps:
       html:
         - html
   - db:
-      key: pages
+      key: /tmp
+      provider: file
       id:  $url

@@ -29,15 +29,14 @@ module.exports = options => {
       // console.error('skipped', options.url)
       return Promise.resolve([])
     }
-    return l(() =>
-    console.error('request', options.url)
-    ||
-    needle.request(
+    return l(() => needle.request(
       options.method, options.url, options.data, options
-    ))
+    )
+    .then(tap(() => console.error('request', options.url)))
     .then(logErrors)
     .then(parse)
     .then(tap(document => document.url = options.url))
     .then(coerceArray)
     .catch(x => console.log(options.url,x) || Promise.resolve([null]))
+  )
 }}
