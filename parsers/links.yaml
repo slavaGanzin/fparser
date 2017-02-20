@@ -1,3 +1,6 @@
+placeholders:
+  filter: $url
+
 steps:
   - db:
       action: skip
@@ -17,12 +20,13 @@ steps:
           - /\?.*/
           - /\/$/
         - filter:
-          - $url
+          - $filter
         - uniq
         - tap:
             name: parsers/links.yaml
             placeholders:
               $url: $1
+              $filter: $filter
       baseurl:
         - input: $url
         - url: host
