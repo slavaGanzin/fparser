@@ -10,10 +10,14 @@ global.finishHandlers = []
 
 const parsePlaceholders = compose(
   fromPairs,
-  map(adjust(x => '$'+x, 0)),
-  map(split('=')),
+  map(compose(
+    adjust(x => '$'+x, 0),
+    reject(isEmpty),
+    split(/(\w+)="?(\S+)"?\s?/g)
+  )),
   dropLast(1)
 )
+
 
 const prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
 const output = compose(console.log, prepareOutput, flatten)
