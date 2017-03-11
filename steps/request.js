@@ -25,21 +25,16 @@ const limit = (limit, i=0) => f =>
 
 const logErrors = when(x => x.statusCode != 200, debugRequest)
 
-module.exports = options => {
-  l = limit(options.limit)
-  return skip => {
-    if (head(skip)) {
-      debug('skipped')(options.url)
-      return Promise.resolve([])
-    }
-    return l(() => needle.request(
-      options.method, options.url, options.data, options
-    )
-    .then(tap(() => debug('request')(options.url)))
-    .then(logErrors)
-    .then(parse)
-    .then(tap(document => document.url = options.url))
-    .then(coerceArray)
-    .catch(x => console.log(options.url,x) || Promise.resolve([null]))
-  )
-  }}
+module.exports = pipe(evolve({limit}), options =>
+  flatMap(pipe(defaultTo(options.url), url =>
+    options.limit(() =>
+      needle.request(
+        options.method, url, options.data, options
+      )
+      .then(tap(() => debug('request')(url)))
+      .then(logErrors)
+      .then(parse)
+      .then(tap(document => document.url = url))
+      .catch(x => console.log(url,x) || Promise.resolve([null]))
+    )))
+)
