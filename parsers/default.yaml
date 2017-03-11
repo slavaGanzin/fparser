@@ -7,15 +7,6 @@ db:
   id:                 $id
   key:                DEFAULT_KEY
 
-request:
-  method:             get
-  follow:             5
-  rejectUnauthorized: false
-  open_timeout:       5000
-  compressed:         true
-  parse:              false
-  limit:              10
-
 forward:
   tap: false
 
@@ -28,7 +19,7 @@ get:
   rejectUnauthorized: false
   compressed:         true
   parse:              false
-  limit:              10
+  limit:              100
 
 placeholders:
   $q:                 ''
