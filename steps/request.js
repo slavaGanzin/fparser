@@ -11,11 +11,14 @@ const parse = when(
   x => x.body,
   input => libxml.parseHtml(input.body, {noerrors: true})
 )
-
 const limit = (limit, i=0) => f =>
   new Promise((resolve, reject) => {
     const _limit = () => i < parseInt(limit)
-      ? ++i && f().then(tap(() => i = --i)).then(resolve).catch(reject)
+      ? tap(debug('fparser:limit'), ++i)
+        && f()
+          .then(tap(() => debug('fparser:limit')(i -= 1)))
+          .then(resolve)
+          .catch(reject)
       : setTimeout(_limit, 100)
     _limit()
   })
