@@ -24,17 +24,17 @@ const limit = (limit, i=0) => f =>
   })
 
 const logErrors = when(x => x.statusCode != 200, debugRequest)
-
 module.exports = pipe(evolve({limit}), options =>
-  flatMap(pipe(defaultTo(options.url), url =>
-    options.limit(() =>
-      needle.request(
-        options.method, url, options.data, options
-      )
-      .then(tap(() => debug('request')(url)))
-      .then(logErrors)
-      .then(parse)
-      .then(tap(document => document.url = url))
-      .catch(x => console.log(url,x) || Promise.resolve([null]))
-    )))
+  compose(reject(isNil),
+    flatMap(pipe(defaultTo(options.url), url =>
+      options.limit(() =>
+        needle.request(
+          options.method, url, options.data, options
+        )
+        .then(tap(() => debug('request')(url)))
+        .then(logErrors)
+        .then(parse)
+        .then(tap(document => document.url = url))
+        .catch(x => console.log(url,x) || Promise.resolve([null]))
+    ))))
 )

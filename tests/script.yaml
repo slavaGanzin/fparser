@@ -3,3 +3,12 @@ steps:
   - expect:
       eql:
         - "Test script"
+
+  - input:
+      1: one
+      2: two
+      
+  - script: echo "$1 $2"
+  - expect:
+      eql:
+        - "one two"
