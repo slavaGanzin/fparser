@@ -9,12 +9,13 @@ runTests =
   map(test =>
     new Promise((resolve, reject) => {
       const file = ['bin/parse ', TEST_PATH, require('path').sep, test].join('')
+      const start = new Date()
       return cp.exec(file, (error, result) =>
         error
-          ? reject({file, error, result})
-          : resolve({file, result})
+          ? reject({file, error, result, start})
+          : resolve({file, result, start})
     )})
-    .then(compose(console.log, path(['file'])))
+    .then(result => console.log(result.file, '\t\t\t+', new Date() - result.start, 'ms'))
     .catch(error => {
       console.error(error)
       process.exit(1)

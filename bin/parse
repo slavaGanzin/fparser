@@ -2,22 +2,11 @@
 require('../lib/listeners')
 require('../lib/global')
 const parser = require('../lib/parser')
-          
+const PH = require('../lib/placeholders')
 const parseRange = compose(map(Number), split('..'))
 const increaseVerbosity = (_, total) => ++total
 
 global.finishHandlers = []
-
-const parsePlaceholders = compose(
-  fromPairs,
-  map(compose(
-    adjust(x => '$'+x, 0),
-    reject(isEmpty),
-    split(/(\w+)="?(\S+)"?\s?/g)
-  )),
-  dropLast(1)
-)
-
 
 const prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
 const output = compose(console.log, prepareOutput, flatten)
@@ -36,7 +25,7 @@ ARGV
   
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-    parser.parse({name, placeholders: parsePlaceholders(placeholders)})
+    parser.parse({name, placeholders: PH.parse(placeholders)})
       .then(output)
       .then(runFinishHandlers)
   )
