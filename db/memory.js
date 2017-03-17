@@ -14,7 +14,7 @@ const has = ({key, id}) =>
   Promise.resolve(Boolean(path([key, id], storage)))
   
 const skip = (arg) =>
-  has(arg).then(has => has ? Promise.resolve(has) : save(arg))
+  has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
 module.exports = {
   actions: {

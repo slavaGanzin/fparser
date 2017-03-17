@@ -1,1 +1,1 @@
-module.exports = options => JSON.parse
+module.exports = () => JSON.parse

@@ -1,6 +1,7 @@
 const {run} = require('../lib/steps')
 
-const headIfOneElement = when(x => x.length<2, head)
+const MORE_THAN_ONE = 2
+const headIfOneElement = when(x => x.length<MORE_THAN_ONE, head)
 
 module.exports = options =>
 flatMap(input =>

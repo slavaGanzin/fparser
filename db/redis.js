@@ -12,7 +12,7 @@ const has = ({key, id}) =>
   new Promise(r => redis.hget(key, id).then(r)).then(Boolean)
   
 const skip = (arg) =>
-  has(arg).then(has => has ? Promise.resolve(has) : save(arg))
+  has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
 module.exports = {
   actions: {

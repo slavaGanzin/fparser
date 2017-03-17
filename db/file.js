@@ -10,10 +10,10 @@ const full = (key, id) => dir(key,id) + sep + file(id)
 
 const save = ({data, pre, key, id}) => {
   mkdirp.sync(dir(key, id))
-  return new Promise(r =>
+  return new Promise((r, rej) =>
     fs.writeFile(full(key, id), pre(data))
       .then(always(r(data)))
-      .catch(console.log)
+      .catch(rej)
 )}
 
 const get = ({key, id, post}) =>
@@ -30,7 +30,7 @@ const has = ({key, id}) =>
     .catch(() => r(false)))
 
 const skip = (arg) =>
-  has(arg).then(has => has ? Promise.resolve(has) : save(arg))
+  has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
 module.exports =  {
   actions:{
