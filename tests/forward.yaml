@@ -1,10 +1,10 @@
 steps:
   - input:
-      $forwardInput: 'forward'
+      forwardInput: 'forward'
   - forward:
       name: tests/placeholders.yaml
       placeholders:
-        $forwardPlaceholders: 'forwardPlaceholders'
+        forwardPlaceholders: 'forwardPlaceholders'
   - expect:
       eql:
         - [ value, q, forward, forwardPlaceholders]

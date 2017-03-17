@@ -1,14 +1,13 @@
 const {pre, post} = require('../db/hooks')
-let key,id
+const PH = require('../lib/placeholders')
 
 const dispatch = (options, actions) => data => {
-  id = key = is(Object, data)
-  ? compose(...values(mapObjIndexed((v,k) => replace('$'+k, String(v)), data)))
-  : identity
-  
   return actions[options.action](
     evolve({
-      pre, post, key, id
+      pre,
+      post,
+      key: PH.apply(data),
+      id: PH.apply(data)
     },
       merge(options, { data })
     )

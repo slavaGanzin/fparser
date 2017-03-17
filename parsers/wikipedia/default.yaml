@@ -1,4 +1,4 @@
 placeholders:
-  $protocol: https://
-  $country: en
-  $host: $protocol$country.wikipedia.org
+  protocol: https://
+  country: en
+  host: $protocol$country.wikipedia.org

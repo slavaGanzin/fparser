@@ -8,29 +8,29 @@ steps:
   - get:
       url: $url
       
-  # - find: a
-  # - attr: href
-  # - filter:
-  #   - \/cat\/
-  # - reject:
-  #   - tall
-  #   - a-list
-  #   - fashion-online
-  #   - brands
-  #   - new-in
-  #   - gifts
-  #   - maternity
-  #   - designer
-  #   - packs
-  #   - exclusives
-  #   - shop
-  #   - marketplace
-  #   - plus-size
-  #
-  # # - get
-  # # - find: .cats
-  # # - attr: href
+  - find: a
+  - attr: href
+  - filter:
+    - \/cat\/
+  - reject:
+    - tall
+    - a-list
+    - fashion-online
+    - brands
+    - new-in
+    - gifts
+    - maternity
+    - designer
+    - packs
+    - exclusives
+    - shop
+    - marketplace
+    - plus-size
+  
   # - get
+  # - find: .cats
+  # - attr: href
+  - get
   - parallel:
       images:
         - find: .product.product-link .product-img

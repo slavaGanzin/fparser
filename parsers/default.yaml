@@ -22,7 +22,7 @@ get:
   limit:              100
 
 placeholders:
-  $q:                 ''
+    q:                 ''
   
 xml2json:
   object:        true

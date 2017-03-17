@@ -1,7 +1,7 @@
 placeholders:
-  $q: q
-  $forwardInput: ''
-  $forwardPlaceholders: ''
+  q: q
+  forwardInput: ''
+  forwardPlaceholders: ''
   
 steps:
   - input:

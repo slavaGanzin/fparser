@@ -3,7 +3,7 @@ steps:
   - json
   - expectEach:
       eql:
-        $q: ''
-        $protocol: https://
-        $country: en
-        $host: https://en.wikipedia.org
+        q: ''
+        protocol: https://
+        country: en
+        host: https://en.wikipedia.org
