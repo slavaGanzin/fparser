@@ -15,11 +15,11 @@ runTests =
           ? reject({file, error, result, start})
           : resolve({file, result, start})
     )})
-    .then(result => console.log(result.file, '\t\t\t+', new Date() - result.start, 'ms'))
-    .catch(error => {
-      console.error(error)
-      process.exit(1)
-    })
+      .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
+      .catch(error => {
+        console.error(error)
+        process.exit(1)
+      })
 )
 
 fs.readdir(TEST_PATH).then(runTests)
