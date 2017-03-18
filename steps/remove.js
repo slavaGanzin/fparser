@@ -1,4 +1,4 @@
-c2x = require('css-to-xpath')
+const c2x = require('css-to-xpath')
 
 module.exports = selectors => flatMap(
   tap(xmldoc =>

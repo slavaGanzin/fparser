@@ -32,7 +32,7 @@ const has = ({key, id}) =>
 const skip = (arg) =>
   has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
-module.exports =  {
+module.exports = {
   actions:{
     get, save, has, skip
   },

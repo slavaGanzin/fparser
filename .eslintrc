@@ -9,15 +9,42 @@ env:
 extends: eslint:recommended
 rules:
   block-scoped-var : error
+  no-shadow: error
+  no-undef: off
+  dot-notation: error
+  no-else-return: error
+  no-empty-pattern: error
+  no-extra-bind: error
+  no-implicit-coercion: error
+  no-magic-numbers: warn
+  no-useless-escape: error
+  prefer-arrow-callback: warn
+  no-useless-return: error
+  callback-return: error
+  no-use-before-define: error
+  no-floating-decimal: error
+  no-invalid-this: error
+  no-var: error
+  prefer-spread: error
+  no-unused-vars: warn
+  no-console: warn
+  no-implicit-globals: warn
+  no-labels: error
+  no-lone-blocks: error
+  
+  no-multi-spaces:
+    - warn
+    - exceptions:
+        VariableDeclarator: true
   space-in-parens:
     - error
     - never
-  no-shadow: error
-  no-undef: off
-  no-unused-vars:
+  no-cond-assign:
+    - error
+    - always
+  no-extra-parens:
     - warn
-  no-console:
-    - warn
+    - all
   indent:
     - warn
     - 2
@@ -30,19 +57,9 @@ rules:
   linebreak-style:
     - error
     - unix
-  no-var: error
-  prefer-spread: error
   dot-location:
     - error
     - property
-  no-implicit-coercion: error
-  no-magic-numbers: warn
-  # no-multi-spaces: [ error, { exceptions: {VariableDeclarator: true}}]
-  no-useless-escape: error
-  prefer-arrow-callback: warn
-  # no-useless-return: error
-  callback-return: error
-  no-use-before-define: error
   curly:
     - error
     - multi-or-nest
