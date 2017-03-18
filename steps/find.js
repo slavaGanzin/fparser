@@ -1,3 +1,5 @@
+const c2x = require('css-to-xpath')
+
 module.exports = selector => flatMap(xmldoc =>
-  xmldoc.find(require('css-to-xpath')(selector))
+  xmldoc.find(c2x(selector))
 )

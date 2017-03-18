@@ -11,12 +11,12 @@ const debugRequest = tap(compose(
   pick(['statusCode', 'headers'])
 ))
 
- 
+
 const parse = when(
   x => x.body,
-  input => libxml.parseHtml(input.body, {noerrors: true})
+  input => libxml.parseHtml(input.body, {noerrors: true })
 )
-const limit = (lim, i=NIL) => f =>
+const limit = (lim, i = NIL) => f =>
   new Promise((resolve, reject) => {
     const _limit = () => i < parseInt(lim)
       ? tap(debug('fparser:limit'), ++i)
@@ -25,11 +25,13 @@ const limit = (lim, i=NIL) => f =>
           .then(resolve)
           .catch(reject)
       : setTimeout(_limit, LIMIT_TIMEOUT)
+
     _limit()
   })
 
 const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
-module.exports = pipe(evolve({limit}), options =>
+
+module.exports = pipe(evolve({limit }), options =>
   compose(reject(isNil),
     flatMap(pipe(defaultTo(options.url), url =>
       options.limit(() =>
@@ -39,7 +41,9 @@ module.exports = pipe(evolve({limit}), options =>
         .then(tap(() => debug('request')(url)))
         .then(logErrors)
         .then(parse)
-        .then(tap(document => document.url = url))
-        .catch(x => debug('error:request')(url,x) || Promise.resolve([null]))
+        .then(tap(document => {
+          document.url = url
+        }))
+        .catch(x => debug('error:request')(url, x) || Promise.resolve([null]))
     ))))
 )

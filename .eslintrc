@@ -17,10 +17,6 @@ rules:
   no-extra-bind: error
   no-implicit-coercion: error
   no-magic-numbers: warn
-  no-useless-escape: error
-  prefer-arrow-callback: warn
-  no-useless-return: error
-  callback-return: error
   no-use-before-define: error
   no-floating-decimal: error
   no-invalid-this: error
@@ -31,14 +27,130 @@ rules:
   no-implicit-globals: warn
   no-labels: error
   no-lone-blocks: error
+  no-multi-str: error
+  no-return-assign: error
+  no-self-assign: error
+  no-self-compare: error
+  no-sequences: error
+  no-unused-expressions: error
+  no-useless-call: error
+  no-useless-concat: error
+  no-useless-escape: error
+  no-useless-return: error
+  no-void: error
+  no-with: error
+  no-throw-literal: error
+  vars-on-top: error
+  wrap-iife: error
+  yoda: error
+  strict: off
+  init-declarations: error
+  no-shadow-restricted-names: error
+  no-undef-init: error
+  callback-return: error
+  global-require: error
+  handle-callback-err: error
+  no-mixed-requires: error
+  no-path-concat: error
+  no-sync: error
+  array-bracket-spacing: error
+  block-spacing: error
+  brace-style: error
+  func-name-matching: error
+  func-names: error
+  keyword-spacing: error
+  line-comment-position: error
+  lines-around-directive: error
+  max-lines: error
+  # multiline-ternary: error
+  no-inline-comments: error
+  no-continue: error
+  no-bitwise: error
+  newline-per-chained-call: error
+  new-parens: error
+  newline-after-var: error
+  # new-cap: error
+  no-array-constructor: error
+  no-lonely-if: error
+  no-mixed-operators: error
+  no-multi-assign: error
+  no-multiple-empty-lines: error
+  no-negated-condition: error
+  no-nested-ternary: error
+  no-tabs: error
+  no-unneeded-ternary: error
+  no-trailing-spaces: error
+  no-whitespace-before-property: error
+  # noblock-statement-body-position: error
+  object-property-newline: error
+  space-before-blocks: error
+  space-before-function-paren: error
+  space-infix-ops: error
+  space-unary-ops: error
+  arrow-body-style: error
+  arrow-spacing: error
+  no-useless-computed-key: error
+  no-useless-rename: error
+  object-shorthand: error
+  prefer-arrow-callback: error
+  prefer-destructuring: error
+  prefer-template: error
+  template-curly-spacing: error
   
+  rest-spread-spacing:
+    - error
+    - never
+  arrow-parens:
+    - error
+    - as-needed
+  space-in-parens:
+    - error
+    - never
+  padded-blocks:
+    - error
+    - never
+  operator-linebreak:
+    - error
+    - before
+  one-var:
+    - error
+    - never
+  max-params:
+    - error
+    - 3
+  max-depth:
+    - error
+    - 2
+  max-statements:
+    - error
+    - 10
+  max-nested-callbacks:
+    - error
+    - 4
+  key-spacing:
+    - error
+    - align: value
+  func-style:
+    - error
+    - declaration
+    - allowArrowFunctions: true
+  consistent-this:
+    - error
+    - do-not-use-that
+  comma-spacing:
+    - error
+    - before: false
+      after: true
+  comma-style:
+    - error
+    - last
+  # comma-dangle:
+  #   - warn
+  #   - never
   no-multi-spaces:
     - warn
     - exceptions:
         VariableDeclarator: true
-  space-in-parens:
-    - error
-    - never
   no-cond-assign:
     - error
     - always
@@ -69,3 +181,6 @@ rules:
   semi:
     - warn
     - never
+  quote-props:
+    - error
+    - as-needed

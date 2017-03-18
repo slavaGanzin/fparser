@@ -1,1 +1,3 @@
-module.exports = options => map(data => require('xml2json').toJson(data, options))
+const toJson = flip(require('xml2json').toJson)
+
+module.exports = options => map(toJson(options))

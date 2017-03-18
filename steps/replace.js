@@ -1,5 +1,7 @@
+const regexParser = require('regex-parser')
+
 const parse = compose(
-  ([r,s='']) => replace(regex(r), s),
+  ([r, s = '']) => replace(regexParser(r), s),
   split(/,?\s+/)
 )
 

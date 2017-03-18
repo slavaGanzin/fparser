@@ -1,3 +1,5 @@
+const { parse } = require('../lib/parser')
+
 module.exports = options =>
   flatMap(input => {
     placeholders = clone(input)
@@ -5,7 +7,7 @@ module.exports = options =>
       placeholders = mapObjIndexed(
         v => replace('$1', placeholders, v), options.placeholders)
     }
-    return require('../lib/parser').parse(
+    return parse(
       deepmerge(options, { placeholders })
     )
     .then(when(() => options.tap, () => Promise.resolve(input)))
