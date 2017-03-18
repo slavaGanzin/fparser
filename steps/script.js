@@ -1,4 +1,4 @@
-const { exec } = require('child_process')
+const {exec} = require('child_process')
 const PH = require('../lib/placeholders')
 
 module.exports = command => flatMap(placeholders => new Promise((resolve, reject) =>
@@ -8,6 +8,6 @@ module.exports = command => flatMap(placeholders => new Promise((resolve, reject
         error
           ? reject({error,
             stdout,
-            stderr })
+            stderr})
           : resolve(stdout.replace(/\n$/m, ''))
       )))

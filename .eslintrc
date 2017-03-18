@@ -1,101 +1,100 @@
-globals:
-  R: false
-  debug: false
-  process: false
-env:
-  node: true
-  commonjs: true
-  es6: true
-extends: eslint:recommended
+env:                             
+  node:                          true
+  commonjs:                      true
+  es6:                           true
+  
+extends:                         eslint:recommended
+
 rules:
-  block-scoped-var : error
-  no-shadow: error
-  no-undef: off
-  dot-notation: error
-  no-else-return: error
-  no-empty-pattern: error
-  no-extra-bind: error
-  no-implicit-coercion: error
-  no-magic-numbers: warn
-  no-use-before-define: error
-  no-floating-decimal: error
-  no-invalid-this: error
-  no-var: error
-  prefer-spread: error
-  no-unused-vars: warn
-  no-console: warn
-  no-implicit-globals: warn
-  no-labels: error
-  no-lone-blocks: error
-  no-multi-str: error
-  no-return-assign: error
-  no-self-assign: error
-  no-self-compare: error
-  no-sequences: error
-  no-unused-expressions: error
-  no-useless-call: error
-  no-useless-concat: error
-  no-useless-escape: error
-  no-useless-return: error
-  no-void: error
-  no-with: error
-  no-throw-literal: error
-  vars-on-top: error
-  wrap-iife: error
-  yoda: error
-  strict: off
-  init-declarations: error
-  no-shadow-restricted-names: error
-  no-undef-init: error
-  callback-return: error
-  global-require: error
-  handle-callback-err: error
-  no-mixed-requires: error
-  no-path-concat: error
-  no-sync: error
-  array-bracket-spacing: error
-  block-spacing: error
-  brace-style: error
-  func-name-matching: error
-  func-names: error
-  keyword-spacing: error
-  line-comment-position: error
-  lines-around-directive: error
-  max-lines: error
-  # multiline-ternary: error
-  no-inline-comments: error
-  no-continue: error
-  no-bitwise: error
-  newline-per-chained-call: error
-  new-parens: error
-  newline-after-var: error
-  # new-cap: error
-  no-array-constructor: error
-  no-lonely-if: error
-  no-mixed-operators: error
-  no-multi-assign: error
-  no-multiple-empty-lines: error
-  no-negated-condition: error
-  no-nested-ternary: error
-  no-tabs: error
-  no-unneeded-ternary: error
-  no-trailing-spaces: error
+  strict:                        off
+  no-undef:                      off
+  quotes:                        off
+  
+  no-magic-numbers:              warn
+  no-unused-vars:                warn
+  no-console:                    warn
+  no-implicit-globals:           warn
+  
+  
+  block-scoped-var:              error
+  no-shadow:                     error
+  dot-notation:                  error
+  no-else-return:                error
+  no-empty-pattern:              error
+  no-extra-bind:                 error
+  no-implicit-coercion:          error
+  no-use-before-define:          error
+  no-floating-decimal:           error
+  no-invalid-this:               error
+  no-var:                        error
+  prefer-spread:                 error
+  no-labels:                     error
+  no-lone-blocks:                error
+  no-multi-str:                  error
+  no-self-assign:                error
+  no-self-compare:               error
+  no-sequences:                  error
+  no-unused-expressions:         error
+  no-useless-call:               error
+  no-useless-concat:             error
+  no-useless-escape:             error
+  no-useless-return:             error
+  no-void:                       error
+  no-with:                       error
+  no-throw-literal:              error
+  vars-on-top:                   error
+  wrap-iife:                     error
+  yoda:                          error
+  init-declarations:             error
+  no-shadow-restricted-names:    error
+  no-undef-init:                 error
+  callback-return:               error
+  global-require:                error
+  handle-callback-err:           error
+  no-mixed-requires:             error
+  no-path-concat:                error
+  no-sync:                       error
+  array-bracket-spacing:         error
+  block-spacing:                 error
+  brace-style:                   error
+  func-name-matching:            error
+  func-names:                    error
+  keyword-spacing:               error
+  line-comment-position:         error
+  lines-around-directive:        error
+  max-lines:                     error
+  no-inline-comments:            error
+  no-continue:                   error
+  no-bitwise:                    error
+  newline-per-chained-call:      error
+  new-parens:                    error
+  newline-after-var:             error
+  no-array-constructor:          error
+  no-lonely-if:                  error
+  no-mixed-operators:            error
+  no-multi-assign:               error
+  no-multiple-empty-lines:       error
+  no-negated-condition:          error
+  no-nested-ternary:             error
+  no-tabs:                       error
+  no-unneeded-ternary:           error
+  no-trailing-spaces:            error
   no-whitespace-before-property: error
-  # noblock-statement-body-position: error
-  object-property-newline: error
-  space-before-blocks: error
-  space-before-function-paren: error
-  space-infix-ops: error
-  space-unary-ops: error
-  arrow-body-style: error
-  arrow-spacing: error
-  no-useless-computed-key: error
-  no-useless-rename: error
-  object-shorthand: error
-  prefer-arrow-callback: error
-  prefer-destructuring: error
-  prefer-template: error
-  template-curly-spacing: error
+  object-property-newline:       error
+  space-before-blocks:           error
+  space-before-function-paren:   error
+  space-infix-ops:               error
+  space-unary-ops:               error
+  arrow-body-style:              error
+  arrow-spacing:                 error
+  no-useless-computed-key:       error
+  no-useless-rename:             error
+  object-shorthand:              error
+  prefer-arrow-callback:         error
+  prefer-destructuring:          error
+  prefer-template:               error
+  template-curly-spacing:        error
+  object-curly-spacing:          error
   
   rest-spread-spacing:
     - error
@@ -123,10 +122,10 @@ rules:
     - 2
   max-statements:
     - error
-    - 10
+    - 5
   max-nested-callbacks:
     - error
-    - 4
+    - 2
   key-spacing:
     - error
     - align: value
@@ -175,9 +174,6 @@ rules:
   curly:
     - error
     - multi-or-nest
-  quotes:
-    - off
-    - double
   semi:
     - warn
     - never

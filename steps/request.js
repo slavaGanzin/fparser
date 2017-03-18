@@ -11,11 +11,11 @@ const debugRequest = tap(compose(
   pick(['statusCode', 'headers'])
 ))
 
-
 const parse = when(
   x => x.body,
-  input => libxml.parseHtml(input.body, {noerrors: true })
+  input => libxml.parseHtml(input.body, {noerrors: true})
 )
+
 const limit = (lim, i = NIL) => f =>
   new Promise((resolve, reject) => {
     const _limit = () => i < parseInt(lim)
@@ -30,20 +30,22 @@ const limit = (lim, i = NIL) => f =>
   })
 
 const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
+const updateDocumentUrl = options => tap(document => document.url = options.url)
+const logRequest = options => debug(options.method)(options.url)
+const logCatch = options => x => debug(`error:${options.method} ${options.url}`)(x) || Promise.resolve([null])
 
-module.exports = pipe(evolve({limit }), options =>
-  compose(reject(isNil),
-    flatMap(pipe(defaultTo(options.url), url =>
-      options.limit(() =>
-        needle.request(
-          options.method, url, options.data, options
-        )
-        .then(tap(() => debug('request')(url)))
-        .then(logErrors)
-        .then(parse)
-        .then(tap(document => {
-          document.url = url
-        }))
-        .catch(x => debug('error:request')(url, x) || Promise.resolve([null]))
-    ))))
+const request = options => options.limit(() =>
+  needle.request(
+    options.method, options.url, options.data, options
+  )
+  .then(logRequest(options))
+  .then(logErrors)
+  .then(parse)
+  .then(updateDocumentUrl(options))
+  .catch(logCatch(options))
 )
+
+const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
+
+module.exports = pipe(evolve({limit}), options =>
+  compose(reject(isNil), flatMap(compose(request, mergeUrl(options)))))

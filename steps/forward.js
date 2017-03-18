@@ -1,4 +1,4 @@
-const { parse } = require('../lib/parser')
+const {parse} = require('../lib/parser')
 
 module.exports = options =>
   flatMap(input => {
@@ -8,7 +8,7 @@ module.exports = options =>
         v => replace('$1', placeholders, v), options.placeholders)
     }
     return parse(
-      deepmerge(options, { placeholders })
+      deepmerge(options, {placeholders})
     )
     .then(when(() => options.tap, () => Promise.resolve(input)))
   })
