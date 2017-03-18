@@ -8,24 +8,25 @@ const increaseVerbosity = (_, total) => ++total
 
 global.finishHandlers = []
 
-const prepareOutput = x => JSON[ARGV.nopretty?'stringify':'pretty'](x)
+const prepareOutput = x => JSON[ARGV.nopretty ? 'stringify' : 'pretty'](x)
 const output = compose(console.log, prepareOutput, when(isArrayLike, flatten))
 
 const runFinishHandlers = () => map(call, global.finishHandlers)
 
 ARGV
   .version(require('../package.json').version)
-  .option('-S, --no-skip'           , 'Do not skip on parse')
-  .option('-s, --no-save'           , 'Do not save results')
-  .option('-f, --forward [action]'  , 'Forward result to --forward [action] or skip forwarding with -f')
+  .option('-S, --no-skip', 'Do not skip on parse')
+  .option('-s, --no-save', 'Do not save results')
+  .option('-f, --forward [action]', 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
-  .option('-v, --verbose'           , 'Verbosity level', increaseVerbosity, 0)
-  .option('-P, --nopretty'          , 'Disable formatting of output')
-  .option('-l, --placeholders'      , 'List placeholders')
-  
+  .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)
+  .option('-P, --nopretty', 'Disable formatting of output')
+  .option('-l, --placeholders', 'List placeholders')
+
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-    parser.parse({name, placeholders: PH.parse(placeholders)})
+    parser.parse({name,
+      placeholders: PH.parse(placeholders)})
       .then(output)
       .then(runFinishHandlers)
   )
