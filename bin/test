@@ -17,7 +17,7 @@ runTests =
     )})
       .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
       .catch(error => {
-        console.error(error)
+        debug('error')(error)
         process.exit(1)
       })
 )
