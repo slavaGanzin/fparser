@@ -8,43 +8,44 @@ steps:
   - get:
       url: $url
       
-  # - find: a
-  # - attr: href
-  # - filter:
-  #   - \/cat\/
-  # - reject:
-  #   - tall
-  #   - a-list
-  #   - fashion-online
-  #   - brands
-  #   - new-in
-  #   - gifts
-  #   - maternity
-  #   - designer
-  #   - packs
-  #   - exclusives
-  #   - shop
-  #   - marketplace
-  #   - plus-size
+  - find: a
+  - attr: href
+  - filter:
+    - \/cat\/
+  - reject:
+    - tall
+    - a-list
+    - fashion-online
+    - brands
+    - new-in
+    - gifts
+    - maternity
+    - designer
+    - packs
+    - exclusives
+    - shop
+    - marketplace
+    - plus-size
   
-  # - get
-  # - find: .cats
-  # - attr: href
-  # - get
-  - find: .product.product-link .product-img
-  - attr: src
+  - get
+  - find: .cats
+  - parallel:
+      name:
+        - text
+        - replace:
+            - /(Wo)?men's/i
+            - /\n/g
+      url:
+        - attr: href
+  # - find: .product.product-link .product-img
   # - parallel:
-      # image:
-  # - attr: src
-  # - get
-      # category:
-      #   - root
-      #   - find: .content h1
-      #   - text
-      #   - replace:
-      #       - /(Wo)?men's/i
-      #       - /\n/g
-      #       - /\s+/gi
+  #     category:
+  #       - find: .content h1
+  #     url:
+  #       - attr: url
+      # url:
+        # - url
+        
   #     href:
   #       - attr: href
         

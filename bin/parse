@@ -25,8 +25,7 @@ ARGV
 
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
-    parser.parse({name,
-      placeholders: PH.parse(placeholders)})
+    parser.parse({name, placeholders: PH.parse(placeholders)})
       .then(output)
       .then(runFinishHandlers)
   )
