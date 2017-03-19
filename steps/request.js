@@ -13,7 +13,7 @@ const debugRequest = tap(compose(
 
 const parse = when(
   x => x.body,
-  input => libxml.parseHtml(input.body, {errors: false})
+  input => libxml.parseHtml(input.body)
 )
 
 const limit = (lim, i = NIL) => f =>
