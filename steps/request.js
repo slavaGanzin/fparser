@@ -12,7 +12,7 @@ const debugRequest = tap(compose(
 ))
 
 const parse = when(
-  x => x.body,
+  x => test(/html|xml/, x.headers['content-type']),
   input => libxml.parseHtml(input.body)
 )
 
@@ -41,7 +41,7 @@ const request = options => options.limit(() =>
   .then(logRequest(options))
   .then(logErrors)
   .then(parse)
-  .then(updateDocumentUrl(options))
+  // .then(updateDocumentUrl(options))
   .catch(logCatch(options))
 )
 
