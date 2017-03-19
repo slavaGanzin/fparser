@@ -31,21 +31,20 @@ steps:
   # - find: .cats
   # - attr: href
   # - get
+  - find: .product.product-link .product-img
+  - attr: src
   # - parallel:
-  #     images:
-  # - find: .product.product-link .product-img
+      # image:
   # - attr: src
-        # - get
-  
+  # - get
       # category:
-  # - find: .content h1
-  # - parallel:
-  #     name:
-  #       - text
-  #       - replace:
-  #           - /(Wo)?men's/i
-  #           - /\n/g
-  #           - /\s+/gi
+      #   - root
+      #   - find: .content h1
+      #   - text
+      #   - replace:
+      #       - /(Wo)?men's/i
+      #       - /\n/g
+      #       - /\s+/gi
   #     href:
   #       - attr: href
         
