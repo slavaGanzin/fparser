@@ -13,15 +13,15 @@ const debugRequest = tap(compose(
 
 const parse = when(
   x => x.body,
-  input => libxml.parseHtml(input.body, {noerrors: true})
+  input => libxml.parseHtml(input.body, {errors: false})
 )
 
 const limit = (lim, i = NIL) => f =>
   new Promise((resolve, reject) => {
     const _limit = () => i < parseInt(lim)
-      ? tap(debug('fparser:limit'), ++i)
+      ? tap(debug('limit'), ++i)
         && f()
-          .then(tap(() => debug('fparser:limit')(--i)))
+          .then(tap(() => debug('limit')(--i)))
           .then(resolve)
           .catch(reject)
       : setTimeout(_limit, LIMIT_TIMEOUT)
