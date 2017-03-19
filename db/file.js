@@ -38,7 +38,7 @@ module.exports = {
     get,
     save,
     has,
-    skip
+    skip,
   },
-  connect
+  connect,
 }

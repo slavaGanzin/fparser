@@ -6,7 +6,7 @@ const dispatch = (options, actions) => data => actions[options.action](
       pre,
       post,
       key: PH.apply(data),
-      id:  PH.apply(data)
+      id:  PH.apply(data),
     },
       merge(options, {data})
     )

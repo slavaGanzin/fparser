@@ -21,9 +21,9 @@ module.exports = {
     save,
     get,
     has,
-    skip
+    skip,
   },
-  connect
+  connect,
 }
 
 global.finishHandlers.push(() => redis.quit())

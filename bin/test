@@ -14,17 +14,8 @@ const runTests = map(test =>
 
       return cp.exec(file, (error, result) =>
         error
-          ? reject({
-            file,
-            error,
-            result,
-            start
-          })
-          : resolve({
-            file,
-            result,
-            start
-          })
+          ? reject({file, error, result, start})
+          : resolve({file, result, start})
     )
     })
       .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
