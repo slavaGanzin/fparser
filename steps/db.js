@@ -1,7 +1,8 @@
 const {pre, post} = require('../db/hooks')
 const PH = require('../lib/placeholders')
 
-const dispatch = (options, actions) => data => actions[options.action](
+const dispatch = (options, actions) => data =>
+  actions[options.action](
     evolve({
       pre,
       post,

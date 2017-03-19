@@ -1,17 +1,27 @@
 const hooks = {
   pre: {
-    json:       JSON.stringify,
-    jsonPretty: JSON.pretty,
-    none:       identity,
+    json:       () => JSON.stringify,
+    jsonPretty: () => JSON.pretty,
+    none:       () => identity,
+    prop,
   },
   post: {
-    none:       identity,
-    json:       JSON.parse,
-    jsonPretty: JSON.parse,
+    none:       () => identity,
+    json:       () => JSON.parse,
+    jsonPretty: () => JSON.parse,
+    prop,
   },
 }
 
+const prepareHook = hook =>
+  compose(
+    apply(compose),
+    map(compose(
+      ([all, f, args]) => hooks[hook][f](...split(',', args)),
+      match(/(\w+)\(?([^)]*)/)
+    )))
+
 module.exports = {
-  pre:  pre => hooks.pre[pre],
-  post: post => hooks.post[post],
+  pre:  prepareHook('pre'),
+  post: prepareHook('post'),
 }

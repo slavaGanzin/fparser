@@ -50,7 +50,7 @@ steps:
   
   
   - input:
-    - id: idValue
+      id: idValue
       key: keyValue
   - db:
       key: prefix_$key
@@ -60,8 +60,30 @@ steps:
       key: prefix_keyValue
       id: prefix_idValue
       action: get
-      
+  
   - expect:
       eql:
         - id: idValue
           key: keyValue
+          
+  - input:
+      id: idValue
+      key: keyValue
+      data: dataValue
+  - db:
+      key: prefix_$key
+      id: prefix_$id
+      pre:
+        - prop(data)
+      
+  - db:
+      key: prefix_keyValue
+      id: prefix_idValue
+      action: get
+      post:
+        - none
+  
+  - expect:
+      eql:
+        - dataValue
+  

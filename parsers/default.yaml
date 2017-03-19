@@ -2,8 +2,10 @@ db:
   provider:           redis
   action:             save
   db:                 0
-  pre:                json
-  post:               json
+  pre:
+    - json
+  post:
+    - json
   id:                 $id
   key:                DEFAULT_KEY
 

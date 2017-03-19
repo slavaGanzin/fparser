@@ -1,7 +1,9 @@
 db:
   provider: memory
-  pre: none
-  post: none
+  pre:
+    - none
+  post:
+    - none
   
 steps:
   - input:
