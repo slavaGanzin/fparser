@@ -1,0 +1,28 @@
+placeholders:
+  url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459
+  
+steps:
+  - get:
+      url: $url
+  - parallel:
+      category:
+        - find: .content h1
+        - text
+        - replace:
+          - /(Wo)?men's/i
+          - /\n/g
+          
+      # id:
+      #   - input: 1
+      images:
+        - find: .product.product-link .product-img
+        - attr: src
+        # - get:
+        #     limit: 1
+        
+  - db:
+      provider: file
+      key: data/asos/$category
+      id: 'ads'
+      pre:
+        - prop(images)

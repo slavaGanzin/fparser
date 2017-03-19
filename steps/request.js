@@ -3,7 +3,7 @@ const LIMIT_TIMEOUT = 100
 const NIL = 0
 
 //https://github.com/koichik/node-tunnel
-const needle = promisify('needle')
+const needle = require('promisify-node')('needle')
 const libxml = require('libxmljs')
 const debugRequest = tap(compose(
   debug('body'),

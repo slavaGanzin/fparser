@@ -37,27 +37,7 @@ steps:
             - /\n/g
       url:
         - attr: href
-  # - find: .product.product-link .product-img
-  # - parallel:
-  #     category:
-  #       - find: .content h1
-  #     url:
-  #       - attr: url
-      # url:
-        # - url
-        
-  #     href:
-  #       - attr: href
-        
-  # - db:
-  #     key: /tmp/test/$category
+  - tap:
+      name: parsers/asos/categoryImages.yaml
       
-        
-      # next:
-      #   - find: .next a
-      #   - attr: href
-      #
-      #   - tap:
-      #       name: parsers/asos.yaml
-      #       placeholders:
-      #         $url: $1
+      
