@@ -17,7 +17,7 @@ const prepareHook = hook =>
   compose(
     apply(compose),
     map(compose(
-      ([all, f, args]) => hooks[hook][f](...split(',', args)),
+      ([, f, args]) => hooks[hook][f](...split(',', args)),
       match(/(\w+)\(?([^)]*)/)
     )))
 
