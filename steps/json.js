@@ -1,1 +1,1 @@
-module.exports = () => JSON.parse
+module.exports = () => flatMap(JSON.parse)

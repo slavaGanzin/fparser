@@ -3,4 +3,4 @@ steps:
   - json
   - expect:
       eql:
-        a: 1
+        - a: 1

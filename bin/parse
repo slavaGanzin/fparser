@@ -9,7 +9,7 @@ const increaseVerbosity = (_, total) => ++total
 global.finishHandlers = []
 
 const prepareOutput = x => JSON[ARGV.nopretty ? 'stringify' : 'pretty'](x)
-const output = compose(console.log, prepareOutput, when(isArrayLike, flatten))
+const output = compose(console.log, prepareOutput, flatten)
 
 const runFinishHandlers = () => map(call, global.finishHandlers)
 
