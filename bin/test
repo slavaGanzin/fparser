@@ -2,7 +2,7 @@
 require('../lib/global')
 require('../lib/listeners')
 const cp = require('child_process')
-const fs = promisify('fs')
+const fs = thenify('fs')
 const path = require('path')
 const TEST_PATH = './tests'
 const ERROR = 1
