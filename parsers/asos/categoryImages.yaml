@@ -13,8 +13,7 @@ steps:
         - replace:
           - /\D/g
       image:
-        - get:
-            limit: 1000
+        - get
   - db:
       provider: file
       id: $id
