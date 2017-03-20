@@ -1,22 +1,36 @@
 placeholders:
   url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459
-  name: Women Basic
   
 steps:
   - get:
       url: $url
-  - find: .product.product-link .product-img
-  - attr: src
+  - tap:
+      
   
+      
+  - find: .product-container
   - parallel:
-      id:
+      category:
+        - document
+        - find: .creative .content h1
+        - text
         - replace:
-          - /\D/g
+            - /(Wo)?men's/i
+            - /asos\s+/i
+            - /\n/g
+            - /(^\s+|\s+$)/
+      
+      id:
+        - attr: data-productid
+        
       image:
+        - find: .product-img
+        - attr: src
         - get
+        
   - db:
       provider: file
       id: $id
-      key: data/asos/$name
+      key: data/asos/$category
       pre:
         - prop(image)
