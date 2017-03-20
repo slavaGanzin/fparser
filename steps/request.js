@@ -7,14 +7,17 @@ const needle = require('promisify-node')('needle')
 const libxml = require('libxmljs')
 const debugRequest = tap(compose(
   debug('body'),
-  JSON.pretty,
   pick(['statusCode', 'headers'])
 ))
 
-const parse = when(
+const updateDocumentUrl = options => tap(document => document.url = options.url)
+
+const parse = options => cond([[
   x => test(/html|xml/, x.headers['content-type']),
-  input => libxml.parseHtml(input.body)
-)
+  input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
+], [
+  T, x => x.raw,
+]])
 
 const limit = (lim, i = NIL) => f =>
   new Promise((resolve, reject) => {
@@ -30,7 +33,6 @@ const limit = (lim, i = NIL) => f =>
   })
 
 const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
-const updateDocumentUrl = options => tap(document => document.url = options.url)
 const logRequest = options => debug(options.method)(options.url)
 const logCatch = options => x => debug(`error:${options.method} ${options.url}`)(x) || Promise.resolve([null])
 
@@ -40,8 +42,7 @@ const request = options => options.limit(() =>
   )
   .then(logRequest(options))
   .then(logErrors)
-  .then(parse)
-  // .then(updateDocumentUrl(options))
+  .then(parse(options))
   .catch(logCatch(options))
 )
 
