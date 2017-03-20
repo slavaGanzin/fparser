@@ -11,7 +11,7 @@ const full = (key, id) => join(dir(key, id), file(id))
 const save = ({data, pre, key, id}) => {
   mkdirp.sync(dir(key, id))
   return fs.writeFile(full(key, id), pre(data))
-    .then(always(data))
+    .then(always(full(key, id)))
 }
 
 const get = ({key, id, post}) =>
