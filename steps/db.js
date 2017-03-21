@@ -1,17 +1,20 @@
 const {pre, post} = require('../db/hooks')
 const PH = require('../lib/placeholders')
 
-const dispatch = (options, actions) => data =>
-  actions[options.action](
-    evolve({
-      pre,
-      post,
-      key: PH.apply(data),
-      id:  PH.apply(data),
-    },
-      merge(options, {data})
-    )
+const dispatch = (options, actions) => data => {
+  const params = evolve({
+    pre,
+    post,
+    key: PH.apply(data),
+    id:  PH.apply(data),
+  },
+   merge(options, {data})
   )
+
+  debug(`db:${options.action}`)(`${params.key}/${params.id}`)
+
+  return actions[options.action](params)
+}
 
 module.exports = options => {
   const provider = dynamicRequire(`../db/${options.provider}`)

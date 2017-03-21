@@ -4,10 +4,6 @@ placeholders:
 steps:
   - get:
       url: $url
-  - tap:
-      
-  
-      
   - find: .product-container
   - parallel:
       category:

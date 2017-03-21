@@ -16,7 +16,7 @@ const parse = options => cond([[
   x => test(/html|xml/, x.headers['content-type']),
   input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
 ], [
-  T, x => x.raw,
+  T, prop('raw')
 ]])
 
 const limit = (lim, i = NIL) => f =>
@@ -36,7 +36,8 @@ const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
 const logRequest = options => debug(options.method)(options.url)
 const logCatch = options => x => debug(`error:${options.method} ${options.url}`)(x) || Promise.resolve([null])
 
-const request = options => options.limit(() =>
+const request = options =>
+options.limit(() =>
   needle.request(
     options.method, options.url, options.data, options
   )
