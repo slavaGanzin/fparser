@@ -1,10 +1,9 @@
 placeholders:
-  url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459
+  url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459&pgesize=20
   
 steps:
   - get:
       url: $url
-      
       
   - tap:
       pre:
@@ -16,28 +15,29 @@ steps:
   
   - find: .product-container
   
-  - parallel:
-      category:
-        - document
-        - find: .creative .content h1
-        - text
-        - replace:
-            - /(Wo)?men's/i
-            - /asos\s+/i
-            - /\n/g
-            - /(^\s+|\s+$)/
-  
-      id:
-        - attr: data-productid
-  
-      image:
-        - find: .product-img
-        - attr: src
-        - get
-  
-  - db:
-      provider: file
-      id: $id
-      key: data/asos/$category
-      pre:
-        - prop(image)
+  # - parallel:
+  #     category:
+  #       - document
+  #       - find: .creative .content h1
+  #       - text
+  #       - replace:
+  #           - /(Wo)?men's/i
+  #           - /asos\s+/i
+  #           - /\n/g
+  #           - /(^\s+|\s+$)/
+  #
+  #     id:
+  #       - attr: data-productid
+  #
+  #     image:
+  #       - find: .product-img
+  #       - attr: src
+  #       - get:
+  #           limit: 1
+  #
+  # - db:
+  #     provider: file
+  #     id: $id
+  #     key: data/asos/$category
+  #     pre:
+  #       - prop(image)
