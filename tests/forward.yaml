@@ -1,6 +1,6 @@
 steps:
   - input:
-      forwardInput: 'forward'
+      forwardInput: forward
   - forward:
       name: tests/placeholders.yaml
       placeholders:
@@ -8,3 +8,25 @@ steps:
   - expect:
       eql:
         - [ value, q, forward, forwardPlaceholders]
+
+
+  - input:
+      - input
+      
+  - forward:
+      pre:
+        - replace:
+          - input, pre1
+          - pre1, pre
+      
+      name: tests/tap.yaml
+      
+      post:
+        - replace:
+          - input, post
+          
+  - expect:
+      eql:
+        - [ post, post2 ]
+        
+        

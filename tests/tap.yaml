@@ -1,11 +1,16 @@
 steps:
-  - input: 123
+  - input:
+      - input
+      - input2
+      
   - tap:
       name: tests/placeholders.yaml
       placeholders:
         $forwardPlaceholders: 'forwardPlaceholders'
+        
   - expect:
       eql:
-        - 123
+        - input
+        - input2
         
         
