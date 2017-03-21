@@ -1,0 +1,6 @@
+placeholders:
+  url: url
+  
+steps:
+  - input: $url
+  

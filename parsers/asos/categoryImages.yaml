@@ -4,29 +4,40 @@ placeholders:
 steps:
   - get:
       url: $url
-  - find: .product-container
-  - parallel:
-      category:
-        - document
-        - find: .creative .content h1
-        - text
-        - replace:
-            - /(Wo)?men's/i
-            - /asos\s+/i
-            - /\n/g
-            - /(^\s+|\s+$)/
       
-      id:
-        - attr: data-productid
-        
-      image:
-        - find: .product-img
-        - attr: src
-        - get
-        
-  - db:
-      provider: file
-      id: $id
-      key: data/asos/$category
+      
+  - tap:
       pre:
-        - prop(image)
+        - find: .pager .next a
+        - attr: href
+      name: parsers/asos/categoryImages.yaml
+      placeholders:
+        url: $1
+  #
+  # - find: .product-container
+  #
+  # - parallel:
+  #     category:
+  #       - document
+  #       - find: .creative .content h1
+  #       - text
+  #       - replace:
+  #           - /(Wo)?men's/i
+  #           - /asos\s+/i
+  #           - /\n/g
+  #           - /(^\s+|\s+$)/
+  #
+  #     id:
+  #       - attr: data-productid
+  #
+  #     image:
+  #       - find: .product-img
+  #       - attr: src
+  #       - get
+  #
+  # - db:
+  #     provider: file
+  #     id: $id
+  #     key: data/asos/$category
+  #     pre:
+  #       - prop(image)
