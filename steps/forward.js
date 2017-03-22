@@ -1,18 +1,6 @@
 const {parse} = require('../lib/parser')
-const {runSteps} = require('../lib/steps')
 const PH = require('../lib/placeholders')
-
-const hooks = f => compose(
-  f,
-  merge({
-    pre:  x => Promise.resolve(head(x)),
-    post: identity,
-  }),
-  evolve({
-    pre:  compose(runSteps, debug('fparser:pre')),
-    post: runSteps,
-  })
-)
+const hooks = require('../lib/hooks')
 
 module.exports = hooks(options => flatMap(input => {
   const p = options.pre([input])

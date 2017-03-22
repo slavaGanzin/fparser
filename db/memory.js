@@ -2,8 +2,8 @@ let storage = []
 
 const connect = identity
 
-const save = ({key, id, data, pre}) => {
-  storage = assocPath([key, id], pre(data), storage)
+const save = ({key, id, data}) => {
+  storage = assocPath([key, id], data, storage)
   return Promise.resolve(data)
 }
 

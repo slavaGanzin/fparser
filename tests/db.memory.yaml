@@ -1,15 +1,13 @@
 db:
   provider: memory
-  pre:
-    - none
-  post:
-    - none
   
 steps:
   - input:
       id: id
       value: value
   - db:
+      pre:
+        - debug
       key: test
   - expect:
       eql:

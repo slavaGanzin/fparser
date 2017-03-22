@@ -1,0 +1,55 @@
+db:
+  provider: memory
+
+steps:
+  - input: oneone
+  - db:
+      pre:
+        - replace:
+          - /one/g, two
+          - twotwo, three
+      post:
+        - replace:
+          - three, 3
+          - 3, four
+          
+      id: test
+      key: test
+  - expect:
+      eql:
+        - four
+        
+        
+  - db:
+      id: test
+      key: test
+      action: get
+  - expect:
+      eql:
+        - three
+        
+        
+  - input:
+      - input
+      - input2
+      
+  - forward:
+      pre:
+        - replace:
+          - input, preOne
+          - preOne, pre
+      
+      placeholders:
+        url: $1
+        
+      name: tests/mock.yaml
+      
+      post:
+        - replace:
+          - pre, post
+          
+  - expect:
+      eql:
+        - [ post ]
+        - [ post2 ]
+        
