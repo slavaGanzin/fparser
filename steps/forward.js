@@ -20,7 +20,9 @@ module.exports = hooks(options => flatMap(input => {
   .then(when(isArrayLike, PH.arrayToObject))
   .then(merge(options.placeholders))
   .then(PH.selfApply)
-  .then(placeholders => merge(options, {placeholders}))
+  .then(pick(keys(options.placeholders)))
+  .then(objOf('placeholders'))
+  .then(merge(options))
   .then(parse)
   .then(options.post)
 

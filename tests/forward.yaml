@@ -17,16 +17,17 @@ steps:
   - forward:
       pre:
         - replace:
-          - input, pre1
-      #     - pre1, pre
+          - input, preOne
+          - preOne, pre
       
       placeholders:
         url: $1
+        
       name: tests/mock.yaml
       
       post:
         - replace:
-          - pre1, post
+          - pre, post
           
   - expect:
       eql:

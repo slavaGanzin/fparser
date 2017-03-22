@@ -1,5 +1,5 @@
 placeholders:
-  url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459&pgesize=20
+  url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459&pgesize=204
   
 steps:
   - get:
@@ -13,7 +13,7 @@ steps:
       placeholders:
         url: $1
   
-  - find: .product-container
+  # - find: .product-container
   
   # - parallel:
   #     category:
