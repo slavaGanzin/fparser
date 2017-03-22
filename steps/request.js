@@ -34,18 +34,22 @@ const debugRequest = tap(compose(
 ))
 const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
 const logRequest = options => debug(options.method)(options.url)
-const logCatch = options => x => debug(`error:${options.method} ${options.url}`)(x.message) || Promise.resolve([null])
+const logCatch = options => x => {
+  debug(`error:${options.method} ${options.url}`)(x.message)
+  return Promise.resolve(null)
+}
 
 const request = options =>
-options.limit(() =>
-  needle.request(
+options.limit(() => {
+  if (!options.url) return Promise.resolve(null)
+  return needle.request(
     options.method, options.url, options.data, options
   )
   .then(logRequest(options))
   .then(logErrors)
   .then(parse(options))
   .catch(logCatch(options))
-)
+})
 
 const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
 
