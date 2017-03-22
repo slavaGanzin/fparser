@@ -10,9 +10,9 @@ steps:
     - /\d+/g, 2
   - expect:
       eql:
-        - baaaaa
+        - Baaaaa
         - BBBBBB
-        - 1 2
+        - 2 2
         
   - input:
     - a a
@@ -75,4 +75,13 @@ steps:
         - vk.com/ads
         - vk.com/dev
         - vk.com/jobs
+  
+  - input: a
+  - replace:
+      - a, b
+      - b, c
+      - c, d
+  - expect:
+      eql:
+        - d
         

@@ -6,4 +6,4 @@ const parse = compose(
 )
 
 module.exports = options =>
-  flatMap(apply(compose, map(parse, options)))
+  flatMap(apply(compose, map(parse, reverse(options))))
