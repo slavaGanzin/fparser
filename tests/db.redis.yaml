@@ -1,3 +1,9 @@
+db:
+  pre:
+    - json: stringify
+  post:
+    - json: parse
+    
 steps:
   - input:
       id: id
@@ -74,14 +80,15 @@ steps:
       key: prefix_$key
       id: prefix_$id
       pre:
-        - prop(data)
+        - attr: data
+      
       
   - db:
       key: prefix_keyValue
       id: prefix_idValue
-      action: get
       post:
-        - none
+        - debug
+      action: get
   
   - expect:
       eql:

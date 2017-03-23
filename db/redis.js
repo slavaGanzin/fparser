@@ -5,10 +5,12 @@ const connect = unless(() => redis, tap(options => {
 }))
 
 const save = ({key, id, data, pre}) =>
-  new Promise(r => redis.hset(key, id, pre(data)).then(() => r(data)))
+  pre(data)
+  .then(_data => redis.hset(key, id, _data))
+  .then(always(data))
 
 const get = ({key, id, post}) =>
-  new Promise(r => redis.hget(key, id).then(r)).then(post)
+  new Promise(r => redis.hget(key, id).then(r)).then(post).then(head)
 
 const has = ({key, id}) =>
   new Promise(r => redis.hget(key, id).then(r)).then(Boolean)

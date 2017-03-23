@@ -5,7 +5,6 @@ steps:
   - input:
       id: id
       value: value
-        
   - db:
       key: /tmp/test
       id: id
