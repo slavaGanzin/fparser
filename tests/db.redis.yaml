@@ -1,13 +1,17 @@
+db:
+  provider: redis
+    
 steps:
   - input:
       id: id
       value: value
   - db:
+      pre:
+        - json: stringify
       key: test
   - expect:
       eql:
-        - id: id
-          value: value
+        - test/id
   
   
   - input:
@@ -15,6 +19,9 @@ steps:
   - db:
       action: get
       key: test
+      post:
+        - json: parse
+      
   - expect:
       eql:
         - id: id
@@ -52,36 +59,41 @@ steps:
   - input:
       id: idValue
       key: keyValue
+      
   - db:
+      pre:
+        - json: stringify
       key: prefix_$key
       id: prefix_$id
   
   - db:
       key: prefix_keyValue
       id: prefix_idValue
+      post:
+        - json: parse
       action: get
   
   - expect:
       eql:
         - id: idValue
           key: keyValue
-          
+  
   - input:
       id: idValue
       key: keyValue
       data: dataValue
+      
   - db:
       key: prefix_$key
       id: prefix_$id
       pre:
-        - prop(data)
-      
+        - attr: data
+  
+  
   - db:
       key: prefix_keyValue
       id: prefix_idValue
       action: get
-      post:
-        - none
   
   - expect:
       eql:

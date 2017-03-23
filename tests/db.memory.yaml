@@ -1,9 +1,5 @@
 db:
   provider: memory
-  pre:
-    - none
-  post:
-    - none
   
 steps:
   - input:
@@ -13,8 +9,7 @@ steps:
       key: test
   - expect:
       eql:
-        - id: id
-          value: value
+        - test/id
   
   
   - input:
@@ -44,18 +39,18 @@ steps:
   - expect:
       eql:
         - true
-  
-  # - input:
-  #   - id: id
-  #   - id: not_present
-  # - db:
-  #     action: reject
-  #     key: test
-  # - expect:
-  #     eql:
-  #       - id: not_present
-  
-  
+  #
+  # # - input:
+  # #   - id: id
+  # #   - id: not_present
+  # # - db:
+  # #     action: reject
+  # #     key: test
+  # # - expect:
+  # #     eql:
+  # #       - id: not_present
+  #
+  #
   - input:
     - id: idValue
       key: keyValue

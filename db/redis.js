@@ -4,11 +4,11 @@ const connect = unless(() => redis, tap(options => {
   redis = new require('ioredis')(options)
 }))
 
-const save = ({key, id, data, pre}) =>
-  new Promise(r => redis.hset(key, id, pre(data)).then(() => r(data)))
+const save = ({key, id, data}) =>
+  redis.hset(key, id, data).then(() => `${key}/${id}`)
 
-const get = ({key, id, post}) =>
-  new Promise(r => redis.hget(key, id).then(r)).then(post)
+const get = ({key, id}) =>
+  new Promise(r => redis.hget(key, id).then(r))
 
 const has = ({key, id}) =>
   new Promise(r => redis.hget(key, id).then(r)).then(Boolean)

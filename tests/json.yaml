@@ -1,6 +1,6 @@
 steps:
   - input: '{ "a": 1 }'
-  - json
+  - json: parse
   - expect:
       eql:
         - a: 1

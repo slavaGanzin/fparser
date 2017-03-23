@@ -1,37 +1,14 @@
 steps:
-  # - input:
-  #     forwardInput: forward
-  # - forward:
-  #     name: tests/placeholders.yaml
-  #     placeholders:
-  #       forwardPlaceholders: 'forwardPlaceholders'
-  # - expect:
-  #     eql:
-  #       - [ value, q, forward, forwardPlaceholders]
-  #
-  #
   - input:
-      - input
-      - input2
-      
+      forwardInput: forward
   - forward:
-      pre:
-        - replace:
-          - input, preOne
-          - preOne, pre
-      
+      name: tests/placeholders.yaml
       placeholders:
-        url: $1
-        
-      name: tests/mock.yaml
-      
-      post:
-        - replace:
-          - pre, post
-          
+        forwardPlaceholders: forwardPlaceholders
+    
   - expect:
       eql:
-        - [ post ]
-        - [ post2 ]
-        
+        - [[value, q, forward, forwardPlaceholders]]
+  
+  
         

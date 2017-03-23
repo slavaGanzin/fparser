@@ -1,6 +1,6 @@
 steps:
   - script: ./bin/parse -l parsers/wikipedia/article.yaml
-  - json
+  - json: parse
   - expectEach:
       eql:
         q: ''

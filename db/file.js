@@ -8,15 +8,14 @@ const dir = (key, id) =>
 const file = basename
 const full = (key, id) => join(dir(key, id), file(id))
 
-const save = ({data, pre, key, id}) => {
+const save = ({data, key, id}) => {
   mkdirp.sync(dir(key, id))
-  return fs.writeFile(full(key, id), pre(data))
+  return fs.writeFile(full(key, id), data)
     .then(always(full(key, id)))
 }
 
-const get = ({key, id, post}) =>
+const get = ({key, id}) =>
   fs.readFile(full(key, id), 'utf8')
-    .then(post)
 
 const has = ({key, id}) =>
   fs.stat(full(key, id))

@@ -1,23 +1,15 @@
 const {parse} = require('../lib/parser')
-const {runSteps} = require('../lib/steps')
 const PH = require('../lib/placeholders')
+const hooks = require('../lib/hooks')
 
-const hooks = f => compose(
-  f,
-  merge({
-    pre:  x => Promise.resolve(head(x)),
-    post: identity,
-  }),
-  evolve({
-    pre:  compose(runSteps, debug('fparser:pre')),
-    post: runSteps,
-  })
-)
+const ofIfString = when(is(String), x => [x])
 
 module.exports = hooks(options => flatMap(input => {
-  const p = options.pre([input])
+  const p = options.pre(input)
+  .then(head)
   .then(debug('fparser:pre:out'))
-  .then(when(isArrayLike, PH.arrayToObject))
+  .then(ofIfString)
+  .then(when(is(Array), PH.arrayToObject))
   .then(merge(options.placeholders))
   .then(PH.selfApply)
   .then(PH.cutIndexPlaceholders)

@@ -3,4 +3,5 @@ placeholders:
   
 steps:
   - input: $url
+  - debug
   
