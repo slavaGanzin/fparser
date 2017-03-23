@@ -12,10 +12,10 @@ const runTests = map(test =>
       const file = path.join('bin/parse .', TEST_PATH, test)
       const start = new Date()
 
-      return cp.exec(file, (error, result) =>
+      return cp.exec(file, (error, stdout, stderr) =>
         error
-          ? reject({file, error, result, start})
-          : resolve({file, result, start})
+          ? reject({file, error, stdout, stderr, start})
+          : resolve({file, stdout, stderr, start})
     )
     })
       .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
