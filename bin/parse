@@ -21,7 +21,7 @@ ARGV
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)
   .option('-P, --nopretty', 'Disable formatting of output')
-  .option('-l, --placeholders', 'List placeholders')
+  .option('-p, --placeholders', 'List placeholders')
 
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>

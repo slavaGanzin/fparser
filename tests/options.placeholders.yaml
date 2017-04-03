@@ -1,5 +1,5 @@
 steps:
-  - script: ./bin/parse -l parsers/wikipedia/article.yaml
+  - script: ./bin/parse -p parsers/wikipedia/article.yaml
   - json: parse
   - expectEach:
       eql:
