@@ -39,4 +39,4 @@ steps:
       id: $id
       key: data/asos/$category
       pre:
-        - prop(image)
+        - attr: image

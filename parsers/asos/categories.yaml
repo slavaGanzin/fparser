@@ -39,6 +39,6 @@ steps:
       id: $name
       key: asosCategories
       pre:
-        - prop(url)
+        - attr: url
       
       
