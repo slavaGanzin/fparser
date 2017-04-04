@@ -54,6 +54,6 @@ steps:
   
   - expect:
       eql:
-        - [ post ]
-        - [ post2 ]
+        - post
+        - post2
         

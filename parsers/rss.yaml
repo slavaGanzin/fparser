@@ -1,7 +1,7 @@
 steps:
   - get:
       url: $url
-  - find: link[type*=rss],link[type*=atom],a:contains(RSS),a[href~=feedburner],a[href*='.rss'],a[href*='/rss/']
+  - find: link[type*=rss],link[type*=atom],a:contains(RSS),a[href*=feedburner],a[href*='.rss'],a[href*='/rss/']
   - attr: href
   - uniq
   

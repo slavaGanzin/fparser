@@ -8,7 +8,7 @@ steps:
     
   - expect:
       eql:
-        - [[value, q, forward, forwardPlaceholders]]
+        - [value, q, forward, forwardPlaceholders]
   
   
         

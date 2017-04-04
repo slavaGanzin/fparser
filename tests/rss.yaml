@@ -1,22 +1,28 @@
 steps:
   - parallel:
       ny:
-        - script: ./bin/parse parsers/rss.yaml url=https://www.nytimes.com/ -P
-        - json: parse
+        - forward:
+            name: parsers/rss.yaml
+            placeholders:
+              url: https://www.nytimes.com/
         - expect:
             eql:
               - [ http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml ]
     
       jeremy:
-        - script: ./bin/parse parsers/rss.yaml url=https://jeremykun.com/
-        - json: parse
+        - forward:
+            name: parsers/rss.yaml
+            placeholders:
+              url: https://jeremykun.com/
         - expect:
             eql:
               - [ https://jeremykun.com/feed/, https://jeremykun.com/comments/feed/ ]
-              
+      
       mit:
-        - script: bin/parse parsers/rss.yaml url=https://www.technologyreview.com/rss
-        - json: parse
+        - forward:
+            name: parsers/rss.yaml
+            placeholders:
+              url: https://www.technologyreview.com/rss
         - expect:
             eql:
               - [    "https://www.technologyreview.com/topnews.rss",
@@ -30,5 +36,3 @@ steps:
                      "https://www.technologyreview.com/c/robotics/rss/",
                      "https://www.technologyreview.com/rss/"
                 ]
-      
-      
