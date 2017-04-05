@@ -5,8 +5,11 @@ steps:
   - db:
       action: skip
       provider: memory
-      key: processed_pages
+      key: /tmp
       id: $url
+      pre:
+        - input: true
+      
   - get:
       url: $url
   - parallel:
