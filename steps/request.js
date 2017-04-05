@@ -40,8 +40,7 @@ const logCatch = options => x => {
 }
 
 const request = options =>
-options.limit(url => {
-  options.url = defaultTo(options.url, url)
+options.limit(() => {
   if (!options.url) return Promise.resolve(null)
   return needle.request(
     options.method, options.url, options.data, options
@@ -55,4 +54,4 @@ options.limit(url => {
 const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
 
 module.exports = pipe(evolve({limit}), options =>
-  compose(reject(isNil), flatMap(compose(request, mergeUrl(options)))))
+  flatMap(compose(request, mergeUrl(options))))
