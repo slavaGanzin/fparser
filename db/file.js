@@ -1,6 +1,6 @@
 const connect = identity
 const fs = thenify('fs')
-const mkdirp = require('mkdirp')
+const mkdirp = thenify('mkdirp')
 const {sep, basename, dirname, join} = require('path')
 
 const dir = (key, id) =>
@@ -8,11 +8,11 @@ const dir = (key, id) =>
 const file = basename
 const full = (key, id) => join(dir(key, id), file(id))
 
-const save = ({data, key, id}) => {
-  mkdirp.sync(dir(key, id))
-  return fs.writeFile(full(key, id), data)
-    .then(always(full(key, id)))
-}
+const save = ({data, key, id}) =>
+  mkdirp(dir(key, id))
+  .then(() =>
+    fs.writeFile(full(key, id), data))
+  .then(always(full(key, id)))
 
 const get = ({key, id}) =>
   fs.readFile(full(key, id), 'utf8')

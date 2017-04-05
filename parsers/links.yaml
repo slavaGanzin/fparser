@@ -11,7 +11,10 @@ steps:
       url: $url
   - parallel:
       url:
-        - input: $url
+        - attr: url
+      baseurl:
+        - attr: url
+        - url: host
       links:
         - find: a
         - attr: href
@@ -21,17 +24,19 @@ steps:
           - /\/$/
         - filter:
           - $filter
+        - reject:
+          - .txt
         - uniq
         - tap:
             name: parsers/links.yaml
             placeholders:
-              $url: $1
-              $filter: $filter
-      baseurl:
-        - input: $url
-        - url: host
+              url: $1
+              filter: $filter
       html:
         - html
   - db:
+      provider: file
       key: /tmp
       id:  $url
+      pre:
+        - attr: html
