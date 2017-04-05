@@ -1,0 +1,13 @@
+steps:
+  - get:
+      url: https://blogs.botw.org/
+  - find: li.category > a
+  - attr: href
+  - filter:
+    - Arts
+  - get
+  - find: .categories-empty a
+  - attr: href
+  - get
+  - find: .listing a
+  - attr: href

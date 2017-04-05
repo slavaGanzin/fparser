@@ -40,7 +40,8 @@ const logCatch = options => x => {
 }
 
 const request = options =>
-options.limit(() => {
+options.limit(url => {
+  options.url = defaultTo(options.url, url)
   if (!options.url) return Promise.resolve(null)
   return needle.request(
     options.method, options.url, options.data, options

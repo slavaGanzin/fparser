@@ -9,6 +9,3 @@ steps:
   - expect:
       eql:
         - [value, q, forward, forwardPlaceholders]
-  
-  
-        
