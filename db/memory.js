@@ -4,7 +4,6 @@ const connect = identity
 
 const save = ({key, id, data}) => {
   storage = assocPath([key, id], data, storage)
-  console.log(storage)
   return `${key}/${id}`
 }
 

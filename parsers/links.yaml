@@ -13,18 +13,22 @@ steps:
   - get:
       url: $url
   - parallel:
-      url:
+      id:
         - attr: url
-      baseurl:
+        - url: path
+        - replace:
+          - ^/$ index
+          - ^/
+      host:
         - attr: url
-        - url: host
+        - url: hostname
       links:
         - find: a
         - attr: href
         - replace:
-          - /#.*/
-          - /\?.*/
-          - /\/$/
+          - \#.*
+          - \?.*
+          - \/$
         - filter:
           - $filter
         - reject:
@@ -39,7 +43,7 @@ steps:
         - html
   - db:
       provider: file
-      key: /tmp
-      id:  $url
+      key: /tmp/$host
+      id: $id
       pre:
         - attr: html
