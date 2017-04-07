@@ -17,7 +17,7 @@ steps:
         - attr: url
         - url: path
         - replace:
-          - ^/
+          - $ index
       host:
         - attr: url
         - url: hostname
@@ -32,6 +32,8 @@ steps:
           - $filter
         - reject:
           - .txt
+          - followers
+          - following
         - uniq
         - tap:
             name: parsers/links.yaml
@@ -40,9 +42,12 @@ steps:
               filter: $filter
       html:
         - html
+      content:
+        - find: .section-content
+        - text
   - db:
       provider: file
       key: /tmp/$host
       id: $id
       pre:
-        - attr: html
+        - attr: content
