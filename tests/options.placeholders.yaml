@@ -3,7 +3,8 @@ steps:
   - json: parse
   - expectEach:
       eql:
-        q: ''
+        url: example.com
         protocol: https://
         country: en
         host: https://en.wikipedia.org
+  
