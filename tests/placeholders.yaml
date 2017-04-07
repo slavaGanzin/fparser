@@ -1,18 +1,18 @@
 placeholders:
-  q: q
+  url: url
   forwardInput: ''
   forwardPlaceholders: ''
   
 steps:
   - input:
      - value
-     - $q
+     - $url
      - $forwardInput
      - $forwardPlaceholders
   - expect:
       eql:
         - value
-        - q
+        - url
         - $forwardInput
         - $forwardPlaceholders
     

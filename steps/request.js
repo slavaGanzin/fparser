@@ -48,6 +48,7 @@ options.limit(() => {
   .then(logRequest(options))
   .then(logErrors)
   .then(parse(options))
+  .then(tap(() => console.log(options, 'parsed')))
   .catch(logCatch(options))
 })
 

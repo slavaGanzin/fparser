@@ -21,7 +21,7 @@ get:
   limit:              100
 
 placeholders:
-    q:                 ''
+  url:         example.com
   
 xml2json:
   object:        true

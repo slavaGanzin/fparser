@@ -17,7 +17,6 @@ steps:
         - attr: url
         - url: path
         - replace:
-          - ^/$ index
           - ^/
       host:
         - attr: url

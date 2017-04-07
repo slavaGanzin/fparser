@@ -1,14 +1,15 @@
 const PH = require('../lib/placeholders')
 const hooks = require('../lib/hooks')
-const log = tap(options => debug(`db:${options.action}`)(`${options.key}/${options.id}`))
 
 const dispatch = (options, actions) => data =>
-  options.pre(data).then(([preData]) =>
-    actions[options.action](log(evolve({
+  options.pre(data)
+  .then(([preData]) =>
+    actions[options.action](evolve({
       key: PH.apply(data),
       id:  PH.apply(data),
-    }, merge(options, {data: preData}))))
+    }, merge(options, {data: preData})))
   )
+  .then(debug(`db:${options.action}`))
   .then(options.post)
   .then(head)
 
