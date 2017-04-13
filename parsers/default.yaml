@@ -12,6 +12,11 @@ tap:
   tap: true
   
 get:
+  headers:
+    Accept: '*/*'
+    Accept-Encoding: gzip, deflate
+    Connection: keep-alive
+
   method:             get
   follow:             5
   rejectUnauthorized: false

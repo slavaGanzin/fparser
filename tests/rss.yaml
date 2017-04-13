@@ -2,37 +2,37 @@ steps:
   - parallel:
       ny:
         - forward:
-            name: parsers/rss.yaml
+            name: parsers/rss/link.yaml
             placeholders:
               url: https://www.nytimes.com/
         - expect:
             eql:
               - [ http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml ]
-    
+      
       jeremy:
         - forward:
-            name: parsers/rss.yaml
+            name: parsers/rss/link.yaml
             placeholders:
               url: https://jeremykun.com/
         - expect:
             eql:
               - [ https://jeremykun.com/feed/, https://jeremykun.com/comments/feed/ ]
       
-      mit:
-        - forward:
-            name: parsers/rss.yaml
-            placeholders:
-              url: https://www.technologyreview.com/rss
-        - expect:
-            eql:
-              - [    "https://www.technologyreview.com/topnews.rss",
-                     "https://www.technologyreview.com/stories.rss",
-                     "https://www.technologyreview.com/views/rss/",
-                     "https://www.technologyreview.com/c/biomedicine/rss/",
-                     "https://www.technologyreview.com/c/business/rss/",
-                     "https://www.technologyreview.com/c/computing/rss/",
-                     "https://www.technologyreview.com/c/energy/rss/",
-                     "https://www.technologyreview.com/c/mobile/rss/",
-                     "https://www.technologyreview.com/c/robotics/rss/",
-                     "https://www.technologyreview.com/rss/"
-                ]
+      # mit:
+      #   - forward:
+      #       name: parsers/rss/link.yaml
+      #       placeholders:
+      #         url: https://www.technologyreview.com/rss
+      #   - expect:
+      #       eql:
+      #         - [    "https://www.technologyreview.com/topnews.rss",
+      #                "https://www.technologyreview.com/stories.rss",
+      #                "https://www.technologyreview.com/views/rss/",
+      #                "https://www.technologyreview.com/c/biomedicine/rss/",
+      #                "https://www.technologyreview.com/c/business/rss/",
+      #                "https://www.technologyreview.com/c/computing/rss/",
+      #                "https://www.technologyreview.com/c/energy/rss/",
+      #                "https://www.technologyreview.com/c/mobile/rss/",
+      #                "https://www.technologyreview.com/c/robotics/rss/",
+      #                "https://www.technologyreview.com/rss/"
+      #           ]
