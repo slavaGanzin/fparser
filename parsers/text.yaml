@@ -1,0 +1,7 @@
+placeholders:
+  url: https://github.com/libxmljs/libxmljs/wiki/Libxmljs
+
+steps:
+  - get
+  - find: body
+  - text

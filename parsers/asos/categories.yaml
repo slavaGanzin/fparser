@@ -2,9 +2,7 @@ placeholders:
   url: http://www.asos.com
   
 steps:
-  - get:
-      url: $url
-      
+  - get
   - find: a
   - attr: href
   - filter:

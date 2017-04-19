@@ -2,9 +2,7 @@ placeholders:
   url: http://www.asos.com/women/tops/asos-basics/cat/?cid=17459&pgesize=204
   
 steps:
-  - get:
-      url: $url
-      
+  - get
   - tap:
       pre:
         - find: .pager .next a

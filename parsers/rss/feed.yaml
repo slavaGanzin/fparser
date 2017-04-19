@@ -4,14 +4,11 @@ placeholders:
 steps:
   - get:
       url: $url
-  - find: item
-  - parallel:
-      title:
-        - find: title
-        - text
-      link:
-        - find: link
-        - attr: href
-      url:
-        - find: content
-        - attr: url
+  - find: item link
+  # - parallel:
+      # title:
+      #   - find: '> title'
+      #   - text
+      # link:
+    # - find: link
+  - text

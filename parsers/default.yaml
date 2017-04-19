@@ -14,7 +14,6 @@ tap:
 get:
   headers:
     Accept: '*/*'
-    Accept-Encoding: gzip, deflate
     Connection: keep-alive
 
   method:             get
@@ -24,6 +23,7 @@ get:
   parse:              false
   timeout:            0
   limit:              100
+  url:                $url
 
 placeholders:
   url:         example.com
