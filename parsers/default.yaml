@@ -12,20 +12,24 @@ tap:
   tap: true
   
 get:
-  headers:
-    Accept: '*/*'
-    Connection: keep-alive
+  # headers:
+  accept:             '*/*'
+  connection:         keep-alive
+  compressed:         true
 
   method:             get
-  follow:             5
+  follow:             20
+  follow_set_cookies: true
+  follow_set_referer: true
+  follow_keep_method: true
+
   rejectUnauthorized: false
-  compressed:         true
   parse:              false
   timeout:            0
   limit:              100
   url:                $url
 
-placeholders:
+placeholders:         
   url:         example.com
   
 xml2json:
