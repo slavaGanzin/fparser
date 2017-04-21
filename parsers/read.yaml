@@ -1,0 +1,8 @@
+placeholders:
+  url: http://www.wpexplorer.com/conversion-mistakes-wordpress/
+
+steps:
+  - get
+  - html
+  - readability
+  - markdown

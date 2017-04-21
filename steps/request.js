@@ -9,8 +9,11 @@ const libxml = require('libxmljs')
 const updateDocumentUrl = options => tap(document => document.url = options.url)
 
 const parse = options => cond([[
-  x => test(/html|xml/, x.headers['content-type']),
+  x => test(/html/, x.headers['content-type']),
   input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
+], [
+  x => test(/xml/, x.headers['content-type']),
+  input => libxml.parseXml(input.body),
 ], [
   T, prop('raw'),
 ]])
