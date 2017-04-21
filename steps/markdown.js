@@ -1,3 +1,3 @@
-const toMarkdown = flip(require('to-markdown'))
+const toMarkdown = flip(require('breakdance'))
 
 module.exports = options => flatMap(toMarkdown(options))

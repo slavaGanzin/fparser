@@ -6,3 +6,8 @@ steps:
   - html
   - readability
   - markdown
+
+  - db:
+      provider: file
+      key: /tmp
+      id: a

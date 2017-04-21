@@ -29,7 +29,7 @@ get:
   limit:              100
   url:                $url
 
-placeholders:         
+placeholders:
   url:         example.com
   
 xml2json:
@@ -39,3 +39,12 @@ xml2json:
   sanitize:      true
   trim:          true
   arrayNotation: false
+  
+#http://breakdance.io/docs.html#options
+#https://www.npmjs.com/package/breakdance-reflinks
+markdown:
+  condense: true
+  one:      true
+  # title:    true
+  
+  
