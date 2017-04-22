@@ -33,7 +33,7 @@
     "mkdirp": "^0.5.1",
     "needle": "^1.3.0",
     "node-readability": "^2.2.0",
-    "pretty-error": "^2.0.2",
+    "pretty-error": "^2.1.0",
     "ramda": "^0.22.1",
     "regex-parser": "^2.2.5",
     "thenify-all": "^1.6.0",
