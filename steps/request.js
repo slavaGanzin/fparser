@@ -1,6 +1,6 @@
 const STATUS_OK = 200
 
-const needle = require('promisify-node')('needle')
+const needle = thenify('needle')
 const libxml = require('libxmljs')
 const limit = require('../lib/limit')
 
@@ -36,6 +36,7 @@ options.limit(() => {
   return needle.request(
     options.method, options.url, options.data, options
   )
+  .then(head)
   .then(logRequest(options))
   .then(logErrors)
   .then(parse(options))
