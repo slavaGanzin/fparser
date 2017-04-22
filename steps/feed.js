@@ -1,3 +1,20 @@
-const ff = thenify('fast-feed')
+const FeedParser = require('feedparser')
 
-module.exports = options => flatMap(ff.parse)
+module.exports = options => {
+  const feed = new FeedParser(options)
+  
+  return flatMap(xml => new Promise((resolve, reject) => {
+    const items = []
+    
+    feed
+      .on('error', reject)
+      .on('readable', function () {
+        while (item = this.read()) {
+          items.push(item)
+        }
+      })
+      .on('end', () => resolve(items))
+      .write(xml)
+      feed.end()
+  }))
+}

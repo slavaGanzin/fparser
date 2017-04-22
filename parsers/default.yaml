@@ -47,4 +47,5 @@ markdown:
   one:      true
   # title:    true
   
-  
+feed:
+  addmeta: false  

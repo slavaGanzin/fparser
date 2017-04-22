@@ -1,5 +1,12 @@
 steps:
   - input:
+    - aaaaaa
+  - replace:
+    - /a/g
+  - expect:
+      eql: [ '' ]
+    
+  - input:
     - 'aaaaaa'
     - 'bbbbbb'
     - '3333 4444'

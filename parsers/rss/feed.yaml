@@ -1,6 +1,7 @@
 placeholders:
   url: https://jeremykun.com/feed/
   
+#https://github.com/mmcdole/gofeed#default-mappings
 steps:
   - get
   - feed
