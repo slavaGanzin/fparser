@@ -1,14 +1,23 @@
 placeholders:
-  url: http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+  url: https://jeremykun.com/feed/
   
 steps:
-  - get:
-      url: $url
-  - find: item link
+  - get
+  - feed
+  # - find: item
   # - parallel:
-      # title:
-      #   - find: '> title'
-      #   - text
-      # link:
-    # - find: link
-  - text
+  #     title:
+  #       - find: '> title'
+  #       - text
+  #     link:
+  #       - find: link
+  #       - text
+  #     category:
+  #       - find: category
+  #       - text
+  #     description:
+  #       - find: description
+  #       - text
+  #     content:
+  #       - find: content
+  #       - text
