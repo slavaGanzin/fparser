@@ -1,11 +1,13 @@
+placeholders:
+  url: https://blogs.botw.org/
+  
 steps:
-  - get:
-      url: https://blogs.botw.org/
+  - get
   - find: li.category > a
   - attr: href
   - get
   - find: .categories-empty a
   - attr: href
-  - get
-  - find: .listing a
-  - attr: href
+  # - get
+  # - find: .listing a
+  # - attr: href

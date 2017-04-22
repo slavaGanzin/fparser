@@ -1,10 +1,8 @@
 const STATUS_OK = 200
-const LIMIT_TIMEOUT = 100
-const NIL = 0
 
-//https://github.com/koichik/node-tunnel
 const needle = require('promisify-node')('needle')
 const libxml = require('libxmljs')
+const limit = require('../lib/limit')
 
 const updateDocumentUrl = options => tap(document => document.url = options.url)
 
@@ -20,19 +18,6 @@ const parse = options => cond([[
 ], [
   T, prop('raw'),
 ]])
-
-const limit = (lim, i = NIL) => f =>
-  new Promise((resolve, reject) => {
-    const _limit = () => i < parseInt(lim)
-      ? tap(debug('limit'), ++i)
-        && f()
-          .then(tap(() => debug('limit')(--i)))
-          .then(resolve)
-          .catch(reject)
-      : setTimeout(_limit, LIMIT_TIMEOUT)
-
-    _limit()
-  })
 
 const debugRequest = tap(compose(
   debug('body'),
