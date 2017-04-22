@@ -10,14 +10,13 @@ steps:
       pre:
         - input: true
       
-  - get:
-      url: $url
+  - get
   - parallel:
       id:
         - attr: url
         - url: path
         - replace:
-          - $ index
+          - $ /index
       host:
         - attr: url
         - url: hostname
@@ -31,20 +30,20 @@ steps:
         - filter:
           - $filter
         - reject:
-          - .txt
-          - followers
-          - following
+          - .xml
+          - feed
         - uniq
         - tap:
             name: parsers/links.yaml
             placeholders:
               url: $1
               filter: $filter
-      html:
-        - html
+      # html:
+        # - html
       content:
-        - find: .section-content
-        - text
+        - html
+        - readability
+        - markdown
   - db:
       provider: file
       key: /tmp/$host

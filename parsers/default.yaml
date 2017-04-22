@@ -48,4 +48,4 @@ markdown:
   # title:    true
   
 feed:
-  addmeta: false  
+  addmeta: true
