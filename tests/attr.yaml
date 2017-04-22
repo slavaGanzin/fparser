@@ -6,3 +6,20 @@ steps:
   - expect:
       eql:
         - 'http://nltk.org/book_1ed/'
+  
+  - input:
+     a: b
+     c: d
+  - attr: a
+  - expect:
+      eql: [ b ]
+   
+  - input:
+     a: b
+     c: d
+  - attr:
+      - noProperty
+      - c
+  - expect:
+      eql: [ d ]
+  

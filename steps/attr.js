@@ -1,11 +1,13 @@
 const url = require('url')
 
-module.exports = attr => flatMap(el => {
+module.exports = attrs => flatMap(el => reduce((a, attr) => {
+  if (a) return a
+
   if (el[attr]) return el[attr]
-  if (!el.attr(attr)) return null
+  if (!is(Function, el.attr) || !el.attr(attr)) return null
   const value = el.attr(attr).value()
 
   if (attr == 'href' && value && !url.parse(value).host)
     return url.resolve(el.doc().url, value)
   return value
-})
+}, null, coerceArray(attrs)))
