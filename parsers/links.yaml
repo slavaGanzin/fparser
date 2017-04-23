@@ -14,12 +14,8 @@ steps:
   - parallel:
       id:
         - attr: url
-        - url: path
         - replace:
           - $ /index
-      host:
-        - attr: url
-        - url: hostname
       links:
         - find: a
         - attr: href
@@ -46,7 +42,7 @@ steps:
         - markdown
   - db:
       provider: file
-      key: /tmp/$host
+      key: /tmp
       id: $id
       pre:
         - attr: content

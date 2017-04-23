@@ -1,0 +1,10 @@
+steps:
+  - input: |
+      aaaa
+      bbbbb
+  - split: \n
+  - expect:
+      eql:
+        - aaaa
+        - bbbbb
+        - ''

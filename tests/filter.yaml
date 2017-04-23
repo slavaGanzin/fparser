@@ -7,3 +7,34 @@ steps:
   - expect:
       eql:
         - mouse
+        
+  - input: |
+      mouse
+      cat
+  - split: \n
+  - filter:
+      - cat
+      
+  - input: |
+      <http://jeremykun.com:80/>; rel="original",
+      <http://web.archive.org/web/timemap/link/jeremykun.com>; rel="self"; type="application/link-format"; from="Sun, 23 Dec 2012 10:19:50 GMT">,
+      <http://web.archive.org>; rel="timegate",
+      <http://web.archive.org/web/20121223101950/http://jeremykun.com:80/>; rel="first memento"; datetime="Sun, 23 Dec 2012 10:19:50 GMT",
+      <http://web.archive.org/web/20121224222116/http://jeremykun.com/>; rel="memento"; datetime="Mon, 24 Dec 2012 22:21:16 GMT",
+      <http://web.archive.org/web/20130113144423/http://jeremykun.com/>; rel="memento"; datetime="Sun, 13 Jan 2013 14:44:23 GMT",
+      <http://web.archive.org/web/20130115080503/http://jeremykun.com:80/>; rel="memento"; datetime="Tue, 15 Jan 2013 08:05:03 GMT",
+      <http://web.archive.org/web/20130216015459/http://jeremykun.com:80/>; rel="memento"; datetime="Sat, 16 Feb 2013 01:54:59 GMT",
+      <http://web.archive.org/web/20130302030249/http://jeremykun.com/>; rel="memento"; datetime="Sat, 02 Mar 2013 03:02:49 GMT",
+      <http://web.archive.org/web/20130310191747/http://jeremykun.com/>; rel="memento"; datetime="Sun, 10 Mar 2013 19:17:47 GMT",
+      <http://web.archive.org/web/20130319032130/http://jeremykun.com:80/>; rel="memento"; datetime="Tue, 19 Mar 2013 03:21:30 GMT",
+      <http://web.archive.org/web/20130320170651/http://jeremykun.com/>; rel="memento"; datetime="Wed, 20 Mar 2013 17:06:51 GMT",
+      <http://web.archive.org/web/20130324191051/http://jeremykun.com/>; rel="memento"; datetime="Sun, 24 Mar 2013 19:10:51 GMT",
+      <http://web.archive.org/web/20130401022345/http://jeremykun.com/>; rel="memento"; datetime="Mon, 01 Apr 2013 02:23:45 GMT",
+      <http://web.archive.org/web/20130402155549/http://jeremykun.com/>; rel="memento"; datetime="Tue, 02 Apr 2013 15:55:49 GMT",
+  - split: \n
+  
+  - filter:
+      - /timegate/i
+  - expect:
+      eql:
+        - <http://web.archive.org>; rel="timegate",

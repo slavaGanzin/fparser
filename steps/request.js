@@ -9,7 +9,7 @@ const parse = options => cond([[
   x => test(/html/, x.headers['content-type']),
   input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
 ], [
-  x => test(/rss/, x.headers['content-type']),
+  x => test(/rss|link-format/, x.headers['content-type']),
   input => input.body.toString(),
 ], [
   x => test(/xml/, x.headers['content-type']),

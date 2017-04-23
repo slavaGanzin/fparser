@@ -1,0 +1,12 @@
+placeholders:
+  timemap: http://web.archive.org/web/timemap/link/$url
+
+steps:
+  - get:
+      url: $timemap
+  - split: \n
+  - filter:
+      - memento
+  - replace:
+      - /^</g
+      - />;.*/g
