@@ -5,8 +5,8 @@ const {sep, basename, dirname, join} = require('path')
 
 const dir = (key, id) =>
   key + sep + dirname(id).replace(/.*\/\//, '')
-const file = basename
-const full = (key, id) => join(dir(key, id), file(id))
+
+const full = (key, id) => join(dir(key, id), basename(id))
 
 const save = ({data, key, id}) =>
   mkdirp(dir(key, id))
@@ -24,6 +24,8 @@ const has = ({key, id}) =>
 
 const getall = ({key}) =>
   fs.readdir(key)
+    .then(map(f => fs.readFile(join(key, f), 'utf8')))
+    .then(x => Promise.all(x))
 
 const skip = arg =>
   has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
@@ -34,6 +36,7 @@ module.exports = {
     save,
     has,
     skip,
+    getall,
   },
   connect,
 }

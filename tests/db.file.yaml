@@ -46,3 +46,16 @@ steps:
       eql:
         - true
   
+  - db:
+      key: /tmp/test
+      action: getall
+      post:
+        - json: parse
+  
+  - expect:
+      eql:
+        -
+          id: id
+          value: value
+      
+    
