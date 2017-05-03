@@ -25,7 +25,7 @@ module.exports = {
     get,
     has,
     skip,
-    getall
+    getall,
   },
   connect,
 }

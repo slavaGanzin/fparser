@@ -1,4 +1,4 @@
-(eslint --fix bin/* . && git add .) &
+(eslint --fix bin/* .; git add .) &
 bin/test &
 wait
 

@@ -24,7 +24,7 @@ const has = ({key, id}) =>
 
 const getall = ({key}) =>
   fs.readdir(key)
-  
+
 const skip = arg =>
   has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
