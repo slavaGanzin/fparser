@@ -98,4 +98,16 @@ steps:
   - expect:
       eql:
         - dataValue
+        
+        
+  - db:
+      action: getAll
+      key: prefix_keyValue
+      
+  - expect:
+      eql:
+        -
+          prefix_idValue: dataValue
+  
+      
   

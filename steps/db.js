@@ -4,7 +4,7 @@ const hooks = require('../lib/hooks')
 const dispatch = (options, actions) => data =>
   options.pre(data)
   .then(([preData]) =>
-    actions[options.action](evolve({
+    actions[options.action.toLowerCase()](evolve({
       key: PH.apply(data),
       id:  PH.apply(data),
     }, merge(options, {data: preData})))

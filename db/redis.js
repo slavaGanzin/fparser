@@ -5,16 +5,19 @@ const connect = unless(() => redis, tap(options => {
 }))
 
 const save = ({key, id, data}) =>
-  redis.hset(key, id, data).then(() => `${key}/${id}`)
+  redis.hset(key, id, data)
+    .then(() => `${key}/${id}`)
 
 const get = ({key, id}) =>
-  new Promise(r => redis.hget(key, id).then(r))
+  redis.hget(key, id)
 
-const has = ({key, id}) =>
-  new Promise(r => redis.hget(key, id).then(r)).then(Boolean)
+const has = composeP(Boolean, get)
 
 const skip = arg =>
-  has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
+  has(arg).then(_has => _has ? _has : save(arg))
+
+const getall = ({key}) =>
+  redis.hgetall(key)
 
 module.exports = {
   actions: {
@@ -22,6 +25,7 @@ module.exports = {
     get,
     has,
     skip,
+    getall
   },
   connect,
 }

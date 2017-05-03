@@ -22,6 +22,9 @@ const has = ({key, id}) =>
     .then(always(true))
     .catch(() => Promise.resolve(false))
 
+const getall = ({key}) =>
+  fs.readdir(key)
+  
 const skip = arg =>
   has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
