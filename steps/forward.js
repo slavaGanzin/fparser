@@ -2,8 +2,6 @@ const {parse} = require('../lib/parser')
 const PH = require('../lib/placeholders')
 const hooks = require('../lib/hooks')
 
-const MORE_THAN_ONE = 2
-const headIfOneElement = when(x => x.length < MORE_THAN_ONE, head)
 const ofIfString = when(is(String), x => [x])
 
 module.exports = hooks(options => flatMap(input => {

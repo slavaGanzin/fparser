@@ -16,6 +16,9 @@ steps:
         - attr: url
         - replace:
           - $ /index
+      title:
+        - find: title
+        - text
       links:
         - find: a
         - attr: href
@@ -41,8 +44,8 @@ steps:
         - readability
         - markdown
   - db:
-      provider: file
+      provider: redis
       key: /tmp
-      id: $id
+      id: $text
       pre:
         - attr: content
