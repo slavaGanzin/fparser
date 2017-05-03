@@ -15,12 +15,15 @@ const has = ({key, id}) =>
 
 const skip = ifElse(has, always(null), save)
 
+const all = ({key}) => prop(key, storage)
+
 module.exports = {
   actions: {
     save,
     get,
     has,
     skip,
+    all,
   },
   connect,
 }

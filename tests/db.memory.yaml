@@ -67,3 +67,14 @@ steps:
       eql:
         - id: idValue
           key: keyValue
+          
+  - db:
+      action: all
+      key: prefix_keyValue
+      
+  - expect:
+      eql:
+         -
+           prefix_idValue:
+            id: idValue
+            key: keyValue

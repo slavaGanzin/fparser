@@ -101,7 +101,7 @@ steps:
         
         
   - db:
-      action: getAll
+      action: all
       key: prefix_keyValue
       
   - expect:

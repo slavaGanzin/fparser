@@ -22,7 +22,7 @@ const has = ({key, id}) =>
     .then(always(true))
     .catch(() => Promise.resolve(false))
 
-const getall = ({key}) =>
+const all = ({key}) =>
   fs.readdir(key)
     .then(map(f => fs.readFile(join(key, f), 'utf8')))
     .then(x => Promise.all(x))
@@ -36,7 +36,7 @@ module.exports = {
     save,
     has,
     skip,
-    getall,
+    all,
   },
   connect,
 }

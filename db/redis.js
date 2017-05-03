@@ -16,7 +16,7 @@ const has = composeP(Boolean, get)
 const skip = arg =>
   has(arg).then(_has => _has ? _has : save(arg))
 
-const getall = ({key}) =>
+const all = ({key}) =>
   redis.hgetall(key)
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
     get,
     has,
     skip,
-    getall,
+    all,
   },
   connect,
 }

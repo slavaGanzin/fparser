@@ -48,7 +48,7 @@ steps:
   
   - db:
       key: /tmp/test
-      action: getall
+      action: all
       post:
         - json: parse
   
