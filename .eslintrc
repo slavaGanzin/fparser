@@ -9,10 +9,10 @@ rules:
   strict:                        off
   no-undef:                      off
   quotes:                        off
+  no-console:                    off
   
   no-magic-numbers:              warn
   no-unused-vars:                warn
-  no-console:                    warn
   no-implicit-globals:           warn
   
   

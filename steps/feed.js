@@ -6,7 +6,7 @@ module.exports = options => {
   return flatMap(xml => new Promise((resolve, reject, items = []) => {
     feed
       .on('error', reject)
-      .on('readable', function () {
+      .on('readable', function parse () {
         while (item = this.read())
           items.push(item)
       })

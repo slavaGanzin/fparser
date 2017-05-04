@@ -12,6 +12,7 @@ const prepareOutput = x => JSON[ARGV.nopretty ? 'stringify' : 'pretty'](x)
 const output = compose(console.log, prepareOutput, flatten)
 
 const runFinishHandlers = () => map(call, global.finishHandlers)
+const SILENT = 0
 
 ARGV
   .version(require('../package.json').version)
@@ -19,7 +20,7 @@ ARGV
   .option('-s, --no-save', 'Do not save results')
   .option('-f, --forward [action]', 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
-  .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)
+  .option('-v, --verbose', 'Verbosity level', increaseVerbosity, SILENT)
   .option('-P, --nopretty', 'Disable formatting of output')
   .option('-p, --placeholders', 'List placeholders')
 

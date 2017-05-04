@@ -6,8 +6,8 @@ module.exports = expectations => data =>
     try {
       expect(data)[f](v)
     } catch (e) {
-      throw `Expect:
+      throw new Error(`Expect:
 ${chalk.green(JSON.pretty(e.expected))}
-${chalk.red(JSON.pretty(e.actual))}`
+${chalk.red(JSON.pretty(e.actual))}`)
     }
   }, expectations) && data
