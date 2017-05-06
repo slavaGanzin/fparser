@@ -1,0 +1,51 @@
+placeholders:
+  filter: $url
+
+steps:
+  - db:
+      action: skip
+      provider: memory
+      key: /tmp
+      id: $url
+      pre:
+        - input: true
+      
+  - get
+  - parallel:
+      url:
+        - attr: url
+        - replace:
+          - $ /index
+      title:
+        - find: title
+        - text
+      links:
+        - find: a
+        - attr: href
+        - replace:
+          - \#.*
+          - \?.*
+          - \/$
+        - filter:
+          - $filter
+        - reject:
+          - .xml
+          - feed
+        - uniq
+        - tap:
+            name: parsers/wp.yaml
+            placeholders:
+              url: $1
+              filter: $filter
+      # html:
+        # - html
+      content:
+        - html
+        - readability
+        - markdown
+  - db:
+      provider: redis
+      key: wordpress:$filter
+      id: $id
+      pre:
+        - attr: content

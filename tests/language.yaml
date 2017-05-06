@@ -1,0 +1,13 @@
+steps:
+  - input:
+     - ножичек в крови шлакоблоки самовывозом
+     - spaCy features a rule-matching engine
+     - Това е пример за разпознаване на Български език
+     
+  - language
+
+  - expect:
+      eql:
+        - ru
+        - en
+        - bg

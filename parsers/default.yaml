@@ -49,3 +49,6 @@ markdown:
   
 feed:
   addmeta: true
+
+language:
+  isHtml: true
