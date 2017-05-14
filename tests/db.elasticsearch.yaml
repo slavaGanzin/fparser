@@ -1,0 +1,105 @@
+db:
+  provider: elasticsearch
+    
+steps:
+  - input:
+      id: id
+      value: value
+  - db:
+      key: test
+  - expect:
+      eql:
+        - test/id
+  
+  
+  - input:
+      id: id
+  - db:
+      action: get
+      key: test
+      
+  - expect:
+      eql:
+        - id: id
+          value: value
+  
+  - input:
+      id: asdasd
+  - db:
+      action: has
+      key: test
+  - expect:
+      eql:
+        - false
+  
+  - input:
+      id: id
+  - db:
+      action: has
+      key: test
+  - expect:
+      eql:
+        - true
+  
+  # - input:
+  #   - id: id
+  #   - id: not_present
+  # - db:
+  #     action: reject
+  #     key: test
+  # - expect:
+  #     eql:
+  #       - id: not_present
+  #
+  
+  - input:
+      id: idValue
+      key: keyValue
+  
+  - db:
+      key: prefix_$key
+      id: prefix_$id
+
+  - db:
+      key: prefix_keyValue
+      id: prefix_idValue
+      action: get
+  
+  - expect:
+      eql:
+        - id: idValue
+          key: keyValue
+  
+  - input:
+      id: idValue
+      key: keyValue
+      data:
+        doc: dataValue
+  
+  - db:
+      key: prefix_$key
+      id: prefix_$id
+      pre:
+        - attr: data
+  
+  
+  - db:
+      key: prefix_keyValue
+      id: prefix_idValue
+      action: get
+  
+  - expect:
+      eql:
+        - doc: dataValue
+  
+  
+  - db:
+      action: all
+      key: prefix_keyValue
+  
+  - expect:
+      eql:
+        - [ doc: dataValue ]
+  
+  
+  
