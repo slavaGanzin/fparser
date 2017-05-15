@@ -18,6 +18,7 @@ module.exports = hooks(options => flatMap(input => {
     .then(parse)
     .then(options.post)
     .then(headIfOneElement)
+    .then(tap(FINISH))
 
   return options.tap ? Promise.resolve(input) : p
 }))

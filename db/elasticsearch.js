@@ -4,13 +4,13 @@ let client = null
 const connect = unless(() => client, tap(options => {
   client = new elasticsearch.Client({
     log:            'trace',
-    deadTimeout:    1000,
-    requestTimeout: 1000,
+    requestTimeout: 10000,
   })
   client.ping()
+  setTimeout(() => client.ping(), 1000)
 }))
 
-const p = x => x.toLowerCase().replace(/\//g, '_')
+const p = x => x.toLowerCase().replace(/\//g, '\/')
 
 const save = ({key, id, data}) =>
   client.index({
@@ -19,7 +19,7 @@ const save = ({key, id, data}) =>
     id:    p(id),
     body:  data,
   })
-    .then(() => `${key}/${id}`)
+  .then(() => `${key}/${id}`)
 
 const get = ({key, id}) =>
   client.get({

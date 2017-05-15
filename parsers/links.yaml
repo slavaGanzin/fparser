@@ -7,37 +7,41 @@ steps:
       provider: memory
       key: links
       id: $url
-      pre:
-        - input: true
-      
+  
   - get
   - parallel:
       id:
         - attr: url
+        - replace: /.*:\/\//
       title:
         - find: title
         - text
       links:
-        - find: a
-        - attr: href
-        - replace:
-          - \#.*
-          - \?.*
-          - \/$
-        - filter:
-          - $filter
-        - reject:
-          - .xml
-          - feed
-        - uniq
-        - tap:
-            name: parsers/links.yaml
-            placeholders:
-              url: $1
-              filter: $filter
-      content:
-        - html
-        - readability
-        - markdown
+          - find: a
+          - attr: href
+          - replace:
+            - \#.*
+            - \?.*
+            - \/$
+          - filter:
+            - $filter
+          - reject:
+            - .xml
+            - feed
+            - .pdf
+          - uniq
+          - tap:
+              name: parsers/links.yaml
+              placeholders:
+                url: $1
+                filter: $filter
+                db: $db
+      # content:
+      #   - html
+      #   - readability
+      #   - markdown
   - db:
       key: links
+      provider: $db
+      # pre:
+      #   - json: stringify

@@ -1,4 +1,4 @@
 eslint --fix bin/* .
-git add .
+git update-index --again
 bin/test
 

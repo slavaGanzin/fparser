@@ -33,13 +33,17 @@ const request = options =>
   needle.request(
     options.method, options.url, options.data, options
   )
+  .catch(console.error)
     .then(head)
     .then(logRequest(options))
     .then(logErrors)
     .then(parse(options))
     .catch(logCatch(options))
 
-const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
+// const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
+
+const mergeUrl = options => url =>
+  merge(options, {url: defaultTo(options.url, url)})
 
 module.exports = options =>
   flatMap(compose(request, mergeUrl(options)))

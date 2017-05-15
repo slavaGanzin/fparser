@@ -13,7 +13,10 @@ const get = ({key, id}) =>
 const has = ({key, id}) =>
   Boolean(path([key, id], storage))
 
-const skip = ifElse(has, always(null), save)
+const skip = ({key, id}) =>
+  has({key, id})
+    ? null
+    : save({key, id, data: true}) && id
 
 const all = ({key}) => prop(key, storage)
 

@@ -38,5 +38,3 @@ steps:
       key: asosCategories
       pre:
         - attr: url
-      
-      

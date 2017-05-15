@@ -9,7 +9,8 @@ const increaseVerbosity = (_, total) => ++total
 global.finishHandlers = []
 
 const prepareOutput = x => JSON[ARGV.nopretty ? 'stringify' : 'pretty'](x)
-const output = compose(console.log, prepareOutput, flatten)
+
+global.FINISH = compose(console.log, prepareOutput, flatten)
 
 const runFinishHandlers = () => map(call, global.finishHandlers)
 const SILENT = 0
@@ -27,7 +28,7 @@ ARGV
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
     parser.parse({name, placeholders: PH.parse(placeholders)})
-      .then(output)
+      .then(FINISH)
       .then(runFinishHandlers)
   )
   .parse(process.argv)

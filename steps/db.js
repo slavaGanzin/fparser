@@ -3,7 +3,8 @@ const hooks = require('../lib/hooks')
 
 const dispatch = (options, actions) => data =>
   options.pre(data)
-    .then(([preData]) =>
+  .then(head)
+  .then(preData =>
     actions[options.action](evolve({
       key: PH.apply(data),
       id:  PH.apply(data),

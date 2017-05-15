@@ -3,23 +3,24 @@ db:
   
 steps:
   - input:
-      id: id
-      value: value
+      - id: id
+        value: value
+      - id: id2
+        value: value
+        
   - db:
       key: /tmp/test
-      id: id
       pre:
         - json: stringify
   - expect:
       eql:
         - /tmp/test/id
-   
+        - /tmp/test/id2
   
   - input:
       id: id
   - db:
       action: get
-      id: id
       key: /tmp/test
       post:
         - json: parse
