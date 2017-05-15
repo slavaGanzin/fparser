@@ -36,10 +36,10 @@ steps:
                 url: $1
                 filter: $filter
                 db: $db
-      # content:
-      #   - html
-      #   - readability
-      #   - markdown
+      content:
+        - html
+        - readability
+        - markdown
   - db:
       key: links
       provider: $db

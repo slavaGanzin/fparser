@@ -3,14 +3,13 @@ let client = null
 
 const connect = unless(() => client, tap(options => {
   client = new elasticsearch.Client({
-    log:            'trace',
-    requestTimeout: 10000,
+    log: 'trace',
   })
   client.ping()
   setTimeout(() => client.ping(), 1000)
 }))
 
-const p = x => x.toLowerCase().replace(/\//g, '\\/')
+const p = x => x.toLowerCase()
 
 const save = ({key, id, data}) =>
   client.index({
