@@ -1,36 +1,49 @@
 const elasticsearch = require('elasticsearch')
 let client = null
 
-const connect = unless(() => client, tap(options =>
-  client = new elasticsearch.Client(options)
-))
+const connect = unless(() => client, tap(options => {
+  client = new elasticsearch.Client({
+    log:            'trace',
+    deadTimeout:    1000,
+    requestTimeout: 1000,
+  })
+  client.ping()
+}))
+
+const p = x => x.toLowerCase().replace(/\//g, '_')
 
 const save = ({key, id, data}) =>
   client.index({
-    index: key.toLowerCase(),
-    type:  key.toLowerCase(),
-    id:    id.toLowerCase(),
+    index: p(key),
+    type:  p(key),
+    id:    p(id),
     body:  data,
   })
-  .then(() => `${key}/${id}`)
+    .then(() => `${key}/${id}`)
 
 const get = ({key, id}) =>
   client.get({
-    index: key.toLowerCase(),
-    type:  key.toLowerCase(),
-    id:    id.toLowerCase(),
+    index: p(key),
+    type:  p(key),
+    id:    p(id),
   })
-  .then(prop('_source'))
-  .catch(always(false))
+    .then(prop('_source'))
+    .catch(always(false))
 
-const has = composeP(Boolean, get)
+const has = ({key, id}) =>
+  client.exists({
+    index: p(key),
+    type:  p(key),
+    id:    p(id),
+  })
+
 
 const skip = arg =>
   has(arg).then(_has => _has ? _has : save(arg))
 
 const all = ({key}) =>
   client.search({index: key.toLowerCase()})
-  .then(compose(pluck('_source'), path(['hits', 'hits'])))
+    .then(compose(pluck('_source'), path(['hits', 'hits'])))
 
 module.exports = {
   actions: {

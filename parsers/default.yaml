@@ -1,5 +1,5 @@
 db:
-  provider:           redis
+  provider:           $db
   action:             save
   db:                 0
   id:                 $id
@@ -31,6 +31,7 @@ get:
 
 placeholders:
   url:         example.com
+  db:          redis
   
 xml2json:
   object:        true

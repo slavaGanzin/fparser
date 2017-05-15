@@ -7,4 +7,5 @@ steps:
         protocol: https://
         country: en
         host: https://en.wikipedia.org
+        db: redis
   

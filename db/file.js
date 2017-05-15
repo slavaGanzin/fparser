@@ -10,9 +10,9 @@ const full = (key, id) => join(dir(key, id), basename(id))
 
 const save = ({data, key, id}) =>
   mkdirp(dir(key, id))
-  .then(() =>
+    .then(() =>
     fs.writeFile(full(key, id), data))
-  .then(always(full(key, id)))
+    .then(always(full(key, id)))
 
 const get = ({key, id}) =>
   fs.readFile(full(key, id), 'utf8')

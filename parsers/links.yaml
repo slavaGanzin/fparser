@@ -5,7 +5,7 @@ steps:
   - db:
       action: skip
       provider: memory
-      key: /tmp
+      key: links
       id: $url
       pre:
         - input: true
@@ -14,8 +14,6 @@ steps:
   - parallel:
       id:
         - attr: url
-        - replace:
-          - $ /index
       title:
         - find: title
         - text
@@ -37,15 +35,9 @@ steps:
             placeholders:
               url: $1
               filter: $filter
-      # html:
-        # - html
       content:
         - html
         - readability
         - markdown
   - db:
-      provider: redis
-      key: /tmp
-      id: $text
-      pre:
-        - attr: content
+      key: links
