@@ -10,7 +10,7 @@ const connect = unless(() => client, tap(options => {
   setTimeout(() => client.ping(), 1000)
 }))
 
-const p = x => x.toLowerCase().replace(/\//g, '\/')
+const p = x => x.toLowerCase().replace(/\//g, '\\/')
 
 const save = ({key, id, data}) =>
   client.index({
