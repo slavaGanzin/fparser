@@ -1,0 +1,16 @@
+steps:
+  - input:
+     some:
+       crazy:
+        - example: A
+        - example: B
+  - transform:
+      foo:
+        - $.some.crazy
+        - bar: $.example
+        
+  - expect:
+      eql:
+        - foo:
+            - bar: 'A'
+            - bar: 'B'
