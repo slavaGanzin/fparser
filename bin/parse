@@ -1,18 +1,13 @@
 #!/usr/bin/env node
 require('../lib/listeners')
 require('../lib/global')
+const {finish} = require('../lib/finish')
 const parser = require('../lib/parser')
 const PH = require('../lib/placeholders')
 const parseRange = compose(map(Number), split('..'))
 const increaseVerbosity = (_, total) => ++total
 
-global.finishHandlers = []
 
-const prepareOutput = x => JSON[ARGV.nopretty ? 'stringify' : 'pretty'](x)
-
-global.FINISH = compose(console.log, prepareOutput, flatten)
-
-const runFinishHandlers = () => map(call, global.finishHandlers)
 const SILENT = 0
 
 ARGV
@@ -28,7 +23,6 @@ ARGV
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
     parser.parse({name, placeholders: PH.parse(placeholders)})
-      .then(FINISH)
-      .then(runFinishHandlers)
+      .then(finish())
   )
   .parse(process.argv)

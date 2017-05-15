@@ -1,7 +1,9 @@
 let redis = null
+const {handlers} = require('../lib/finish')
 
 const connect = unless(() => redis, tap(options => {
   redis = new require('ioredis')(options)
+  handlers.push(() => redis.quit())
 }))
 
 const save = ({key, id, data}) =>
@@ -29,5 +31,3 @@ module.exports = {
   },
   connect,
 }
-
-global.finishHandlers.push(() => redis.quit())

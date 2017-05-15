@@ -1,4 +1,5 @@
 const {parse} = require('../lib/parser')
+const {finish} = require('../lib/finish')
 const PH = require('../lib/placeholders')
 const hooks = require('../lib/hooks')
 
@@ -18,7 +19,7 @@ module.exports = hooks(options => flatMap(input => {
     .then(parse)
     .then(options.post)
     .then(headIfOneElement)
-    .then(tap(FINISH))
+    .then(finish())
 
   return options.tap ? Promise.resolve(input) : p
 }))
