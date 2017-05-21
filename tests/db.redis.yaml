@@ -6,8 +6,6 @@ steps:
       id: id
       value: value
   - db:
-      pre:
-        - json: stringify
       key: test
   - expect:
       eql:
@@ -19,8 +17,6 @@ steps:
   - db:
       action: get
       key: test
-      post:
-        - json: parse
       
   - expect:
       eql:
@@ -61,16 +57,12 @@ steps:
       key: keyValue
       
   - db:
-      pre:
-        - json: stringify
       key: prefix_$key
       id: prefix_$id
   
   - db:
       key: prefix_keyValue
       id: prefix_idValue
-      post:
-        - json: parse
       action: get
   
   - expect:
