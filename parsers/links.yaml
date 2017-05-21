@@ -1,10 +1,11 @@
 placeholders:
   filter: $url
+  skip: memory
 
 steps:
   - db:
       action: skip
-      provider: memory
+      provider: $skip
       key: links
       id: $url
   

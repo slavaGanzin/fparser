@@ -16,8 +16,10 @@ const get = ({key, id}) =>
 
 const has = composeP(Boolean, get)
 
-const skip = arg =>
-  has(arg).then(_has => _has ? _has : save(arg))
+const skip = ({key, id}) =>
+  has({key, id})
+    ? null
+    : save({key, id, data: true}) && id
 
 const all = ({key}) =>
   redis.hgetall(key).then(parseIfJSON)
