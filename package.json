@@ -28,6 +28,7 @@
     "feedparser": "^2.2.0",
     "inquirer": "^1.2.2",
     "ioredis": "^2.4.2",
+    "is-json": "^2.0.1",
     "is-plain-object": "^2.0.1",
     "js-yaml": "^3.6.1",
     "jsonpath-object-transform": "^1.0.4",
