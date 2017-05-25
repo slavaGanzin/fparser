@@ -26,7 +26,6 @@ get:
   rejectUnauthorized: false
   parse:              false
   timeout:            0
-  limit:              100
   url:                $url
 
 placeholders:

@@ -29,8 +29,10 @@ steps:
       image:
         - find: .product-img
         - attr: src
-        - get:
+        - limit:
             limit: 1
+            steps:
+              - get
   
   - db:
       provider: file
