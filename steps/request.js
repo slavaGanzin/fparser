@@ -6,6 +6,9 @@ const libxml = require('libxmljs')
 const updateDocumentUrl = options => tap(document => document.url = options.url)
 
 const parse = options => cond([[
+  x => !options.parse,
+  input => input.body,
+], [
   x => test(/html/, x.headers['content-type']),
   input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
 ], [
@@ -31,7 +34,7 @@ const logCatch = options => x => {
 
 const request = options =>
   needle.request(
-    options.method, options.url, options.data, options
+    options.method, options.url, options.data, merge(options, {parse: false})
   )
     .catch(console.error)
     .then(head)

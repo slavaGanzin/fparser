@@ -24,7 +24,7 @@ get:
   follow_keep_method: true
 
   rejectUnauthorized: false
-  parse:              false
+  parse:              true
   timeout:            0
   url:                $url
 

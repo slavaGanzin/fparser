@@ -1,0 +1,10 @@
+steps:
+  - get:
+      parse: false
+      url: http://www.nltk.org/book/
+  - replace:
+      /(.*\n)+/g string
+  - expect:
+      eql:
+        - string
+    

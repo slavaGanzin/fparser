@@ -7,4 +7,5 @@ steps:
   - limit:
       limit: 1
       steps:
+        - debug: limit
         - script: sleep 1 && echo $1
