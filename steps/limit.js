@@ -1,7 +1,9 @@
-const LIMIT_TIMEOUT = 100
-const NIL = 0
+const {run} = require('../lib/steps')
 
-module.exports = (lim, i = NIL) => f =>
+const LIMIT_TIMEOUT = 100
+const START = 0
+
+const limit = (lim, i = START) => f =>
   new Promise((resolve, reject) => {
     const _limit = () => i < parseInt(lim)
       ? tap(debug('limit'), ++i)
@@ -13,3 +15,9 @@ module.exports = (lim, i = NIL) => f =>
 
     _limit()
   })
+
+module.exports = options =>
+  compose(
+    limit(options.limit),
+    flatMap(run(options.steps))
+  )

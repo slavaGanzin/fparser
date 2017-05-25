@@ -33,7 +33,7 @@ const request = options =>
   needle.request(
     options.method, options.url, options.data, options
   )
-  .catch(console.error)
+    .catch(console.error)
     .then(head)
     .then(logRequest(options))
     .then(logErrors)

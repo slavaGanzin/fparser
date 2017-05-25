@@ -18,7 +18,7 @@ const save = ({key, id, data}) =>
     id:    p(id),
     body:  data,
   })
-  .then(() => `${key}/${id}`)
+    .then(() => `${key}/${id}`)
 
 const get = ({key, id}) =>
   client.get({
