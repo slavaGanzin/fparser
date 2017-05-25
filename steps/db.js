@@ -5,11 +5,11 @@ const dispatch = (options, actions) => data =>
   options.pre(data)
     .then(head)
     .then(preData =>
-    actions[options.action](evolve({
-      key: PH.apply(data),
-      id:  PH.apply(data),
-    }, merge(options, {data: preData})))
-  )
+      actions[options.action](evolve({
+        key: PH.apply(data),
+        id:  PH.apply(data),
+      }, merge(options, {data: preData})))
+    )
     .then(debug(`db:${options.action}`))
     .then(options.post)
     .then(head)

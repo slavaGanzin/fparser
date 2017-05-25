@@ -39,6 +39,7 @@
     "pretty-error": "^2.1.0",
     "promise-limit": "^2.4.0",
     "ramda": "^0.22.1",
+    "readdirrsync": "0.0.3",
     "regex-parser": "^2.2.5",
     "thenify-all": "^1.6.0",
     "xml2json": "^0.10.0",

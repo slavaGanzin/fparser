@@ -3,8 +3,6 @@ const {finish} = require('../lib/finish')
 const PH = require('../lib/placeholders')
 const hooks = require('../lib/hooks')
 
-const ofIfString = when(is(String), x => [x])
-
 module.exports = hooks(options => flatMap(input => {
   const p = options.pre(input)
     .then(head)

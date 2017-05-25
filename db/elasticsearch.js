@@ -2,11 +2,10 @@ const elasticsearch = require('elasticsearch')
 let client = null
 
 const connect = unless(() => client, tap(options => {
-  client = new elasticsearch.Client({
+  client = new elasticsearch.Client(merge({
     log: 'trace',
-  })
+  }, options))
   client.ping()
-  setTimeout(() => client.ping(), 1000)
 }))
 
 const p = x => x.toLowerCase()

@@ -11,4 +11,4 @@ module.exports = command => flatMap(placeholders => new Promise((resolve, reject
           stdout,
           stderr})
         : resolve(stdout.replace(/\n$/m, ''))
-    )))
+  )))

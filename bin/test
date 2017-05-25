@@ -8,21 +8,21 @@ const TEST_PATH = './tests'
 const ERROR = 1
 
 const runTests = map(test =>
-    new Promise((resolve, reject) => {
-      const file = path.join('bin/parse .', TEST_PATH, test)
-      const start = new Date()
+  new Promise((resolve, reject) => {
+    const file = path.join('bin/parse .', TEST_PATH, test)
+    const start = new Date()
 
-      return cp.exec(file, (error, stdout, stderr) =>
-        error
-          ? reject({file, error, stdout, stderr, start})
-          : resolve({file, stdout, stderr, start})
+    return cp.exec(file, (error, stdout, stderr) =>
+      error
+        ? reject({file, error, stdout, stderr, start})
+        : resolve({file, stdout, stderr, start})
     )
+  })
+    .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
+    .catch(error => {
+      debug('error')(error)
+      process.exit(ERROR)
     })
-      .then(exec => console.log(exec.file, '\t\t\t', new Date() - exec.start, 'ms'))
-      .catch(error => {
-        debug('error')(error)
-        process.exit(ERROR)
-      })
 )
 
 fs.readdir(TEST_PATH).then(runTests)
