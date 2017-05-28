@@ -4,13 +4,15 @@ placeholders:
 steps:
   - input: $urls
   - split: ' '
-  - limit:
-      limit: 10
-      steps:
-        - get:
-            timeout: 1000
-        
+  - get:
+      timeout: 1000
+  
+  - parallel:
+      urls:
         - find: link[type*=rss],link[type*=atom],a:contains(RSS),a[href*=feedburner],a[href*='.rss'],a[href*='/rss/']
         - attr: href
         - uniq
-  
+      id:
+        - attr: url
+  - db:
+      key: rss:urls
