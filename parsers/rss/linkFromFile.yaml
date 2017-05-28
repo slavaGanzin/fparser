@@ -1,0 +1,16 @@
+placeholders:
+  urls: ''
+  
+steps:
+  - input: $urls
+  - split: ' '
+  - limit:
+      limit: 10
+      steps:
+        - get:
+            timeout: 1000
+        
+        - find: link[type*=rss],link[type*=atom],a:contains(RSS),a[href*=feedburner],a[href*='.rss'],a[href*='/rss/']
+        - attr: href
+        - uniq
+  

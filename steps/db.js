@@ -10,7 +10,6 @@ const dispatch = (options, actions) => data =>
         id:  PH.apply(data),
       }, merge(options, {data: preData})))
     )
-    .then(debug(`db:${options.action}`))
     .then(options.post)
     .then(head)
 
