@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-parallel --eta -j 1 "bin/parse parsers/rss/link.yaml url={}"  ::::  urls
+parallel -j 1 "bin/parse parsers/rss/link.yaml -v url={}"  ::::  urls

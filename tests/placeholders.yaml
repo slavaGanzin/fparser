@@ -2,6 +2,7 @@ placeholders:
   url: url
   forwardInput: ''
   forwardPlaceholders: ''
+  display: $DISPLAY
   
 steps:
   - input:
@@ -9,10 +10,12 @@ steps:
      - $url
      - $forwardInput
      - $forwardPlaceholders
+     - $display
   - expect:
       eql:
         - value
         - url
         - $forwardInput
         - $forwardPlaceholders
+        - :0
     

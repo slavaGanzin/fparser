@@ -8,4 +8,4 @@ steps:
     
   - expect:
       eql:
-        - [value, url, forward, forwardPlaceholders]
+        - [value, url, forward, forwardPlaceholders, :0]
