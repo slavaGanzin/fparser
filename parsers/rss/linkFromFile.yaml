@@ -5,7 +5,9 @@ steps:
   - input: $urls
   - split: ' '
   - get:
-      timeout: 1000
+      open_timeout: 10000
+      read_timeout: 20000
+      follow_max: 1
   
   - parallel:
       urls:

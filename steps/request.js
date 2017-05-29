@@ -42,6 +42,7 @@ const request = options =>
   .then(parse(options))
   .catch(logCatch(options))
 
+
 // const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
 
 const mergeUrl = options => url =>
