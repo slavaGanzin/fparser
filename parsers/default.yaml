@@ -4,6 +4,11 @@ db:
   db:                 0
   id:                 $id
   key:                DEFAULT_KEY
+  connectTimeout:     1
+  enableOfflineQueue: true
+  keepAlive:          no
+  dropBufferSupport:  true
+  
 
 forward:
   tap: false
