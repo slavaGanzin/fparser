@@ -36,11 +36,11 @@ const request = options =>
   needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})
   )
-  .then(head)
-  .then(logRequest(options))
-  .then(logErrors)
-  .then(parse(options))
-  .catch(logCatch(options))
+    .then(head)
+    .then(logRequest(options))
+    .then(logErrors)
+    .then(parse(options))
+    .catch(logCatch(options))
 
 
 // const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
