@@ -8,7 +8,7 @@ db:
   enableOfflineQueue: true
   keepAlive:          no
   dropBufferSupport:  true
-  
+  path:               /var/run/redis/sock
 
 forward:
   tap: false

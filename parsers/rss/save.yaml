@@ -1,0 +1,9 @@
+steps:
+  - forward:
+      name: parsers/rss/link
+      placeholders:
+        url: $url
+  
+  - db:
+      key: urls:rss
+      id: $url
