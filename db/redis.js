@@ -3,7 +3,7 @@ const {handlers} = require('../lib/finish')
 const parseIfJSON = when(require('is-json'), JSON.parse)
 
 const connect = unless(() => redis, tap(options => {
-  redis = new require('ioredis')(options)
+  redis = new require('ioredis')(options.redis)
   handlers.push(() => redis.quit())
 }))
 

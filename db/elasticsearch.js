@@ -4,7 +4,7 @@ let client = null
 const connect = unless(() => client, tap(options => {
   client = new elasticsearch.Client(merge({
     log: 'trace',
-  }, options))
+  }, options.elasticsearch))
   client.ping()
 }))
 

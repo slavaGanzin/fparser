@@ -1,14 +1,24 @@
+placeholders:
+  url:         example.com
+  db:          redis
+  
 db:
   provider:           $db
   action:             save
   db:                 0
   id:                 $id
   key:                DEFAULT_KEY
-  connectTimeout:     1
-  enableOfflineQueue: true
-  keepAlive:          no
-  dropBufferSupport:  true
-  path:               /var/run/redis/sock
+  elasticsearch:
+    #https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/configuration.html
+    connectTimeout:     1
+    enableOfflineQueue: true
+    keepAlive:          no
+    dropBufferSupport:  true
+    host: localhost:9200
+    log: trace
+  redis:
+    #https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options
+    path:               /var/run/redis/sock
 
 forward:
   tap: false
@@ -17,7 +27,7 @@ tap:
   tap: true
   
 get:
-  # headers:
+  #https://github.com/tomas/needle#request-options
   accept:             '*/*'
   compressed:         true
 
@@ -28,15 +38,13 @@ get:
   follow_keep_method: true
 
   rejectUnauthorized: false
+
   parse:              true
   timeout:            0
   url:                $url
 
-placeholders:
-  url:         example.com
-  db:          redis
-  
 xml2json:
+  #https://github.com/buglabs/node-xml2json#options-object-for-tojson
   object:        true
   reversible:    false
   coerce:        false
@@ -44,15 +52,17 @@ xml2json:
   trim:          true
   arrayNotation: false
   
-#http://breakdance.io/docs.html#options
-#https://www.npmjs.com/package/breakdance-reflinks
 markdown:
+  #http://breakdance.io/docs.html#options
+  #https://www.npmjs.com/package/breakdance-reflinks
   condense: true
   one:      true
   # title:    true
   
 feed:
+  #https://github.com/danmactough/node-feedparser#options
   addmeta: true
 
 language:
+  #https://github.com/dachev/node-cld#advanced
   isHtml: true
