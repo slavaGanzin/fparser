@@ -27,21 +27,24 @@ tap:
   tap: true
   
 get:
+  parse:              true
+  url:                $url
+  
   #https://github.com/tomas/needle#request-options
   accept:             '*/*'
   compressed:         true
-
   method:             get
-  follow:             20
+  follow_max:         20
   follow_set_cookies: true
   follow_set_referer: true
   follow_keep_method: true
-
   rejectUnauthorized: false
-
-  parse:              true
-  timeout:            0
+  open_timeout:       20000
+  read_timeout:       20000
+  
+post:
   url:                $url
+  method: post
 
 xml2json:
   #https://github.com/buglabs/node-xml2json#options-object-for-tojson
