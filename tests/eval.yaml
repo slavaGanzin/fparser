@@ -1,0 +1,19 @@
+steps:
+  - input:
+      - a: 1
+      - b: 2
+  - eval: reject(has('a'))
+  - expect:
+      eql:
+        - b: 2
+      
+  - input:
+    - 1
+    - 2
+    - 3
+  - eval: map(add(1))
+  - expect:
+      eql:
+        - 2
+        - 3
+        - 4
