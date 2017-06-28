@@ -1,0 +1,5 @@
+steps:
+  - get:
+      parse: false
+  - eval: ifElse(and(test(/wordpress/ig), test(/<article.*>/ig)), () => ['$url'], () => [])
+  
