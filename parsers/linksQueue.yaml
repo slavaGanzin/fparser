@@ -32,6 +32,7 @@ steps:
   - db:
       key: q:links
       id: $randomHash
+      return: data
               
       # content:
       #   - html

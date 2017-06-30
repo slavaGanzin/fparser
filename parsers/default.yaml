@@ -8,6 +8,7 @@ db:
   db:                 0
   id:                 $id
   key:                DEFAULT_KEY
+  return:             key
   elasticsearch:
     #https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/configuration.html
     connectTimeout:     1

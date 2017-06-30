@@ -13,6 +13,7 @@ const dispatch = (options, actions) => data =>
     )
     .then(options.post)
     .then(head)
+    .then(when(() => options.return != 'key', always(data)))
 
 module.exports = hooks(options => {
   const provider = dynamicRequire(`../db/${options.provider}`)
