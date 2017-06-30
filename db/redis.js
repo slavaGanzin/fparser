@@ -22,7 +22,20 @@ const skip = ({key, id}) =>
     : save({key, id, data: true}) && id
 
 const all = ({key}) =>
-  redis.hgetall(key).then(parseIfJSON)
+  redis.hgetall(key).then(map(parseIfJSON)).then(values)
+
+const queue = ({key, size}) =>
+  redis.hkeys(key)
+    .then(take(size))
+    .then(_keys =>
+      redis.hmget(key, _keys)
+        .then(parseIfJSON)
+        .then(values =>
+          redis.hmset(`${key}:processing`, fromPairs(zip(_keys, values)))
+            .then(() => redis.hdel(key, _keys))
+            .then(always(values))
+      )
+    )
 
 module.exports = {
   actions: {
@@ -31,6 +44,7 @@ module.exports = {
     has,
     skip,
     all,
+    queue,
   },
   connect,
 }

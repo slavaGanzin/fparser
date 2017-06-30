@@ -1,0 +1,48 @@
+placeholders:
+  filter: $url
+  skip: memory
+
+steps:
+  - db:
+      action: skip
+      provider: $skip
+      key: links
+      id: $url
+  
+  - get
+  - parallel:
+      id:
+        - attr: url
+        - replace: /.*:\/\//
+      title:
+        - find: title
+        - text
+      links:
+          - find: a
+          - attr: href
+          - replace:
+            - \#.*
+            - \?.*
+            - \/$
+          - filter:
+            - $filter
+          - reject:
+            - .xml
+            - feed
+            - .pdf
+          - uniq
+          - tap:
+              name: parsers/links.yaml
+              placeholders:
+                url: $1
+                filter: $filter
+                db: $db
+      content:
+        - html
+        - readability
+        - markdown
+  - db:
+      key: links
+      provider: $db
+      # pre:
+      #   - json: stringify

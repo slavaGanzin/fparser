@@ -98,8 +98,42 @@ steps:
       
   - expect:
       eql:
-        -
-          prefix_idValue: dataValue
+        - [ dataValue ]
+          
+          
+  - input:
+      - id: first
+      - id: second
   
+  - db:
+      action: save
+      key: queue
+          
+      
+  - db:
+      action: queue
+      key: queue
+      size: 2
+      
+  - input:
+      - any
+      
+  - db:
+      key: queue
+      action: all
+  - expect:
+      eql:
+        - [ ]
+        
+  - input:
+      - any
+      
+  - db:
+      key: queue:processing
+      action: all
+  
+  - expect:
+      eql:
+        - [ id: first, id: second ]
       
   
