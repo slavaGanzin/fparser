@@ -1,0 +1,6 @@
+steps:
+  - input: 1
+  # - chrome:
+  #     - init
+      # - goTo: google.com
+      # - html
