@@ -4,45 +4,41 @@ placeholders:
 
 steps:
   - db:
-      action: skip
-      provider: $skip
-      key: links
-      id: $url
+      action: queue
+      size: 1
+      key: q:links
+      
+  # - eval: map(values)
   
   - get
-  - parallel:
-      id:
-        - attr: url
-        - replace: /.*:\/\//
-      title:
-        - find: title
-        - text
-      links:
-          - find: a
-          - attr: href
-          - replace:
-            - \#.*
-            - \?.*
-            - \/$
-          - filter:
-            - $filter
-          - reject:
-            - .xml
-            - feed
-            - .pdf
-          - uniq
-          - tap:
-              name: parsers/links.yaml
-              placeholders:
-                url: $1
-                filter: $filter
-                db: $db
-      content:
-        - html
-        - readability
-        - markdown
+  # # - parallel:
+  #     # id:
+  #     #   - attr: url
+  #     #   - replace: /.*:\/\//
+  #     # title:
+  #     #   - find: title
+  #     #   - text
+  - find: a
+  - attr: href
+  - replace:
+    - \#.*
+    - \?.*
+    - \/$
+  - reject:
+    - .xml
+    - feed
+    - .pdf
+  - uniq
   - db:
-      key: links
-      provider: $db
+      key: q:links
+      id: $randomHash
+              
+      # content:
+      #   - html
+      #   - readability
+      #   - markdown
+  # - db:
+  #     key: links
+  #     provider: $db
       # pre:
       #   - json: stringify

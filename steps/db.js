@@ -1,5 +1,6 @@
 const PH = require('../lib/placeholders')
 const hooks = require('../lib/hooks')
+const hash = require('crypto-random-string')
 
 const dispatch = (options, actions) => data =>
   options.pre(data)
@@ -7,7 +8,7 @@ const dispatch = (options, actions) => data =>
     .then(preData =>
       actions[options.action](evolve({
         key: PH.apply(data),
-        id:  PH.apply(data),
+        id:  compose(replace('$randomHash', hash(40)), PH.apply(data)),
       }, merge(options, {data: preData})))
     )
     .then(options.post)
