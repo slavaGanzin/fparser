@@ -1,6 +1,7 @@
 const connect = identity
 const fs = thenify('fs')
 const mkdirp = thenify('mkdirp')
+const needle = thenify('needle')
 const {sep, basename, dirname, join} = require('path')
 
 const dir = (key, id) =>
@@ -10,8 +11,12 @@ const full = (key, id) => join(dir(key, id), basename(id))
 
 const save = ({data, key, id}) =>
   mkdirp(dir(key, id))
-    .then(() =>
-      fs.writeFile(full(key, id), data))
+    .then(() => fs.writeFile(full(key, id), data))
+    .then(always(full(key, id)))
+
+const download = ({data, key, id}) =>
+  mkdirp(dir(key, id))
+    .then(() => needle.get(data, {output: full(key, id)}))
     .then(always(full(key, id)))
 
 const get = ({key, id}) =>
@@ -30,6 +35,7 @@ const all = ({key}) =>
 const skip = arg =>
   has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
 
+
 module.exports = {
   actions: {
     get,
@@ -37,6 +43,7 @@ module.exports = {
     has,
     skip,
     all,
+    download,
   },
   connect,
 }
