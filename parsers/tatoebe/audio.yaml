@@ -1,0 +1,38 @@
+placeholders:
+  page: 1
+  url: https://tatoeba.org/eng/audio/index/rus/page:$page
+
+steps:
+  - get
+  - find: .sentence.mainSentence
+
+  - parallel:
+      id:
+        - attr: data-sentence-id
+
+      transcription:
+        - find: .content
+        - text
+
+      audio:
+        - find: .audioAvailable
+        - attr: href
+
+  - parallel:
+      audio:
+        - db:
+            provider: file
+            action: download
+            id: $id.mp3
+            key: data/tatoebe
+            pre:
+              - attr: audio
+
+      transcription:
+        - db:
+            provider: file
+            action: save
+            key: data/tatoebe
+            id: $id.txt
+            pre:
+              - attr: transcription
