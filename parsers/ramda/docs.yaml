@@ -1,0 +1,20 @@
+placeholders:
+  url: https://ramdajs.com/docs
+
+steps:
+  - get
+  - find: .card
+
+  - parallel:
+      name:
+        - find: h2 a
+        - text
+        - replace:
+          - /(.)([A-Z][a-z]+)/, $1_$2
+        - eval:  compose(toLower, head)
+      description:
+        - find: .description
+        - text
+        - replace:
+          - /(\s)\s+/gm, $1
+        - eval: join('')
