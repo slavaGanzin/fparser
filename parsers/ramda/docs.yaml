@@ -10,10 +10,10 @@ steps:
         - find: h2 a
         - text
         - replace:
-          - /(.)([A-Z][a-z]+)/, $1_$2
+          - /([A-Z])/g, _$1
         - eval:  compose(toLower, head)
       description:
-        - find: .description
+        - find: '> .description'
         - text
         - replace:
           - /(\s)\s+/gm, $1
