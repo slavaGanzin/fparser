@@ -4,7 +4,7 @@ placeholders:
 steps:
   - get
   - parallel:
-      body:
+      description:
         - find: .post-content
         - html
       title:

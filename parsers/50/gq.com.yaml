@@ -1,0 +1,19 @@
+placeholders:
+  url: https://www.gq.com/story/new-dandies-dapper-dan-justin-oshea-poggy-the-man
+
+steps:
+  - get
+  - parallel:
+     title:
+       - find: .hed-container .hed
+       - text
+     html:
+       - remove:
+         - .hed
+         - .byline-container
+         - .article-footer
+       - find: article
+       - html
+     text:
+       - find: article
+       - text
