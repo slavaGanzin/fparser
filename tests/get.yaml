@@ -1,5 +1,7 @@
 steps:
+
   - get:
       url: http://www.nltk.org/book/
+      cached: true
   - expectEach:
       property: root

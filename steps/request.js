@@ -1,6 +1,18 @@
 const STATUS_OK = 200
 
 const needle = thenify('needle')
+const fs = thenify('fs')
+const CACHE = 'http_cache'
+
+fs.mkdir(CACHE).then(identity)
+  .catch(identity)
+
+const hash = value =>
+  require('crypto')
+    .createHash('sha256')
+    .update(value, 'utf8')
+    .digest()
+
 const libxml = require('libxmljs')
 
 const updateDocumentUrl = options => tap(document => document.url = options.url)
@@ -32,15 +44,28 @@ const logCatch = options => x => {
   return Promise.resolve(null)
 }
 
-const request = options =>
-  needle.request(
+const request = options => {
+  const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})
   )
     .then(head)
     .then(logRequest(options))
     .then(logErrors)
+
+  const k = `${CACHE}/${hash(options.url)}`
+  console.log(k)
+
+  const f = (!options.cached
+    ? _request
+    : () => fs.readFile(k)
+      .then(JSON.parse)
+      .catch(() => _request()
+        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}))))))
+
+  f()
     .then(parse(options))
     .catch(logCatch(options))
+}
 
 
 // const mergeUrl = options => url => merge({url: defaultTo(options.url, url)}, options)
