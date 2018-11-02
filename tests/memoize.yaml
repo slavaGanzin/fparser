@@ -1,0 +1,9 @@
+steps:
+  - memoize:
+    - get:
+        url: http://www.nltk.org/book/
+        parse: false
+  - memoize:
+    - get:
+        url: http://www.nltk.org/book/
+        parse: false

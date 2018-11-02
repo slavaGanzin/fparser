@@ -1,0 +1,12 @@
+placeholders:
+  url: http://www.businessinsider.com/microsoft-just-put-one-of-its-hardcore-technical-geniuses-on-xbox-2012-1
+
+steps:
+  - get
+  - parallel:
+      body:
+        - find: //div[contains(@class, 'post-content') or contains(@class, 'slide-module') or contains(@class, 'KonaBody')]
+        - html
+      title:
+        - find: //div[@class="sl-layout-post"]/h1
+        - html
