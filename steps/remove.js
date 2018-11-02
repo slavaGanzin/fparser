@@ -1,4 +1,4 @@
-const c2x = require('css-to-xpath')
+const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 const mapRemove = map(x => x.remove())
 
 module.exports = selectors => flatMap(
