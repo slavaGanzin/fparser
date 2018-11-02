@@ -25,4 +25,6 @@ const runTests = map(test =>
     })
 )
 
-fs.readdir(TEST_PATH).then(runTests)
+fs.readdir(TEST_PATH)
+  .then(filter(test(new RegExp(process.argv[2]))))
+  .then(runTests)
