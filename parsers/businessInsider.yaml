@@ -5,7 +5,6 @@ placeholders:
 steps:
   - get
   - find: .headertitle
-  - debug
   - text
 
   # - parallel:

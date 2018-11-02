@@ -1,7 +1,7 @@
 placeholders:
   url:         example.com
   db:          redis
-  
+
 db:
   provider:           $db
   action:             save
@@ -26,11 +26,12 @@ forward:
 
 tap:
   tap: true
-  
+
 get:
+  cached:             true
   parse:              true
   url:                $url
-  
+
   #https://github.com/tomas/needle#request-options
   accept:             '*/*'
   compressed:         true
@@ -42,7 +43,7 @@ get:
   rejectUnauthorized: false
   open_timeout:       20000
   read_timeout:       20000
-  
+
 post:
   url:                $url
   method: post
@@ -55,14 +56,14 @@ xml2json:
   sanitize:      true
   trim:          true
   arrayNotation: false
-  
+
 markdown:
   #http://breakdance.io/docs.html#options
   #https://www.npmjs.com/package/breakdance-reflinks
   condense: true
   one:      true
   # title:    true
-  
+
 feed:
   #https://github.com/danmactough/node-feedparser#options
   addmeta: true
