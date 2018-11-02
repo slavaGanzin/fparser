@@ -1,12 +1,17 @@
 placeholders:
-  url: http://www.businessinsider.com/microsoft-just-put-one-of-its-hardcore-technical-geniuses-on-xbox-2012-1
+  # url: http://www.businessinsider.com/microsoft-just-put-one-of-its-hardcore-technical-geniuses-on-xbox-2012-1
+  url: https://www.nltk.org/
 
 steps:
   - get
-  - parallel:
-      body:
-        - find: //div[contains(@class, 'post-content') or contains(@class, 'slide-module') or contains(@class, 'KonaBody')]
-        - html
-      title:
-        - find: //div[@class="sl-layout-post"]/h1
-        - html
+  - find: .headertitle
+  - debug
+  - text
+
+  # - parallel:
+  #     body:
+  #       - find: body
+  #       - html
+  #     title:
+  #       - find: //div[@class="sl-layout-post"]/h1
+  #       - html
