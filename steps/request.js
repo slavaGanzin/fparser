@@ -53,15 +53,15 @@ const request = options => {
     .then(logErrors)
 
   const k = `${CACHE}/${hash(options.url)}`
-  //
-  // const f = (!options.cached
-  //   ? _request
-  //   : () => fs.readFile(k)
-  //     .then(JSON.parse)
-  //     .catch(() => _request()
-  //       .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}))))))
-  //
-  _request()
+
+  const f = (!options.cached
+    ? _request
+    : () => fs.readFile(k)
+      .then(JSON.parse)
+      .catch(() => _request()
+        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}))))))
+
+  return f()
     .then(parse(options))
     .catch(logCatch(options))
 }

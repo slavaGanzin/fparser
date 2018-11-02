@@ -4,8 +4,3 @@ steps:
       cached: true
   - expectEach:
       property: root
-  - get:
-      url: http://www.nltk.org/book/
-      cached: true
-  - expectEach:
-      property: root
