@@ -9,10 +9,12 @@ steps:
        - text
      html:
        - remove:
+         - .hero-content
+         - .component-social-share
+         - .article-footer
          - .hed
          - .byline-container
          - .article-heading
-         - .article-footer
        - find: article
        - html
      text:
