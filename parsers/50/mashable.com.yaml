@@ -1,0 +1,27 @@
+placeholders:
+  url: https://mashable.com/article/cousin-ambrose-chilling-adventures-of-sabrina
+
+steps:
+  - get
+  - parallel:
+     title:
+       - find: h1.title
+       - text
+     categories:
+       - find: .article-topics
+       - text
+     html:
+       - remove:
+          - .ytm-gallery-box
+          - .adsense
+          - .social
+          - script
+          - .bonus-video-card
+          - .article-info
+          - .title
+          - footer
+       - find: article
+       - html
+     text:
+       - find: article
+       - text
