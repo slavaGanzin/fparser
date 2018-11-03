@@ -1,0 +1,22 @@
+placeholders:
+  url: https://techcrunch.com/2018/11/02/tiktok-surpassed-facebook-instagram-snapchat-youtube-in-downloads-last-month/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .article__title
+        - text
+      html:
+        - remove:
+          - .embed.breakout
+          - .image-credits
+          - .block--comment
+          - .article__title-wrapper
+          - .article__byline-wrapper
+        - find: article
+        - html
+      text:
+        - find: article
+        - text
+        - eval: map(replace(/\s+/g, ' '))

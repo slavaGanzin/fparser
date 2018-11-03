@@ -45,7 +45,7 @@ const request = options => {
     .then(logRequest(options))
     .then(logErrors)
 
-  const k = `${CACHE}/${options.url.replace(/\//g, '.')}`
+  const k = `${CACHE}/${options.url.replace(/\//g, '∕')}`
 
   const f = (!options.cached
     ? _request

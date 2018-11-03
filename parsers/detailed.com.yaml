@@ -1,0 +1,11 @@
+placeholders:
+  url: https://detailed.com/all
+
+steps:
+  - get
+  - find: .card a
+  - attr: href
+  - get
+  - find: .blog-url a
+  - attr: href
+  - uniq
