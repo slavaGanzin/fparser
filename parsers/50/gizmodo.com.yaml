@@ -1,0 +1,15 @@
+placeholders:
+  url: https://gizmodo.com/nearly-10-000-u-s-kids-a-year-are-attacked-by-soup-1830177160
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .headline a
+        - text
+      html:
+        - find: .post-content
+        - html
+      text:
+        - find: .post-content
+        - text

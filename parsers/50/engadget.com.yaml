@@ -1,0 +1,19 @@
+placeholders:
+  url: https://www.engadget.com/2018/11/02/dear-tech-stop-doing-business-with-nazis/
+
+
+steps:
+  - get
+  - remove:
+    - footer
+    - script
+  - parallel:
+      title:
+        - find: article header h1
+        - text
+      html:
+        - find: '#page_body'
+        - html
+      text:
+        - find: '#page_body'
+        - html

@@ -1,0 +1,21 @@
+placeholders:
+  url: https://www.cnet.com/news/why-bepicolombo-is-going-to-explore-mercury-our-smallest-wrinkliest-planet/
+
+steps:
+  - get
+  - remove:
+    - .linkstack
+    - .taboola
+    - footer
+    - figure
+    - .playerControls
+  - parallel:
+      title:
+        - find: .articleHead h1
+        - text
+      text:
+        - find: .article-main-body
+        - text
+      html:
+        - find: .article-main-body
+        - html
