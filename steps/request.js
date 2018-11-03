@@ -4,14 +4,7 @@ const needle = thenify('needle')
 const fs = thenify('fs')
 const CACHE = 'http_cache'
 
-fs.mkdir(CACHE).then(identity)
-  .catch(identity)
-
-const hash = value =>
-  require('crypto')
-    .createHash('sha256')
-    .update(value, 'utf8')
-    .digest()
+fs.mkdir(CACHE).then(identity).catch(identity)
 
 const libxml = require('libxmljs')
 
@@ -52,14 +45,15 @@ const request = options => {
     .then(logRequest(options))
     .then(logErrors)
 
-  const k = `${CACHE}/${hash(options.url)}`
+  const k = `${CACHE}/${options.url.replace(/\//g, '.')}`
 
   const f = (!options.cached
     ? _request
-    : () => fs.readFile(k)
+    : () => fs.readFile(k, 'utf-8')
       .then(JSON.parse)
+      .then(tap(()=> debug(`${options.method}:cached`)(k)))
       .catch(() => _request()
-        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}))))))
+        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}, null, 2))))))
 
   return f()
     .then(parse(options))

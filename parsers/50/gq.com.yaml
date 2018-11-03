@@ -5,12 +5,13 @@ steps:
   - get
   - parallel:
      title:
-       - find: .hed-container .hed
+       - find: .hed-container .hed, .feature-item-hed
        - text
      html:
        - remove:
          - .hed
          - .byline-container
+         - .article-heading
          - .article-footer
        - find: article
        - html
