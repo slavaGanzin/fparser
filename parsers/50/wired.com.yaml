@@ -12,6 +12,3 @@ steps:
          - .content-header-component
        - find: article
        - html
-     text:
-       - find: article
-       - text

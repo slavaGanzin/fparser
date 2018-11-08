@@ -17,6 +17,3 @@ steps:
          - .article-heading
        - find: article
        - html
-     text:
-       - find: article
-       - text

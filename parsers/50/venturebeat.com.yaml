@@ -1,0 +1,15 @@
+placeholders:
+  url: venturebeat.com/2018/11/02/eightfold-uses-ai-to-match-job-seekers-with-open-positions/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .article-title
+        - text
+      html:
+        - remove:
+            - '#secondary'
+            - .article-header
+        - find: .body-container
+        - html

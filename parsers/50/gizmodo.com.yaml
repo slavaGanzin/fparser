@@ -10,6 +10,3 @@ steps:
       html:
         - find: .post-content
         - html
-      text:
-        - find: .post-content
-        - text

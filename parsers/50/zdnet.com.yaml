@@ -1,0 +1,20 @@
+placeholders:
+  url: zdnet.com/article/roborock-s5-robotic-vacuum-review-powerful-intelligent-competitor-takes-care-of-your-chores
+
+steps:
+  - get
+  - remove:
+      - .relatedContent
+      - '#content-recommendation'
+  - parallel:
+      title:
+        - find: header h1
+        - text
+      html:
+        - find: .storyBody
+        - html
+      categories:
+        - find: .related-topics a
+        - text
+        - replace:
+           - /\s+/g

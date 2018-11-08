@@ -22,6 +22,3 @@ steps:
           - footer
        - find: article
        - html
-     text:
-       - find: article
-       - text

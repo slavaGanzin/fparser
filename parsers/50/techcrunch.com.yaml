@@ -14,9 +14,6 @@ steps:
           - .block--comment
           - .article__title-wrapper
           - .article__byline-wrapper
+          - .article__contributor-byline
         - find: article
         - html
-      text:
-        - find: article
-        - text
-        - eval: map(replace(/\s+/g, ' '))

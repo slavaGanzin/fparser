@@ -13,9 +13,6 @@ steps:
       title:
         - find: .articleHead h1
         - text
-      text:
-        - find: .article-main-body
-        - text
       html:
         - find: .article-main-body
         - html
