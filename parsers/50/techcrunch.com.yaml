@@ -13,7 +13,7 @@ steps:
           - .image-credits
           - .block--comment
           - .article__title-wrapper
-          - .article__byline-wrapper
+          - .article__byline
           - .article__contributor-byline
         - find: article
         - html
