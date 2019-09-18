@@ -15,5 +15,6 @@ steps:
           - .article__title-wrapper
           - .article__byline
           - .article__contributor-byline
+          - footer
         - find: article
         - html

@@ -4,9 +4,10 @@ const needle = thenify('needle')
 const fs = thenify('fs')
 const CACHE = 'http_cache'
 
-fs.mkdir(CACHE).then(identity).catch(identity)
+fs.mkdir(CACHE).then(identity)
+  .catch(identity)
 
-const libxml = require('libxmljs')
+const cheerio = require('cheerio')
 
 const updateDocumentUrl = options => tap(document => document.url = options.url)
 
@@ -15,13 +16,13 @@ const parse = options => cond([[
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => updateDocumentUrl(options)(libxml.parseHtml(input.body)),
+  input => cheerio.load(input.body),
 ], [
   x => test(/rss|link-format/, x.headers['content-type']),
   input => input.body.toString(),
-], [
-  x => test(/xml/, x.headers['content-type']),
-  input => libxml.parseXml(input.body),
+// ], [
+//   x => test(/xml/, x.headers['content-type']),
+//   input => libxml.parseXml(input.body),
 ], [
   T, prop('raw'),
 ]])
@@ -47,13 +48,13 @@ const request = options => {
 
   const k = `${CACHE}/${options.url.replace(/\//g, '∕')}`
 
-  const f = (!options.cached
+  const f = !options.cached
     ? _request
     : () => fs.readFile(k, 'utf-8')
       .then(JSON.parse)
-      .then(tap(()=> debug(`${options.method}:cached`)(k)))
+      .then(tap(() => debug(`${options.method}:cached`)(k)))
       .catch(() => _request()
-        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}, null, 2))))))
+        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}, null, 2)))))
 
   return f()
     .then(parse(options))

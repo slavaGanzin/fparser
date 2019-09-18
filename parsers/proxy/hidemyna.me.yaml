@@ -1,0 +1,7 @@
+placeholders:
+  url: https://hidemyna.me/en/proxy-list/
+
+steps:
+  - get
+  - find: .proxy__t tr
+  - text

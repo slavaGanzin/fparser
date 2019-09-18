@@ -1,0 +1,43 @@
+steps:
+  - get
+  - parallel:
+      Названиe:
+        - find: '#firstHeading'
+        - text
+
+
+      Сайт:
+        - find: span.url
+        - text
+        - eval: x => x[0]
+
+      Популярность:
+        - find: span.url
+        - text
+        - eval: x => 'https://www.alexa.com/siteinfo/' + x[0]
+        - get
+        - find: .globleRank .metrics-data
+        - text
+        - replace:
+          - /\s+/gim
+
+      # Финансирование:
+      #   - find: '#firstHeading'
+      #   - text
+      #   - eval: x => 'https://www.crunchbase.com/organization/' + String(x).toLowerCase()
+      #   - get
+      #   - find:  .field-type-money
+        # - text
+
+  # Тип
+  # Привлечено (M)
+  # Куплено (M)
+  # Популярность (M)
+  # Статус
+  # - get
+  # - find: .blog-url a
+  # - attr: href
+  # - reject:
+  #   - /50/ig
+  # - replace:
+  # - eval: map(compose(console.log, replace(/www\.|\/$/g, ''), replace(/https?:\/\//, '- [ ] ')))

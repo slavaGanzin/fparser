@@ -1,1 +1,2 @@
-module.exports = () => flatMap(el => el.text())
+$ = require('cheerio')
+module.exports = () => flatMap(e => $(e).text())

@@ -1,0 +1,15 @@
+placeholders:
+  url: https://bzh.life/mesta-i-veshi/na-podole-troe-parney-pokrasili-fontan-samson
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .article-head .article-title
+        - text
+      html:
+        - remove:
+          - noscript
+          - script
+        - find: .article-body
+        - html

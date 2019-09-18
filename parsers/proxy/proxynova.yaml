@@ -1,0 +1,25 @@
+placeholders:
+  url: https://www.proxynova.com/proxy-server-list/
+
+
+steps:
+  - get
+  - find: '#tbl_proxy_list tbody'
+  - find: tr
+  - parallel:
+      ip:
+        - find: td:nth-child(1)
+        - text
+        - replace:
+            - /\s+/g,
+            - /document.write\(/,
+            - /\);/,
+            - /.*adsbygoogle.*/g, 1
+
+        - eval: x => eval(x[0])
+      port:
+        - find: td:nth-child(2)
+        - text
+        - replace:
+            /\s+/g,
+  # - eval: map(zipObj(['ip']))
