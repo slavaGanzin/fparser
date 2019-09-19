@@ -12,17 +12,11 @@ const cheerio = require('cheerio')
 const updateDocumentUrl = options => tap(document => document.url = options.url)
 
 const parse = options => cond([[
-  x => !options.parse,
+  x => !options.parse || test(/rss|link-format|xml/, x.headers['content-type']),
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
   input => cheerio.load(input.body),
-], [
-  x => test(/rss|link-format/, x.headers['content-type']),
-  input => input.body.toString(),
-// ], [
-//   x => test(/xml/, x.headers['content-type']),
-//   input => libxml.parseXml(input.body),
 ], [
   T, prop('raw'),
 ]])
@@ -54,7 +48,7 @@ const request = options => {
       .then(JSON.parse)
       .then(tap(() => debug(`${options.method}:cached`)(k)))
       .catch(() => _request()
-        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body, headers}, null, 2)))))
+        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body: body.toString(), headers}, null, 2)))))
 
   return f()
     .then(parse(options))

@@ -22,6 +22,7 @@
     "cld": "^2.4.7",
     "commander": "^2.9.0",
     "crypto-js": "^3.1.9-1",
+    "crypto-random-string": "^3.0.1",
     "css-to-xpath": "git@github.com:tlrobinson/css-to-xpath.git#contains-pseudo-selector",
     "debug": "^2.2.0",
     "deep-map": "^1.4.2",
@@ -45,6 +46,7 @@
     "readdirrsync": "0.0.3",
     "regex-parser": "^2.2.5",
     "simple-headless-chrome": "^2.5.2",
+    "snap-shot-compare": "^2.8.3",
     "thenify-all": "^1.6.0",
     "xml2json": "^0.10.0",
     "xpath-to-css": "^1.0.2"

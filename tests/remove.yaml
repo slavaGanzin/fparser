@@ -3,5 +3,6 @@ steps:
       url: //www.nltk.org/book/
   - remove: a
   - find: a
+  - html
   - expect:
-      eql: [[]]
+      eql: []

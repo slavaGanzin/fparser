@@ -8,12 +8,11 @@ steps:
       a:
         - replace:
             - one THREE
-            
       b:
         - attr: c
+
   - expect:
       eql:
         -
           a: "THREE"
           b: two
-      

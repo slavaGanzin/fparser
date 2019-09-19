@@ -3,6 +3,7 @@ steps:
     - get:
         url: http://www.nltk.org/book/
         parse: false
+  - input: ~
   - memoize:
     - get:
         url: http://www.nltk.org/book/
