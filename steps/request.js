@@ -1,4 +1,14 @@
 const STATUS_OK = 200
+const url = require('url')
+
+const absoluteUrls = (URL, $) => {
+  const {protocol, host} = url.parse(URL)
+
+  for (const a of ['src', 'href'])
+    $(`[${a}]`).map((i, x) => $(x).attr(a, url.resolve(`${protocol}//${host}`, $(x).attr(a))))
+  return $
+}
+
 
 const needle = thenify('needle')
 const fs = thenify('fs')
@@ -16,7 +26,7 @@ const parse = options => cond([[
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => cheerio.load(input.body),
+  input => absoluteUrls(options.url, cheerio.load(input.body)),
 ], [
   T, prop('raw'),
 ]])
