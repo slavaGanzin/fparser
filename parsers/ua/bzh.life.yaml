@@ -8,8 +8,11 @@ steps:
         - find: .article-head .article-title
         - text
       html:
+        - find: .article-body
         - remove:
           - noscript
           - script
-        - find: .article-body
+          - .wpb_wrapper :contains('Читайте чаще')
+          - p:contains('Читайте также')
+
         - html

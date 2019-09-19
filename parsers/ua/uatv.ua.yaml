@@ -1,0 +1,20 @@
+placeholders:
+  url: https://uatv.ua/robota-kpvv-gnutove-povnistyu-vidnovlena/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .news-list__item h1:nth-child(1)
+        - text
+      html:
+        - find: .content
+        - remove:
+          - h1:nth-child(1)
+          - .writer
+          - div:nth-last-child(1)
+          - noscript
+          - script
+
+        - html
+        - openInChrome

@@ -1,0 +1,18 @@
+placeholders:
+  url:  https://autonews.ua/staryj-chevrolet-peredelali-v-trexkolesnyj-kar/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: article .entry-title
+        - text
+      html:
+        - find: article .td-post-content
+        - remove:
+          - .writer
+          - noscript
+          - script
+
+        - html
+        - openInChrome

@@ -19,5 +19,3 @@ steps:
          - p:contains("Как ранее сообщал Фокус")
          - .main-post__footer
        - html
-
-       - openInChrome

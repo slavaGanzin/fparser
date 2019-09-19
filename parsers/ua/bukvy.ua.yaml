@@ -1,0 +1,18 @@
+placeholders:
+  url: https://bykvu.com/ru/bukvy/35120-v-ukraine-zavtra-yasnaya-i-zharkaya-pogoda-do-34-s/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: article h1:nth-child(1)
+        - text
+      html:
+        - find: .post-content
+        - remove:
+          - :contains('ЧИТАЙТЕ ТАКЖЕ')
+          - noscript
+          - script
+
+        - html
+        - openInChrome

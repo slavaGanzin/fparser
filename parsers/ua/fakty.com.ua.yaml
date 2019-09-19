@@ -1,0 +1,20 @@
+
+placeholders:
+  url: https://fakty.com.ua/ua/lifestyle/20190919-manikyur-na-osin-2019-modni-trendy-sezonu/
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: title
+        - text
+      html:
+        - find: article
+        - remove:
+      #     - h1:nth-child(1)
+      #     - .writer
+      #     - div:nth-last-child(1)
+          - noscript
+          - script
+        - html
+        - openInChrome

@@ -6,6 +6,9 @@ const absoluteUrls = (URL, $) => {
 
   for (const a of ['src', 'href'])
     $(`[${a}]`).map((i, x) => $(x).attr(a, url.resolve(`${protocol}//${host}`, $(x).attr(a))))
+  for (const a of ['data-src', 'data-lazy-src', 'src-defer'])
+    $(`[${a}]`).map((i, x) => $(x).attr('src', $(x).attr(a)))
+
   return $
 }
 
