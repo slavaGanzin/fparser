@@ -1,0 +1,23 @@
+placeholders:
+  url: https://focus.ua/politics/437257-zelenskii_vygliadit_kak_mysh_kotoraia_doverilas_kotu__bezsmertnyi
+
+steps:
+ - get
+ - parallel:
+     title:
+       - find: .main-post__title
+       - text
+     html:
+       - find: .main-post__body
+       - remove:
+         - noscript
+         - script
+         - .read-also
+         # - .content-block__content-wrap
+         - .f-text-block > ul
+         - div > strong:contains("Читайте также:")
+         - p:contains("Как ранее сообщал Фокус")
+         - .main-post__footer
+       - html
+
+       - openInChrome
