@@ -1,8 +1,5 @@
 #!/usr/bin/env fish
 
-sh -c "cd front; eslint --fix . > /dev/null" &
-sh -c "cd server; eslint --fix . > /dev/null" &
-sh -c "cd pipeline; eslint --fix . > /dev/null" &
-wait
+eslint --fix . > /dev/null
 git update-index --again
 git push

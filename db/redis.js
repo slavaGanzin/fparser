@@ -22,7 +22,8 @@ const skip = ({key, id}) =>
     : save({key, id, data: true}) && id
 
 const all = ({key}) =>
-  redis.hgetall(key).then(map(parseIfJSON)).then(values)
+  redis.hgetall(key).then(map(parseIfJSON))
+    .then(values)
 
 
 const queue = ({key, size}) =>
@@ -37,7 +38,7 @@ const queue = ({key, size}) =>
           redis.hmset(`${key}:processing`, fromPairs(zip(_keys, values)))
             .then(() => redis.hdel(key, _keys))
             .then(always(values))
-      )
+        )
     })
 
 const del = ({key, id}) =>

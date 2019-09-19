@@ -2,7 +2,7 @@ const HeadlessChrome = require('simple-headless-chrome')
 
 const browser = new HeadlessChrome({
   headless: true, // If you turn this off, you can actually see the browser navigate with your instructions
- // see above if using remote interface
+  // see above if using remote interface
 })
 
 module.exports = steps => flatMap(
@@ -10,7 +10,7 @@ module.exports = steps => flatMap(
     mapObjIndexed(
       (arg, step) => browser[step](),
       // (arg, step) => console.log(step, ...arg.split(',')),
-    steps)
+      steps)
   )
 )
 

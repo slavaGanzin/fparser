@@ -19,7 +19,8 @@ const unlessMemoized = (steps, run) => input => {
 
   return fs.stat(p)
     .then(() => fs.readFile(p))
-    .catch(() => run(steps)(input).then(JSON.stringify).then(json => fs.writeFile(p, json)))
+    .catch(() => run(steps)(input).then(JSON.stringify)
+      .then(json => fs.writeFile(p, json)))
 }
 
 module.exports = steps => flatMap(unlessMemoized(steps, run))
