@@ -1,4 +1,1 @@
-eslint --fix bin/* .
-git update-index --again
-bin/test
-
+#!/usr/bin/env fish
