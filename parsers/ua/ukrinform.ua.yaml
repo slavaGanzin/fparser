@@ -1,0 +1,19 @@
+placeholders:
+  url: https://www.ukrinform.ua/rubric-economy/2776639-kukurudzu-zbiraut-vze-u-15-oblastah.html
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: .newsTitle
+        - text
+      html:
+        - find: article
+        - remove:
+          - aside
+          - .pixel
+          - noscript
+          - script
+          - .read
+          - .newsPicture
+        - html

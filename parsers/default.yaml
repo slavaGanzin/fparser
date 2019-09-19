@@ -48,6 +48,9 @@ post:
   url:                $url
   method: post
 
+meta:
+  url:                $url
+
 xml2json:
   #https://github.com/buglabs/node-xml2json#options-object-for-tojson
   object:        true

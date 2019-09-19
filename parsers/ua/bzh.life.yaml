@@ -7,6 +7,8 @@ steps:
       title:
         - find: .article-head .article-title
         - text
+      meta:
+        - meta
       html:
         - find: .article-body
         - remove:
