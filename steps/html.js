@@ -1,3 +1,4 @@
-const $ = require('cheerio')
+const cheerio = require('cheerio')
 
-module.exports = () => flatMap(e => $(e).html())
+module.exports = () => flatMap(e =>
+  cheerio.load(e, {decodeEntities: false}).html())

@@ -45,6 +45,7 @@
     "ramda": "^0.22.1",
     "readdirrsync": "0.0.3",
     "regex-parser": "^2.2.5",
+    "sharp": "^0.23.0",
     "simple-headless-chrome": "^2.5.2",
     "snap-shot-compare": "^2.8.3",
     "thenify-all": "^1.6.0",

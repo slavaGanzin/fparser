@@ -1,0 +1,22 @@
+placeholders:
+  url:  https://nv.ua/ukraine/politics/bayden-predlozhil-trampu-obnarodovat-telefonnyy-razgovor-s-zelenskim-o-svoem-syne-novosti-ukrainy-50043998.html
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: header h1
+        - text
+      html:
+        - find: .article__content
+        - remove:
+          - .article__content__head__text
+          - .media__also__news__container
+          - .media__also__news_link
+          - .article__content__footer
+          - noscript
+          - script
+
+        - html
+        - replace:
+          - /amp-img/ img

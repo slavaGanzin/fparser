@@ -22,7 +22,8 @@ fs.mkdir(CACHE).then(identity)
 
 const cheerio = require('cheerio')
 
-const updateDocumentUrl = options => tap(document => document.url = options.url)
+// const updateDocumentUrl = options =>
+//   tap(document => document.url = options.url)
 
 const parse = options => cond([[
   x => !options.parse || test(/rss|link-format|xml/, x.headers['content-type']),

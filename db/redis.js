@@ -14,7 +14,7 @@ const save = ({key, id, data}) =>
 const get = ({key, id}) =>
   redis.hget(key, id).then(parseIfJSON)
 
-const has = composeP(Boolean, get)
+const has = pCompose(Boolean, get)
 
 const skip = ({key, id}) =>
   has({key, id})
