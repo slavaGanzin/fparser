@@ -1,0 +1,23 @@
+placeholders:
+  url: http://www.spletnik.ru/buzz/92356-12-faktov-o-nadezhde-mikhalkovoy-kotorye-vy-mogli-ne-znat.html
+
+steps:
+  - get
+  - parallel:
+      title:
+        - find: content h1:nth-child(1)
+        - text
+      meta:
+        - meta
+      html:
+        - find: div[itemprop="articleBody"]
+        # - remove:
+        #   - .top-media-content:nth-child(1)
+        #   - .top-news-info
+        #   - .subscribe-revolver-wrap
+        #   - .read-also
+        #   - noscript
+        #   - script
+
+        - html
+        - chrome

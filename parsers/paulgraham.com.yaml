@@ -1,0 +1,16 @@
+placeholders:
+  url: http://www.paulgraham.com/say.html
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+        - eval: "x => merge(x[0], {'author': 'Paul Graham', 'publisher': 'paulgraham.com'})"
+      title:
+        - find: title
+        - text
+      html:
+        - find: table[width]
+        - html
+        - eval: head

@@ -1,0 +1,14 @@
+placeholders:
+  url: http://aswathdamodaran.blogspot.com/2019/09/insights-on-vc-pricing-lessons-from.html
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      title:
+        - find: .post-title
+        - text
+      html:
+        - find: .post-body
+        - html

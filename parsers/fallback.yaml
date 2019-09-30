@@ -1,0 +1,23 @@
+steps:
+  - get
+
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: article,.content
+        - remove:
+          - .tags
+          - .socialbar
+          - .counter
+          - .sharebar
+          - .sharedaddy
+          - .entry-meta
+          - .entry-title
+        - html
+        - eval: head
+
+
+      title:
+        - find: title
+        - text

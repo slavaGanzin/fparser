@@ -7,6 +7,8 @@ steps:
      title:
        - find: .main-post__title
        - text
+    meta:
+      - meta
      html:
        - find: .main-post__body
        - remove:

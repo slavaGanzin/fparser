@@ -1,0 +1,13 @@
+placeholders:
+  url: https://www.rbc.ua/ukr/news/tramp-rassmotrit-vozmozhnost-obnarodovaniya-1569190473.html
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .publication-sticky-container
+        - remove:
+           - .publication-social
+        - html

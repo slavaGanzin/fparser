@@ -1,0 +1,17 @@
+placeholders:
+  url: https://www.unn.com.ua/uk/news/1826866-tramp-znovu-prokomentuvav-dzvinok-zelenskomu-pri-tomu-vidalivshi-pershiy-tvit-pro-neyi
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .b-news-full
+        - remove:
+          - .b-person-innews
+          - .b-news-tags
+          - .b-news-footer
+          - .title
+        - html
+        - chrome

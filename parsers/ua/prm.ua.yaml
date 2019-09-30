@@ -1,18 +1,18 @@
 placeholders:
-  url:  https://autonews.ua/staryj-chevrolet-peredelali-v-trexkolesnyj-kar/
+  url: https://prm.ua/u-nardepa-frisa-problemi-z-peresuvannyam-na-avto/
 
 steps:
   - get
   - parallel:
       title:
-        - find: article .entry-title
+        - find: .page-content h1
         - text
       meta:
         - meta
       html:
-        - find: article .td-post-content
+        - find: .page-block
         - remove:
-          - .writer
+          - .tags
           - noscript
           - script
 

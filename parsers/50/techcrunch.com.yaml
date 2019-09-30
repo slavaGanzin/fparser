@@ -7,14 +7,16 @@ steps:
       title:
         - find: .article__title
         - text
+      meta:
+        - meta
       html:
-        - remove:
-          - .embed.breakout
-          - .image-credits
-          - .block--comment
-          - .article__title-wrapper
-          - .article__byline
-          - .article__contributor-byline
-          - footer
         - find: article
+        - remove:
+          - .article__title-wrapper
+          - .article__byline-wrapper
+          # - .embed.breakout
+          # - .image-credits
+          # - .block--comment
+          # - .article__byline
+          # - footer
         - html

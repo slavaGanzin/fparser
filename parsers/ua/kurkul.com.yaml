@@ -1,0 +1,19 @@
+placeholders:
+  url: https://kurkul.com/news/17652-tsina-jivtsya-sviney-stabilizuvalas
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .text-article
+        - remove:
+          - .article__info_bottom__tags
+          - .article__tags
+          - .article-text-bottom
+          - .article__info_bottom__social
+          - .comments-section
+          - a[onclick]
+
+        - html

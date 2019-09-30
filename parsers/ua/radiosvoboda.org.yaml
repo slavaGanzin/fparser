@@ -1,0 +1,15 @@
+placeholders:
+  url: https://www.radiosvoboda.org/a/news-kharkiv-terakt-obmin/30188818.html
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .cover-media,#article-content
+        - remove:
+           - .comments
+
+        - html
+        - eval: join('')
