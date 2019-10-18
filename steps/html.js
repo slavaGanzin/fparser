@@ -1,4 +1,6 @@
 const cheerio = require('cheerio')
+const pretty = require('pretty')
 
 module.exports = () => flatMap(e =>
-  cheerio.load(e, {decodeEntities: false}).html())
+  pretty(cheerio.load(e, {decodeEntities: false}).html())
+)

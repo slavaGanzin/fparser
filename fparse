@@ -1,24 +1,23 @@
 #!/usr/bin/env node
-require('../lib/listeners')
-require('../lib/global')
-const {finish} = require('../lib/finish')
-const parser = require('../lib/parser')
-const PH = require('../lib/placeholders')
+require('./lib/listeners')
+require('./lib/global')
+const {finish} = require('./lib/finish')
+const parser = require('./lib/parser')
+const PH = require('./lib/placeholders')
 const parseRange = compose(map(Number), split('..'))
 const increaseVerbosity = (_, total) => ++total
 
-
-const SILENT = 0
-
-ARGV
-  .version(require('../package.json').version)
+global.ARGV
+  .version(require('./package.json').version)
   .option('-S, --no-skip', 'Do not skip on parse')
   .option('-s, --no-save', 'Do not save results')
   .option('-f, --forward [action]', 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
-  .option('-v, --verbose', 'Verbosity level', increaseVerbosity, SILENT)
+  .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)
   .option('-P, --nopretty', 'Disable formatting of output')
   .option('-p, --placeholders', 'List placeholders')
+  .option('-t, --test', 'Test parser')
+  .option('-T, --snapshot', 'Test parser & save snapshot')
 
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>

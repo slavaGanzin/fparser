@@ -1,0 +1,17 @@
+placeholders:
+  url: https://blog.google/outreach-initiatives/google-news-initiative/mahoning-matters
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .uni-wrapper
+        - remove:
+          - style
+          - script
+          - .uni-blog-article-tags
+          - .related-articles
+        - html
+        - chrome

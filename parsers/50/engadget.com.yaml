@@ -4,13 +4,18 @@ placeholders:
 
 steps:
   - get
-  - remove:
-    - footer
-    - script
   - parallel:
-      title:
-        - find: article header h1
-        - text
+      meta:
+        - meta
       html:
         - find: '#page_body'
+        - remove:
+          - script
+          - .t-rating-small
+          - .sponsored-links
+          - '#engadget-article-footer'
+          - aside
+          - .t-meta
+          - '#gemini-right-rail-thumbnails'
         - html
+        - chrome

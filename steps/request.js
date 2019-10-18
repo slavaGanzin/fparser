@@ -15,7 +15,7 @@ const absoluteUrls = (URL, $) => {
 
 const needle = thenify('needle')
 const fs = thenify('fs')
-const CACHE = 'http_cache'
+const CACHE = `${__dirname}/http_cache`
 
 fs.mkdir(CACHE).then(identity)
   .catch(identity)

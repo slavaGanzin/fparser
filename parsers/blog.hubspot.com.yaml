@@ -1,0 +1,20 @@
+placeholders:
+  url: https://blog.hubspot.com/blog/tabid/6307/bid/34226/how-to-approach-the-creation-of-viral-marketing-content.aspx
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .post-body
+        - remove:
+           - .related-posts
+           - .blog-section-header
+           - .post-content__social-share-container
+           - .post-content__topic-container
+           - .post-content__publish-date
+           - .hs-cta-wrapper
+
+        - html
+        - chrome

@@ -4,12 +4,13 @@ placeholders:
 steps:
   - get
   - parallel:
-      title:
-        - find: .article-title
-        - text
+      meta:
+        - meta
       html:
+        - find: .body-container
         - remove:
             - '#secondary'
             - .article-header
-        - find: .body-container
+            - .SideBar__widget
         - html
+        - chrome

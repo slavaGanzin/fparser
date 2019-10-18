@@ -1,0 +1,10 @@
+url: https://www.datascienceweekly.org/newsletters/data-science-weekly-newsletter-issue-67
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: '#mailchimp'
+        - html

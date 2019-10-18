@@ -5,7 +5,7 @@ steps:
       meta:
         - meta
       html:
-        - find: article,.content
+        - find: article,.entry-content,.content,.blog-article__content,.body-content,.article-body-content
         - remove:
           - .tags
           - .socialbar
@@ -14,10 +14,82 @@ steps:
           - .sharedaddy
           - .entry-meta
           - .entry-title
+          - .post-full-meta
+          - .post-full-title
+          - .title
+          - .thread__container
+          - footer
+          - .page-header > h1
+          - .comments
+          - hr
+          - .article__info
+          - style
+          - .breadcrumbs-container
+          - .breadcrumbs
+          - .breadcrumbs-list
+          - .yarpp-related
+          - .thread__container
+          - script
+          - style
+          - .byline
+          - .wpcnt
+          - .category-list
+          - .post-meta
+          - .post-category
+          - .post-date
+          - .post-author
+          - .taboola-container
+          - .mobile-sticky-container
+          - .category-link
+          - .category-wrapper
+          - .ad
+          - .ads
+          - .ad-wrapper
+          # - h1:nth-child(1)
+          - h1:only-of-type
+          - h2:only-of-type
+          - .social-share-block
+          - .article-subheading
+          - .article-heading
+          - form
+          - .feedback-display
+          - .meta-category
+          - .post-categories
+          - .meta-category
+          - [data-share-url]
+          - .pk-share-buttons-wrap
+          - .post-comments
+          - .post-comment
+          - .post-comments-show
+          - .related-guides-container
+          - [rel='noopener']
+          - [rel='noreferrer']
+          - .linkback
+          - .author
+          - .social
+          - '#sidebar'
+          - .sidebar
+          - .timestamp
+          - .author-photo
+          - aside
+          - .navigation
+          - .tagcloud
+          - .post-tag-container
+          - .post-info
+          - .category-info
+          - .date-info
+          - .author-info
+          - .wtr-time-wrap
+          - .dt-published
+          - .meta
+
+
         - html
         - eval: head
+        - chrome
 
 
-      title:
-        - find: title
-        - text
+test:
+  - url: https://www.coindesk.com/telegram-looks-to-cut-deal-with-ton-blockchain-investors-after-sec-order
+  - url: http://cultofmac.com/659264/apple-premieres-for-all-mankind
+  - url: https://timkadlec.com/remembers/2019-08-30-less-data-doesnt-mean-a-lesser-experience/

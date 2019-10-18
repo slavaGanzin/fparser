@@ -1,0 +1,12 @@
+placeholders:
+  url: http://antirez.com/news/130
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+        - eval: "map(merge(__, {author: 'antirez', publisher: 'Salvatore Sanfilippo'}))"
+      html:
+        - find: pre
+        - html

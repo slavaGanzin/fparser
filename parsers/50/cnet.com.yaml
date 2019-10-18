@@ -3,16 +3,17 @@ placeholders:
 
 steps:
   - get
-  - remove:
-    - .linkstack
-    - .taboola
-    - footer
-    - figure
-    - .playerControls
   - parallel:
-      title:
-        - find: .articleHead h1
-        - text
+      meta:
+        - meta
+
       html:
-        - find: .article-main-body
+        - find: '#rbContent'
+        # - remove:
+        #   - .linkstack
+        #   - .taboola
+        #   - footer
+        #   - figure
+        #   - .playerControls
         - html
+        - chrome
