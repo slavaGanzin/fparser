@@ -1,6 +1,3 @@
-placeholders:
-  url: https://blog.google/outreach-initiatives/google-news-initiative/mahoning-matters
-
 steps:
   - get
   - parallel:
@@ -15,3 +12,6 @@ steps:
           - .related-articles
         - html
         - chrome
+
+test:
+  - url: https://blog.google/outreach-initiatives/google-news-initiative/mahoning-matters

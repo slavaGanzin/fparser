@@ -17,7 +17,7 @@ global.ARGV
   .option('-P, --nopretty', 'Disable formatting of output')
   .option('-p, --placeholders', 'List placeholders')
   .option('-t, --test', 'Test parser')
-  .option('-T, --snapshot', 'Test parser & save snapshot')
+  .option('-T, --snapshot', 'Save snapshot')
 
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
