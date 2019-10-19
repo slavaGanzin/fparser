@@ -1,11 +1,11 @@
 placeholders:
-  url: https://detailed.com/all
+  url: https://detailed.com/50/
 
 steps:
   - get
-  - find: .card a
-  - attr: href
-  - get
   - find: .blog-url a
   - attr: href
-  - uniq
+  - reject:
+    - /50/ig
+  - replace:
+  # - eval: map(compose(console.log, replace(/www\.|\/$/g, ''), replace(/https?:\/\//, '- [ ] ')))
