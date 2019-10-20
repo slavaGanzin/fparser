@@ -1,26 +1,14 @@
 const STATUS_OK = 200
-const url = require('url')
-
-const absoluteUrls = (URL, $) => {
-  const {protocol, host} = url.parse(URL)
-
-  for (const a of ['src', 'href'])
-    $(`[${a}]`).map((i, x) => $(x).attr(a, url.resolve(`${protocol}//${host}`, $(x).attr(a))))
-  for (const a of ['data-src', 'data-lazy-src', 'src-defer'])
-    $(`[${a}]`).map((i, x) => $(x).attr('src', $(x).attr(a)))
-
-  return $
-}
+const cheerio = require('cheerio')
 
 
 const needle = thenify('needle')
 const fs = thenify('fs')
-const CACHE = `${__dirname}/http_cache`
+const CACHE = `${__dirname}/../http_cache`
 
 fs.mkdir(CACHE).then(identity)
   .catch(identity)
 
-const cheerio = require('cheerio')
 
 // const updateDocumentUrl = options =>
 //   tap(document => document.url = options.url)

@@ -1,0 +1,8 @@
+steps:
+  - get
+
+  - parallel:
+      html:
+        - find: body
+        - html
+        - chrome

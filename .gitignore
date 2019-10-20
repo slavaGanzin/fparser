@@ -38,3 +38,4 @@ jspm_packages
 data/*
 http_cache
 memoized
+snapshots
