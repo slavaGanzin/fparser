@@ -1,0 +1,66 @@
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: .post-full__text
+        - html
+test:
+  - url: >-
+      https://petapixel.com/2019/10/19/this-photographer-uses-clever-tricks-for-extraordinary-photos/
+expect:
+  '0':
+    html:
+      attr:
+        - 'https://petapixel.com/assets/uploads/2019/10/donutfeattt-800x420.jpg'
+        - 'https://www.instagram.com/jordi.koalitic/'
+        - >-
+          https://petapixel.com/assets/uploads/2019/10/fruitninjabts2-600x800.jpg
+        - 'https://petapixel.com/assets/uploads/2019/10/fruitninja1-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/fruitninjabts-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/fruitninja2-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/marbles-bts-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/marbles-534x800.jpg'
+        - >-
+          https://petapixel.com/assets/uploads/2019/10/graveyard-bts2-800x534.jpg
+        - 'https://petapixel.com/assets/uploads/2019/10/graveyard-609x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/donut-bts1-800x501.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/donut-560x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/book-bts2-800x534.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/book-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/bts-stone-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/stone-555x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/tennis-bts-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/tennis_web-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/chains-bts-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/chains-524x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/water-bts-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/water-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/plantbtss-800x533.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/plant-534x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/popcorn-bts-1-600x800.jpg'
+        - 'https://petapixel.com/assets/uploads/2019/10/popcorn-640x800.jpg'
+        - 'https://koaliticphoto.com/'
+        - 'https://www.facebook.com/jordikoalitic/'
+        - 'https://tiktok.com/@jordi.koalitic'
+        - 'https://www.youtube.com/jordikoalitic'
+        - 'https://www.instagram.com/jordi.koalitic/'
+        - 'https://koaliticphoto.com/shop/'
+      text: |2
+
+          Jordi Koalitic is a Barcelona-based photographer who has racked up over 1.3 million followers on his Instagram by specializing in “creative photography.” Koalitic shares not only his finished photos but also behind-the-scenes photos showing the tricks he used to create them.
+            Here’s a look at how Koalitic made some of his most popular images:
+          Fruit Ninja
+          Marbles
+          Graveyard
+          Donut
+          Book
+          Stone
+          Tennis
+          Chains
+          Water
+          Plant
+          Popcorn
+          You can find more of Koalitic’s work on his website, Facebook, TikTok, YouTube, and Instagram. He also sells Lightroom preset packs through his online store.
+          Image credits: All photos © Jordi Koalitic and used with permission.

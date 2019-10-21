@@ -11,6 +11,7 @@ global.ARGV
   .version(require('./package.json').version)
   .option('-S, --no-skip', 'Do not skip on parse')
   .option('-s, --no-save', 'Do not save results')
+  .option('-c, --no-http-cache', 'No http cache')
   .option('-f, --forward [action]', 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)

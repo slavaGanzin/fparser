@@ -4,7 +4,7 @@ const cheerio = require('cheerio')
 
 const needle = thenify('needle')
 const fs = thenify('fs')
-const CACHE = `${__dirname}/../http_cache`
+const CACHE = require('path').resolve(`${__dirname}/../http_cache`)
 
 fs.mkdir(CACHE).then(identity)
   .catch(identity)
@@ -35,22 +35,26 @@ const logCatch = options => x => {
 }
 
 const request = options => {
+  const cacheFile = `${CACHE}/${options.url.replace(/\//g, '∕')}`
+
   const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})
   )
     .then(head)
+    .then(tap(({body, headers}) => fs.writeFileSync(
+      debug('fparser:cache:file')(cacheFile),
+      JSON.stringify({body: body.toString(), headers}, null, 2)
+    )))
     .then(logRequest(options))
     .then(logErrors)
 
-  const k = `${CACHE}/${options.url.replace(/\//g, '∕')}`
 
-  const f = !options.cached
+  const f = !options.cached || !ARGV.httpCache
     ? _request
-    : () => fs.readFile(k, 'utf-8')
+    : () => fs.readFile(cacheFile, 'utf-8')
       .then(JSON.parse)
-      .then(tap(() => debug(`${options.method}:cached`)(k)))
-      .catch(() => _request()
-        .then(tap(({body, headers}) => fs.writeFile(k, JSON.stringify({body: body.toString(), headers}, null, 2)))))
+      .then(tap(() => debug(`${options.method}:cached`)(cacheFile)))
+      .catch(_request)
 
   return f()
     .then(parse(options))

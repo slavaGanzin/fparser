@@ -1,8 +1,13 @@
+placeholders:
+  url: $$1
+
 steps:
   - get
 
   - parallel:
       html:
         - find: body
+        - remove:
+           - script
         - html
         - chrome
