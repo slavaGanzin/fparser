@@ -1,0 +1,112 @@
+steps:
+    - get
+    - parallel:
+        meta:
+          - meta
+        html:
+          - find: .serendipity_entry_body
+          - html
+
+test:
+  - url: http://www.hackerfactor.com/blog/index.php?/archives/856-Technically-Feasible.html
+
+expect:
+  -
+    html:
+      text: |2
+                We don't have Star Trek teleportation or food replicators yet. We also lack the ability to treat some kinds of cancer, can't raise the dead, and haven't developed a provably-optimal linear-time solution for the traveling salesman problem. Many of the technical problems out there have no known technical solutions. Some, with the current state of technology, are just impossible right now. This doesn't mean that we shouldn't conduct research on these topics. It just means that you can't have it today -- and probably not tomorrow either, but check again in a few years.
+            Some technical problems have partial solutions. For example, self-driving vehicles work well in limited situations, but the technology really isn't ready for prime time yet. And customer support chat bots might help cut costs, but they really are not useful beyond a few basic interaction needs. Most deep learning and machine learning problems fall into this "partially solved" category.
+            Meanwhile, some technical problems have well-known solutions. And when I say "solutions," I don't necessarily mean "100% infallible." In many cases, "good enough" is good enough. For example, private browsing mode and Tor are not perfect solutions for online anonymity, but they are good enough for most anonymity needs.
+            It bothers me when a solution is technically feasible, but management doesn't want to fix the problem. Two glaring examples are automated accounts (bots) that spew spam or propaganda, and counterfeit product distribution. Both are examples of false or misleading content that can be mitigated by relatively low-effort technical solutions.
+            Bots
+            Many online services have problems with bots. Given that someone will try to automate accounts, the real question becomes: how do you mitigate the problem? One common mitigation method addresses the account creation process. If the people behind the bots cannot mass-generate accounts, then it limits their ability to flood forums. A few mitigation examples include:
+            Challenges: Captchas, "I'm not a Robot", and other challenge-response solutions are not perfect, but they do cut down on the automation problem. This doesn't stop intelligent bots from completing the challenges, or armies of low-paid workers who manually solve these challenges in bulk. However, most spammers do not have access to intelligent bots, and most small operations can't afford manpower. These challenges offer a simple solution to dramatically reduce automated submissions, which in turn, mitigates abuses.
+            Double Opt-in: Legitimate mailing lists quickly learned to use double-opt-in solutions. You're not enrolled in the list until you confirm that you want to enroll. This validates that the user asked to enroll and is in control of the requesting email address; someone else cannot enroll you into a double-opt-in list. Mailing lists that enforce a double-opt-in registration are almost never accused of sending spam. (It's not "spam" if you specifically asked for it.) Then again, most spammers do not use double-opt-in mailing lists.
+            Restricted Registrations: There are hundreds of domains that permit the creation of free, unverified, throwaway email addresses. There are even services like Google Voice and Free Phone Num that provide free, short-term phone numbers. A few web services forbid account creation using these unverified sources. If accounts need vetted references like long-term email addresses and phone numbers linked to real people, then it becomes much more difficult to register fake accounts in bulk.
+            Unfortunately, many of the big service providers do little or nothing to mitigate bot account creation. For example, in just a few minutes, I registered a couple of test accounts on Twitter (e.g., @kremwetz2) using nothing more than temporary, unverified, throwaway email addresses. I could even immediately tweet conspiracies and propaganda. (Sorry, Joe, but I had to tweet at someone.) Of course, this did trigger an automated detection on Twitter:
+            But after a quick captcha, the account was re-enabled.
+            There was very little difficulty here. Perhaps this is why Twitter has a bot problem?
+            Good Enough Solutions
+            The bot problem doesn't end by slowing down or limiting account creation. So what do you do next? Some services look for bot-like behavior and proactively block or restrict access. Google has been very good at this. And over the last few years, Twitter has also become better at spotting and shutting down bot accounts.
+            For example, humans take time to read and type and click. Some online services look for "posting too rapidly" or "continuous usage" or "fail to retrieve all required web page elements." These are strong indicators of an automated bot process. For bots to overcome this type of detection, they need to slow down and act more like humans. However, slowing down hinders their ability to flood a forum.
+            Unfortunately, services often ignore or permit the problem. This is why we have an increase in state-sponsored media manipulation and bullet-proof hosting sites that are bot-friendly.
+            Often, services may prefer to be reactive rather than proactive. Facebook is a poster-child here; they do virtually nothing or only act after being informed of a problem. For example, last August Twitter deleted 4,800 bot accounts used to disseminate pro-China propaganda. Twitter notified Facebook, and then Facebook proudly announced that they had removed 5 accounts and 3 groups associated with the same propaganda.
+            Similarly in 2018, Twitter deleted thousands of Russian and Iranian bot accounts. Then Twitter informed Facebook, and Facebook then deleted 600 accounts.
+            In both of these cases, Twitter was both proactive and reactive: Twitter received reports about bot accounts, actively looked for bot-like activity, and removed thousands of fake accounts. In contrast, Facebook seemed to only be reactive: each time Twitter removed thousands of accounts, Facebook removed dozens or a few hundred. And Facebook didn't take action until they were informed about the bot accounts by Twitter. It isn't that Facebook has fewer fake accounts than Twitter. Rather, Facebook appears to not be looking unless someone else looks first.
+            Counterfeits
+            From a technical viewpoint, there is no difference between tweeting bots, bot activity on Facebook, and misleading product reviews. Amazon has a huge problem with fake reviews. One survey found that 61% of product reviews on Amazon are fake; some are outright fraudulent, while others are misprepresentations from for-pay reviewers. And earlier this year, I noticed that most of the restaurant reviews on Google, Yelp, Open Table, restaurant.com, and other sites appear to be generated by bots. It isn't that technical solutions do not exist for identifing fake reviews; it's that few services have decided to implement them.
+            Sometimes it isn't just fake reviews; it's also fake products. Bill Pollock is the founder of No Starch Press. His company publishes a wide range of great computer and security related books. No Starch Press has had ongoing issues with counterfeit books sold through Amazon. Recently, Pollock tweeted about counterfeit No Starch books being "shipped and sold by Amazon". This came after an Amazon reviewer wrote about the counterfeit book he received: "Fake copy. Printing and design completely off."
+            Keep in mind, this was not a third-party outfit distributing the counterfeit book; this was shipped and sold by Amazon. (If a third-party was involved, Amazon never disclosed it. Also, since this recent kerfuffle, Amazon has marked the book as "temporarily unavailable" from Amazon. But Amazon still offers it through non-Amazon sellers.)
+            The counterfeit issue does not just impact books. Recently another person wrote about ordering two GoPro cameras and receiving blocks of wood instead. The current belief is that Amazon validates outgoing items by weight and barcode. Since the wood had the same weight as the cameras and the home-printed label had a barcode, it shipped. Nobody at Amazon ever noticed that the label was a forgery.
+            Amazon also sells fake Louis Vuitton and Guicci bags, counterfeit nutritional supplements, fake Birkenstock shoes, knock-off Mercedes-Benz hubcaps, and lots of other imitation products. As the New York Times noted [paywall], "The scope of counterfeiting across Amazon goes far beyond books."
+            Amazon's problem with counterfeit products and fraudulent goods has been well-known and documented for over a decade. But it was only this year that Amazon actually admitted to having a problem with counterfeit goods. Six months later, The Times reported that Amazon is still "'turning a blind eye' to fake products." (My personal opinion: Don't buy anything expensive from Amazon, and always use a credit card that has refund protection. Amazon is unlikely to refund your gift card for a forgery claim.)
+            Other online sellers also have this problem. When Wal-Mart introduced their third-party marketplace, they immediately had a counterfeit product problem. And China's Alibaba is synonymous with counterfeit products. (A few months ago, it was reported that Alibaba seized a half billion dollars in counterfeit goods. This may sound big, until you realize that counterfeits on Alibaba are a trillion dollar market. That's like Facebook deleting 5 bot accounts after Twitter deleted 4,800 related bot accounts.) eBay has a counterfeit goods problem. So do the online stores for Best Buy and Target. Unless you buy directly from the manufacturer, you don't know what you're getting from online shopping.
+            Known Solutions
+            Reddit has a problem with bots. Scammers and impersonators create accounts and post lots of spam and propaganda. However, Reddit proactively looks for these abuses. They quickly block bot accounts, identify associated accounts, and delete bot content. Reddit also has an army of volunteers who actively work to keep the place looking nice. It is a constant battle, but they keep it at very manageable levels. Much of the time, I -- as a Reddit user -- never see the bots or spam.
+            Similarly, Wikipedia has a problem with unvetted, bot, or impersonation accounts making changes to content. But they have worked out solutions to proactively detect and block most abuses. If an entry is altered for spam, bias, or false information, they usually detect it and clean it fast.
+            While far from perfect, Twitter has become much more proactive toward identifying and disabling bot and propaganda accounts. And Google is extremely good at detecting bot activities. Both Twitter and Google show that solutions exist and can work on a very large scale. There's really no technical reason for Facebook or Amazon to have this kind of problem. This is strictly a management decision.
+            Why would a company not want to stop these problems? Often, it's about profit. As reporter Ben Collins noted:
+            Facebook has a staggering and unstoppable fake account problem that foreign governments and big money interests have used to rip out the heart of democracies.
+            They [Facebook] intentionally conflate this problem with speech because stopping this behavior would ruin their business.
+            The sample screenshot (posted to Twitter by Ben Collins) shows the comments during a live streaming of Mark Zuckerberg's excuse about why they choose not to filter. Nearly all of the comments on Facebook appear to be from bot accounts. (My favorite: "Grand Happy Born Day Facebook man". I think this is a bot owner's way of saying that Zuckerberg is acting like he was born yesterday -- or maybe today.)
+            Facebook is a publicly traded company and has been struggling to not lose users. Having fake accounts gives the impression that they have a larger user base. (Ashley Madison did the same thing to attract male users; 99% of Ashley Madison's female accounts were fake.) By some estimates, as many as 50% of all Facebook accounts could be fake (bots, impersonations, propaganda generators, etc.). In response to numerous fake account controversies (e.g., Cambridge Analytica, Russian election interference, and fake ads), Facebook finally -- just this year -- began removing fake accounts. But as Vox noted, "Facebook has taken down billions of fake accounts, but the problem is still getting worse."
+            Along the same lines, counterfeits exist. However, when I walk into a brick-and-mortar store, I get the real item. Sure, some companies have had reports of selling counterfeit items or swapped content in boxes, but that's rare. It usually only happens with mail order. And it is extremely rare to hear about the US Post Office, FedEx, or UPS swapping the content in boxes. (Throwing boxes or dropping boxes? Sure. But theft of the content inside the boxes by the shipping companies is rare.) This means that there is a viable process for getting the product from the producer to the vendor and then to the customer. Unfortunately, most online resellers have decided to forgo the vetting and quality assurance process. They have made the business decision to sacrifice quality control for speed.
+            When you see headlines about state-sponsored propaganda accounts and fake products, it might feel like there is nothing that can be done. Technically, steps can be taken. The question is: how do we, as social media users and online customers, make those in charge do the right thing?
+
+      attr:
+
+        - http://mathworld.wolfram.com/TravelingSalesmanProblem.html
+        - https://electrek.co/2019/07/08/tesla-will-stop-selling-cars-full-self-driving-elon-musk/
+        - https://www.bloomberg.com/news/features/2019-10-09/tesla-s-autopilot-could-save-the-lives-of-millions-but-it-will-kill-some-people-first
+        - https://www.torproject.org/
+        - https://www.npr.org/sections/money/2019/04/24/716854013/episode-908-i-am-not-a-robot
+        - https://freephonenum.com/us
+        - https://twitter.com/kremwetz2
+        - http://fotoforensics.com/analysis.php?id=357af65919219a92be93143492e4219094ebb46b.39326&fmt=orig&size=600
+        - http://fotoforensics.com/analysis.php?id=fdd35473644304b20d01ce89ffc5b4ea3a6a2642.22175&fmt=orig&size=600
+        - https://nakedsecurity.sophos.com/2019/09/30/social-media-manipulation-as-a-political-tool-is-spreading/
+        - https://en.wikipedia.org/wiki/Bulletproof_hosting
+        - https://www.theguardian.com/technology/2019/aug/19/twitter-china-hong-kong-accounts
+        - https://newsroom.fb.com/news/2019/08/removing-cib-china/
+        - http://suspicioustweets.archivelab.org/
+        - https://www.theverge.com/2018/8/21/17766422/facebook-influence-campaign-russia-iran-fake-accounts
+        - https://www.washingtonpost.com/business/economy/how-merchants-secretly-use-facebook-to-flood-amazon-with-fake-reviews/2018/04/23/5dad1e30-4392-11e8-8569-26fda6b404c7_story.html
+        - https://marketingland.com/study-finds-61-percent-of-electronics-reviews-on-amazon-are-fake-254055
+        - http://www.hackerfactor.com/blog/index.php?/archives/836-Amateur-Foodie.html
+        - https://nostarch.com/
+        - https://twitter.com/billpollock/status/1183094406573748225
+        - https://www.amazon.com/gp/customer-reviews/R1Y8LDUYOALP39/
+        - https://www.amazon.com/gp/customer-reviews/R1Y8LDUYOALP39/
+        - http://fotoforensics.com/analysis.php?id=c691c6148b5c60b2ee2993bade849e2d95137432.105493&fmt=orig&size=600
+        - https://blog.ifconfig.pro/2019/10/17/amazon-gopro-hero7-black-scam/
+        - https://sellercentral.amazon.com/forums/t/why-does-amazon-allow-to-sell-fake-products/479050
+        - https://www.usatoday.com/story/tech/2019/07/22/amazon-warns-consumers-some-align-probiotic-supplements-sold-were-fake/1793750001/
+        - https://qz.com/738620/birkenstock-says-amazon-is-rife-with-counterfeits-how-to-avoid-getting-suckered-into-buying-them/
+        - https://www.courtlistener.com/docket/6173730/daimler-ag-v-amazoncom-inc/
+        - https://www.cnbc.com/2016/07/08/amazons-chinese-counterfeit-problem-is-getting-worse.html
+        - https://www.nytimes.com/2019/06/23/technology/amazon-domination-bookstore-books.html
+        - https://qz.com/1542839/amazon-has-finally-admitted-to-investors-that-it-has-a-counterfeit-problem/
+        - https://www.thetimes.co.uk/article/amazon-turning-a-blind-eye-to-fake-products-5w6gmfnq2
+        - https://www.marketwatch.com/story/counterfeit-products-become-bigger-issue-for-walmart-2017-07-05
+        - https://fortune.com/2018/01/12/alibaba-taobao-blacklist-counterfeit-products/
+        - http://www.thefashionlaw.com/home/alibaba-seizure-more-than-a-half-a-billion-dollars-worth-of-counterfeit-goods-last-year
+        - https://www.usatoday.com/story/tech/news/2017/01/16/alibaba-cracks-down-17-trillion-fake-goods-market/96633850/
+        - https://abc7news.com/shopping/how-to-spot-fake-products-online/3774102/
+        - https://www.marketwatch.com/story/best-buy-accused-of-selling-counterfeit-products-2016-10-04
+        - https://www.allure.com/story/counterfeit-beauty-products
+        - https://www.fastcompany.com/3048406/heres-how-20000-reddit-volunteers-fight-trolls-spammers-and-played-out-memes
+        - https://en.wikipedia.org/wiki/Wikipedia:Administrators%27_guide/Dealing_with_spam
+        - https://twitter.com/oneunderscore__/status/1184882980944252928
+        - http://fotoforensics.com/analysis.php?id=d2dced046d5d6c90362f8cb69748d1694a17d1de.80300&fmt=orig&size=400
+        - https://twitter.com/oneunderscore__/status/1184998836210716673
+        - https://twitter.com/oneunderscore__/status/1184881096032473089
+        - https://idioms.thefreedictionary.com/born+yesterday
+        - https://www.vanityfair.com/news/2018/10/mark-zuckerberg-is-still-losing-facebook-users-earnings-call
+        - https://en.wikipedia.org/wiki/Ashley_Madison#Fake_female_bot_accounts
+        - https://mashable.com/article/report-claims-half-facebook-maus-fake/
+        - https://en.wikipedia.org/wiki/Facebook%E2%80%93Cambridge_Analytica_data_scandal
+        - https://intelligence.house.gov/social-media-content/
+        - https://www.cbsnews.com/media/russian-ads-on-facebook-a-gallery/
+        - https://www.vox.com/recode/2019/5/23/18637596/facebook-fake-accounts-transparency-mark-zuckerberg-report
+        - https://www.reuters.com/article/us-twitter-saudi/twitter-suspends-saudi-royal-adviser-qahtani-fake-gulf-accounts-idUSKBN1W50O0
+        - https://www.fool.com/investing/2019/10/12/amazon-has-a-notorious-counterfeit-problem.aspx
