@@ -8,7 +8,6 @@ const parseRange = compose(map(Number), split('..'))
 const increaseVerbosity = (_, total) => ++total
 
 global.ARGV
-  .version(require('./package.json').version)
   .option('-S, --no-skip', 'Do not skip on parse')
   .option('-s, --no-save', 'Do not save results')
   .option('-c, --no-http-cache', 'No http cache')

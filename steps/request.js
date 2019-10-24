@@ -49,7 +49,7 @@ const request = options => {
     .then(logErrors)
 
 
-  const f = !options.cached || !ARGV.httpCache
+  const f = !options.cached || global.ARGV && !global.ARGV.httpCache
     ? _request
     : () => fs.readFile(cacheFile, 'utf-8')
       .then(JSON.parse)

@@ -82,6 +82,13 @@ steps:
           - .wtr-time-wrap
           - .dt-published
           - .meta
+          - .Meta
+          - .post-Meta
+          - .post-meta
+          - .post-Tags
+          - .post-tags
+          - .article_author
+          - .articles_viewall
 
 
         - html
