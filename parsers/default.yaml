@@ -74,3 +74,16 @@ feed:
 language:
   #https://github.com/dachev/node-cld#advanced
   isHtml: true
+
+html:
+  # addMetaCharset: true
+  encloseBlockText: true
+  encloseText: true
+  escapeCdata: true
+  hideComments: true
+  breakBeforeBr: true
+  indent: true
+  omitOptionalTags: true
+  wrap: 150
+  clean: false
+  doctype: omit

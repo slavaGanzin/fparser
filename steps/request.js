@@ -35,7 +35,7 @@ const logCatch = options => x => {
 }
 
 const request = options => {
-  const cacheFile = `${CACHE}/${options.url.replace(/\//g, '∕')}`
+  const cacheFile = `${CACHE}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
   const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})

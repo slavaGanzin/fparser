@@ -31,6 +31,7 @@
     "elasticsearch": "^13.0.1",
     "fast-glob": "^3.0.4",
     "feedparser": "^2.2.0",
+    "htmltidy2": "^0.3.0",
     "inquirer": "^1.2.2",
     "ioredis": "^2.4.2",
     "is-json": "^2.0.1",

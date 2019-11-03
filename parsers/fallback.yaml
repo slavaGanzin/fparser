@@ -5,7 +5,7 @@ steps:
       meta:
         - meta
       html:
-        - find: article,.entry-content,.content,.blog-article__content,.body-content,.article-body-content
+        - find: article,.article-content,.article__content,.entry-content,.content,.blog-article__content,.body-content,.article-body-content
         - remove:
           - .tags
           - .socialbar
@@ -89,6 +89,15 @@ steps:
           - .post-tags
           - .article_author
           - .articles_viewall
+          - .c-post__date
+          - .l-post__date
+          - .article-nav
+          - navigation
+          - .sharing-buttons
+          - nav
+          - .nocontent
+          - [role="banner"]
+          - .jp-relatedposts
 
 
         - html
@@ -99,6 +108,8 @@ steps:
 test:
   - url: https://www.coindesk.com/telegram-looks-to-cut-deal-with-ton-blockchain-investors-after-sec-order
   - url: http://cultofmac.com/659264/apple-premieres-for-all-mankind
-  - url: https://timkadlec.com/remembers/2019-08-30-less-data-doesnt-mean-a-lesser-experience/
-  - url: https://technode.com/2019/10/18/libra-chief-warns-us-that-delay-on-crypto-creates-opportunity-for-china/
+  - url: https://timkadlec.com/remembers/2019-08-30-less-data-doesnt-mean-a-lesser-experience
+  - url: https://technode.com/2019/10/18/libra-chief-warns-us-that-delay-on-crypto-creates-opportunity-for-china
   - url: http://apple.com/uk/accessibility/iphone/hearing
+  - url: https://pitchbook.com/news/articles/weworks-flop-renews-questions-about-mutual-fund-bets-on-unicorns
+  - url: https://stratechery.com/2017/goodbye-gatekeepers
