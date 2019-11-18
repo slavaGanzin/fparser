@@ -11,6 +11,7 @@ steps:
         - find: title
         - text
       html:
-        - find: table[width]
+        - find: table[width] td[width]
         - html
-        - eval: head
+        - eval: x => x[0]
+        # - chrome

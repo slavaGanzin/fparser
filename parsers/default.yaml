@@ -78,12 +78,14 @@ language:
 html:
   # addMetaCharset: true
   encloseBlockText: true
+  dropEmptyElements: true
   encloseText: true
   escapeCdata: true
   hideComments: true
   breakBeforeBr: true
   indent: true
-  omitOptionalTags: true
-  wrap: 150
+  omitOptionalTags: false
+  wrap: 0
   clean: false
+  showBodyOnly: true
   doctype: omit
