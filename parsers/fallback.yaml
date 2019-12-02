@@ -5,7 +5,7 @@ steps:
       meta:
         - meta
       html:
-        - find: article,.article-content,.article__content,.entry-content,.content,.blog-article__content,.body-content,.article-body-content,.main
+        - find: article,.article,.article-content,.article__content,.entry-content,.content,.blog-article__content,.body-content,.article-body-content,.main
         - remove:
           - .tags
           - .socialbar
@@ -99,6 +99,23 @@ steps:
           - [role="banner"]
           - .jp-relatedposts
           - noscript
+          - '#comments'
+          - .entry-comment-form
+          - .entry-post-navigation
+          - .saboxplugin-wrap
+          - .aboutauthor
+          - .about-author
+          - .social
+          - .relatedarticles
+          - .fbcomments
+          - .newComments
+          - .comments
+          - '#comments'
+          - '#Comments'
+          - '#disqus_thread'
+          - .essb_links
+          - '#disqus-comments'
+
 
 
         - html

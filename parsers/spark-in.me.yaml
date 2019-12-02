@@ -1,0 +1,11 @@
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: article
+        - html
+
+test:
+  - url: https://spark-in.me/post/2019_ds_ml_digest_18
