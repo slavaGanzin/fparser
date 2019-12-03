@@ -89,5 +89,5 @@ html:
   clean: false
   showBodyOnly: true
   doctype: omit
-  # dropFontTags: true
-  # dropProprietaryAttributes: true
+  dropFontTags: true #not working
+  dropProprietaryAttributes: true

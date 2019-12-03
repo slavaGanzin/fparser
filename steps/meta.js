@@ -1,6 +1,7 @@
 //TODO: https://github.com/wanasit/chrono
 const appendURL = when(anyPass(map(x => test(RegExp(`${x}$`)), ['audio', 'video', 'image'])), x => `${x}:url`)
 const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image']))
+const url = require('url')
 
 const scrapeMeta = require('metascraper')([
   require('metascraper-audio')(),
@@ -53,9 +54,13 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
 
   const m = merge(doc, meta)
 
+  m['html:title'] = $('title').text()
+
+  m['kinda:host'] = url.parse(oneOf(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
+
   m.pubdate = oneOf(['date', 'article:published_time', 'article:modified_time', 'time:published'], m)
-  m.title = oneOf(['og:title'], m)
-  m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name'], m)).replace(/,.*/, '')
+  m.title = oneOf(['og:title', 'html:title'], m)
+  m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', 'kinda:host'], m)).replace(/,.*/, '')
   m.thumbs = oneOf(['og:image:url', 'twitter:image:url'], m)
 
   return m

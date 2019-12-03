@@ -18,7 +18,7 @@ const parse = options => cond([[
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => absoluteUrls(options.url, cheerio.load(input.body)),
+  input => absoluteUrls(options.url, cheerio.load(input.body, {decodeEntities: false})),
 ], [
   T, prop('raw'),
 ]])

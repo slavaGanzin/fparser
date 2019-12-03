@@ -2,8 +2,6 @@ steps:
   - get
 
   - parallel:
-      meta:
-        - meta
       html:
         - find: article,.article,.article-content,.article__content,.entry-content,.content,.blog-article__content,.body-content,.article-body-content,.main
         - remove:
@@ -115,12 +113,16 @@ steps:
           - '#disqus_thread'
           - .essb_links
           - '#disqus-comments'
+          - .news-content-time
+          - .entry-date
 
 
 
         - html
         - eval: head
         - chrome
+      meta:
+        - meta
 
 
 test:
