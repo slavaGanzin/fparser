@@ -62,6 +62,8 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
   m.title = oneOf(['og:title', 'html:title'], m)
   m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', 'kinda:host'], m)).replace(/,.*/, '')
   m.thumbs = oneOf(['og:image:url', 'twitter:image:url'], m)
-
+  m.description = m.description || `${$.text()
+    .replace(/\s+/gim, ' ')
+    .slice(0, 300)}…`
   return m
 }))
