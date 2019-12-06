@@ -115,6 +115,7 @@ steps:
           - '#disqus-comments'
           - .news-content-time
           - .entry-date
+          - .bmc-button
 
 
 

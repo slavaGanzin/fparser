@@ -6,6 +6,6 @@ module.exports = () => flatMap(html => {
   const f = '/tmp/fparser.html'
 
   fs.writeFileSync(f, html)
-  cp.execSync(`chromium ${f}`)
+  cp.exec(`chromium ${f}`, identity)
   return html
 })
