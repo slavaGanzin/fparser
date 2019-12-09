@@ -5,7 +5,11 @@ steps:
         - meta
       html:
         - find: article
+        - remove:
+            - .bmc-button
+
         - html
+
 
 test:
   - url: https://spark-in.me/post/2019_ds_ml_digest_18
