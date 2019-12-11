@@ -37,12 +37,12 @@ const logCatch = options => x => {
 const request = options => {
   const cacheFile = `${CACHE}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
-  console.log(cacheFile)
+  // console.log(cacheFile)
   const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})
   )
     .then(head)
-    .then(tap(({body, headers}) => fs.writeFileSync(cacheFile, JSON.stringify({body: body.toString(), headers}, null, 2))))
+    .then(tap(({body, headers}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers}, null, 2))))
     .then(logRequest(options))
     .then(logErrors)
 

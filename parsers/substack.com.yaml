@@ -2,13 +2,13 @@
 steps:
   - get
   - parallel:
-      meta:
-        - meta
       html:
         - find: .body
         - remove:
             - .subscribe-widget
         - html
+      meta:
+        - meta
 
 test:
   - url: 'https://vicki.substack.com/p/the-death-of-the-last-comment-section'

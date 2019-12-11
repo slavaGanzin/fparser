@@ -4,8 +4,6 @@ placeholders:
 steps:
   - get
   - parallel:
-      meta:
-        - meta
       html:
         - find: .body-container
         - remove:
@@ -14,3 +12,5 @@ steps:
             - .SideBar__widget
         - html
         - chrome
+      meta:
+        - meta
