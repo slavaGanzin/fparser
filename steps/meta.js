@@ -50,16 +50,22 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
   })
 
 
-  const dates = []
+  const dates = concat(
+    $('time').map((i, x) => chrono.parseDate($(x).text(), new Date(''), {forwardDate: true}))
+      .get(),
 
-  $('*').map((i, x) => {
-    if ($(x).children().length) return
+    $('*').map((i, x) => {
+      if ($(x).children().length) return
 
-    const d = moment(chrono.parseDate($(x).text(), new Date(''), {forwardDate: true}))
+      const d = moment(chrono.parseDate($(x).text(), new Date(''), {forwardDate: true}))
 
-    if (d.isValid() && d.isBefore(moment()) && d.isAfter(moment('1991-01-01')))
-      dates.push(d.toDate())
-  })
+      if (d.isValid() && d.isBefore(moment()) && d.isAfter(moment('1991-01-01')))
+        return d.toDate()
+    })
+      .get()
+  )
+
+  console.log(dates)
 
   const d = $('time.published').attr('datetime')
 
@@ -72,7 +78,7 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
   m['?:host'] = url.parse(oneOf(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
   if (head(dates)) m['?:published'] = head(dates)
 
-  m.pubdate = oneOf(['article:published_time', 'article:modified_time', 'time:published', '?:published'], m)
+  m.pubdate = oneOf(['article:published_time', 'sailthru.date', 'time:published', '?:published'], m)
   m.title = oneOf(['og:title', 'html:title'], m)
   m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', '?:host'], m)).replace(/,.*/, '')
   m.thumbs = oneOf(['og:image:url', 'twitter:image:url'], m)

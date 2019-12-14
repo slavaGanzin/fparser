@@ -84,9 +84,9 @@ test:
 expect:
   -
     html:
-      text: |2\${text.replace(/^(\\S)/, '\\n$1').replace(/ +/gi, ' ').replace(/\\n\\s*\\n/g,'\\n').replace(/\\n/g, '\\n\\t\\t\\t\\t\\t\\t')}
+      text: |2\${text.replace(/^(\\S)/, '\n$1').replace(/ +/gi, ' ').replace(/\\n\\s*\\n/g,'\n').replace(/\\n/g, '\n\t\t\t\t\t\t')}
       attr:
-\${('\\n- '+attr.join('\\n- ')).replace(/\\n/g, '\\n\\t\\t\\t\\t')}
+\${('\n- '+attr.join('\n- ')).replace(/\n/g, \`\n\t\t\t\t\`)}
 \`
 
       Array.from(original.querySelectorAll('script')).map(x => x.remove())

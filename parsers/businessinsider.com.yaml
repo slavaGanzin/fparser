@@ -1,0 +1,52 @@
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: '#piano-inline-content-wrapper'
+        - html
+
+test:
+  - url: 'https://www.businessinsider.com/buzzfeed-is-finally-embracing-banner-ads-2017-8'
+
+expect:
+  '0':
+    html:
+      attr:
+        - 'data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201%201%27%3E%3C/svg%3E'
+        - 'https://digiday.com/marketing/reasons-buzzfeed-wrong-banner-ads/'
+        - 'https://digiday.com/marketing/reasons-buzzfeed-wrong-banner-ads/'
+        - 'https://www.businessinsider.com/buzzfeed-jonah-peretti-startup-success-how-i-did-it-interview-podcast-2017-5'
+        - 'http://www.prnewswire.com/news-releases/comscore-ranks-the-top-50-us-digital-media-properties-for-june-2017-300491305.html'
+        - 'https://www.businessinsider.com/buzzfeed-awaiting-public-offering-in-2018-2017-3'
+        - 'https://www.bloomberg.com/news/features/2017-06-07/the-one-big-reason-why-buzzfeed-needs-to-break-into-tv'
+        - 'data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%201%201%27%3E%3C/svg%3E'
+      text: |2
+
+            <p>
+              <img src="https://image.businessinsider.com/59a1a7056eac401c008b547a?width=600&amp;format=jpeg&amp;auto=webp">
+            </p>
+          Getty Images/Michael Kovac
+            BuzzFeed is finally embracing banner ads
+            The media company will let advertisers run display ads on its homepage, story pages, and mobile apps
+            The company plans to develop new ways for programmatic and native to work together for clients moving forward
+          After eschewing banner ads for years, BuzzFeed is finally embracing them.
+          BuzzFeed will introduce display ads that will be bought and sold using third-party ad technology on a global basis. The move is a bid to tap into its scale and monetize its owned-and-operated platforms more effectively.
+          Specifically, the media company will let advertisers run display ads on its properties through the Facebook Audience Network and the Google DoubleClick Ad Exchange that will appear on its homepage, story pages, and mobile apps.
+          "Our aims are both tactical and strategic," BuzzFeed CEO and founder Jonah Peretti told Business Insider. "Tactically, programmatic has improved in terms of loading times, mobile experience, and ad quality and opens up another way for us to monetize our huge audience. The move also benefits our global strategy by allowing us to generate revenue in markets before we've built business teams to implement native monetization."
+          This is a marked departure for the media company, which had firmly rejected traditional banner ads since its inception. BuzzFeed instead has pioneered the native-advertising format, driving millions of readers toward its signature posts, quizzes, and videos that are produced as paid advertising. It has long run banner ads that connect to these in-house native ads.
+          The shift comes as the publisher looks to diversify and grow its revenue stream. BuzzFeed has expanded from a website into distributed video, studio development, and even e-commerce. According to comScore, BuzzFeed reached more than 75 million unique users in June in the US. The company says its monthly audience is even larger when including its reach across social networks, and it says it has 9 billion monthly views overall.
+          BuzzFeed's embrace of banner ads comes amid reports that the company is gearing up to go public in 2018. The publisher is expected to bring in $350 million in revenue this year, Bloomberg reported.
+          "Programmatic advertising is simply an addition to our many revenue streams that, added together, make BuzzFeed an even stronger business," said Peretti, declining to comment directly on a prospective initial public offering.
+          By opening its doors to programmatic advertising, BuzzFeed should be able to tap into the lucrative world of direct-response ads, particularly highly targeted digital ads powered by data (such as ads designed to get someone to buy a product, often something the person has recently searched for on the web). Targeted ads are the backbone of the digital ad industry and have driven the fortunes of its two giants, Facebook and Google. To date, BuzzFeed has scarcely played in this sector.
+          BuzzFeed's move, however, is not without risks. The company's web pages have been characterized by having relatively clean design, without the slow-loading, obtrusive banners that plague many content sites across the web and that tend to annoy consumers (so much that many have downloaded ad blockers). Striking a balance will be key.
+          According to Peretti, the company was encouraged to shift its view as programmatic ad quality has improved and the ad ecosystem has adapted to mobile content consumption. The decision to run external ads was made after several experiments by the company beginning last year.
+            <p>
+              <img src="https://image.businessinsider.com/59a301b36eac40c92c8b4e9c?width=600&amp;format=jpeg&amp;auto=webp">
+            </p>
+            An example of banner-ad tests that BuzzFeed has done.
+          BuzzFeed
+          In February 2016, for example, BuzzFeed ran a banner ad for the NBCUniversal streaming comedy service Seeso, while more recently it ran ads for Universal Pictures' "Despicable Me 3," among others. Peretti said BuzzFeed planned to develop new ways for programmatic and native to work together for clients moving forward.
+          "We've been doing some experiments in nonstandard and custom display and have tested various third-party monetization as well," he said. "As content creators, we are big believers in a test-and-learn process, and increasingly we are applying that to our business as well."

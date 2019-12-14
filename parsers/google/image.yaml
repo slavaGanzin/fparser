@@ -1,0 +1,17 @@
+placeholders:
+  url: https://www.google.com/search?as_st=y&tbm=isch&hl=en&as_q=$q&as_epq=&as_oq=&as_eq=&cr=&as_sitesearch=&safe=active&tbs=isz:lt,islt:qsvga,itp:photo,iar:w
+  q:
+
+steps:
+  - get
+  - parallel:
+      html:
+        - find: html
+        - html
+        # - find: .images_table img
+        # - attr: src
+      meta:
+        - meta
+
+test:
+  - q: oculus
