@@ -3,7 +3,7 @@ steps:
   - get
   - parallel:
       html:
-        - find: 'article,.article,.article-content,.article__content,.entry-content,.content,.blog-article__content,.body-content,.article-body-content,.main'
+        - find: 'article,.article,.article-content,.article__content,.entry-content,#article,#content,.content,.blog-article__content,.body-content,.article-body-content,.main'
         - remove:
             - .tags
             - .socialbar
@@ -122,6 +122,33 @@ steps:
             - .felix-collection
             - .postmeta
             - .postnavigation
+            - .article-refers
+            - .share-butts
+            - .interior-page__footer
+            - .post__byline
+            - .post__slug
+            - .post__author
+            - time
+            - .entry-content__post-date
+            - .related-posts
+            - .related_posts
+            - .related-content
+            - .related_content
+            - .related_articles
+            - .related-articles
+            - .article_sponsored_content
+            - .latest_articles
+            - .latest-articles
+            - '#latest-articles'
+            - '#latest_articles'
+            - .fb-comments
+            - .back-link
+            - .back_link
+            - .social-icons
+            - .post-footer
+            - .social-links
+            - .menu-item
+
         - html
         - eval: head
         - chrome

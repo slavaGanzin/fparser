@@ -65,7 +65,7 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
       .get()
   )
 
-  console.log(dates)
+  // console.log(dates)
 
   const d = $('time.published').attr('datetime')
 
@@ -79,8 +79,14 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
   if (head(dates)) m['?:published'] = head(dates)
 
   m.pubdate = oneOf(['article:published_time', 'sailthru.date', 'time:published', '?:published'], m)
-  m.title = oneOf(['og:title', 'html:title'], m)
-  m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', '?:host'], m)).replace(/,.*/, '')
+  m.title = oneOf(['og:title', 'twitter:title', 'html:title'], m)
+  m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', '?:host'], m))
+    .replace(/,.*/, '')
+    .replace(/www\./, '')
+    .replace(/https?:/, '')
+    .replace(/^\/\//, '')
+
+
   m.thumbs = oneOf(['og:image:url', 'twitter:image:url'], m)
   m.description = m.description || `${$.text()
     .replace(/\s+/gim, ' ')

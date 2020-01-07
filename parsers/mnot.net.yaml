@@ -1,0 +1,63 @@
+
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: '#main'
+        - remove:
+            - '#comments'
+            - .tags
+            - .date
+            - h1
+        - html
+        - chrome
+
+test:
+  - url: 'https://www.mnot.net/blog/2012/04/13/json_or_xml_just_decide'
+
+expect:
+  '0':
+    html:
+      attr:
+        - 'http://json.org/'
+        - 'http://en.wikipedia.org/wiki/XML'
+        - 'http://www.w3.org/TR/xml-infoset/'
+        - 'https://www.mnot.net/blog/2004/05/12/on_infosets'
+        - 'http://json.org/'
+      text: |2
+
+          When people create HTTP APIs, one of the common decisions is about what format to use, usually revolving around “JSON or XML?”
+          The thinking often goes like this:
+            JSON is simple, easy to use, and “cool”; clients using dynamic languages will love it
+          BUT, many people (especially those using static languages) are invested in XML
+          So, I’ll just support both!
+          Unfortunately, it’s not that easy; just because HTTP allows you to negotiate for formats doesn’t mean it’s a good idea to use more than one.
+          Why?
+          1. Metamodels R Us
+          When you decide to support both JSON and XML formats for the same data, you have three choices:
+          Start with JSON, and map it to XML
+          Start with XML, map it to JSON
+          Create a new data model and map it to both
+          None is a good option. Starting with either of JSON and XML is going to create an abomination in the other format; a JSON-based model won’t use all of the power of XML and will feel “alien” to XML-friendly developers, and an XML-based model is going to be really verbose, ugly and non-JSONic as JSON.
+          This is because the underlying metamodels are fundamentally different. JSON is based upon a handful of common programming language data structures, and is inherently simple. XML, on the other hand, is based upon the Infoset, which is legendarily complex and hard to map to those data structures.
+          That leaves creating a new metamodel and mapping it to JSON and XML. This is time-consuming, tricky, and still isn’t likely to feel “native” in either of the formats; i.e., you’ll get the worst of both worlds.
+          There is actually a fourth option, followed by many: pretending this isn’t a problem, and defining separate JSON and XML message formats in parallel. This might seem like a good idea at first (especially after looking at the options above), but it catches up with you in the long term; little differences will appear between the serialisations, becoming magnified over time. It also makes your API harder to QA, perf test, support, document and understand.
+          Maintaining both and keeping alignment between them is a significant effort, not for the faint of heart.
+          2. Data Binding
+          It gets worse. When you give a programmer using a static language some data in XML format, the first thing they’ll usually do is to shove it into a “data binding” tool, which generates a set of objects that map to the XML, so the developer doesn’t have to dirty their hands with angle brackets.
+          That’s understandable; these programmers are used to having excellent tool support. However, when you change the underlying XML — for example, by adding an extension - you can unintentionally break any clients who are using such a data binding, because they’re using the XML Schema to inform their binding, and XML Schema is notoriously difficult to evolve.
+          The result of using XML with these clients, then is brittleness — one of the main things we look to using HTTP in a RESTful way to avoid, not encourage.
+          Furthermore, data binding tools often choose to expose the structure of XML in different ways, which means you’ll need to inform your use of XML with their practices to give these developers a good experience. In the worst possible world, they may place “hidden” dependencies on what you see as inconsequential structure in your document — e.g., the ordering of elements — causing interop problems as well.
+          What’s the Answer?
+          The solution is deceptively simple:
+          Use JSON for Web data formats.
+          Don’t produce or consume XML for data.
+          Provide excellent “client bindings” for Java, C# and other static languages as needed.
+          JSON has great language support, and for those that need it, your bindings can assure that a good programmer experience is had without losing control over how your API is consumed. Win.
+          Does this mean that everybody needs to provide Java/C#/etc. bindings for their HTTP APIs? Of course not; but, if someone thinks that they’re serving that crowd by offering JSON and XML, it’s a better alternative.
+          P.S.
+          Note the qualifier above; it’s “Web data formats”, not “all formats.” XML is good at markup — you know, documents, where you need things like attributes and PIs, maybe even namespaces. If you’re creating these documents, please go ahead and use XML. Also, if there’s already an XML format that’s designed just for your use case, go ahead and use it.
+          Die-hard XML heads will say that JSON isn’t as good for archiving as XML, and that’s true; however, for 99% of real-world cases, this isn’t a valid concern.
+          Also, this shouldn’t be read to say that JSON is perfect for data; only that it’s tons better to decide on one format and not try to support two.
