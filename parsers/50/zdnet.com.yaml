@@ -7,12 +7,12 @@ steps:
       - .relatedContent
       - '#content-recommendation'
   - parallel:
-      title:
-        - find: header h1
-        - text
+      meta:
+        - meta
       html:
         - find: .storyBody
         - html
+        - chrome
       categories:
         - find: .related-topics a
         - text
