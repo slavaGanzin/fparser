@@ -78,7 +78,7 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
   m['?:host'] = url.parse(oneOf(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
   if (head(dates)) m['?:published'] = head(dates)
 
-  m.pubdate = oneOf(['article:published_time', 'sailthru.date', 'time:published', '?:published'], m)
+  m.pubdate = oneOf(['article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
   m.title = oneOf(['og:title', 'twitter:title', 'html:title'], m)
   m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', '?:host'], m))
     .replace(/,.*/, '')
