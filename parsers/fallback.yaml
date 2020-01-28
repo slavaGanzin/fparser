@@ -153,6 +153,14 @@ steps:
             - .post-sections
             - .comment-respond
             - .post-entries
+            - .footer
+            - '#footer'
+            - .about
+            - '#about'
+            - .date
+            - .webring
+            - .post_avatar
+            - .post_meta
         - html
         - eval: head
         - chrome

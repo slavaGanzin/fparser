@@ -19,7 +19,7 @@ db:
     log: trace
   redis:
     #https://github.com/luin/ioredis/blob/master/API.md#new-redisport-host-options
-    path:               /var/run/redis/sock
+    path:               /tmp/redis.sock
 
 forward:
   tap: false

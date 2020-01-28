@@ -16,7 +16,7 @@ const dispatch = (options, actions) => data =>
     .then(when(() => options.return != 'key', always(data)))
 
 module.exports = hooks(options => {
-  const provider = dynamicRequire(`../db/${options.provider}`)
+  const provider = require(`../db/${options.provider}`)
 
   provider.connect(options)
   return flatMap(dispatch(options, provider.actions))
