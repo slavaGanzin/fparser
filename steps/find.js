@@ -1,3 +1,3 @@
-// const c2x = unless(test(/^\/\//), require('css-to-xpath'))
-
-module.exports = selector => flatMap($ => $(selector))
+module.exports = selectors => flatMap($ =>
+  reduce((a, selector) => a || $(selector), null, coerceArray(selectors))
+)

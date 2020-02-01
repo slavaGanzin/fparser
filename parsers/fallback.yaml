@@ -3,8 +3,26 @@ steps:
   - get
   - parallel:
       html:
-        - find: 'article,.article,.post,#post,.article-content,.article__content,.entry-content,#article,#content,.content,.blog-article__content,.body-content,.article-body-content,.main'
+        - find:
+          - article
+          - '#post'
+          - '#content'
+          - '#article'
+          - .article
+          - .post
+          - .article-content
+          - .article__content
+          - .entry-content
+          - .content
+          - .blog-article__content
+          -  .body-content
+          - .article-body-content
+          - .main
         - remove:
+            - .article-meta
+            - '#article-meta'
+            - .social-share
+            - .article-header
             - .tags
             - .socialbar
             - .counter
@@ -161,6 +179,10 @@ steps:
             - .webring
             - .post_avatar
             - .post_meta
+            - .social_btns
+            - '#social_btns'
+            - .article_head
+
         - html
         - eval: head
         - chrome
