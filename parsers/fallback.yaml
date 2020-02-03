@@ -4,20 +4,22 @@ steps:
   - parallel:
       html:
         - find:
-          - article
-          - '#post'
-          - '#content'
-          - '#article'
-          - .article
-          - .post
-          - .article-content
-          - .article__content
-          - .entry-content
-          - .content
-          - .blog-article__content
-          -  .body-content
-          - .article-body-content
-          - .main
+            - article
+            - '#post'
+            - '#content'
+            - '#article'
+            - .article
+            - .post
+            - .article__text
+            - .article-content
+            - .article__content
+            - .entry-content
+            - .content
+            - .blog-article__content
+            -  .body-content
+            - .article-body-content
+            - .main
+            - .article__container
         - remove:
             - .article-meta
             - '#article-meta'

@@ -14,6 +14,9 @@ fs.mkdir(CACHE).then(identity)
 //   tap(document => document.url = options.url)
 
 const parse = options => cond([[
+  x => x.statusCode > 300,
+  () => null,
+], [
   x => !options.parse || test(/rss|link-format|xml/, x.headers['content-type']),
   input => input.body,
 ], [
@@ -37,12 +40,11 @@ const logCatch = options => x => {
 const request = options => {
   const cacheFile = `${CACHE}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
-  // console.log(cacheFile)
   const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})
   )
     .then(head)
-    .then(tap(({body, headers}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers}, null, 2))))
+    .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
     .then(logRequest(options))
     .then(logErrors)
 

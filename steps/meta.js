@@ -65,7 +65,6 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
       .get()
   )
 
-  // console.log(dates)
 
   const d = $('time.published').attr('datetime')
 
