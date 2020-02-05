@@ -13,7 +13,6 @@ module.exports = () => flatMap(html => {
   const input = JSON.parse(fs.readFileSync(cacheFile))
   const cache = absoluteUrls(global.CONFIG.placeholders.url, cheerio.load(input.body)).html()
 
-
   const attributesSelector = `"[${global.attributes.data.join('],[')}]"`
 
   fs.writeFileSync('/tmp/123.html', cache)
@@ -77,6 +76,7 @@ steps:
           - find: \${find}
           \${!remove.length ? '' : '- remove:\\n            - '+remove.join('\\n            - ')}
           - html
+          - chrome
 
 test:
   - url: ${global.CONFIG.placeholders.url}
@@ -84,9 +84,9 @@ test:
 expect:
   -
     html:
-      text: |2\${text.replace(/^(\\S)/, '\\n$1').replace(/ +/gi, ' ').replace(/\\n\\s*\\n/g,'\\n').replace(/\\n/g, \`\n\t\t\t\t\t\t\`)}
+      text: |2\${text.replace(/^(\\S)/, '\\n$1').replace(/ +/gi, ' ').replace(/\\n\\s*\\n/g,'\\n').replace(/\\n/g, \`\n            \`)}
       attr:
-\${('\\n- '+attr.join('\\n- ')).replace(/\\n/g, \`\n\t\t\t\t\`)}
+\${('\\n- '+attr.join('\\n- ')).replace(/\\n/g, \`\n          \`)}
 \`
 
       Array.from(original.querySelectorAll('script')).map(x => x.remove())
@@ -210,6 +210,7 @@ expect:
       parsed.innerHTML = es.map(x => x.outerHTML).join('')
       parser.innerHTML = '<pre>' + parseGenerator(find, remove, es.map(x => x.textContent).join(''), es.map(getDataAttributes).flatMap(x => x)) + '</pre>'
       navigator.clipboard.writeText(parser.textContent)
+      save()
 
       }
 
@@ -223,10 +224,38 @@ expect:
       }
 
 
+      const save = () =>
+        fetch('http://127.0.0.1:9999', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'text='+ parser.innerText
+        })
+        .then(console.log)
+
+      window.addEventListener('beforeunload', () => navigator.sendBeacon('http://127.0.0.1:9999/exit'))
   </script>
 
   </body>
   `)
+
+  const parserPath = require('path').resolve(`${__dirname}/../parsers/generated/${url.parse(global.CONFIG.placeholders.url).host}.yaml`)
+
+  require('express')()
+    .post('/exit', () => process.exit(0))
+    .use(require('body-parser').urlencoded({extended: false}))
+    .post('/', (request, response) => {
+      console.log(parserPath)
+      fs.writeFileSync(parserPath, request.body.text)
+
+      response.header("Access-Control-Allow-Origin", "*") // update to match the domain you will make the request from
+      response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+      response.writeHead(200, {'Content-Type': 'text/html'})
+      response.end('thanks')
+    })
+    .listen(9999)
 
   // fs.writeFileSync('/tmp/fparser_html.html', html)
   cp.execSync(`chromium ${f}`)
