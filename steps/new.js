@@ -66,6 +66,7 @@ module.exports = () => flatMap(html => {
       const original = document.querySelector('#original')
       const parsed = document.querySelector('#parsed')
       const parser = document.querySelector('#parser')
+      const escapeSelector = x => x.replace(/(.*#.*)/g, "'$1'")
       const parseGenerator = (find, remove, text, attr) => \`
 steps:
     - get
@@ -73,10 +74,10 @@ steps:
         meta:
           - meta
         html:
-          - find: \${find}
-          \${!remove.length ? '' : '- remove:\\n            - '+remove.join('\\n            - ')}
+          - find: \${escapeSelector(find)}
+          \${!remove.length ? '' : '- remove:\\n            - '+remove.map(escapeSelector).join('\\n            - ')}
           - html
-          - chrome
+          # - chrome
 
 test:
   - url: ${global.CONFIG.placeholders.url}
@@ -209,9 +210,8 @@ expect:
 
       parsed.innerHTML = es.map(x => x.outerHTML).join('')
       parser.innerHTML = '<pre>' + parseGenerator(find, remove, es.map(x => x.textContent).join(''), es.map(getDataAttributes).flatMap(x => x)) + '</pre>'
-      navigator.clipboard.writeText(parser.textContent)
       save()
-
+      // fetch('http://127.0.0.1:9999/run').then(x => x.text()).then(JSON.parse).then(([{html}]) => parsed.innerHTML = html)
       }
 
       document.onkeydown = e => {
@@ -226,7 +226,7 @@ expect:
 
       const save = () =>
         fetch('http://127.0.0.1:9999', {
-          method: 'POST',
+          method: 'POST',.then(req.write)
           mode: 'no-cors',
           headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -242,10 +242,22 @@ expect:
   `)
 
   const parserPath = require('path').resolve(`${__dirname}/../parsers/generated/${url.parse(global.CONFIG.placeholders.url).host}.yaml`)
+  const fparser = require(`../lib/parser`).parse
 
   require('express')()
-    .post('/exit', () => process.exit(0))
+    .get('/run', (req, res) => fparser({name: global.CONFIG.placeholders.url})
+      .then(x => res.header("Access-Control-Allow-Origin", "*") // update to match the domain you will make the request from
+        .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+        .send(x))
+    )
     .use(require('body-parser').urlencoded({extended: false}))
+    .post('/exit', () => {
+      const command = `fparse ${global.CONFIG.placeholders.url}`
+
+      process.stdout.write(cp.execSync(command))
+      console.log(`\n\n${command}`)
+      process.exit(0)
+    })
     .post('/', (request, response) => {
       console.log(parserPath)
       fs.writeFileSync(parserPath, request.body.text)

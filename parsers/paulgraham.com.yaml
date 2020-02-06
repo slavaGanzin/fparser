@@ -17,5 +17,5 @@ steps:
             - img[alt]:nth-child(1)
             # - table:nth-child(1)
         - html
-        - eval: compose(replace(/<br>\n\s+<br>/g, '</p><p>'), replace(/(.*\n){3}$/g, ''), replace(/^(.*\n){3}/g, ''), head)
+        - eval: compose(replace(/<br>\n\s+<br>/g, '</p><p>'), replace(/(.*\n){3}$/g, ''), replace(/^(.*\n){3}/g, ''), x => x || '', head)
         - chrome
