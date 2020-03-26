@@ -39,3 +39,4 @@ data/*
 http_cache
 memoized
 snapshots
+.vscode
