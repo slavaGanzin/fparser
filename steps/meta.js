@@ -2,22 +2,21 @@
 const appendURL = when(anyPass(map(x => test(RegExp(`${x}$`)), ['audio', 'video', 'image'])), x => `${x}:url`)
 const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image']))
 const url = require('url')
-const chrono = require('chrono-node')
 
-const scrapeMeta = require('metascraper')([
-  require('metascraper-audio')(),
-  require('metascraper-author')(),
-  require('metascraper-date')(),
-  require('metascraper-description')(),
-  require('metascraper-image')(),
-  require('metascraper-logo')(),
-  require('metascraper-logo-favicon')(),
+const scrapeMeta = metascraper([
+  metascraperAudio(),
+  metascraperAuthor(),
+  metascraperDate(),
+  metascraperDescription(),
+  metascraperImage(),
+  metascraperLogo(),
+  metascraperLogoFavicon(),
   //  require('metascraperMediaProvider')(),
-  require('metascraper-publisher')(),
-  require('metascraper-title')(),
-  require('metascraper-url')(),
-  require('metascraper-video')(),
-  require('metascraper-lang')(),
+  metascraperPublisher(),
+  metascraperTitle(),
+  metascraperUrl(),
+  metascraperVideo(),
+  metascraperLang(),
 ])
 
 const oneOf = compose(head, reject(isNil), props)
@@ -51,13 +50,13 @@ module.exports = options => flatMap($ => scrapeMeta({html: $.html(), url: option
 
 
   const dates = concat(
-    $('time').map((i, x) => chrono.parseDate($(x).text(), new Date(''), {forwardDate: true}))
+    $('time').map((i, x) => chronoNode.parseDate($(x).text(), new Date(''), {forwardDate: true}))
       .get(),
 
     $('*').map((i, x) => {
       if ($(x).children().length) return
 
-      const d = moment(chrono.parseDate($(x).text(), new Date(''), {forwardDate: true}))
+      const d = moment(chronoNode.parseDate($(x).text(), new Date(''), {forwardDate: true}))
 
       if (d.isValid() && d.isBefore(moment()) && d.isAfter(moment('1991-01-01')))
         return d.toDate()

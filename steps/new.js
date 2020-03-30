@@ -226,13 +226,14 @@ expect:
 
       const save = () =>
         fetch('http://127.0.0.1:9999', {
-          method: 'POST',.then(req.write)
+          method: 'POST',
           mode: 'no-cors',
           headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: 'text='+ parser.innerText
         })
+        .then(req.write)
         .then(console.log)
 
       window.addEventListener('beforeunload', () => navigator.sendBeacon('http://127.0.0.1:9999/exit'))
