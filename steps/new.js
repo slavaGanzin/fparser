@@ -77,7 +77,7 @@ steps:
           - find: \${escapeSelector(find)}
           \${!remove.length ? '' : '- remove:\\n            - '+remove.map(escapeSelector).join('\\n            - ')}
           - html
-          # - chrome
+          - chrome
 
 test:
   - url: ${global.CONFIG.placeholders.url}
