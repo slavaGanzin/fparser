@@ -253,10 +253,7 @@ expect:
     )
     .use(require('body-parser').urlencoded({extended: false}))
     .post('/exit', () => {
-      const command = `fparse ${global.CONFIG.placeholders.url}`
-
-      process.stdout.write(cp.execSync(command))
-      console.log(`\n\n${command}`)
+      console.log(`\n\nfparse ${global.CONFIG.placeholders.url}`)
       process.exit(0)
     })
     .post('/', (request, response) => {
