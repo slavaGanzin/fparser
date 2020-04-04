@@ -1,18 +1,7 @@
 const STATUS_OK = 200
 const cheerio = require('cheerio')
-
-
 const needle = thenify('needle')
 const fs = thenify('fs')
-const CACHE = require('path').resolve('http_cache')
-
-fs.mkdir(CACHE).then(identity)
-  .catch(identity)
-
-debug('cache:dir')(CACHE)
-
-// const updateDocumentUrl = options =>
-//   tap(document => document.url = options.url)
 
 const parse = options => cond([[
   x => x.statusCode > 300,
@@ -39,7 +28,10 @@ const logCatch = options => x => {
 }
 
 const request = options => {
-  const cacheFile = `${CACHE}/${decodeURI(options.url).replace(/\//g, '∕')}`
+  fs.mkdir(options.cache).then(identity)
+    .catch(identity)
+
+  const cacheFile = `${options.cache}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
   const _request = () => needle.request(
     options.method, options.url, options.data, merge(options, {parse: false})

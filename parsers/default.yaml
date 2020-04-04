@@ -1,6 +1,7 @@
 placeholders:
   url:         example.com
   db:          redis
+  cache:       cache
 
 db:
   provider:           $db
@@ -43,6 +44,7 @@ get:
   rejectUnauthorized: false
   open_timeout:       20000
   read_timeout:       20000
+  cache:              $cache
 
 post:
   url:                $url
