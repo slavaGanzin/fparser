@@ -33,8 +33,6 @@
     "diff": "^4.0.1",
     "elasticsearch": "^13.3.1",
     "express": "^4.17.1",
-    "fast-glob": "^3.1.0",
-    "fast-require": "^1.2.6",
     "feedparser": "^2.2.9",
     "htmltidy2": "^0.3.0",
     "ioredis": "^2.4.2",

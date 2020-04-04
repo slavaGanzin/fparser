@@ -4,11 +4,12 @@ const cheerio = require('cheerio')
 
 const needle = thenify('needle')
 const fs = thenify('fs')
-const CACHE = require('path').resolve(`${__dirname}/../http_cache`)
+const CACHE = require('path').resolve('http_cache')
 
 fs.mkdir(CACHE).then(identity)
   .catch(identity)
 
+debug('cache:dir')(CACHE)
 
 // const updateDocumentUrl = options =>
 //   tap(document => document.url = options.url)
