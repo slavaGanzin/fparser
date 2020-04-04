@@ -1,6 +1,7 @@
 {
   "name": "fparser",
   "version": "1.0.0",
+  "main": "lib/parser.js",
   "scripts": {
     "test": "eslint --fix . >/dev/null; bin/test"
   },
