@@ -6,7 +6,9 @@ steps:
   - parallel:
       meta:
         - meta
-        - eval: "map(merge(__, {author: 'antirez', publisher: 'Salvatore Sanfilippo'}))"
+        - eval: "map(merge(__, {author: 'Salvatore Sanfilippo', publisher: 'antirez'}))"
       html:
         - find: pre
         - html
+        - replace:
+            - /\n/g, </p><p>

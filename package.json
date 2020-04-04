@@ -1,5 +1,6 @@
 {
   "name": "fparser",
+  "version": "1.0.0",
   "scripts": {
     "test": "eslint --fix . >/dev/null; bin/test"
   },
