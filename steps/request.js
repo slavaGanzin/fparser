@@ -41,7 +41,6 @@ const request = options => {
     .then(logRequest(options))
     .then(logErrors)
 
-
   const f = !options.cached || global.ARGV && !global.ARGV.httpCache
     ? _request
     : () => fs.readFile(cacheFile, 'utf-8')
