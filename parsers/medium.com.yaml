@@ -1,0 +1,15 @@
+steps:
+  - get
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: article
+        - remove:
+            - [role]
+            - svg
+            - button
+            - script
+            - noscript
+        - html
+        - chrome
