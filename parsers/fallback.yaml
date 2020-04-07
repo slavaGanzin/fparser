@@ -16,10 +16,12 @@ steps:
             - .entry-content
             - .content
             - .blog-article__content
-            -  .body-content
+            - .body-content
             - .article-body-content
             - .main
             - .article__container
+            - '.storywrap'
+            - .single-post-content
         - remove:
             - .article-meta
             - '#article-meta'
@@ -63,7 +65,7 @@ steps:
             - .ad
             - .ads
             - .ad-wrapper
-            - 'h1:only-of-type'
+            - 'h1:only-of-type' 
             - 'h2:only-of-type'
             - .social-share-block
             - .article-subheading
@@ -184,6 +186,47 @@ steps:
             - .social_btns
             - '#social_btns'
             - .article_head
+            - .aa-lazy-comments-section
+            - .ad-disclaimer-container
+            - .ads_container
+            - .article-body__suppl_content
+            - .article-share-bar-container
+            - .c-entry-group-labels
+            - .c-entry-hero__meta
+            - .c-related-list
+            - .c-social-buttons
+            - .corona-wrapper
+            - .filed
+            - .font-sz
+            - .ica-wrapper
+            - .jwplayer-placeholder
+            - .lazyload_ad
+            - .lede-container
+            - .nextup
+            - .post-actions
+            - .post-article-read-next
+            - .post-in-content-tags
+            - .post-share
+            - .r-box
+            - .relatedContent
+            - .share-buttons
+            - .shortcodeGalleryWrapper
+            - .sidebar-content
+            - .silic-after-content
+            - .u-desktop-only
+            - .widgets-wrapper
+            - '#amazon-bottom-widget'
+            - '#article-footer-wrap'
+            - '#article-social-head'
+            - '#content-recommender'
+            - '#sharer'
+            - '#sidebar-right'
+            - '#social-footer'
+            - '#todays-headlines'
+            - '#tpd-contextual-ad-c'
+            - '#tso-wrapper'
+            - link
+            - - rel='stylesheet'
 
         - html
         - eval: head
