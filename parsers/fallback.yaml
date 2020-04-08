@@ -4,14 +4,23 @@ steps:
   - parallel:
       html:
         - find:
+            - '#mvp-post-content'
             - article
+            - .content-wrapper
+            - .article-content
+            - '#fullarticle'
             - '#post'
             - '#content'
             - '#article'
+            - '#intelliTXT'
+            - '#article-main'
+            - '#story-body'
+            - '#story'
+            - '#adsense-target'
             - .article
+            - .article-container
             - .post
             - .article__text
-            - .article-content
             - .article__content
             - .entry-content
             - .content
@@ -56,6 +65,7 @@ steps:
             - .category-list
             - .post-meta
             - .post-category
+            - .post-categories
             - .post-date
             - .post-author
             - .taboola-container
@@ -73,7 +83,6 @@ steps:
             - form
             - .feedback-display
             - .meta-category
-            - .post-categories
             - .meta-category
             - - data-share-url
             - .pk-share-buttons-wrap
@@ -153,19 +162,13 @@ steps:
             - time
             - .entry-content__post-date
             - .related-posts
-            - .related_posts
             - .related-content
-            - .related_content
             - .related_articles
-            - .related-articles
             - .article_sponsored_content
             - .latest_articles
-            - .latest-articles
             - '#latest-articles'
-            - '#latest_articles'
             - .fb-comments
             - .back-link
-            - .back_link
             - .social-icons
             - .post-footer
             - .social-links
@@ -227,6 +230,126 @@ steps:
             - '#tso-wrapper'
             - link
             - - rel='stylesheet'
+            - '#axdsense1'
+            - .single-post-simple-header
+            - .single-post-navigation
+            - .floorad-wrapper
+            - .single-post-sharing-button-list
+            - .single-post-newsletter
+            - .single-post-comments
+            - center
+            - .uk-grid-match
+            - '#mc_embed_signup'
+            - .adsense_responsive_box
+            - .constrain-970
+            - .category
+            - .at-a-glance
+            - .aag-list
+            - '#collection-module-bottom'
+            - .category-chicklets
+            - .related-query
+            - .comment-count-block
+            - .social-share-svg
+            - .related-products
+            - .related-stories
+            - .adContainerNewsLeadMid
+            - .adContainerLeader2
+            - .title-group
+            - '#content-header'
+            - .social-column
+            - .cta
+            - .subDrive
+            - .contentAd
+            - .paragraphAdinsert
+            - .divsplitter
+            - '#more-insights'
+            - .more-insights-item
+            - .menu-social-media-container
+            - .popular-tags
+            - .article__category
+            - .textwidget
+            - .post-author-card
+            - .eagle-widget
+            - .egl-popup
+            - .multi-pagination
+            - '#taboola-below-article-thumbnails'
+            - .social-share-links
+            - .deck
+            - .related-analysts
+            - .table-of-contents
+            - .secondary-column
+            - '#post-header'
+            - '#comments-button'
+            - .social-sharing-top
+            - .mvp-org-wrap
+            - .posts-nav-link
+            - .social-sharing-bot
+            - .story-advertisement
+            - '#story-authorbio'
+            - '#byline-and-share'
+            - '#desk'
+            - '#share-after'
+            - '#intro'
+            - '#ez-toc-container'
+            - .square
+            - .wp-block-columns
+            - .crunchify-social
+            - .code-block
+            - .share
+            - .vuukle-powerbar
+            - .adslot
+            - .separator
+            - .c-compact-river
+            - .met
+            - .referral_widget
+            - .staff
+            - .post-header
+            - .sponsored
+            - .related-ssr
+            - .hidden-xs
+            - .cat-aud
+            - .amp-ad-wrapper
+            - .ampforwp-last-modified-date
+            - .artl-atr
+            - .amp-tags
+            - .cmts
+            - .rft
+            - .article-hero
+            - .article-hero-meta
+            - .expand-lightbox-icon-holder
+            - .article-disclosure
+            - .exchange-widget
+            - .article__body__tags-related
+            - .images_credits
+            - .snippet_container
+            - .disclaimer
+            - .switch_container
+            - .single-post-social-icons
+            - .banner
+            - .banner-article-content
+            - .hero-sponsored-button
+            - '#vuukle-emote'
+            - .hatom-extra
+            - .author-bio
+            - .play-games
+            - .single-content-banner
+            - .article-after-content-widget-area
+            - '#mvp-content-bot'
+            - '#mvp-soc-mob-wrap'
+            - .mvp-post-soc-wrap
+            - .ambcr-content
+            - .ambcr-content-bottom
+            - .mvp-content-bot
+            - .mvp-cont-read-wrap
+            - .td-post-sharing
+            - .tdb-author-photo
+            - .tdb-author-box
+            - .tdb_breadcrumbs
+            - .tdb-next-post
+            - .adsbygoogle
+            - .td-social-list
+            - .td_mod_wrap
+            - .tdm_block_button
 
         - html
         - eval: head
