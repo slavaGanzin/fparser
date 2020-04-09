@@ -4,10 +4,10 @@ steps:
   - parallel:
       html:
         - find:
+            - '#page_body'
             - '#mvp-post-content'
-            - article
-            - .content-wrapper
-            - .article-content
+            - .c-pageArticleLongform_content
+            - div[itemprop="articleBody"]
             - '#fullarticle'
             - '#post'
             - '#content'
@@ -16,21 +16,30 @@ steps:
             - '#article-main'
             - '#story-body'
             - '#story'
+            - '#primary'
             - '#adsense-target'
-            - .article
-            - .article-container
+            - '#tbl_proxy_list'
+            - '#ontheioViewTacking'
+            - .post-content
             - .post
             - .article__text
             - .article__content
             - .entry-content
-            - .content
             - .blog-article__content
             - .body-content
             - .article-body-content
-            - .main
             - .article__container
             - '.storywrap'
             - .single-post-content
+            - .js_post-content
+            - .content-background
+            - .content-wrapper
+            - .content
+            - .article-container
+            - .article-content
+            - .article
+            - .main
+            - article
         - remove:
             - .article-meta
             - '#article-meta'
@@ -75,8 +84,6 @@ steps:
             - .ad
             - .ads
             - .ad-wrapper
-            - 'h1:only-of-type' 
-            - 'h2:only-of-type'
             - .social-share-block
             - .article-subheading
             - .article-heading
@@ -350,6 +357,59 @@ steps:
             - .td-social-list
             - .td_mod_wrap
             - .tdm_block_button
+            - .share-bar-wrapper
+            - .shortcode
+            - .related-topics
+            - div[data-shortcode]
+            - .sharethrough-top
+            - .hide
+            - .ad-inpage-video-top
+            - .ad-slot
+            - .c-adSlot
+            - .c-shortcodeNewsletter
+            - '#after-page-recirc'
+            - '#after-page-mobile-recirc'
+            - '#newsletter-signup'
+            - .zerg-widgets
+            - .newsletter-subscribe-form
+            - .stickyColumn
+            - div[data-video-player='container']
+            - .playerControls
+            - figure[data-recommend-id]
+            - .ad-container
+            - .ad-mobile
+            - .ad-mobile-dynamic
+            - .ad-teads-outstream
+            - .ad-unit
+            - .js_ad-dynamic
+            - .js_ad-mobile-dynamic
+            - .movable-ad
+            - .article__title-wrapper
+            - .article__byline-wrapper
+            - .piano-inline-promo
+            - .t-rating-small
+            - .sponsored-links
+            - '#engadget-article-footer'
+            - .t-meta
+            - '#gemini-right-rail-thumbnails'
+            - .athena-button
+            - .event-promo
+            - .related-wrapper
+            - '#ac-lre-player-ph'
+            - .content__write-suggestion
+            - .favorite_marker
+            - .comments_counter
+            - .audio_listen_button
+            - .shares
+            - .tags
+            - a[rel='license']
+            - '#post-notes'
+            - .top-media-content
+            - .top-news-info
+            - .subscribe-revolver-wrap
+            - .read-also
+
+
 
         - html
         - eval: head
