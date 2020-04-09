@@ -20,8 +20,13 @@ steps:
             - '#adsense-target'
             - '#tbl_proxy_list'
             - '#ontheioViewTacking'
+            - '#r_memo'
+            - .block_post
+            - .news_inner
+            - .td-post-content
             - .post-content
             - .post
+            - .text_block
             - .article__text
             - .article__content
             - .entry-content
@@ -37,6 +42,7 @@ steps:
             - .content
             - .article-container
             - .article-content
+            - .article-body
             - .article
             - .main
             - article
@@ -244,7 +250,6 @@ steps:
             - .single-post-sharing-button-list
             - .single-post-newsletter
             - .single-post-comments
-            - center
             - .uk-grid-match
             - '#mc_embed_signup'
             - .adsense_responsive_box
@@ -403,11 +408,31 @@ steps:
             - .shares
             - .tags
             - a[rel='license']
+            - a[rel='nofollow']
             - '#post-notes'
             - .top-media-content
             - .top-news-info
             - .subscribe-revolver-wrap
             - .read-also
+            - .news_comments
+            - .playbuzz
+            - .article__footer
+            - .advertinline
+            - .at-below-post
+            - .top-meta-block
+            - .meta-block
+            - .article-date
+            - .social-side
+            - .tags-list
+            - .hidden-md
+            - .hidden-lg
+            - .article__topic
+            - .post__tags
+            - .block_related
+            - .unit_article-banner
+            - .block_comments
+            - .io-article-footer
+            - div[style='display:none']
 
 
 
