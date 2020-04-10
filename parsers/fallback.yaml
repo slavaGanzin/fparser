@@ -4,10 +4,25 @@ steps:
   - parallel:
       html:
         - find:
+            - .listNews
+            - div[data-piano-inline-content-wrapper]
+            - .gtm-story-text
+            - .serendipity_entry_body
+            - .article__content__body
+            - .uni-content
+            - .post__body
+            - .mdspost-text-container
+            - .news-list__item
+            - .innerBlock
+            - '.lebe, #articleBody'
+            - .simple-body
             - '#page_body'
             - '#mvp-post-content'
+            - '#l-content'
             - .c-pageArticleLongform_content
             - div[itemprop="articleBody"]
+            - .c-main
+            - .newsHolderContainer
             - '#fullarticle'
             - '#post'
             - '#content'
@@ -21,12 +36,13 @@ steps:
             - '#tbl_proxy_list'
             - '#ontheioViewTacking'
             - '#r_memo'
+            - .post-content
             - .block_post
             - .news_inner
             - .td-post-content
-            - .post-content
             - .post
             - .text_block
+            - .page-block
             - .article__text
             - .article__content
             - .entry-content
@@ -36,6 +52,8 @@ steps:
             - .article__container
             - '.storywrap'
             - .single-post-content
+            - .publication-sticky-container
+            - .figureTable
             - .js_post-content
             - .content-background
             - .content-wrapper
@@ -46,6 +64,7 @@ steps:
             - .article
             - .main
             - article
+            - '#mailchimp'
         - remove:
             - .article-meta
             - '#article-meta'
@@ -64,7 +83,6 @@ steps:
             - .thread__container
             - footer
             - .page-header > h1
-            - .comments
             - hr
             - .article__info
             - style
@@ -268,6 +286,7 @@ steps:
             - .adContainerLeader2
             - .title-group
             - '#content-header'
+            - .content-header
             - .social-column
             - .cta
             - .subDrive
@@ -310,7 +329,6 @@ steps:
             - .share
             - .vuukle-powerbar
             - .adslot
-            - .separator
             - .c-compact-river
             - .met
             - .referral_widget
@@ -318,7 +336,6 @@ steps:
             - .post-header
             - .sponsored
             - .related-ssr
-            - .hidden-xs
             - .cat-aud
             - .amp-ad-wrapper
             - .ampforwp-last-modified-date
@@ -408,7 +425,8 @@ steps:
             - .shares
             - .tags
             - a[rel='license']
-            - a[rel='nofollow']
+            - a[rel='noopener']
+            - a[rel='noreferrer']
             - '#post-notes'
             - .top-media-content
             - .top-news-info
@@ -426,6 +444,8 @@ steps:
             - .tags-list
             - .hidden-md
             - .hidden-lg
+            - .hidden-sm
+            - .hidden-xs
             - .article__topic
             - .post__tags
             - .block_related
@@ -433,6 +453,109 @@ steps:
             - .block_comments
             - .io-article-footer
             - div[style='display:none']
+            - .flexslider__photo-slider
+            - .AFWDX
+            - .views-share-el
+            - .main-post__social-footer
+            - .social-list
+            - .info
+            - .wrapper_for_opinion
+            - .article__info_bottom__tags
+            - .comments-section
+            - .read_on_theme
+            - .subscribe_block
+            - .article__coments_btn
+            - .article__info_bottom__social
+            - .clearfix
+            - .clear
+            - .media__also__news
+            - .media__also__news_link
+            - .media__also__opinions
+            - .article__content__head
+            - .article__footer_additional
+            - .article__tags
+            - .article__special-theme
+            - .ad_wrapper
+            - '#under_material'
+            - .paywall-area
+            - .opinion_author
+            - .share--box
+            - .media-block-wrap
+            - .media-block
+            - .also-read
+            - div[data-owner-ct='Article']
+            - .c-mmp__overlay
+            - .c-mmp__cpanel
+            - .media-download
+            - .ymla-section
+            - .design-top-offset
+            - a[data-ajax-update='#ymla-section']
+            - .slide-in-wg
+            - .suspended
+            - .mediaReplacer
+            - '#youmaylike'
+            - .c-author
+            - .publication-social
+            - .o-wrap
+            - .c-sidebar-wrap
+            - .c-share-extra-track
+            - .c-bar
+            - .c-post-title
+            - .c-aside-embed
+            - .c-comments
+            - .writer
+            - .read
+            - .int_hidden
+            - div[data-name='int_hidden']
+            - .photoreports
+            - .pixel
+            - .more
+            - 'div.innerBlock ~ div'
+            - '#socialBlockSlideStop_0'
+            - .time-rubric
+            - .meta-info
+            - .Post-discuss
+            - .Post-categories
+            - '#gtx-trans'
+            - .shareaholic-canvas
+            - .entry-utility
+            - .post-utility
+            - .fix
+            - .rp4wp-related-posts
+            - .ljtags
+            - .telegram-userpromo
+            - .lj-like
+            - .ljsale
+            - .social-row
+            - .learn-cta-row
+            - ul.post__hubs
+            - .post__wrapper .for_users_only_msg
+            - .post__wrapper .default-block
+            - .post__meta
+            - .header
+            - .secondary
+            - .widget-area
+            - .subscribe-btn
+            - .subscribe-widget
+            - .paywall
+            - .embed-relatedstory
+            - .inline-relatedstory
+            - '#newslist'
+            - '#disqus_thread_outdiv'
+            - .dsq-brlink
+            - .article-meta__page
+            - .article-sticky-share
+            - .uni-blog-article-tags
+            - .share-sticky-end
+            - .uni-related-articles-cards
+            - br
+            - .hs-cta-wrapper
+            - .post-content__publish-date
+            - .post-content__topic-container
+            - .post-content__social-share-container
+            - .expanded-coverage-module
+            - .js-expanded-coverage-module
+            - .serendipity_date
 
 
 
