@@ -10,5 +10,5 @@ steps:
       html:
         - find: pre
         - html
-        - replace:
-            - /\n/g, </p><p>
+        # - replace:
+        #     - /\n/g, </p><p>

@@ -20,6 +20,7 @@ steps:
             - .article-body-content
             - .main
             - .article__container
+            - .body-container
         - remove:
             - .article-meta
             - '#article-meta'
@@ -79,8 +80,8 @@ steps:
             - .post-comment
             - .post-comments-show
             - .related-guides-container
-            - - rel='noopener'
-            - - rel='noreferrer'
+            # - - rel='noopener'
+            # - - rel='noreferrer'
             - .linkback
             - .author
             - .social
@@ -113,7 +114,7 @@ steps:
             - .sharing-buttons
             - nav
             - .nocontent
-            - - role="banner"
+            # - role="banner"
             - .jp-relatedposts
             - noscript
             - '#comments'
@@ -186,8 +187,9 @@ steps:
             - .article_head
 
         - html
-        - eval: head
-        - chrome
+        - html
+        # - eval: head
+        # - chrome
       meta:
         - meta
 
