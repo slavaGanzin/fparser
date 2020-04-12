@@ -89,9 +89,9 @@ module.exports = options => flatMap(e => scrapeMeta({html: e.toString('xhtml'), 
 
   m.thumbs = reject(x => isEmpty(x) || isNil(x), oneOf(['og:image:url', 'twitter:image:url'], m) || [])
 
-  m.description = m.description || `${e.childNodes().map(x => x.text())
-    .join('')
+  m.description = m.description || `${e.get(cssToXpath('p')).text()
     .replace(/\s+/gim, ' ')
     .slice(0, 300)}…`
+
   return m
 }))
