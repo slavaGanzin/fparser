@@ -4,11 +4,13 @@ steps:
       html:
         - find:
             - .listNews
+            - div[data-field='content']
             - div[data-piano-inline-content-wrapper]
             - .gtm-story-text
             - .serendipity_entry_body
             - .article__content__body
             - .uni-content
+            - .post-full__text
             - .post__body
             - .mdspost-text-container
             - .news-list__item
@@ -66,6 +68,13 @@ steps:
             - '#mailchimp'
             - '#main'
         - remove:
+            # - - rel='noopener'
+            # - - rel='noreferrer'
+            # - - role="banner"
+            # - - rel='stylesheet'
+            # a[rel='license']
+            # - a[rel='nofollow']
+            # - br ?
             - .article-meta
             - '#article-meta'
             - .social-share
@@ -117,8 +126,6 @@ steps:
             - .post-comment
             - .post-comments-show
             - .related-guides-container
-            # - - rel='noopener'
-            # - - rel='noreferrer'
             - .linkback
             - .author
             - .social
@@ -151,7 +158,6 @@ steps:
             - .sharing-buttons
             - nav
             - .nocontent
-            # - - role="banner"
             - .jp-relatedposts
             - noscript
             - .entry-comment-form
@@ -254,7 +260,6 @@ steps:
             - '#tpd-contextual-ad-c'
             - '#tso-wrapper'
             - link
-            # - - rel='stylesheet'
             - '#axdsense1'
             - .single-post-simple-header
             - .single-post-navigation
@@ -417,8 +422,6 @@ steps:
             - .comments_counter
             - .audio_listen_button
             - .shares
-            # a[rel='license']
-            # - a[rel='nofollow']
             - '#post-notes'
             - .top-media-content
             - .top-news-info
@@ -543,7 +546,6 @@ steps:
             - .uni-blog-article-tags
             - .share-sticky-end
             - .uni-related-articles-cards
-            # - br ?
             - .hs-cta-wrapper
             - .post-content__publish-date
             - .post-content__topic-container
@@ -554,10 +556,13 @@ steps:
             - .button
             - .version
             - '#cutid1-end'
+            - .contentitem-graph-loading
+            - .contentitem-infocard
+            - .contentitem-linkblock
+            - .bmc-button
 
 
 
-        - html
         - html
         # - eval: head
         # - chrome
