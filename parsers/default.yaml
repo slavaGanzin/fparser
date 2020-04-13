@@ -79,8 +79,10 @@ language:
 
 html:
   # addMetaCharset: true
+
   encloseBlockText: true
   dropEmptyElements: true
+  dropEmptyParas: true
   encloseText: true
   escapeCdata: true
   hideComments: true

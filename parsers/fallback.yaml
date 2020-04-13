@@ -1,4 +1,3 @@
-
 steps:
   - get
   - parallel:
@@ -65,6 +64,7 @@ steps:
             - .main
             - article
             - '#mailchimp'
+            - '#main'
         - remove:
             - .article-meta
             - '#article-meta'
@@ -90,13 +90,10 @@ steps:
             - .breadcrumbs
             - .breadcrumbs-list
             - .yarpp-related
-            - .thread__container
             - script
-            - style
             - .byline
             - .wpcnt
             - .category-list
-            - .post-meta
             - .post-category
             - .post-categories
             - .post-date
@@ -114,15 +111,14 @@ steps:
             - form
             - .feedback-display
             - .meta-category
-            - .meta-category
             - - data-share-url
             - .pk-share-buttons-wrap
             - .post-comments
             - .post-comment
             - .post-comments-show
             - .related-guides-container
-            - - rel='noopener'
-            - - rel='noreferrer'
+            # - - rel='noopener'
+            # - - rel='noreferrer'
             - .linkback
             - .author
             - .social
@@ -155,16 +151,14 @@ steps:
             - .sharing-buttons
             - nav
             - .nocontent
-            - - role="banner"
+            # - - role="banner"
             - .jp-relatedposts
             - noscript
-            - '#comments'
             - .entry-comment-form
             - .entry-post-navigation
             - .saboxplugin-wrap
             - .aboutauthor
             - .about-author
-            - .social
             - .relatedarticles
             - .fbcomments
             - .newComments
@@ -260,7 +254,7 @@ steps:
             - '#tpd-contextual-ad-c'
             - '#tso-wrapper'
             - link
-            - - rel='stylesheet'
+            # - - rel='stylesheet'
             - '#axdsense1'
             - .single-post-simple-header
             - .single-post-navigation
@@ -423,10 +417,8 @@ steps:
             - .comments_counter
             - .audio_listen_button
             - .shares
-            - .tags
-            - a[rel='license']
-            - a[rel='noopener']
-            - a[rel='noreferrer']
+            # a[rel='license']
+            # - a[rel='nofollow']
             - '#post-notes'
             - .top-media-content
             - .top-news-info
@@ -453,6 +445,9 @@ steps:
             - .block_comments
             - .io-article-footer
             - div[style='display:none']
+            - .article-footer
+            - .article-social
+            - .article-related
             - .flexslider__photo-slider
             - .AFWDX
             - .views-share-el
@@ -548,7 +543,7 @@ steps:
             - .uni-blog-article-tags
             - .share-sticky-end
             - .uni-related-articles-cards
-            - br
+            # - br ?
             - .hs-cta-wrapper
             - .post-content__publish-date
             - .post-content__topic-container
@@ -556,12 +551,16 @@ steps:
             - .expanded-coverage-module
             - .js-expanded-coverage-module
             - .serendipity_date
+            - .button
+            - .version
+            - '#cutid1-end'
 
 
 
         - html
-        - eval: head
-        - chrome
+        - html
+        # - eval: head
+        # - chrome
       meta:
         - meta
 

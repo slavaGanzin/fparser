@@ -1,17 +1,20 @@
 const STATUS_OK = 200
-const cheerio = require('cheerio')
 const needle = thenify('needle')
 const fs = thenify('fs')
+const libxml = require('libxmljs')
 
 const parse = options => cond([[
-  x => x.statusCode > 300,
+  x => x.statusCode >= 300,
   () => null,
 ], [
   x => !options.parse || test(/rss|link-format|xml/, x.headers['content-type']),
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => absoluteUrls(options.url, cheerio.load(input.body, {decodeEntities: false})),
+  input => libxml.parseHtml(input.body),
+// ], [
+//   x => test(/xml/, x.headers['content-type']),
+//   input => libxml.parseXml(input.body),
 ], [
   T, prop('raw'),
 ]])
@@ -41,7 +44,7 @@ const request = options => {
     .then(logRequest(options))
     .then(logErrors)
 
-  const f = !options.cached || global.ARGV && !global.ARGV.httpCache
+  const f = !options.cached || global.ARGV && global.ARGV.httpCache == false
     ? _request
     : () => fs.readFile(cacheFile, 'utf-8')
       .then(JSON.parse)
