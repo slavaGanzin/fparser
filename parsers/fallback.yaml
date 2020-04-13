@@ -1,27 +1,80 @@
-
 steps:
   - get
   - parallel:
       html:
         - find:
-            - article
+            - .listNews
+            - div[data-field='content']
+            - div[data-piano-inline-content-wrapper]
+            - .gtm-story-text
+            - .serendipity_entry_body
+            - .article__content__body
+            - .uni-content
+            - .post-full__text
+            - .post__body
+            - .mdspost-text-container
+            - .news-list__item
+            - .innerBlock
+            - '.lebe, #articleBody'
+            - .simple-body
+            - '#page_body'
+            - '#mvp-post-content'
+            - '#l-content'
+            - .c-pageArticleLongform_content
+            - div[itemprop="articleBody"]
+            - .c-main
+            - .newsHolderContainer
+            - '#fullarticle'
             - '#post'
             - '#content'
             - '#article'
-            - .article
+            - '#intelliTXT'
+            - '#article-main'
+            - '#story-body'
+            - '#story'
+            - '#primary'
+            - '#adsense-target'
+            - '#tbl_proxy_list'
+            - '#ontheioViewTacking'
+            - '#r_memo'
+            - .post-content
+            - .block_post
+            - .news_inner
+            - .td-post-content
             - .post
+            - .text_block
+            - .page-block
             - .article__text
-            - .article-content
             - .article__content
             - .entry-content
-            - .content
             - .blog-article__content
-            -  .body-content
+            - .body-content
             - .article-body-content
-            - .main
             - .article__container
-            - .body-container
+            - '.storywrap'
+            - .single-post-content
+            - .publication-sticky-container
+            - .figureTable
+            - .js_post-content
+            - .content-background
+            - .content-wrapper
+            - .content
+            - .article-container
+            - .article-content
+            - .article-body
+            - .article
+            - .main
+            - article
+            - '#mailchimp'
+            - '#main'
         - remove:
+            # - - rel='noopener'
+            # - - rel='noreferrer'
+            # - - role="banner"
+            # - - rel='stylesheet'
+            # a[rel='license']
+            # - a[rel='nofollow']
+            # - br ?
             - .article-meta
             - '#article-meta'
             - .social-share
@@ -39,7 +92,6 @@ steps:
             - .thread__container
             - footer
             - .page-header > h1
-            - .comments
             - hr
             - .article__info
             - style
@@ -47,14 +99,12 @@ steps:
             - .breadcrumbs
             - .breadcrumbs-list
             - .yarpp-related
-            - .thread__container
             - script
-            - style
             - .byline
             - .wpcnt
             - .category-list
-            - .post-meta
             - .post-category
+            - .post-categories
             - .post-date
             - .post-author
             - .taboola-container
@@ -64,15 +114,11 @@ steps:
             - .ad
             - .ads
             - .ad-wrapper
-            - 'h1:only-of-type'
-            - 'h2:only-of-type'
             - .social-share-block
             - .article-subheading
             - .article-heading
             - form
             - .feedback-display
-            - .meta-category
-            - .post-categories
             - .meta-category
             - - data-share-url
             - .pk-share-buttons-wrap
@@ -80,8 +126,6 @@ steps:
             - .post-comment
             - .post-comments-show
             - .related-guides-container
-            # - - rel='noopener'
-            # - - rel='noreferrer'
             - .linkback
             - .author
             - .social
@@ -114,16 +158,13 @@ steps:
             - .sharing-buttons
             - nav
             - .nocontent
-            # - role="banner"
             - .jp-relatedposts
             - noscript
-            - '#comments'
             - .entry-comment-form
             - .entry-post-navigation
             - .saboxplugin-wrap
             - .aboutauthor
             - .about-author
-            - .social
             - .relatedarticles
             - .fbcomments
             - .newComments
@@ -152,19 +193,13 @@ steps:
             - time
             - .entry-content__post-date
             - .related-posts
-            - .related_posts
             - .related-content
-            - .related_content
             - .related_articles
-            - .related-articles
             - .article_sponsored_content
             - .latest_articles
-            - .latest-articles
             - '#latest-articles'
-            - '#latest_articles'
             - .fb-comments
             - .back-link
-            - .back_link
             - .social-icons
             - .post-footer
             - .social-links
@@ -185,8 +220,349 @@ steps:
             - .social_btns
             - '#social_btns'
             - .article_head
+            - .aa-lazy-comments-section
+            - .ad-disclaimer-container
+            - .ads_container
+            - .article-body__suppl_content
+            - .article-share-bar-container
+            - .c-entry-group-labels
+            - .c-entry-hero__meta
+            - .c-related-list
+            - .c-social-buttons
+            - .corona-wrapper
+            - .filed
+            - .font-sz
+            - .ica-wrapper
+            - .jwplayer-placeholder
+            - .lazyload_ad
+            - .lede-container
+            - .nextup
+            - .post-actions
+            - .post-article-read-next
+            - .post-in-content-tags
+            - .post-share
+            - .r-box
+            - .relatedContent
+            - .share-buttons
+            - .shortcodeGalleryWrapper
+            - .sidebar-content
+            - .silic-after-content
+            - .u-desktop-only
+            - .widgets-wrapper
+            - '#amazon-bottom-widget'
+            - '#article-footer-wrap'
+            - '#article-social-head'
+            - '#content-recommender'
+            - '#sharer'
+            - '#sidebar-right'
+            - '#social-footer'
+            - '#todays-headlines'
+            - '#tpd-contextual-ad-c'
+            - '#tso-wrapper'
+            - link
+            - '#axdsense1'
+            - .single-post-simple-header
+            - .single-post-navigation
+            - .floorad-wrapper
+            - .single-post-sharing-button-list
+            - .single-post-newsletter
+            - .single-post-comments
+            - .uk-grid-match
+            - '#mc_embed_signup'
+            - .adsense_responsive_box
+            - .constrain-970
+            - .category
+            - .at-a-glance
+            - .aag-list
+            - '#collection-module-bottom'
+            - .category-chicklets
+            - .related-query
+            - .comment-count-block
+            - .social-share-svg
+            - .related-products
+            - .related-stories
+            - .adContainerNewsLeadMid
+            - .adContainerLeader2
+            - .title-group
+            - '#content-header'
+            - .content-header
+            - .social-column
+            - .cta
+            - .subDrive
+            - .contentAd
+            - .paragraphAdinsert
+            - .divsplitter
+            - '#more-insights'
+            - .more-insights-item
+            - .menu-social-media-container
+            - .popular-tags
+            - .article__category
+            - .textwidget
+            - .post-author-card
+            - .eagle-widget
+            - .egl-popup
+            - .multi-pagination
+            - '#taboola-below-article-thumbnails'
+            - .social-share-links
+            - .deck
+            - .related-analysts
+            - .table-of-contents
+            - .secondary-column
+            - '#post-header'
+            - '#comments-button'
+            - .social-sharing-top
+            - .mvp-org-wrap
+            - .posts-nav-link
+            - .social-sharing-bot
+            - .story-advertisement
+            - '#story-authorbio'
+            - '#byline-and-share'
+            - '#desk'
+            - '#share-after'
+            - '#intro'
+            - '#ez-toc-container'
+            - .square
+            - .wp-block-columns
+            - .crunchify-social
+            - .code-block
+            - .share
+            - .vuukle-powerbar
+            - .adslot
+            - .c-compact-river
+            - .met
+            - .referral_widget
+            - .staff
+            - .post-header
+            - .sponsored
+            - .related-ssr
+            - .cat-aud
+            - .amp-ad-wrapper
+            - .ampforwp-last-modified-date
+            - .artl-atr
+            - .amp-tags
+            - .cmts
+            - .rft
+            - .article-hero
+            - .article-hero-meta
+            - .expand-lightbox-icon-holder
+            - .article-disclosure
+            - .exchange-widget
+            - .article__body__tags-related
+            - .images_credits
+            - .snippet_container
+            - .disclaimer
+            - .switch_container
+            - .single-post-social-icons
+            - .banner
+            - .banner-article-content
+            - .hero-sponsored-button
+            - '#vuukle-emote'
+            - .hatom-extra
+            - .author-bio
+            - .play-games
+            - .single-content-banner
+            - .article-after-content-widget-area
+            - '#mvp-content-bot'
+            - '#mvp-soc-mob-wrap'
+            - .mvp-post-soc-wrap
+            - .ambcr-content
+            - .ambcr-content-bottom
+            - .mvp-content-bot
+            - .mvp-cont-read-wrap
+            - .td-post-sharing
+            - .tdb-author-photo
+            - .tdb-author-box
+            - .tdb_breadcrumbs
+            - .tdb-next-post
+            - .adsbygoogle
+            - .td-social-list
+            - .td_mod_wrap
+            - .tdm_block_button
+            - .share-bar-wrapper
+            - .shortcode
+            - .related-topics
+            - div[data-shortcode]
+            - .sharethrough-top
+            - .hide
+            - .ad-inpage-video-top
+            - .ad-slot
+            - .c-adSlot
+            - .c-shortcodeNewsletter
+            - '#after-page-recirc'
+            - '#after-page-mobile-recirc'
+            - '#newsletter-signup'
+            - .zerg-widgets
+            - .newsletter-subscribe-form
+            - .stickyColumn
+            - div[data-video-player='container']
+            - .playerControls
+            - figure[data-recommend-id]
+            - .ad-container
+            - .ad-mobile
+            - .ad-mobile-dynamic
+            - .ad-teads-outstream
+            - .ad-unit
+            - .js_ad-dynamic
+            - .js_ad-mobile-dynamic
+            - .movable-ad
+            - .article__title-wrapper
+            - .article__byline-wrapper
+            - .piano-inline-promo
+            - .t-rating-small
+            - .sponsored-links
+            - '#engadget-article-footer'
+            - .t-meta
+            - '#gemini-right-rail-thumbnails'
+            - .athena-button
+            - .event-promo
+            - .related-wrapper
+            - '#ac-lre-player-ph'
+            - .content__write-suggestion
+            - .favorite_marker
+            - .comments_counter
+            - .audio_listen_button
+            - .shares
+            - '#post-notes'
+            - .top-media-content
+            - .top-news-info
+            - .subscribe-revolver-wrap
+            - .read-also
+            - .news_comments
+            - .playbuzz
+            - .article__footer
+            - .advertinline
+            - .at-below-post
+            - .top-meta-block
+            - .meta-block
+            - .article-date
+            - .social-side
+            - .tags-list
+            - .hidden-md
+            - .hidden-lg
+            - .hidden-sm
+            - .hidden-xs
+            - .article__topic
+            - .post__tags
+            - .block_related
+            - .unit_article-banner
+            - .block_comments
+            - .io-article-footer
+            - div[style='display:none']
+            - .article-footer
+            - .article-social
+            - .article-related
+            - .flexslider__photo-slider
+            - .AFWDX
+            - .views-share-el
+            - .main-post__social-footer
+            - .social-list
+            - .info
+            - .wrapper_for_opinion
+            - .article__info_bottom__tags
+            - .comments-section
+            - .read_on_theme
+            - .subscribe_block
+            - .article__coments_btn
+            - .article__info_bottom__social
+            - .clearfix
+            - .clear
+            - .media__also__news
+            - .media__also__news_link
+            - .media__also__opinions
+            - .article__content__head
+            - .article__footer_additional
+            - .article__tags
+            - .article__special-theme
+            - .ad_wrapper
+            - '#under_material'
+            - .paywall-area
+            - .opinion_author
+            - .share--box
+            - .media-block-wrap
+            - .media-block
+            - .also-read
+            - div[data-owner-ct='Article']
+            - .c-mmp__overlay
+            - .c-mmp__cpanel
+            - .media-download
+            - .ymla-section
+            - .design-top-offset
+            - a[data-ajax-update='#ymla-section']
+            - .slide-in-wg
+            - .suspended
+            - .mediaReplacer
+            - '#youmaylike'
+            - .c-author
+            - .publication-social
+            - .o-wrap
+            - .c-sidebar-wrap
+            - .c-share-extra-track
+            - .c-bar
+            - .c-post-title
+            - .c-aside-embed
+            - .c-comments
+            - .writer
+            - .read
+            - .int_hidden
+            - div[data-name='int_hidden']
+            - .photoreports
+            - .pixel
+            - .more
+            - 'div.innerBlock ~ div'
+            - '#socialBlockSlideStop_0'
+            - .time-rubric
+            - .meta-info
+            - .Post-discuss
+            - .Post-categories
+            - '#gtx-trans'
+            - .shareaholic-canvas
+            - .entry-utility
+            - .post-utility
+            - .fix
+            - .rp4wp-related-posts
+            - .ljtags
+            - .telegram-userpromo
+            - .lj-like
+            - .ljsale
+            - .social-row
+            - .learn-cta-row
+            - ul.post__hubs
+            - .post__wrapper .for_users_only_msg
+            - .post__wrapper .default-block
+            - .post__meta
+            - .header
+            - .secondary
+            - .widget-area
+            - .subscribe-btn
+            - .subscribe-widget
+            - .paywall
+            - .embed-relatedstory
+            - .inline-relatedstory
+            - '#newslist'
+            - '#disqus_thread_outdiv'
+            - .dsq-brlink
+            - .article-meta__page
+            - .article-sticky-share
+            - .uni-blog-article-tags
+            - .share-sticky-end
+            - .uni-related-articles-cards
+            - .hs-cta-wrapper
+            - .post-content__publish-date
+            - .post-content__topic-container
+            - .post-content__social-share-container
+            - .expanded-coverage-module
+            - .js-expanded-coverage-module
+            - .serendipity_date
+            - .button
+            - .version
+            - '#cutid1-end'
+            - .contentitem-graph-loading
+            - .contentitem-infocard
+            - .contentitem-linkblock
+            - .bmc-button
 
-        - html
+
+
         - html
         # - eval: head
         # - chrome

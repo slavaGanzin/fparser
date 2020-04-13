@@ -1,7 +1,7 @@
 const fs = require('fs')
 const cp = require('child_process')
 const cheerio = require('cheerio')
-const CACHE = require('path').resolve(`${__dirname}/../http_cache/`)
+const CACHE = require('path').resolve(`${__dirname}/../cache/`)
 const url = require('url')
 
 module.exports = () => flatMap(html => {
