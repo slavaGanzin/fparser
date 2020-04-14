@@ -91,7 +91,7 @@ module.exports = options => flatMap(e => scrapeMeta({html: e.toString('xhtml'), 
 
   m.description = m.description || `${e.get(cssToXpath('p')).text()
     .replace(/\s+/gim, ' ')
-    .slice(0, 300)}…`
+    .slice(0, 500)}…`
 
   return m
 }))
