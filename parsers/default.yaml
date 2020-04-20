@@ -92,6 +92,7 @@ html:
   wrap: 0
   clean: false
   showBodyOnly: true
+  #not working
+  dropFontTags: true
   doctype: omit
-  dropFontTags: true #not working
   dropProprietaryAttributes: true

@@ -3,6 +3,7 @@ steps:
   - parallel:
       html:
         - find:
+            - article
             - .listNews
             - div[data-field='content']
             - div[data-piano-inline-content-wrapper]
@@ -64,7 +65,6 @@ steps:
             - .article-body
             - .article
             - .main
-            - article
             - '#mailchimp'
             - '#main'
         - remove:
@@ -75,6 +75,8 @@ steps:
             # a[rel='license']
             # - a[rel='nofollow']
             # - br ?
+            - .single_article_header
+            - .single_title
             - .article-meta
             - '#article-meta'
             - .social-share
@@ -120,7 +122,7 @@ steps:
             - form
             - .feedback-display
             - .meta-category
-            - - data-share-url
+            # - .data-share-url
             - .pk-share-buttons-wrap
             - .post-comments
             - .post-comment
@@ -560,12 +562,15 @@ steps:
             - .contentitem-infocard
             - .contentitem-linkblock
             - .bmc-button
+            - .breadcrumbs
+            - .breadcrumbs-nav
+
 
 
 
         - html
         # - eval: head
-        # - chrome
+        - chrome
       meta:
         - meta
 
