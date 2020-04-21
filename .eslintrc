@@ -1,8 +1,8 @@
 env:
-  node:                          true
+node:                          true
   commonjs:                      true
   es6:                           true
-  
+
 extends:                         eslint:recommended
 
 rules:
@@ -10,12 +10,12 @@ rules:
   no-undef:                      off
   quotes:                        off
   no-console:                    off
-  
+
   no-magic-numbers:              warn
   no-unused-vars:                warn
   no-implicit-globals:           warn
-  
-  
+
+
   block-scoped-var:              error
   no-shadow:                     error
   dot-notation:                  error
@@ -94,7 +94,7 @@ rules:
   prefer-template:               error
   template-curly-spacing:        error
   object-curly-spacing:          error
-  
+
   rest-spread-spacing:
     - error
     - never

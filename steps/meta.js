@@ -89,7 +89,8 @@ module.exports = options => flatMap(e => scrapeMeta({html: e.toString('xhtml'), 
 
   m.thumbs = reject(x => isEmpty(x) || isNil(x), oneOf(['og:image:url', 'twitter:image:url'], m) || [])
 
-  m.description = m.description || `${e.get(cssToXpath('p')).text()
+  const textFromFirstParagraph = e.get(cssToXpath('p,div'))
+  m.description = (m.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`)
     .replace(/\s+/gim, ' ')
     .slice(0, 500)}…`
 
