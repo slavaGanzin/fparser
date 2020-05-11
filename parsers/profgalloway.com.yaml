@@ -3,5 +3,9 @@ get:
 
 steps:
   - get
-  - find: div[class^="ArticleContent-"]
-  - html
+  - parallel:
+      meta:
+        - meta
+      html:
+        - find: div[class^="ArticleContent-"]
+        - html
