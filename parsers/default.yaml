@@ -30,25 +30,47 @@ tap:
 
 get:
   cached:             true
-  parse:              true
   url:                $url
-
-  #https://github.com/tomas/needle#request-options
-  accept:             '*/*'
-  compressed:         true
-  method:             get
-  follow_max:         20
-  follow_set_cookies: true
-  follow_set_referer: true
-  follow_keep_method: true
-  rejectUnauthorized: false
-  open_timeout:       20000
-  read_timeout:       20000
   cache:              $cache
+  parse:              true
+  driver:             needle
+
+  needle:
+
+    #https://github.com/tomas/needle#request-options
+    parse:              false
+    accept:             '*/*'
+    compressed:         true
+    method:             get
+    follow_max:         20
+    follow_set_cookies: true
+    follow_set_referer: true
+    follow_keep_method: true
+    rejectUnauthorized: false
+    open_timeout:       20000
+    read_timeout:       20000
+
+  puppeteer:
+    debug: '-puppeteer:*'
+    ignoreHTTPSErrors: true
+    headless:          true
+
+    # timeout:           3000
+    defaultViewport:
+      width: 1920
+      height: 1080
+    args:
+     - '--app=https://www.google.com/' #Magic
+    devtools:          true
+    slowMo:            0
+
+    goto:
+      waitFor: networkidle0
+
 
 post:
   url:                $url
-  method: post
+  method:             post
 
 meta:
   url:                $url

@@ -1,0 +1,7 @@
+get:
+  driver: puppeteer
+
+steps:
+  - get
+  - find: div[class^="ArticleContent-"]
+  - html

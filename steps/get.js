@@ -36,20 +36,22 @@ const request = options => {
 
   const cacheFile = `${options.cache}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
-  const _request = () => needle.request(
-    options.method, options.url, options.data, merge(options, {parse: false})
-  )
+  const drivers = {
+    needle: () => needle.request(options.method, options.url, options.data, options.needle)
     .then(head)
     .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
     .then(logRequest(options))
-    .then(logErrors)
+    .then(logErrors),
+    puppeteer: () => require('../lib/puppeteer').get(options)
+      .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
+  }
 
   const f = !options.cached || global.ARGV && global.ARGV.httpCache == false
-    ? _request
+    ? drivers[options.driver]
     : () => fs.readFile(cacheFile, 'utf-8')
       .then(JSON.parse)
       .then(tap(() => debug(`${options.method}:cached`)(cacheFile)))
-      .catch(_request)
+      .catch(drivers[options.driver])
 
   return f()
     .then(parse(options))
