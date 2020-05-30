@@ -9,13 +9,13 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 const URI2URL = (URL, xmldoc) => {
   for (const a of attributes.lazy)
     for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
-      if (x.attr(a).value()[0] == '#') return
+      if (x.attr(a).value()[0] == '#') continue
       x.attr('src', url.resolve(URL, x.attr(a).value()))
     }
 
   for (const a of attributes.data)
     for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
-      if (x.attr(a).value()[0] == '#') return
+      if (x.attr(a).value()[0] == '#') continue
       x.attr(a, url.resolve(URL, x.attr(a).value()))
     }
 
