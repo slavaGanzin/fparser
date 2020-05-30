@@ -4,79 +4,118 @@ steps:
       html:
         - find:
             - article
+            - main
+
+            - '#fullarticle'
+            - '#post'
+            - '#block-system-main'
+            - '#page_body'
+            - '#l-content'
+            - '#_tl_editor'
+            - '#intelliTXT'
+            - '#article-main'
+            - '#story-body'
+            - '#story'
+            - '#adsense-target'
+            - '#tbl_proxy_list'
+            - '#ontheioViewTacking'
+            - '#r_memo'
+            - '#content-anchor-inner'
+            - '#mvp-content-main'
+            - '#mvp-post-content'
+            - '#mailchimp'
+            - '#main'
+            - '#root'
+            - '#__next'
+            - '#articleBody'
+            - '#content'
+            - '#primary'
+            - '#article'
+
+
+            - .article-body
+            - .body.markup
+            - .f-text-block
             - .listNews
+            - .site-container
+            - .report-columns
+            - .transcript
+            - .entry-content
+            - .c-entry-content
             - div[data-field='content']
+            - section[data-test-id='ArticleBodyContent']
             - div[data-piano-inline-content-wrapper]
             - .gtm-story-text
             - .serendipity_entry_body
             - .article__content__body
             - .uni-content
+            - .post__text
             - .post-full__text
             - .post__body
             - .mdspost-text-container
             - .news-list__item
             - .innerBlock
-            - '.lebe, #articleBody'
             - .simple-body
-            - '#page_body'
-            - '#mvp-post-content'
-            - '#l-content'
             - .c-pageArticleLongform_content
             - div[itemprop="articleBody"]
+            - section[itemprop="articleBody"]
             - .c-main
             - .newsHolderContainer
-            - '#fullarticle'
-            - '#post'
-            - '#content'
-            - '#article'
-            - '#intelliTXT'
-            - '#article-main'
-            - '#story-body'
-            - '#story'
-            - '#primary'
-            - '#adsense-target'
-            - '#tbl_proxy_list'
-            - '#ontheioViewTacking'
-            - '#r_memo'
+            - .mainWrapper
+            - .storyBody
+            - .main-post__body
+            - .article-content
             - .post-content
             - .block_post
             - .news_inner
+            - '#tdb-autoload-article'
             - .td-post-content
             - .post
             - .text_block
             - .page-block
             - .article__text
             - .article__content
-            - .entry-content
+            - .article-body-container
             - .blog-article__content
             - .body-content
             - .article-body-content
             - .article__container
-            - '.storywrap'
-            - .single-post-content
+            - .postbody
+            - .post-body
             - .publication-sticky-container
             - .figureTable
             - .js_post-content
             - .content-background
             - .content-wrapper
             - .content
+            - .article-main-body
             - .article-container
-            - .article-content
             - .article-body
             - .article
             - .main
-            - '#mailchimp'
-            - '#main'
+            - .c-post-content
+            - .awr
+
+            - body
         - remove:
-            # - - rel='noopener'
-            # - - rel='noreferrer'
-            # - - role="banner"
-            # - - rel='stylesheet'
-            # a[rel='license']
-            # - a[rel='nofollow']
+            - .article-heading
+            - link[rel='noopener']
+            - link[rel='noreferrer']
+            - div[role="banner"]
+            - link[rel='stylesheet']
+            - .author-wrap
+            - time
+            - .card__share-icons
+            - .nav__social-media
+
+            # https://support.google.com/webmasters/answer/96569?hl=en
+            - a[rel='license']
+            - a[rel='nofollow']
+            - a[rel='ugc']
+            - a[rel='sponsored']
             # - br ?
-            - .single_article_header
-            - .single_title
+            - .header_inner
+            - .c-entry-hero
             - .article-meta
             - '#article-meta'
             - .social-share
@@ -122,7 +161,7 @@ steps:
             - form
             - .feedback-display
             - .meta-category
-            # - .data-share-url
+            - .data-share-url
             - .pk-share-buttons-wrap
             - .post-comments
             - .post-comment
@@ -562,547 +601,59 @@ steps:
             - .contentitem-infocard
             - .contentitem-linkblock
             - .bmc-button
-            - .breadcrumbs
+            - .single_article_header
+            - .single_title
+            - .c-entry-hero
+            - .c-post-pubDate
+            - .full-bleed-ad
+            - .middle-banner
+            - '#after_disclaimer_placement'
+            - .fluid-width-video-wrapper
+            - .moove-post-shortcode-wrap
+            - div[data-component='medusaContentRecommendation']
+            - div[data-component='newsletterSubscription']
+            - .pull-none
+            - .dont-miss
+            - .admz
+            - .entry-tags
+            - .adunit
+            - .teads-adCall
+            - .auto-disclosure-wrap
+            - .article-token--more-of
+            - .btn--load-more
+            - .posttitle
+            - .details
+            - .visual-title-banner
+            - .end-note
+            - .related_posts
+            - .social-share-links
+            - '#recommended'
+            - .header-post-meta
+            - .ad-tag
+            - .tt-share
+            - .td-a-rec
+            - .alm-disqus
+            - .extra-header
+            - .clever-ads
+            - .newsletter
+            - .td-page-meta
+            - .abstract-heading
+            - .abstract-specs
+            - .download-gate-wide-container
+            - .trp-thumb-listing
+            - .premium-footer-logo
+            - .viral-next-up
+            - .see-also
+            - .breakout
             - .breadcrumbs-nav
-
-
+            - .breadcrumbs
+            - .breadcrumbs-nav__list-wrapper
+            - .journey-nav-wrapper
+            - .breadcrumbs-nav
+            - .breadcrumbs-nav__title
 
 
         - html
-        # - eval: head
         - chrome
       meta:
         - meta
-
-test:
-  - url: 'https://www.coindesk.com/telegram-looks-to-cut-deal-with-ton-blockchain-investors-after-sec-order'
-  - url: 'http://cultofmac.com/659264/apple-premieres-for-all-mankind'
-  - url: 'https://timkadlec.com/remembers/2019-08-30-less-data-doesnt-mean-a-lesser-experience'
-  - url: 'https://technode.com/2019/10/18/libra-chief-warns-us-that-delay-on-crypto-creates-opportunity-for-china'
-  - url: 'http://apple.com/uk/accessibility/iphone/hearing'
-  - url: 'https://pitchbook.com/news/articles/weworks-flop-renews-questions-about-mutual-fund-bets-on-unicorns'
-  - url: 'https://stratechery.com/2017/goodbye-gatekeepers'
-  - url: 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-
-expect:
-  '0':
-    html:
-      attr:
-        - 'https://static.coindesk.com/wp-content/uploads/2018/01/telegram-860x430.jpg'
-        - 'https://www.coindesk.com/sec-halts-telegrams-1-7-billion-unlawful-token-issuance'
-        - 'https://www.coindesk.com/sec-halts-telegrams-1-7-billion-unlawful-token-issuance'
-        - 'https://www.coindesk.com/telegram-could-postpone-crypto-issuance-after-us-halts-token-sale'
-        - 'https://www.shutterstock.com/image-photo/kazan-russia-07082016-iphone-5s-telegram-696916558?src=JGVGzuBkBpuNzYOI-cD7Ag-1-20'
-      text: "\n              Telegram has notified investors that the TON blockchain project will be launched later than planned, pushing the deadline from Oct. 30 to April 30, 2020.\n              In an email to investors reviewed by CoinDesk, Telegram cited its recent run-in with the Securities and Exchange Commission (SEC), which obtained a restraining order prohibiting the messenger app company from launching TON and issuing gram tokens. The agency deemed grams to be unregistered securities.\n              The email, which was sent recently to investors in the second of Telegram’s two $850 million fundraising round from early 2018, says:\n                “We had intended to launch the TON network in late October. However, the recent SEC lawsuit has made that timing unachievable. We disagree with the SEC’s legal position and intend to vigorously defend the lawsuit. We are proposing to extend the deadline date in order to provide additional time to resolve the SEC’s lawsuit and work with other governmental authorities in advance of the launch of the TON network.”\n              The additional time will be an advantage for companies working on applications for the TON network, Telegram said.\n              The deadline can be extended with the consent of investors holding a majority of the tokens bought in the round, the email says.\n              The two groups of investors, those who bought tokens in February 2018 and those who did so in March 2018, will need to approve the extension separately, and it’s possible that one group agrees to postpone while the other refuses:\n                “In these circumstances, we propose to make certain limited amendments to the terms of the purchase agreements that remain in place to reflect the fact that fewer Grams will be issued and in circulation on the Network Launch Date.”\n              Investors in the second round must sign a form approving the extension before\_Oct. 23. If the majority chooses not to sign, these investors can get back\_“approximately 77 percent” of their money.\n              The first-round investors received “a separate communication” from Telegram, the letter says.\n              If the deadline is extended, Telegram plans to spend another $80 million before April 30.\n              “We look forward to receiving your support to ensure we can proceed with our vision for TON,” the letter concludes.\n              On Oct. 11, the SEC obtained an emergency restraining order to halt the launch of TON. Soon after the company notified investors it might postpone the planned end-of-October launch to resolve the situation.\n              A court hearing in the case is scheduled on Oct. 24 in New York.\n              Telegram app\_image via Shutterstock\n"
-  '1':
-    html:
-      attr:
-        - 'https://cdn.cultofmac.com/wp-content/uploads/2019/10/E3A96298-6921-4BBD-ABE8-ECED353AF00E.jpeg'
-        - 'https://www.apple.com/uk/newsroom/2019/10/apple-premieres-for-all-mankind-coming-to-apple-tv-plus-november-1/'
-        - 'https://www.cultofmac.com/655460/apple-original-movies-theaters/'
-        - 'https://www.cultofmac.com/659184/apple-tv-second-season-for-all-mankind-see-dickinson/'
-        - 'https://www.cultofmac.com/658974/jason-sudeikis-ted-lasso-comedy-apple-tv/'
-        - 'https://www.cultofmac.com/650658/buy-a-new-apple-device-and-youll-get-1-year-free-apple-tv/'
-        - 'http://outbrain.ezoic.net/technology/?variant=27792_1_116_100x240'
-      text: "\n              You'll be able to watch it on November 1.\n              Photo: Apple\n              Apple this week premiered For All Mankind at the Regency Village theater in Westwood, California, ahead of its Apple TV+ debut.\n              The new space drama, from Golden Globe nominee and Emmy Award winner Ronald D. Moore, will be available on November 1. It imagines a world in which the global space race never ended.\n              For All Mankind looks like it’s going to be one of the more interesting TV+ shows. It follows the lives of astronauts, engineers, and their families as they challenge the USSR in a race to the moon.\n              The show stars Wrenn Schmidt, Sarah Jones, Shantel VanShanten, and Jodi Balfour, among others.\n              For All Mankind premieres in California\n              This week’s theatrical premiere gives For All Mankind a chance at the Academy Awards. The rules of which state that a show must be publically exhibited in a Los Angeles theater to be eligible.\n              The rest of us will be able to enjoy the first three episodes of For All Mankind on November 1, when TV+ makes its debut in more than 100 countries. New episodes will be added weekly, every Friday.\n              Other Apple originals debuting on that date include The Morning Show, See, Dickinson, Little America, and Home Before Dark.\n              A Tuesday report revealed Apple has already ordered a second season of the show, which is now in production. Apple has also ordered\_Ted Lasso, a new comedy series starring Jason Sudeikis.\n              TV+ will cost just $4.99\n              Apple TV+ will offer only a handful of shows at launch —\_far fewer than competitors like Netflix. But it will cost just $4.99 a month for up to six family members.\n              Anyone who picked up a new Apple device this fall, after iPhone 11 was unveiled, will get the first year free.\n              Despite the small number of shows, TV+ has attracted major Hollywood stars. Jennifer Aniston, Reece Witherspoon, Steve Carrel, Jason Momoa, and Oprah are all on board.\n"
-  '2':
-    html:
-      attr:
-        - 'https://timkadlec.com/remembers/2019-08-29-save-data-usage/'
-        - 'https://shopify.com/'
-        - 'https://twitter.com/brend0/status/1166875340603633664'
-        - 'https://timkadlec.com/images/shopify-comparison.png'
-        - 'https://github.com/gatsbyjs/gatsby/issues/17202'
-        - 'https://twitter.com/yoavweiss/status/1167186791524392975'
-        - 'https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/save-data/'
-        - 'https://www.bbc.com/'
-        - 'https://timkadlec.com/images/cnn-with-thumbs.jpg'
-        - 'https://timkadlec.com/images/cnn-wo-thumbs.jpg'
-        - 'https://jeremy.codes/'
-        - 'https://cnn.com/'
-        - 'https://timkadlec.com/images/cnnwebfonts2.png'
-        - 'https://meowni.ca/'
-        - 'https://meowni.ca/font-style-matcher/'
-        - 'https://twitter.com/csswizardry/status/1156629153875156992'
-        - 'https://twitter.com/fr3ino/status/1000166112615714816?s=19'
-        - 'https://responsivenews.co.uk/post/18948466399/cutting-the-mustard'
-      text: |2
-
-            After yesterday’s post, someone on Twitter expressed concern about providing a “degraded experience” to users who have Save-Data enabled.
-            It’s far from the first time I’ve heard this concern expressed. A user sees “Save Data” as an option and says, “Yeah, of course!” but they may not want a lesser experience as a result.
-            It’s a fair concern, I think. We make a lot of decisions on people’s behalf online and certainly deciding to provide a degraded experience in this situation would be a questionable one.
-            But it’s also an avoidable one. One of the things I think is so great about the Save-Data feature is that it gives companies some sort of control over how their brand is experienced in data-constrained environments. They’re not relying on a proxy service to do a bunch of manipulation on their behalf, hoping it turns out alright. Instead, they have an opportunity to be proactive and careful consider how they can provide a low-data experience that still reflects their brand in a positive light.
-            There are endless ways you could do this without causing your the experience to feel lesser in any way. Here are a few ideas.
-            Lower resolution images
-            Often we serve high-resolution images to high-resolution screens. When the Save-Data header is enabled, we could instead serve up a lower resolution image by default.
-            That’s exactly what Shopify is doing now. If I open the homepage with Save-Data off on my phone, the site weights 906kb. 292kb of that are images.
-            If I pass the Save-Data header and reload the page, the site weighs 791kb, with 176kb of that being images. That’s a 12% drop in page weight. And visually, I frankly can’t tell the difference.
-                One of these screenshots of the Shopify homepage loads high-resolution images, one doesn’t. Yet the two pages look virtually identical.
-            This may not be the most significant change you could make, but it’s also one of the least intrusive. After yesterday’s post, Gatsby was super quick to get an issue filed for adding support to their gatsby-image plugin, and it looks like someone already submitted a PR for review to handle it.
-            This is also something browsers could do by default, though it sounds like that isn’t the case so far.
-            Fewer images
-            Taking it a step farther, you could serve fewer images (something Jeremy Wagner recommends in his excellent article on Save-Data).
-            One of my favorite examples to use here is a news site. I don’t know of one that does this currently, but it’s easy enough to imagine what it would look like.
-            Take, for example, the BBC site. Like many news sites, you have some major stories with larger hero images, and then you have supporting stories with thumbnails for each. On my desktop, that’s 1.5MB of images.
-            I went through and removed the thumbnails for the supporting stories and got that total down to 966kb of images. I was pretty conservative too. I didn’t touch any of the thumbnails used as backgrounds and didn’t touch any of the thumbnails related to videos. There’s plenty more that could have been shaved.
-            As it is, the experience looks different, sure, but I would argue not in the least bit degraded. It’s still very clean and reflects nicely on the BBC brand.
-            Remove web fonts
-            Another example from Jeremy’s post (he’s smart, that guy) is to remove web fonts if Save-Data is turned on.
-            Now, depending on the site and font in question, this may be a more controversial change to make. As always, your mileage may vary, you certainly don’t want to start implementing every optimization here without first considering if it’s right for your situation.
-            But I would argue that more sites than not could get away with this, provided they took the time to have a solid fallback font stack in place.
-            Take, for example, the CNN site. On the home page, CNN loads 6 different files for their CNN Sans font, totaling 251kb. (Let’s just ignore for a moment that they could probably cut a few out or do some subsetting to help reduce that a bit.)
-            Falling back to Helvetica Neue, as they currently do, is a bit too jarring even for me. But falling back to Helvetica or Arial isn’t. There’s a difference, sure, and I do think the CNN font looks a bit better. But 251kb better when I need to save data? Probably not. Again, nothing here looks broken.
-                The CNN site uses a web font (left) for text display, but falling back to Helvetica (middle) or Arial (left) has only a very minimal visual impact.
-            You could probably do even better than this in most cases. I’ve had a lot of success using Monica’s Font style matcher tool to tweak different CSS properties to create fallback font stacks that are nearly indistinguishable from the original web font (often with similar results to what Harry has seen).
-            Cut back on the ads and tracking
-            Ok, I’ll be the first to admit this is a broader discussion around the business implications, but I promise you none of your visitors will complain if you decide to scale back a bit on the ads and tracking in a data-constrained situation.
-            Some companies are already doing something similar when GDPR applies. USA Today is a notable example. Someone profiled their page soon after GDPR and found that while their site originally loads 5.2MB of data, the GDPR version only loads 500kb. That’s a massive data saving right there, and again, the site doesn’t feel broken in any way.
-            Progressive enhancement without the enhancement
-            If you build using progressive enhancement, Save-Data is a chance to consider maybe skipping a few of the enhancements. That’s not that far from the “cutting mustard” approach that was popularized by the BBC.
-            Maybe leave the carousel out in place of a single image
-            Maybe don’t load that extra JavaScript file that turns some of the static content into more dynamic interfaces.
-            With progressive enhancment in place, not only would the change be pretty simple to implement, but you would also know that the experience you provide would work and look just fine. Because building with progressive enhancement means you’ve already considered what happens without those extra resources showing up.
-            Less doesn’t mean broken
-            That’s just a small set of ideas. The possibilities are endless. If you treat data as a constraint in your design and development process, you’ll likely be able to brainstorm a large number of different ways to keep data usage to a minimum while still providing an excellent experience. Doing less doesn’t mean it has to feel broken.
-            You may even end up finding opportunities to apply those same considerations to your site, no matter if Save-Data is enabled or not.
-            If you carefully consider the experience and treat data as a valuable resource not to be wasted, I don’t think anyone is going to be complaining.
-  '3':
-    html:
-      attr:
-        - 'https://i2.wp.com/cdn.technode.com/wp-content/uploads/2019/09/bigstock-Phone-Shows-Libra-Logo-On-The-316610029.jpg?resize=840%2C560&is-pending-load=1#038;ssl=1'
-        - 'https://www.bloomberg.com/news/articles/2019-10-17/facebook-warns-washington-that-beijing-wins-if-libra-plan-fails'
-        - 'https://technode.com/2019/06/28/facebook-libra-replicate-wechat-pay/'
-        - 'https://technode.com/2019/06/28/facebook-libra-replicate-wechat-pay/embed/#?secret=YZ7Ib7uotv'
-        - 'https://technode.com/2019/09/06/central-bank-issued-digital-currency-will-resemble-facebooks-libra-official/'
-        - 'https://technode.com/2019/09/24/chinese-yuan-excluded-from-facebooks-libra-currency-basket-report/'
-        - 'https://www.fxstreet.com/cryptocurrencies/news/taiwan-should-embrace-libra-says-foxconn-founder-201910160926'
-      text: |2
-
-                          (Image credit: BigStock/World Image)
-                        In a recent interview, the head of Facebook’s Libra David Marcus warned that China’s digital payment system could be a real threat to US influence if regulators decide to stifle Libra, its stablecoin project.
-                        China is racing ahead with the development of its central bank-issued digital fiat money even as US officials are trying to figure out how to regulate Libra, he added.
-                        Why it matters: The Chinese central bank began accelerating development of a digital payment system that could eventually replace its fiat currency after Facebook released in June a whitepaper on its stablecoin project.
-                        Facebook previously said it aims to launch Libra by next year. However, more recently it has seen overwhelming opposition from finance regulators in a number of European and Asian countries, as well as at home in the US.
-                        The Chinese central bank meanwhile has been very vocal about the development of its digital currency/electronic payment system (DC/EP), though officials have not set a timetable for its release.
-                        The DC/EP, designed to have a global reach, could help establish the Chinese yuan’s dominance. US officials have raised concerns about the Chinese yuan’s growing stature as a reserve currency amid the months-long trade war with China.
-                        Details: If the US fails to come up with a good answer to digital currency in the next five years, the future will be China “re-wiring” a large part of the world, Marcus said in a recent interview with Bloomberg.
-                        This could mean “a whole part of the world completely blocked from US sanctions and protected from US sanctions and having a new digital reserve currency,” Marcus said.
-                          Can Facebook’s Libra replicate WeChat Pay’s digital payment dominance?
-                        Context: Libra started a global conversation on digital currency adoption. However, it has received pushback from central banks around the world who fear that it may bring disruption to the current financial system.
-                        Chinese central bank official said last month that its self-developed digital currency will bear some resemblance to Facebook’s Libra, which is likely to be banned in China once launched.
-                        A quarter of the companies⁠—including Visa, Mastercard, and Paypal⁠—that initially agreed to take part in oversight have backed out. In September, Facebook revealed that the currency basket which will underpin Libra is absent the Chinese yuan.
-                        Amid pushback, the controversial stablecoin project recently received some support from Foxconn founder Terry Gao who recently said that China’s likely refusal of Libra creates an opportunity for Taiwan to “become a place where the two separate systems converge.”
-  '4':
-    html:
-      attr:
-        - 'https://support.apple.com/en-gb/HT201466'
-        - 'https://support.apple.com/en-gb/HT202186'
-        - 'https://support.apple.com/en-gb/HT201466'
-        - '#'
-        - 'https://tv.apple.com/gb/movie/spider-man-into-the-spider-verse/umc.cmc.4a2ypxddplsdsahwxrc5fkz4x'
-        - 'https://support.apple.com/en-gb/accessibility/iphone-ipad'
-        - 'https://support.apple.com/en-gb/guide/iphone/welcome/ios'
-        - 'https://itunes.apple.com/gb/book/iphone-user-guide-for-ios-10/id1134772174?mt=11&ls=1&v0=www-us-accessibility-iphone-hearing-book-iphone-user-guide'
-        - 'http://apple.com/euro/accessibility/resources/iphone/docs/iPhone_iOS_12_brf.zip'
-        - 'http://lighthouse-sf.org/shop/'
-        - 'http://apple.com/uk/iphone/'
-        - 'http://apple.com/uk/shop/goto/buy_iphone/iphone_xr'
-        - 'http://apple.com/uk/iphone-xr/'
-        - 'http://apple.com/uk/shop/goto/buy_iphone/iphone_8'
-        - 'http://apple.com/uk/accessibility/mac/hearing/'
-        - 'http://apple.com/uk/accessibility/ipad/hearing/'
-        - 'http://apple.com/uk/accessibility/watch/hearing/'
-        - 'http://apple.com/uk/accessibility/tv/hearing/'
-      text: "\n              iPhone makes it easy to stay in the conversation if you’re deaf or hard of hearing. It supports Textphone calls without the need for Textphone hardware. Made for iPhone hearing aids make it easy to personalise sound settings to your location. And Live Listen helps you have better conversations in loud places.\n                          Made for iPhone hearing aids\n                    Apple has worked with top manufacturers to create hearing aids and sound processors designed specifically for iPhone and iPad. These advanced hearing devices provide outstanding sound quality, offer many helpful features, and are as easy to set up and use as any other Bluetooth device. You can quickly access the features and settings of your paired hearing device by triple-clicking the Home button. Glance at the battery status or change the left and right volume, together or separately. And quickly apply your audiologist’s environmental presets as you go outdoors or enter noisy locations, like restaurants, without having to rely on additional remotes.\n                    Explore all models of Made for iPhone hearing aids\n                    Explore the US FCC’s hearing-aid compatibility (HAC) ratings of iPhone\n                    Learn how to set up Made for iPhone hearing aids\n                        Made for iPhone hearing aids\n                    Made for iPhone hearing aids, sound processors and now AirPods can help you have better conversations in loud places. Just turn on the Live Listen feature and move your iPhone towards the people you’re talking to.1 Live Listen uses the microphone to pick up what they’re saying more clearly.\n                    The Noise app tracks decibel levels of the ambient sounds around you, helping you identify when the levels could negatively impact your hearing. The information is stored in the Health app so you can refer to your data whenever you need\_it.\n                    When you’re using headphones, you may miss some audio if you’re hard of hearing or deaf in one ear. That’s because stereo recordings usually have distinct left- and right-channel audio tracks. iOS can help by playing both audio channels in both ears, and letting you adjust the balance for greater volume in either ear, so you won’t miss a single note of a concerto or word of an audiobook.\n                    You can use your iPhone to make and receive Textphone calls without the need for Textphone hardware. Transcripts for Textphone calls are saved in the call history of the Phone app. And there’s even a special keyboard that includes shortcut keys for common Textphone prompts such as “GA” and\_“SK”.\n                    iPhone lets you know when something’s up, in a way you’ll notice. It delivers both visual and vibrating alerts for incoming phone and FaceTime calls, new text messages, new and sent mail, and calendar events. You can set an LED light flash for incoming calls and alerts. Or have incoming calls display a photo of the caller. Choose from different vibration patterns or create your\_own.\n                          Type to Siri on iPhone\n                    Siri helps you with the things you do every day.2 And in iOS\_11 or later, there’s an accessibility option to set Siri to “Type to Siri” mode. You can use your onscreen keyboard to ask questions, set up reminders, issue commands and more.\n                        Type to Siri on iPhone\n                          FaceTime on iPhone\n                    Catch every gesture and facial expression — from raised eyebrow to ear-to-ear smile. High-quality video and a fast frame rate make FaceTime ideal for people who communicate using sign language. And because Mac, iPhone, iPad and iPod\_touch all come equipped with FaceTime, you can talk to iOS, iPadOS and macOS users across the street or across the globe.3\n                    iMessage lets you start up a conversation without needing to say or hear a word. Send unlimited messages to anyone on an iPhone, iPad, iPod\_touch, Apple\_Watch or Mac. Or send a group message to keep everyone in the loop. You can also share photos, videos, locations, links or the occasional smiley.4\n                        FaceTime on iPhone\n                          Closed Captions on iPhone\n                        Spider-Man: Into the Spider-Verse is available on the Apple\_TV\_app\n                    Watch films, TV programmes and podcasts with closed captions. Just look for the CC icon to buy or rent captioned films from the iTunes Store or find captioned podcasts in iTunes\_U. Download straight to your iPhone to watch on the go. iOS also supports open captions and subtitles. You can even customise captions with different styles and fonts, including styles that are larger and outlined for better legibility. For those who are deaf-blind, iPhone lets VoiceOver users access closed caption and subtitle tracks through their Braille displays.\n                        Closed captions on iPhone\n                      Spider-Man: Into the Spider-Verse is available on the Apple\_TV\_app\n                      Support\n                            Apple Accessibility Support\n                        Learn more\n                      User Guides\n                            iPhone User Guide (Tagged HTML)\n                        Learn more\n                            iPhone User Guide (Apple\_Books)\n                        Open in Apple\_Books\n                            iPhone User Guide (Braille)\n                        Download Unified English Braille version\n                        Or order an embossed copy\n            From the Home screen, go to Settings and select General.\n            Select Accessibility.\n            Select and turn on the features you want to\_use.\n        Shop iPhone\n              iPhone XR\n                Buy\n                Learn more\n              iPhone 8\n                Buy\n            Mac\n            iPad\n            Watch\n            TV\n"
-  '5':
-    html:
-      attr:
-        - 'https://files.pitchbook.com/website/files/jpg/wework_chart_2.jpg'
-        - 'https://pitchbook.com/profiles/company/62181-28'
-        - 'https://pitchbook.com/profiles/advisor/13240-18'
-        - 'https://pitchbook.com/profiles/advisor/10716-13'
-        - 'https://pitchbook.com/profiles/company/40692-61'
-        - 'https://pitchbook.com/profiles/advisor/10072-54'
-        - 'https://files.pitchbook.com/website/files/jpg/wework_table_2.jpg'
-        - 'https://pitchbook.com/profiles/company/51136-75'
-        - 'https://pitchbook.com/profiles/company/51261-67'
-        - 'https://pitchbook.com/profiles/company/51145-39'
-        - 'https://pitchbook.com/profiles/company/52950-43'
-        - 'https://pitchbook.com/profiles/company/51777-73'
-        - 'https://pitchbook.com/profiles/company/51081-40'
-        - 'https://pitchbook.com/profiles/company/137065-51'
-        - 'https://pitchbook.com/profiles/company/61931-08'
-      text: "\n  Managers of big mutual funds seldom expose their stock-laden portfolios to the highly illiquid private markets, but some of the fund industry's biggest players have drawn scrutiny in recent years for aggressive bets on some of Silicon Valley's boldest unicorns.\n  A series of flops by high-profile venture-backed companies journeying to the IPO market this year is a telling reminder of the risks that fund managers have accepted by blending a few high-flying private assets with their more staid publicly traded stocks.\n  WeWork's disastrous attempt at going public is the latest and most dramatic data point yet for widely held mutual fund companies like Fidelity, Vanguard and John Hancock that tagged lofty valuations on their shares in the co-working space provider. As of June 30, the top 10 mutual funds collectively owned WeWork shares worth almost $470 million, based on the fund managers' valuations, according to a PitchBook analysis of the most recent data available for that period.\n  Now those valuations are poised for a massive downward adjustment.\n  To stave off a cash crisis, WeWork is currently on life support after accepting a rescue package of financing from SoftBank that comes with a new valuation of $8 billion, or $19.19 a share.\n  That's a small fraction of the lofty levels that SoftBank and other investors placed on WeWork in late 2018—long before the company's doomed IPO.\n  Fund managers, however, have attached a wide range of valuations to WeWork. Hartford, John Hancock, and Principal put the company at an implied value of $42 billion, or $110 a share, in November of last year. Meanwhile, T. Rowe Price and Fidelity, the largest US fund manager, had implied valuations of $25 billion and $28 billion, respectively.\n  It's unclear whether mutual funds sold any of their WeWork shares as part of SoftBank's\_new financing. Later this month, fund managers are expected to begin disclosing their updated statements on their portfolio holdings as of Sept. 30—weeks before SoftBank took control of WeWork.\n  Most funds tend to shy away from private assets in part because of their need to maintain enough liquidity to accommodate a potential wave of investors seeking redemptions.\n  Only 5.8% of funds held some form of private assets as of December 2017, according to a study by fund tracker Morningstar. (PitchBook is a Morningstar company.)\_Those that do make private investments usually have well under 5% of their portfolio exposed to such companies, and that figure is capped by regulators at a maximum of 15%.\n  Fidelity, T. Rowe Price and Hartford funds in recent years have made the industry's biggest commitments to private-market shares, as managers sought higher returns in an era with fewer new stocks coming onto the public markets. Since 2015, that has led fund managers to buy into many of Silicon Valley's hottest, high-growth startups like Uber, Airbnb, Dropbox, Pinterest and Slack.\n  Representatives of Fidelity, John Hancock, T. Rowe Price and other big mutual funds holding WeWork shares declined to comment about individual stocks in their portfolios. But they said that investment committees using proprietary methods establish the fund company's price benchmarks and review them on a quarterly basis. SoftBank didn't respond to a request for comment.\n  Mutual fund managers making such investments are walking a fine line between traditional fund management and more aggressive, riskier forms of alternative investments outside their core competency, said Derek Hageman, a financial analyst with the American Association of Individual Investors, an educational group based in Chicago.\n  \"They're not VCs. They're not PE investors. They're mutual funds,\" Hageman said.\n  To be sure, although fund managers are bracing for a mighty markdown on their WeWork stakes, such shares make up a relatively small allocation in heavily diversified portfolios, so their overall negative impact is limited.\n  Fidelity's Contrafund, a large-growth fund with assets of almost $115 billion, initially invested about $214 million in WeWork in 2015 with a purchase of 6.5 million shares at $32.89 apiece, according to Contrafund's monthly fund disclosure.\n  More than a year later, the fund added 2.2 million shares priced at $50.19 and then took some profits with two separate rounds of share sales, resulting in a realized gain of about 58%. Factoring in WeWork's newest financing and a share price of $19.19, Contrafund's shares are facing a 43% discount to their original purchase price. Even with realized gains from earlier partial sales, Contrafund still faces a loss of 29% on its overall position since its entry into WeWork.\n  All the while,\_Contrafund currently has an 18% return year-to-date, according to Morningstar. Other notable private companies in Contrafund's portfolio as of Aug. 30 included vacation rentals platform Airbnb, genetic-testing specialist 23andMe and direct-to-consumer shoe company Allbirds.\n  The results look a bit rosier at Vanguard's US Growth Fund, which first bought 517,000 shares of WeWork at a more appealing entry point of $16.65. Vanguard already has sold 33,000 shares at $51.81, but its last available valuation put its WeWork shares at $68, which would represent an unrealized loss of 72%, assuming a newly reset valuation of $19.19 per share.\n  In light of Wall Street's sour reception of deals this year from the likes of WeWork, Uber and Peloton, fund managers may see some fresh criticism about whether they applied adequate screening of private assets in line with industry practices.\n  \"Even if a fund manager invests a relatively modest amount of capital in private placements, the kinds of companies that manager invests in says something about his or her process,\" said Alec Lucas, a senior analyst with Morningstar.\n  He said that enough concerns had emerged about WeWork's business model that \"one has reason to question the level of due diligence\" and judgment the funds have applied.\n  \"Even the best active managers make mistakes,\" said Lucas, \"but some mistakes are more telling than others. Investing in WeWork is a telling mistake.\"\n"
-  '6':
-    html:
-      attr:
-        - 'https://stratechery.com/wp-content/uploads/2017/10/IMG_0017-1024x421.jpg'
-        - 'https://stephenfollows.com/how-many-films-are-released-each-year/'
-        - 'https://stephenfollows.com/how-many-films-are-released-each-year/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/How-many-films-are-released-in-US-cinemas.png'
-        - 'https://stephenfollows.com/how-many-films-are-released-each-year/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/Number-of-studio-and-non-studio-films-released-in-US-cinemas.png'
-        - 'https://www.nytimes.com/2017/10/05/us/harvey-weinstein-harassment-allegations.html'
-        - 'https://www.nytimes.com/2017/10/06/business/media/harvey-weinsteins-media-enablers.html'
-        - 'https://www.thewrap.com/media-enablers-harvey-weinstein-new-york-times/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-16-at-8.15.30-PM.png'
-        - 'http://www.drudgereportarchives.com/data/2002/01/17/20020117_175502_ml.htm'
-        - 'http://www.drudgereportarchives.com/data/2002/01/17/20020117_175502_ml.htm'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/cf0.jpg'
-        - 'http://s1.q4cdn.com/156149269/files/doc_financials/annual/2004NYTannual.pdf'
-        - 'http://www.slate.com/articles/arts/the_hollywood_economist/2005/06/dumb_money.html'
-        - 'https://stratechery.com/2017/the-great-unbundling/'
-        - 'https://stratechery.com/wp-content/uploads/2017/01/IMG_0113-1024x353.png'
-        - 'https://stratechery.com/2017/the-great-unbundling/'
-        - 'http://www.aei.org/publication/creative-destruction-newspaper-ad-revenue-continued-its-precipitous-free-fall-in-2014-and-its-likely-to-continue/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-16-at-10.42.49-PM.png'
-        - 'http://s1.q4cdn.com/156149269/files/doc_financials/annual/2016/Final-Web-Ready-Bookmarked-Annual-Report-(1).pdf'
-        - 'https://www.nytimes.com/projects/2020-report/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-16-at-9.15.22-PM.png'
-        - 'https://www.nytimes.com/projects/2020-report/'
-        - 'https://www.recode.net/2015/9/9/11618426/new-york-times-editor-dean-baquet-says-its-his-job-to-publish-more'
-        - 'https://www.nytimes.com/2015/08/16/technology/inside-amazon-wrestling-big-ideas-in-a-bruising-workplace.html'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/IMG_0018-1024x591.jpg'
-        - 'https://www.newyorker.com/news/news-desk/from-aggressive-overtures-to-sexual-assault-harvey-weinsteins-accusers-tell-their-stories'
-        - 'http://www.the-numbers.com/market/'
-        - 'http://www.the-numbers.com/market/'
-        - 'https://stratechery.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-16-at-10.01.39-PM.png'
-        - 'https://youtube.googleblog.com/2017/02/you-know-whats-cool-billion-hours.html'
-        - 'https://seekingalpha.com/article/4040406-alphabet-goog-q4-2016-results-earnings-call-transcript?part=single'
-        - 'https://stratechery.com/2016/the-voters-decide/'
-        - 'https://stratechery.com/2016/the-voters-decide/'
-        - 'https://stratechery.com/wp-content/uploads/2016/03/Screen-Shot-2016-03-03-at-12.35.04-AM-1024x339.png'
-        - '#footnote_0_2778'
-        - 'https://stratechery.com/2017/defining-aggregators/'
-        - '#identifier_0_2778'
-      text: "\n                I’d be remiss in not stating the obvious: Harvey Weinstein is a despicable human being, who did evil things. It’s worth noting, though, the structure of Hollywood that made it possible for him to do so much evil with such frequency for so long.\n                The Structure of Hollywood\n                There has always been a large “supply” of movie actors, directors, script writers, etc.; Los Angeles is famous for being a city of transplants, particularly young men and women eager to make a go of it in show business, certain their breakthrough opportunity is the next audition, the next script, the next movie pitch.\n                The supply of movies, though, is limited. These two charts from Stephen Follows tell the story. First, the number of feature films:\n                Then, the number of studio versus non-studio films:\n                Back in 1980, shortly after the creation of Weinstein’s Miramax production company, there were just over 100 movies release in US cinemas a year; in 2016, there were 736, but for “wide Studio releases” — Weinstein’s territory — there were only 93. Suppose there are five meaningful acting jobs per movie: that means there are only about 500 meaningful acting jobs a year. And Weinstein not only decided who filled many of those 500 roles, he had an outsized ability to affect who filled the rest by making or breaking reputations.\n                Weinstein was a gatekeeper, presented with virtually unlimited supply while controlling limited distribution: those that wished to reach consumers had to accede to his demands, no matter how criminally perverse they may have been. Lauren O’Connor, an employee at the Weinstein Company, summed up the power differential that resulted in an internal memo uncovered by the New York Times:\n                  I am a 28 year old woman trying to make a living and a career. Harvey Weinstein is a 64 year old, world famous man and this is his company. The balance of power is me: 0, Harvey Weinstein: 10.\n                What made Hollywood’s structure particularly nefarious was the fact that selecting actors is such a subjective process. Movies are art — what appeals to one person may not appeal to another — making people like Weinstein cultural curators. If he were to not select an actor, or purposely damaged their reputation through his extensive contacts with the press, they wouldn’t have a chance in Hollywood. After all, there were many others to choose from, and no other routes to making movies.\n                All the News That’s Fit to Print\n                Jim Rutenberg, the New York Times’ media columnist, highlighted Weinstein’s press contacts in a follow-up piece entitled Harvey Weinstein’s Media Enablers:\n                  The real story didn’t surface until now because too many people in the intertwined news and entertainment industries had too much to gain from Mr. Weinstein for too long. Across a run of more than 30 years, he had the power to mint stars, to launch careers, to feed the ever-famished content beast. And he did so with quality films that won statuettes and made a whole lot of money for a whole lot of people.\n                Sharon Waxman, a former reporter for the New York Times, said on The Wrap that the New York Times itself belonged on that list:\n                  I simply gagged when I read Jim Rutenberg’s sanctimonious piece on Saturday about the “media enablers” who kept this story from the public for decades…That’s right, Jim. No one — including The New York Times. In 2004, I was still a fairly new reporter at The New York Times when I got the green light to look into oft-repeated allegations of sexual misconduct by Weinstein…The story I reported never ran.\n                  After intense pressure from Weinstein, which included having Matt Damon and Russell Crowe call me directly to vouch for Lombardo and unknown discussions well above my head at the Times, the story was gutted. I was told at the time that Weinstein had visited the newsroom in person to make his displeasure known. I knew he was a major advertiser in the Times, and that he was a powerful person overall.\n                Weinstein’s alleged pressuring of the New York Times —\_and his ability to influence the media generally — rested on the fact that the media is also a gatekeeper. The New York Times still brags as such in its print edition:\n                “All the News That’s Fit to Print” is rather clear about how the New York Times’ views itself: the arbiter — that is gatekeeper — of what news ought to be consumed by the public. In truth, though, by 2004 that gatekeeper role was already breaking down; perhaps the most famous example involved another set of allegations of sexual misconduct, when in 1998 the Drudge Report reported the news that Newsweek wouldn’t:\n                The gate could not hold.\n                The Structure of Newspapers\n                After Waxman’s post, New York Times’ editor-in-chief Dean Baquet argued that “it is unimaginable” that her story was killed due to pressure from Weinstein; in fact, though, an examination of the structure of the newspaper business suggests it is quite imaginable.\n                In 2004, the New York Times had $3.3 billion in revenue, up 2.4% year-over-year. That increase, though, belied deeper problems: circulation had dropped a percentage point year-over-year; revenue growth came from a 6% increase in adverting rates. Advertising was the New York Times’ primary revenue source, accounting for 66% of total revenue, and given that in 2003 the average Hollywood movie spent an average of $34.8 million in advertising, some portion of that undoubtedly came from Weinstein specifically.\n                The reason that circulation decline suggested a problem is that the ability of the New York Times and other newspapers to command advertising depended on being a gatekeeper: advertisers didn’t take out newspaper ads because they loved newspapers, they took out newspaper ads because it was an effective way to reach potential customers:\n                “Gatekeeper” is another way to say “integrator”, and as I have explained previously, the key to the newspaper business model was controlling distribution and integrating editorial content and ads. In 2004, though, that integration was the verge of falling apart; the Internet meant advertisers would reach customers directly. It had already happened with Craigslist and classifieds, and first ad networks and then social networks would do the same to display ads, causing newspaper advertising revenue to plummet to levels not seen since the 1950s:\n                2004 came after that first Craigslist-inspired decline, and it’s all too easy to imagine Weinstein’s threats having their intended effect.\n                Journalism Worth Paying For\n                The ultimate credit for the New York Times story goes first and foremost to the women willing to go on the record, and then to Jodi Kantor and Megan Twohey, the reporters who investigated and wrote it. If Waxman’s allegations are true, though, then it’s worth pointing out that the New York Times is in a very different place than it was in 2004.\n                Last year the New York Times had $1.6 billion in revenue, a 53% decrease from 2004. Critically, though, the source of that revenue had flipped on its head: advertising accounted for only 37% of revenue, while circulation was 57%, up from 54% in 2015, and only 27% in 2004; by all account circulation is up significantly more in 2017.\n                That image is from the company’s 2020 strategy report, which declared that the editorial product should align with the company’s focus on subscriptions; Baquet told Recode that it was his job “to do as many ‘Amazons’ as possible”, referring to the paper’s investigative report on Amazon’s working conditions. Certainly this Weinstein piece fits: whatever expenses the New York Times spent reporting this story will be more than made up in the burnishing of the company’s reputation for journalism that is worth paying for.\n                Admittedly, “Journalism worth paying for” doesn’t have the same ring as “All the News That’s Fit to Print”, but it is a far better descriptor of the New York Times’ new business model:\n                In a world where the default news source is the Facebook News Feed, the New York Times is breaking out of the inevitable modularization and commodification entailed in supplying the “news” to the feed. That, in turn, requires building a direct relationship with customers: they are the ones in charge, not the gatekeepers of old —\_even they must now go direct.\n                YouTube and the Movies\n                In the aftermath of the New York Times report (and another from The New Yorker), various stories have alluded to the fact that Weinstein has less power than he used to. I can’t say I know enough about the particulars of Hollywood to know whether that it true in a relative sense, but there’s no question movies are less important than ever before. Indeed, the industry looks a lot like newspapers in 2004; revenue is increasing due to higher prices, even as the number of movie-goers steadily declines (graph from The Numbers):\n                Meanwhile, more and more cachet — and star power — is flowing to serialized television, particularly distributors like Netflix and HBO that go directly to customers. And don’t forget YouTube: video is a zero sum activity — time spent watching one source of video is time not spent watching another — and YouTube showed over a billion hours of video worldwide every day in 2016.\n                YouTube represents something else that is just as important: the complete lack of gatekeepers. Google CEO Sundar Pichai said on an earnings’ call earlier this year that “Every single day, over 1,000 creators reached the milestone of having 1,000 channel subscribers.” That is an astounding number in its own right; what is even more remarkable is that while Hollywood has only ~3,500 acting slots a year (including all movies, not just major studios), YouTube creates 100 times as many “stars” over the same time period.\n                The End of Gatekeepers\n                It is easy to see the downsides of the destruction of gatekeepers; in 2016, before the election, I explained how the collapse of media gatekeepers meant the collapse of political gatekeepers. From The Voters Decide:\n                  There is no one dominant force when it comes to the dispersal of political information, and that includes the parties described in the previous section. Remember, in a Facebook world, information suppliers are modularized and commoditized as most people get their news from their feed. This has two implications:\n                  All news sources are competing on an equal footing; those controlled or bought by a party are not inherently privileged\n                  The likelihood any particular message will “break out” is based not on who is propagating said message but on how many users are receptive to hearing it. The power has shifted from the supply side to the demand side\n                  This is a big problem for the parties as described in The Party Decides. Remember, in Noel and company’s description party actors care more about their policy preferences than they do voter preferences, but in an aggregated world it is voters aka users who decide which issues get traction and which don’t. And, by extension, the most successful politicians in an aggregated world are not those who serve the party but rather those who tell voters what they most want to hear.\n                I can imagine there are many that long for the days when the media — and by extension the parties — could effectively determine presidential nominees. The Weinstein case, though, is a reminder of just how rotten gatekeepers can be. Their very structure is ripe for abuse by those in power, and suppression of those wishing to break through; consumers, meanwhile, are taken for granted.\n                For my part, I’m thankful such structures are increasingly untenable: perhaps the New York Times didn’t spike that 2004 story because of pressure from Weinstein, but there’s no doubt that for decades “All the News That’s Fit to Print” was shamefully deficient in reporting about news and groups that weren’t on the radar of New York newspaper editors. And, selfishly, I wouldn’t have the career I do without the absence of gatekeepers: anyone can set up a website and send an email and instantly compete with the New York Times and everyone else for attention and subscription dollars.\n                Most importantly, though, the end of gatekeepers is inevitable: the Internet provides abundance, not scarcity, and power flows from discovery, not distribution.1 We can regret the change or relish it, but we cannot halt it: best to get on with making it work for far more people than gatekeepers ever helped — or harassed.\n                And fortunately, to date, those that own distribution —\_the aggregators —\_have tried to be neutral; that’s a good thing [↩]\n"
-  '7':
-    html:
-      attr:
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Review.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Review_thumb.jpg'
-        - 'https://www.dcrainmaker.com/2018/09/the-new-polar-vantage-series-everything-you-ever-wanted-to-know.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Precision-Prime-Optical-Sensor.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Precision-Prime-Optical-Sensor_thumb.jpg'
-        - 'https://www.polar.com/vantage/updates'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Basics.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Basics_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Left-Buttons.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Left-Buttons_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Right-Buttons.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Right-Buttons_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2018/09/DSC_0366.jpg'
-        - 'https://media.dcrainmaker.com/images/2018/09/DSC_0366_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-HR-Watch-Face.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-HR-Watch-Face_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Watch-Face.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Watch-Face_thumb-1.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Workout-Watch-Face.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Workout-Watch-Face_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Heart-Rate-Stats.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Heart-Rate-Stats_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Dash-1.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Dash-1_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Dash-2.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Activity-Dash-2_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/image.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.01.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.01_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.04.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.04_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5819.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5819_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Continous-HR.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Continous-HR_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.42.31.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.42.31_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.01-1.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.33.01_thumb-1.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.42.59.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.42.59_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.06.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.06_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.10.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.10_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.17.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.43.17_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Manual-Sync.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Manual-Sync_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2018/12/image_thumb-19.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Settings1.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Settings1_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Settings2.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Settings2_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.46.43.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.46.43_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.45.54.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.45.54_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sports-Basics.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sports-Basics_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.50.47.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.50.47_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.51.16.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.51.16_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.51.54.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.51.54_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.52.05.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-14.52.05_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5850.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5850-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5846.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5846-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5847.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5847-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5849.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5849-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sensors.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sensors_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sensors-2.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Sensors-2_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vatage-M-Workout-Start.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vatage-M-Workout-Start_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Structured-Workout.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Structured-Workout_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Pool-Selection.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Pool-Selection_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Pool-Selection-Sizes.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Pool-Selection-Sizes_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Cycling-Sensors.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Cycling-Sensors_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Paused.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Paused_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5865.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5865-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5866.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5866-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5867.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5867-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5858.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5858-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5859.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5859-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5860.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5860-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5861.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5861-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5862.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5862-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5864.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5864-200x132.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.07.46.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.07.46_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.07.51.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.07.51_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.08.09.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-02-01-15.08.09_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Interval-Workout.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Interval-Workout_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load-Detail-1.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load-Detail-1_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load-Detail-2.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Training-Load-Detail-2_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.10.54-7.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.10.54_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.10.58.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.10.58_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.11.14.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.11.14_thumb.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.13.33.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/2019-01-31-12.13.33_thumb.png'
-        - 'https://analyze.dcrainmaker.com/#/public/565f4ddc-3f2f-4090-752c-32f15935eea3'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-1.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-1.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-2.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-2.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-3.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-3.png'
-        - 'https://analyze.dcrainmaker.com/#/public/68be41ec-6bc9-44fc-7ff1-4db39bebf9a8'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-4.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-4.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-5.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-5.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-6.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-6.png'
-        - 'https://analyze.dcrainmaker.com/#/public/e50990dd-e9d4-4bcf-57a0-822ca525a949'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-7.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-7.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-8.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-8.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-9.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-10.png'
-        - 'https://analyze.dcrainmaker.com/#/public/40d39a80-8dea-4894-703a-8533b4667ab5'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-10.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-11.png'
-        - 'https://analyze.dcrainmaker.com/#/public/d11413b6-7120-45c8-79ba-f577e6639b50'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-11.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-12.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-12.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-13.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-13.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-14.png'
-        - 'https://analyze.dcrainmaker.com/#/public/19a4c1f4-680d-4168-64fd-7b9c7659e59b'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-14.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-15.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-15.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-16.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-16.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-17.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-17.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-18.png'
-        - 'https://www.dcrainmaker.com/2013/12/exclusive-branded-openwater.html'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5748.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5748_thumb.jpg'
-        - 'https://analyze.dcrainmaker.com/#/public/96c118a5-d0b5-4ae5-4061-7d220237b488'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-18.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-19.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-19.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-20.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-20.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-21.png'
-        - 'https://analyze.dcrainmaker.com/#/public/32440464-f496-4b5a-5601-d4c08308a08a'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-21.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-22.png'
-        - 'http://www.dcrainmaker.com/analyzer'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Optical-HR.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Optical-HR_thumb.jpg'
-        - 'https://www.dcrainmaker.com/2019/01/garmin-hrm-dual-heart-rate-strap-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2017/01/polar-shows-off-gopro-camera-control-new-h10-heart-rate-strap.html'
-        - 'https://www.dcrainmaker.com/2014/01/wahoo-fitness-tickr.html'
-        - 'https://www.dcrainmaker.com/2018/01/scosches-rhythm-24-optical-hr-sensor.html'
-        - 'https://www.dcrainmaker.com/2017/09/hands-on-polars-oh1-standalone-optical-hr-sensor.html'
-        - 'https://www.dcrainmaker.com/analyzer'
-        - 'https://analyze.dcrainmaker.com/#/public/565f4ddc-3f2f-4090-752c-32f15935eea3'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-37.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-36.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-38.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-37.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-39.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-38.png'
-        - 'https://analyze.dcrainmaker.com/#/public/6ccd5942-240f-458c-4651-040f70eb9d56'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-40.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-39.png'
-        - 'https://analyze.dcrainmaker.com/#/public/40d39a80-8dea-4894-703a-8533b4667ab5'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-45.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-44.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-46.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-45.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-47.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-46.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-48.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-47.png'
-        - 'https://analyze.dcrainmaker.com/#/public/d11413b6-7120-45c8-79ba-f577e6639b50'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-41.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-40.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-43.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-42.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image-44.png'
-        - 'https://media.dcrainmaker.com/images/2019/01/image_thumb-43.png'
-        - 'https://analyze.dcrainmaker.com/#/public/96c118a5-d0b5-4ae5-4061-7d220237b488'
-        - 'https://media.dcrainmaker.com/images/2019/02/image-22.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/image_thumb-23.png'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Updates.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Updates_thumb.jpg'
-        - 'https://www.polar.com/vantage/updates'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5908.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5908_thumb.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5909.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/DSC_5909_thumb.jpg'
-        - 'https://www.polar.com/en/vantage/updates'
-        - 'https://media.dcrainmaker.com/images/2018/12/DSC_0289-3.jpg'
-        - 'https://media.dcrainmaker.com/images/2018/12/DSC_0289-3_thumb.jpg'
-        - 'https://www.dcrainmaker.com/product-comparison-calculator'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2018/10/garmin-instinct-gps-watch-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2017/10/garmin-vivoactive-3-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - '#'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.amazon.com/Polar-Vantage-Multisport-Watch-Medium/dp/B07HCDMLXM/ref=as_li_ss_tl?ie=UTF8&qid=1542208224&sr=8-2&keywords=polar+vantage+m&linkCode=ll1&tag=dcr07-20&linkId=40ece4cff3f3f120de3edace306334c0&language=en_US'
-        - 'https://www.amazon.com/Polar-Vantage-Multisport-Watch-Black/dp/B07HC9TVFC/ref=as_li_ss_tl?ie=UTF8&qid=1542208229&sr=8-1&keywords=polar+vantage+v&linkCode=ll1&tag=dcr07-20&linkId=f3fee3524b2844828e46239a378788d5&language=en_US'
-        - 'https://www.amazon.com/Suunto-Spartan-Trainer-Wrist-Heart/dp/B01MFC278E/ref=as_li_ss_tl?ie=UTF8&qid=1504649165&sr=8-1&keywords=Suunto+Spartan+Trainer&linkCode=ll1&tag=dcr07-20&linkId=2ea45dd6ec6734cfb9ac70f1eb88093b'
-        - 'https://amzn.to/33WIVgo'
-        - 'http://www.dcrainmaker.com/clever-training-vip'
-        - 'https://www.clevertraining.com/polar-vantage-m-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'https://www.clevertraining.com/polar-vantage-v-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'http://www.clevertraining.com/suunto-spartan-trainer-wrist-heart-rate-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'http://www.clevertraining.com/garmin-forerunner-735xt-gps-running-multisport-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'http://www.clevertraining.co.uk/suunto-spartan-trainer-wrist-heart-rate-gps-watch?acc=cfcd208495d565ef66e7dff9f98764da'
-        - 'http://www.clevertraining.co.uk/garmin-forerunner-735xt-gps-running-multisport-watch?acc=cfcd208495d565ef66e7dff9f98764da'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/2019/02/polar-vantage-m-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2018/12/polar-vantage-v-multisport-review.html'
-        - 'https://www.dcrainmaker.com/2017/08/spartan-trainer-wrist-hr-review.html'
-        - 'https://www.dcrainmaker.com/2016/06/garmin-forerunner-735xt-in-depth-review.html'
-        - 'https://www.dcrainmaker.com/product-comparison-calculator'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Zones.jpg'
-        - 'https://media.dcrainmaker.com/images/2019/02/Polar-Vantage-M-Zones_thumb.jpg'
-        - 'https://www.clevertraining.com/polar-vantage-m-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'https://media.dcrainmaker.com/images/2017/02/CT_Couponcode_2.jpg'
-        - 'https://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=dcr07-20&marketplace=amazon&region=US&placement=B00RE1UL52&asins=B07HCDMLXM&linkId=H7VUF6FYMJ6ZU3MZ&show_border=true&link_opens_in_new_window=true'
-        - 'https://www.clevertraining.com/polar-vantage-m-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'https://www.clevertraining.com/polar-vantage-v-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'https://www.clevertraining.com/polar-vantage-m-gps-watch?acc=1679091c5a880faf6fb5e6087eb1b2dc'
-        - 'http://www.amazon.com/gp/redirect.html?ie=UTF8&tag=dcr07-20'
-      text: "\n      It’s been nearly five months since Polar first announced the Vantage series watches, including the Vantage M and Vantage V.\_ You probably saw my Vantage V review a couple months back. Since then I’ve transitioned to using the less expensive sibling, the Vantage M for the past 2.5 months. Every run, ride, swim, and 24×7 as well. Lots and lots of time – all in the pursuit of this review (and justification for eating more cookies too of course).\n      The Vantage M is priced significantly lower than the Vantage V – $279 versus $499, making it potentially far more compelling. But it also lacks some of the fancier Vantage V features – such as a built-in running power meter, a barometric altimeter, and Polar’s Recovery Pro metrics. Still, at that price point the offering is compelling – and puts it up against Suunto’s Spartan Trainer Wrist HR. But can it compete on accuracy? And what about the other missing features? Well, I dive into that.\n      With that, note that I’ve primarily been using a media loaner from Polar of the Vantage M, though I’ve already gone out and got my own via normal retail channels. I’ll be sending back the media loaner one shortly to Polar, like I normally do. If you found this review useful, hit up the links at the end to support the site.\n      What’s new:\n      If you already know what’s new in the Vantage series, then you can likely skip this section. Whereas if you’re just walking up to the bar, then this is a good place to start understanding the unit.\n      I always like condensing everything down into a single bulleted section of newness. It helps you filter the cool stuff from the marketing fluff.\_ So let’s dive straight away into it. Fear not, down below in the ‘overview’ section I go through things in more detail too.\_ Note I’m looking at the ‘what’s new’ from the perspective primarily of the V800 (its sorta predecessor, it’s kinda more of a blend of the Polar M430 and V800).\_ Also, this list is specifically for the Vantage M:\n      – Addition of optical heart rate sensor (both for workouts and 24×7 HR), called Precision Prime\n      – Added electronic skin-contact sensor to validate a human is attached to watch\n      – Changed GPS chipset maker to that of Sony (same as what Suunto 9 uses)\n      – Changed max GPS-battery life to 30-hours at 1-second recording with optical HR too\n      – Training load metrics revamped\n      – Added both segmented real-time and post-processing of optical HR data to fix quirks (I’ll explain later)\n      – Made watch round, from rectangular shape previously\n      – Reduced weight of watch to 45g\n      The price is $279USD/EUR for the base models in orange, white, or black.\n      When it comes to the Vantage V, here’s the core differences to the Vantage M (things you won’t have in the Vantage M that are present in the Vantage V):\n      – No barometric altimeter\n      – No native running power, as it lacks a barometric altimeter (still works with 3rd party running power like Stryd though)\n      – GPS 1-second battery down to 30 hours instead of 40 hours (but seriously, that’s still incredible)\n      – Added swappable straps using industry standard quick release bands (the Vantage V doesn’t have this)\n      – Not a touch-screen, just buttons only\n      – No Recovery Pro metrics (but does have other training load metrics)\n      – Weight is a mere 45g instead of 66g for Vantage V\n      – Metal buttons/casing on Vantage V, versus plastic for Vantage M\n      But it’s not all bubbles and rainbows. The following features aren’t available on the Vantage V/M series (but were previously found on the predecessor Polar V800), but are slated to be re-added by the end of February 2019 through a handful of scheduled updates:\n      – Smartphone notifications (i.e. call/text notifications)\n      – Back to start navigation\n      – Route Guidance for waypoint navigation of downloaded routes (Vantage V only – not coming to Vantage M)\n      Meanwhile, the following features are slated to be added, but no timeline has been specified:\n      – Fitness test functionality\n      – Strava Segments\n      The following features also were on the V800, but aren’t on the Vantage series. There’s no specific/current plans to re-implement in the Vantage series:\n      – GoPro Action Cam Control\n      – Reduced GPS recording rate activities (i.e. beyond 40hrs of GPS time, the V800 also supported a reduced recording rate to 50hrs)\n      – No longer an option to use HR strap while swimming, only optical HR sensor [Older 5hz straps no longer supported]\n      Phew, got all that? Good, let’s get into things.\n      The Basics:\n      The overall interface of the Vantage M is virtually identical to that of the Vantage V – except one key bit: There’s no touch screen. Both watches have buttons though that allow you to utilize the buttons for complete navigation. And honestly, I actually prefer non-touchscreen watches when it comes to sport and fitness (notable: the Vantage V actually disables the touch screen while in a workout).\n      On the side of the Vantage M are five buttons – two on the left and three on the right:\n      One feature the Vantage M has though that the Vantage V lacks is swappable straps. You can either buy Polar’s straps, or in fact any compatible strap as well. I actually prefer the feel of the Vantage M for this very reason, as you can go in the direction of fabric straps too.\_ The orange is very Strava/Zwift-esque. I like it.\n      Meanwhile, on the back of the unit is the optical HR sensor. It’s got an astounding 9 LED’s on it, including four sets of dual red/green LED’s and one extra solo green LED.\_ And actually, there’s an unused 10th orange LED. Polar says they might use it down the road, but their testing to date isn’t showing much of a benefit from enabling it (and thus, the battery impact that comes along with it).\n      Flipping the watch back over you’ve got the various watch face dashboards. The way it works is that the date/time is shown across all faces, but the data around the face rotates through a few different metrics. For example, there’s one with your current heart rate:\n      Or, you can show one with your current activity status for the day. Or your latest workout. All of which are just accessed by pressing up/down.\n      If you select any one of these by pressing the middle red button, then you’ll get more data about that metric, such as detailed heart rate data for the day by selecting the heart rate page:\n      Or for daily activity, you can see that too. Being an activity tracker, it’ll track most of the metrics you’d expect. That includes steps, % against daily goal, calories, and ‘active time’.\_ Oddly however, you can’t see on the watch your distance walked per day or stairs – both common attributes found in inexpensive activity trackers.\n      You can see the distance metrics over on Polar Flow – desktop or mobile apps.\n      And here’s how it looks on the mobile app:\n      It’s here you can see your entire day from an activity standpoint, as well as any inactivity stamps. Though, in the last month I’ve somehow only managed to get a single – yes, just one – inactivity stamp. Mind you, as I sit here and type this very review I haven’t moved in nearly 90 minutes. Nor has it triggered on any of the 4 transatlantic/transcontinental flights I’ve taken with flight times in excess of 10 hours.\n      As part of this, you can enable continuous HR tracking. Polar leverages that massive block of optical HR sensors on the back of the unit to do that. Well, actually, they leverage a portion of them for continuous tracking, and the remainder for sport tracking:\n      (Preemptive note: This is a final production unit, it’s simply that Polar generally will stamp all media loaner/etc devices with a variant of ‘Not for Sale’. I also have a regular retail unit that doesn’t have that wording, but just happened to do my photos all on this one.)\n      Note that you’ll need to enable the 24×7 continuous optical HR tracking in the menus, by default it’s off (to save battery life):\n      Once you’ve got it enabled you’ll see 24×7 HR data displayed in the app.\n      You can also take an instantaneous HR reading at any time within the watch via the main dashboard menus, as I showed up above.\n      Next, we’ve got sleep. The unit will automatically track your sleep, inclusive of activity during sleep, as well as the time you fell asleep and woke up. For the most part, it tends to get pretty close to spot-on for me. The wake-up times seem to be a bit more tied to when you get out of bed, rather than when you wake up. For example, this morning I was lying in bed on my phone for probably 10 minutes before I got out, and it reflected the bed departure time rather than the exact wake-up time.\n      For me though, it does tend to be pretty close nonetheless.\_ All of this is also visible on their online website as well via Polar Flow. On both the site and app you can also plot weekly chunks as well:\n      When it comes to your smartphone, as of present the Vantage M has a very limited relationship with it. Sorta like someone that’s only willing to go on a lunch-time coffee date. Today you can use Polar’s Flow smartphone app (Android/iOS) to sync with the Vantage series. You can also use it to perform firmware updates wirelessly via Bluetooth Smart. There is no known WiFi in the Vantage series. There is no smartphone notifications to your watch either (that’s coming in February according to Polar).\n      I’ve had slightly better luck with syncing on the Polar Vantage M than I have with the Vantage V. The Vantage M will at least constantly sync my activity in the background, whereas the Vantage V could go days without syncing. That could well just be Polar fixing bugs on the app side more than the watch side. I will note that sometimes I find workouts don’t sync very quickly or right away, and require manual syncing.\n      To manually sync, simply hold down the lower left button for a few seconds:\n      Once those workouts do sync with the phone, they end up on Polar Flow, and then are also synced to any websites you may have authorized to receive the fitness files to – such as Strava or TrainingPeaks:\n      Finally, note that you can change a handful of settings on the watch itself. Generally speaking, companies tend to have you change settings on either the watch, a smartphone app, or via desktop site. In Polar’s case, it’s mostly via smartphone app and desktop site, with a handful of settings on the watch itself. Whereas inversely, in Garmin’s case it’s mostly on the watch itself and only a handful of settings via app. There’s no right answer (ok, there is – allowing both), so it’s really just a user preference thing.\n      On the watch side first, you can tweak things like the time and whether certain tracking features are enabled, as well as units and language:\n      Whereas on the smartphone app you can tweak sport mode specific settings as well as general/profile settings, plus a handful of watch settings like which wrist you use and do-not disturb:\n      And finally, on the main Polar Flow site you can tweak these same settings as well.\_ At this point we’ve clicked and tapped on all the things there is to tap on, without getting into the sport-specific modes.\_ So now’s a good time to actually use the watch for what you bought it for: Sports tracking.\n      Sport Usage:\n      Now that we’ve covered all the basics, let’s head over and get into the sport side of things. After all, that’s likely why you bought the Polar Vantage over a different non-sport watch.\n      The Vantage M (like the Vantage V) comes with a huge pile of sport modes that you can add to your watch (up to 20 at a time). The point of these modes is to not only provide a bit of a starter template for certain data fields (which you can customize), but also to ensure calorie burn is correct for each activity. Additionally, they set the GPS on status to the correct state. For example, turning it off for treadmill running, but having it enabled for openwater swimming.\n      When it comes to data pages and data metrics, you’ve got customizable data pages (up to 8 pages) with each page supporting up to 4 metrics on it. Additionally, there are some ‘common’ data pages that you can enable or disable, such as time of day, pace, altitude, power, as well as countdown and interval timers.\n      From a data field standpoint, Polar is roughly in-line with Suunto in terms of available metrics to choose – though, they have quite a few less metrics than Garmin does. Some of the disparity comes in the power realm (primarily cycling), where Garmin has popular fields like Normalized Power (NP), Intensity Factor (IF), and Training Stress Score (TSS). Polar lacks these, as well as the ability for 3rd party developers to create their own custom data fields via Garmin’s Connect IQ platform.\n      Inversely however, Polar has more flexibility for native running power fields, which Garmin somehow still lacks. This means that on Polar it’s easier to natively display and record running power data, especially tied to specific running power zones. That’s messy at best on Garmin (plus requires extra sensors and apps).\_ But more on running power later. Remember that while the Polar Vantage M supports running power meters (specifically Stryd and RunScribe), it doesn’t have the Polar Vantage V’s built-in running power algorithms (since it lacks the barometric altimeter the Vantage V has).\n      Here’s a quick look at a handful of data pages showing how the different sizing looks depending on how many fields you have shown:\n      At this point there is no method to customize GPS recording interval to save battery life. This means that all outdoor activities are recorded at a 1-second rate. This is both good and bad. On one hand Polar is blowing away the competition for baseline GPS 1-second recording durations (up to 30 hours).\_ On the flip-side, the competition blows away Polar when it comes to ultra-type activities, where Suunto and Garmin can stretch up to a mind-bending 120 and 85 hours respectively in their higher end models. Polar hasn’t announced any changes/plans here for tweaking the software, though, since Polar and Suunto are using the same GPS chipset – Polar could certainly aim to implement similar functionality.\n      Speaking of sensor type things, if you’ve got Bluetooth Smart sensors, these are paired within the sensors menu in settings.\_ You can store power meters (cycling or running), cycling cadence sensors, cycling speed sensors, running footpods, and external HR straps.\_ Note that neither the Vantage V or M support using HR straps for swimming data, because unlike past Polar units, the Vantage series doesn’t support the analog frequencies that can transmit through water (digital variants like ANT+ & Bluetooth Smart can only transmit a few inches at most through water).\n      On the surface of the issue you’d say that’s logical since they removed the analog frequency support. But where this falls apart is that the Polar H10 has built-in storage for exactly this purpose. But the Vantage series watches are incapable of connecting to that storage (only Polar’s Beat app). Both Garmin and Suunto offer solutions that download swim HR data after the fact, and it seems super bizarre that you have to use a separate app to do it (which is clunky at best).\n      When it comes to starting your workout you’ll long-hold the red button down, which then takes you to the sport selection menu.\_ This is where you can pick one of your preconfigured sports. You can press the up/down buttons to iterate through them. If choosing an indoor sport (like treadmill running below), then you’ll see the HR acquisition circle above it, but not the GPS acquisition circle.\n      If in the event you had a structured workout scheduled that day, it’ll show you that workout first, before selecting the sport mode:\n      And a pool swim selected? It’s got a super quick easy access button on the left to change pool sizes. I *really* like this. Far too many watches put this setting deep down. This is one-touch and really well executed.\n      Once you’ve stopped iterating through the sports, it’ll start searching for your heart rate, and GPS signals. Assuming you’ve been wearing the watch already, the HR acquisition is pretty much instant. In my experience with GPS on the Vantage M, it finds GPS almost immediately every time. At present Polar is only doing GPS+GLONASS, and not doing any form of GALILEO satellite connectivity. The Sony chipset they are using is capable of doing so, should Sony enable that in firmware – Polar says they’ll, in turn, enable it on the unit down the road.\n      GPS will show as acquired once you’ve got the green circle around the satellite icon. Same goes for HR. If you’ve got extra sensors, then it’ll show lock of those extra sensors as well (such as a cycling power meter as seen below). Additionally, if you’re using an external HR strap instead of the optical HR sensor – you’ll see that here too.\n      With all that set, off to start your workout you go. The watch will display stats from the workout in real-time as you expect. This is pretty much the same as all previous Polar watches.\n      You can use either manual laps or auto laps (or both), by pressing the middle red button, which triggers a lap.\_ Automatic laps can be setup via Polar Flow on a given sport mode basis. One area that Polar has an edge over Garmin on is that you can have both automatic laps and manual laps at the same time. They operate on different time-space continuums.\n      If you want to pause your workout, you’ll simply press the lower left button.\_ That’s also where you can long-hold to end your workout and get workout summary details:\n      After the workout is completed you’ll get summary details about the workout, including time, calories, distance, power (if applicable), and so on. Time in zone is also displayed.\n      If your phone is nearby, the watch should send it automatically to the Polar Flow smartphone app via Bluetooth Smart. If for whatever reason it doesn’t do that automatically you can hold down the lower left button to force the sync. It usually takes about 30-60 seconds to complete that sync. After which, here’s your workout on Polar Flow mobile:\n      There’s a few quirks in there though. For example, it shows me as ‘Elite’ with an index of 83. I’m going to go with that being incorrect, no matter how much I want otherwise. Also, you’ll notice the autolap was showing everything at .99mi instead of 1.00mi (the desktop website shows it correct). Again, minor quirks but also certainly annoyances.\n      And here’s how it looks on the Polar Flow desktop website:\n      In terms of differences between various sports during the workout itself – there’s virtually no appreciable visual difference, be it running or cycling, or doing core workouts or what-not. All of this is fairly standardized between the different modes – so what you see above is applicable no matter the mode.\n      Finally, the last feature to note is Polar’s Cardio Load status, which allows you to see cardio training load that you accumulate. This is essentially a subset of what the Polar Vantage V watch has. To start, the cardio load status is displayed as a watch face that you can toggle into:\n      Once there, you can tap the red button to dive deeper into the status. You’ve got ‘Strain’ and ‘Tolerance’. Strain is the average load over the last 7 days, while Tolerance is the average load over the last 28 days. Also, it’ll give you the current load status as a number in the center of the watch, which is based on TRIMP.\n      On the outer edge, you’ll see what are basically zones, the further left you go into the grey and light green zones, the less you’ve been training. The further right you go, the more you’ve been training. If you go too far – you end up in ‘Overreaching’. That can happen when you are legitimately training far too much, but, it can also happen when you take a bit of a break and then may ramp back into it.\_ in that scenario, depending on how well trained you are – it can overestimate overreaching.\n      Meanwhile, over on the Polar Flow smartphone app, you’ve got the ‘Training’ tab. This puts it front and center far more than Garmin and Suunto, and makes it easy to find the training related status. On the upper portion you’ll see breakdowns of the last 7 days worth of activities.\_ And if you scroll down you’ll see the activities themselves as well as the current training status (‘Productive’ in my case):\n      If you tap the little ‘…’ next to where it said Productive, you can view the current week’s status (swipe left/right to view previous weeks), as well as a bit of a primer on what these status bits mean:\n      The one challenge here for me personally is remembering to start my watch for Zwift and other indoor trainer sessions. Since the watch doesn’t broadcast my HR to Zwift/TrainerRoad/etc, I don’t have much of a use for it. And unfortunately, Zwift/TrainerRoad/etc don’t send that data back to Polar to calculate within the load metrics.\_ Compounding things, since Polar doesn’t support ANT+ for sensors, I can’t connect the trainer over Bluetooth Smart, since that Bluetooth Smart channel is already used by Zwift.\_ So for me during the winter, my training load stats are a bit off due to lack of indoor trainer activities.\n      Ultimately, the training load data you get on the Polar M is a bit better than the competitors at this price point (notably Garmin). However, as you’ll see in the accuracy sections – that advantage seems to dissipate quickly when looking at certain HR and GPS metrics.\n      Note that the Polar Vantage M does *not* include any sort of route navigation features, which Suunto includes at their $279 price point (same price), and Garmin at their $299 price point. The Vantage M will however shortly get ‘back to start’ functionality later this month, but only the Vantage V will get route/track navigation features.\n      GPS Accuracy:\n      There’s likely no topic that stirs as much discussion and passion as GPS accuracy.\_ A watch could fall apart and give you dire electrical shocks while doing so, but if it shows you on the wrong side of the road?\_ Oh hell no, bring on the fury of the internet!\n      GPS accuracy can be looked at in a number of different ways, but I prefer to look at it using a number of devices in real-world scenarios across a vast number of activities.\_ I use 2-6 other devices at once, trying to get a clear picture of how a given set of devices handles conditions on a certain day.\_ Conditions include everything from tree/building cover to weather.\n      Over the years I’ve continued to tweak my GPS testing methodology.\_ For example, I try to not place two units next to each other on my wrists, as that can impact signal. If I do so, I’ll put a thin fabric spacer of about 1”/3cm between them (I didn’t do that on any of my Vantage M workouts).\_ But often I’ll simply carry other units by the straps, or attach them to the shoulder straps of my hydration backpack.\_ Plus, wearing multiple watches on the same wrist is well known to impact optical HR accuracy.\n      Next, as noted, I use just my daily training routes.\_ Using a single route over and over again isn’t really indicative of real-world conditions, it’s just indicative of one trail.\_ The workouts you see here are just my normal daily workouts.\n      I’ve had quite a bit of variety of terrain within the time period Vantage M\_ testing.\_ This has included runs in: Amsterdam, California, Nevada: Tahoe + Las Vegas + Nearby Mountains, Mexico, Canadian Rockies, Cape Town, South Africa and plenty more.\_ Cities and countryside, mountains, trees, desert, oceans, and open-air. It’s been everywhere!\n      First up is a run this week on the waterfront in Cape Town. From a GPS standpoint this should be frankly pretty easy, though there are a few spots against some cliffs and in between homes/buildings. Here’s the data set:\n      Along the wide open waterfront, things are good (as they should be):\n      And in fact, up along the cliffs and through the houses area – the tracks are also looking pretty solid. No issues at all on this route:\n      Next, let’s rewind a couple weeks to a run in building-laden Las Vegas. Aside from the mega-buildings of NYC, Dubai, and Tokyo – this is actually super difficult. I find most GPS units struggle at some point on all my Las Vegas strip runs. This was intended to be against the COROS APEX and the Apple Watch Series 4, but the COROS crashed mid-run and lost all data. So only the Vantage M and Apple Watch remain. But, given how easy it is to know exactly where I ran, that isn’t an issue for this data set.\n      At a high level, things look pretty close. But let’s just zoom into a chunk of the Strip:\n      Ahh yes, that’s the Apple Watch I know and love: Cutting every corner like a race bandit. Yup, the tell-tale Apple Watch GPS Swoop! By contrast, the Polar Vantage M actually did quite well on this run, near-perfectly hitting all of the overpasses and other Vegas wonkiness.\n      It wasn’t perfect of course – but rarely do I find a GPS watch in Vegas that is. But it was one of the better GPS tracks I’ve seen in over a decade of GPS tracks in Vegas. You can see a few bobbles when I was right up against a tall building:\n      Still, I’d give the Vantage M a very strong B+ on this route.\n      Next, let’s head out for a run through Amsterdam’s Vondelpark. In this case compared against a Forerunner 935 and COROS APEX. Here’s that data set:\n      You can see right off the bat from the view above that the Vantage M is struggling in certain sections of the (mostly wide open) park. Notice how that red track is off in the buildings/woods on both the northern portion, but also offset on the lower southern portion:\n      And towards the Eastern edge of the park you see the red off out of the park, though oddly, when I go and do a loop in a more complex area around the museums, it actually nails that.\n      In fact, in looking at all my Vantage M runs since December – I can’t find any horribly bad tracks, aside from the skewing one above. Just as another quick two-second example, an interval run from this week. Spot-on as I went back and forth over the same spot almost a dozen times:\n      Now, let’s transition to some road riding. First back to the desserts about 45 minutes outside of Vegas. This is interesting because while this entire ride was on asphalt, some sections were on tight and winding bike paths – a great test of GPS:\n      At a high level it looks fine, and indeed, on the roads it was. But it’s those smaller bike paths that things sometimes go off the rails…err…road. For example, you can see this turn here where the Vantage M just cut straight across. Note, this was a low-speed turn (going uphill).\n      And again here where it’s just off the trail a fair chunk. Not like ‘OMG this is useless’, but, not as good as the other units:\n      And then we’ve got one last ride – this time a ride here in Cape Town along the coast on a relatively wide road, but up against some cliffs in some sections:\n      As I departed the city areas, things were pretty solid from the Vantage M. No problems with buildings:\n      However, as I started to head out of town, there were definitely a few spots were the Vantage M sliced the corners a bit (in orange on these charts). Not a massive chunk, but certainly offset from all the others:\n      Interestingly, none of this was very high speed (due to some crazy winds). In fact, it almost seems to handle better in faster conditions than slower.\n      Lastly, let’s look at an openwater swim or two. Here’s one from a few days ago up at a reservoir outside of Cape Town.\_ From a topography standpoint it basically sits atop a mountain, and has wide open lines of sight – so zero GPS disrupters here! On one wrist I had the Polar Vantage M, while the other wrist had the COROS APEX (both in swim mode). Then, for track reference I had a swim buoy with both a Garmin FR935 and Suunto Trainer Wrist HR in just regular running mode (so they properly track every second, whereas openwater mode would try and apply fancy algorithms to them):\n      Ultimately, here’s what that data set looked like:\n      In retrospect I should have just done one loop, because it makes it harder to see. On my second loop I realized this and decided to split the lake down the middle. So let’s remove everything except a single reference track and the Polar Vantage M:\n      I wouldn’t have rated this a ‘great’ openwater swim track compared to past Garmin/Suunto/Polar products, but for whatever reason lately GPS tracks in openwater swimming on all these companies’ more recent products mostly sucks. Thus, by comparison this is a seemingly average GPS track (but still bad). Below, switched to satellite view so you can properly see the edges.\n      Note that the best openwater GPS tracks I’ve seen to date have actually come from Apple. Here’s a video I did back in October – including the Polar Vantage series as well on openwater swim GPS testing:\n      Oh, as for the other recent swim, it was actually this morning. This is an *incredibly tough* swim for GPS units to track, due to one swimming in a canal (maybe 2ish lanes wide) with 4-8 story buildings on either side of it. Even the reference GPS track struggled. And while the Polar Vantage M track was horrible, the COROS APEX Track was downright useless. The APEX recorded in the (very rough) ballpark of the right distance, but the actual GPS track only managed to connect my start and end points – a mere 50m away from each other (I’ve highlighted it in yellow – that tiny little line):\n      You can see the red line is the Vantage M. Despite being above the water with the green GPS lock, it couldn’t plot a point until almost the half-way point of the swim.\n      So yeah.\_ I’ll do more openwater swims as my time progresses here in Cape Town over the next month – including some back on the Fenix 5 series and Suunto 9 series to see how things have improved since fall. But, I’m not expecting any miracles.\n      Overall as for the Polar Vantage M GPS, I actually found that it performed notably better than the Vantage V did. I don’t think that’s due to firmware updates either, as there’s been no firmware updates between these two points. I think there may be something else as to why it does it better. Openwater swimming aside, for the most part the Vantage M is decent. There’s still a few quirks here and there, seemingly with riding more than running. But I’d say on the whole it’s about the same as most other watches in this price point.\n      (Note: All of the charts in these accuracy portions were created using the DCR Analyzer tool.\_ It allows you to compare power meters/trainers, heart rate, cadence, speed/pace, GPS tracks and plenty more. You can use it as well for your own gadget comparisons, more details here.)\n      Heart Rate Accuracy:\n      Before we move on to the test results, note that optical HR sensor accuracy is rather varied from individual to individual.\_ Aspects such as skin color, hair density, and position can impact accuracy.\_ Position, and how the band is worn, are *the most important* pieces.\_ A unit with an optical HR sensor should be snug.\_ It doesn’t need to leave marks, but you shouldn’t be able to slide a finger under the band (at least during workouts).\_ You can wear it a tiny bit looser the rest of the day.\n      Ok, so in my testing, I simply use the watch throughout my normal workouts.\_ Those workouts include a wide variety of intensities and conditions, making them great for accuracy testing.\_ I’ve got steady runs, interval workouts on both bike and running, swimming, as well as tempo runs and rides. Basically, most everything a typical triathlete would do.\n      For each test, I’m wearing additional devices, usually 3-4 in total, which capture data from other sensors.\_ Typically I’d wear a chest strap (usually the Garmin HRM-DUAL, Polar H10, or Wahoo TICKR), as well as another optical HR sensor watch on the other wrist (and sometimes also either the Scosche Rhythm 24, and Polar OH-1).\_ Note that the numbers you see in the upper right corner are *not* the averages, but rather just the exact point my mouse is sitting over.\_ Note all this data is analyzed using the DCR Analyzer, details here.\n      Note that while I’ve been using the Polar Vantage M since September, virtually all of this data is from mid-December until now here on February 1st. All of it is on the latest production/public firmware.\n      With that, let’s dive into the sets.\n      Let’s dive right into things, first up with a run from last week. More or less a straightforward run with a bit of intensity shift in the middle as I climbed up a tiny bit, but otherwise pretty vanilla. But we want to start easy and then crank the screws with each successive set. Here’s the DCR Analyzer set if you want to dig in deeper yourself:\n      We see the nice and proper gradual increase in intensity from the HRM-DUAL whereas the Vantage M and COROS APEX don’t quite get it right. The COROS does some weird bobble, and the Polar follows alone slightly under as well. Nearly 3 minutes into my run I’m still at 110bpm according to it.\n      Beyond that point though, the three sorta agreed – except that we see the Vantage M doing these weird little blips up/above the actual trendline.\n      I’d point out this little bump here:\n      This little spike in HR (only up to 164bpm) is spot-on correct by the HRM-DUAL. It’s when I went a bit harder up a short/steep hill. Not all out, but enough that you notice it. Whereas the COROS APEX and Vantage M missed the boat.\n      And…time for another run. This one back in Vegas and mostly steady-state on/off road. Same crew – Polar Vantage M (in brown), COROS APEX, and HRM-DUAL. Here’s the data:\n      You see a nice clean build by most of them, but slightly nicer from the HRM-DUAL. Shortly after that the Polar Vantage M completely loses the plot for about 4-6 minutes for some unknown reason. After that moment the dip for all of them is me taking a picture at the ‘Leaving Las Vegas’ sign (so the dip is correct). From there, the rest of the run is pretty much the same for all of them, save a few brief bobbles from the Polar Vantage M.\n      Next, we’ve got an interval run from two days ago. This had a ton of HR data to look at.\n      On my left wrist is the Polar Vantage M (yellow), whereas my right wrist has the COROS APEX. Meanwhile, I’m wearing the Garmin HRM-DUAL on my chest, while my upper left arm has the Polar OH-1 optical sensor, and the upper right arm the Scosche Rhythm 24 optical sensor. All these are therefore properly separated. There’s no more beautiful HR testing setup I can think of than this.\n      The workout was an interval workout: 10-minute warm-up, then 6x400m, then 2x800m, and then 2x30s sprints, all with 90s recovery between each set. Oh, and a brief cool-down. Let’s look at the warm-up:\n      You can see the HRM-DUAL chest strap struggled to catch onto my heart rate (in blue). Why? Well, that was technically my fault. I had wet the strap prior to departing the house, but by the time I walked down to the waterfront it had dried in the cooler morning air. A key issue with chest straps that has been around for decades. Once I looked down a few minutes into the run and realized this, I applied some spit to the strap and it immediately rectified itself.\_ As for the Polar Vantage M optical HR sensor (yellow/orange)? It’s completely and totally lost during this until the conclusion of the warm-up when I start walking.\n      Let’s look at the six 400m sets:\n      Here’s my quick analysis of all six sets:\n      #1: All good except Polar Vantage M losing the plot briefly\n      #2: Polar Vantage-M missed the recovery by 20bpm, Garmin HRM-DUAL struggled to find lock, COROS APEX also struggled to find lock, Polar OH-1 blip\n      #3: Polar Vantage-M good, Garmin HRM-DUAL struggled to find lock, COROS APEX a wee bit delayed, brief Polar OH-1 blip\n      #4: Polar Vantage-M lost the plot, Garmin HRM-DUAL struggled to find lock, COROS APEX bit delayed\n      #5: Polar Vantage-M good, Garmin HRM-DUAL failed entirely\n      #6: All mostly good here, though, a bit of a delay on HRM-DUAL into the recovery.\n      Hmm. I remember moving the strap slightly on my chest at some point towards the 5th or so interval, and that seems to help the Garmin HRM-DUAL strap from there on out. Check out the remaining 2x800m and 2×30-second sprints:\n      You can see here the HRM-DUAL was perfectly fine, whereas the Vantage-M totally missed both by a wide chunk (especially notable since these were twice as long, so it had twice as long to figure it out). The pace for the 800m was a 6:23/mile (4:00/KM), and the pace for the sprints was around 5:00-5:30/mile (3:00-3:30/KM). So plenty of variety from a cadence standpoint.\n      I have zero idea why the HRM-DUAL failed here so badly on the first six sets. I haven’t seen that elsewhere. And typically when we see failures in intervals, it’s exceedingly rare to see them for chest straps. It’s almost always optical, not chest straps. Maybe it was something environmental, or perhaps my shirt or something weird (though, it’s the same shirt I’ve run in quite a bit lately).\_ Inversely, I don’t know why the Vantage M failed on the 800’s. Sigh.\n      Next, let’s head out cycling– this time out to the desert for a couple hour wander by bike. This one was interesting because the efforts varied quite a bit.\_ It’s compared against the Garmin HRM-DUAL strap and COROS APEX watch (optical), and it allows you to see how well things work in very cool/dry environments (it wasn’t hot), as well as with a bit of wind. The HRM-DUAL was recorded to the Stages M50 unit. Here’s the data files.\n      At first you might even think the Polar Vantage M was paired to the HRM-DUAL, but when you look more closely you can see the nuanced differences. The Vantage M optical sensor lags a little bit, and in some parts of the ride differs considerably – especially for short burst efforts. All tell-tale signs of an optical HR sensor that’s struggling slightly. Still, on the whole, this is actually one of the best performances I’ve seen from the Polar Vantage M in harder conditions. The COROS APEX meanwhile, is mostly lost.\n      Meanwhile, on the way back you can see areas in yellow where the Vantage M was significantly behind the chest strap (I’ve highlighted the chest strap below, but you can see the red Polar line offset from each of these). Again, semi-common optical HR lag.\n      I don’t generally like to look at averages across a ride/run/anything, because a unit can be totally wrong the entire time and still get a close average. Nonetheless, you can see the average heart rate between the Stages (which is what the HRM-DUAL was paired under) and the Polar Vantage M was within .24bpm. Not too shabby!\n      Last but not least we’ve got an openwater swim. Actually, I tried to do a few openwater swims and gather HR data, but Polar’s H10 offline caching thing with the Polar Beat app is a hot mess. For my first attempt at it, I didn’t put it in the right mode apparently, and thus it didn’t cache/download the data right. On my second swim, the data came out completely useless. As if the strap was malfunctioning. Of course, all of this strap data downloading should absolutely be built into the product like it is for Garmin/Suunto, but it’s not.\n      In any case, here’s a look at some HR data I captured earlier in the week during a swim. On this swim, I’ve got the Polar Vantage M on one wrist, the COROS APEX on the other, and then a Scosche Rhythm 24 on one upper arm. I wore the Polar H10, but again, that data was useless. Here’s the data set:\n      The yellow/orange color is the Polar Vantage M. While I’m not entirely sure who is right, I’m going to guess that the Vantage M is correct for at least the first 10 minutes or so. Mostly since there’s little chance my HR was 70-80bpm while swimming.\_ Then around the 11-minute marker the COROS APEX goes a bit wonky for a few minutes. And by ‘a few minutes’, I mean the rest of the swim.\n      However, the Polar Vantage M and Scosche are pretty similar. Certainly not as close as we’ve seen in runs or rides, but not totally misaligned.\_ There’s one point where the Vantage spikes and the Scosche doesn’t.\_ I’d put this in the category of ‘mostly believable’, but I just don’t know for sure. I’m going to keep trying with the H10 and see if I can make something cooperate there to include in my COROS APEX review.\n      Of course, if you’ve read my reviews long enough you’d know that for the most part I don’t tend to see a ton of value in swimming HR. It doesn’t align as well to efforts as running or cycling does in my experience, and is usually a bit more cumbersome to view due to having to turn your wrist just right. And for example, the water where this swim was in, was super low-visibility, enough that I could barely make out the numbers on my wrist in front of me.\n      Finally – to wrap-up HR accuracy on the whole – I don’t see it as good. Something still isn’t right with the HR accuracy of the Vantage series (including the Vantage M). On even simple steady-state runs it routinely spikes/drops the HR for no particular purpose. Polar noted they’ve got algorithms that backfill/correct the data in 60-second increments as you run/etc, which means that the plotted points can actually look more correct than reality.\_ Though, it’s also possible it ‘breaks’ perfectly correct HR data too.\_ Which may be happening here – I don’t know.\n      What I do know is that overall, I wouldn’t be writing home about the Polar Vantage M’s optical HR accuracy.\n      The Future:\n      As you’ve probably seen by this point in the review, Polar’s biggest challenge is actually the lack of features. Some things – like smartphone notifications, aren’t officially released yet (though, due any day/week now). But beyond that, if they want to compete head to head with Suunto’s Spartan Trainer Wrist HR (which is explicitly what they noted they want to compete against), they’re going to need to look to expand their navigational capabilities to match that.\n      Still, here’s the list of updates slated by the end of February 2019 through a handful of scheduled updates:\n      – Smartphone notifications (i.e. call/text notifications)\n      – Back to start navigation\n      – Route Guidance for waypoint navigation of downloaded routes (Vantage V only – not coming to Vantage M)\n      And in fact, just this morning I got access to a beta version of this firmware to check out some of these. As expected, a quick look at them shows they do work. Smartphone notifications come in as expected from calls/texts/apps, and display once you raise your wrist (a small red dot appears in the lower left corner indicating a missed notification). You can also access them from within a notifications submenu:\n      Additionally, there’s a new sleep-focused watch face that shows you last night’s sleep metrics. Given I just got it a few hours ago after my workout for today, I haven’t tried Back to Start navigation, nor route guidance on the Vantage V. Perhaps over the weekend. It’s not bug free, which is why it’s still considered beta.\n      Meanwhile, the following features are slated to be added (according to the update page), but no timeline has been specified:\n      – Fitness test functionality\n      – Strava Segments\n      The challenge in some ways that Polar faces is that all of these features are basically just ‘putting back’ features that were found in the Polar M430 and V800 watches. They aren’t actually moving the game forward in terms of the competition.\_ Even if Polar were to add offline sync for chest HR monitors for swimming workouts (as their competition does), that’d still just be matching what Polar’s own watches have had previously.\n      I’m optimistic that Polar will aim to update their planned updates page with not just catch-up features, but exciting new features. One might say that’d be tipping their hand to the competitors, but realistically there’s plenty of consumer tech brands that talk about upcoming features 3-6 months out (such as Apple, Google, and more). When Polar is behind the 8-ball here, it needs to do that.\n      Product Comparison:\n      I’ve added both the Polar Vantage V and Polar Vantage M into the product comparison tool, so you can mix and match and create your own product comparison charts as you see fit. The tool allows you to compare against other products I’ve reviewed or had hands-on time with.\n      For the purpose of the below charts, I’ve compared the Vantage V and M against their nearest multisport competitors: The Garmin FR735XT and Suunto Spartan Trainer Wrist HR. One could also make the case that if you don’t specifically need triathlon support, the Garmin Instinct or Garmin Vivoactive 3 series are better competitors to compare against at the sub-$300 price point.\n              Function/Feature\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Copyright DC Rainmaker - Updated November 29th, 2019 @ 12:32 pmNew Window\n              Price\n              $279\n              $499\n              $279 ($329 for metal bezels)\n              $349\n              Product Announcement Date\n              Sept 13th, 2018\n              Sept 13th, 2018\n              August 10th, 2017\n              May 11th, 2016\n              Actual Availability/Shipping Date\n              November 2018\n              Late October 2018\n              August 30th, 2017\n              May 11th, 2016\n              GPS Recording Functionality\n              Yes\n              Yes\n              Yes\n              Yes\n              Data Transfer\n              USB, BLUETOOTH SMART\n              USB, BLUETOOTH SMART\n              USB & Bluetooth Smart\n              USB/Bluetooth Smart\n              Waterproofing\n              Yes - 30m\n              Yes - 30m\n              Yes - 50 meters\n              Yes - 50m\n              Battery Life (GPS)\n              Up to 30 hours\n              Up to 40 hours\n              Up to 30 hours\n              14 hours in GPS-on\n              Recording Interval\n              1s\n              1s\n              Variable\n              1S OR SMART\n              Satellite Pre-Loading via Computer\n              Yes\n              Yes\n              Yes\n              Yes\n              Quick Satellite Reception\n              Great\n              Great\n              Great\n              Great\n              Alerts\n              Vibrate/Visual\n              Vibrate/Sound/Visual\n              Visual/Vibrate\n              Vibrate/Sound/Visual\n              Backlight Greatness\n              Great\n              Great\n              Great\n              Good\n              Ability to download custom apps to unit/device\n              No\n              No\n              No\n              Yes\n              Acts as daily activity monitor (steps, etc...)\n              Yes\n              Yes\n              Yes\n              Yes\n              Music\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Can control phone music\n              No\n              No\n              No\n              Yes\n              Has music storage and playback\n              No\n              No\n              No\n              No\n              Streaming Services\n              No\n              No\n              Payments\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Contactless-NFC Payments\n              No\n              No\n              Connectivity\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Bluetooth Legacy (pre-4.0) to Phone\n              No\n              No\n              No\n              No\n              Bluetooth Smart (4.0+) to Phone Uploading\n              Yes\n              Yes\n              Yes\n              Yes\n              Phone Notifications to unit (i.e. texts/calls/etc...)\n              Feb 2019\n              Feb 2019\n              Yes\n              YEs\n              Live Tracking (streaming location to website)\n              No\n              No\n              No\n              Yes\n              Group tracking\n              No\n              No\n              No\n              Emergency/SOS Message Notification (from watch to contacts)\n              No\n              No\n              No\n              No\n              Built-in cellular chip (no phone required)\n              No\n              No\n              No\n              No\n              Cycling\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Designed for cycling\n              Yes\n              Yes\n              Yes\n              Yes\n              Power Meter Capable\n              Yes\n              Yes\n              Yes\n              Yes\n              Power Meter Configuration/Calibration Options\n              Yes\n              Yes\n              Yes\n              YEs\n              Power Meter TSS/NP/IF\n              No\n              No\n              No\n              Yes\n              Speed/Cadence Sensor Capable\n              Yes\n              Yes\n              Yes\n              Yes\n              Strava segments live on device\n              Future Update (Date TBD)\n              TBD Future Update\n              No\n              Yes\n              Crash detection\n              No\n              No\n              No\n              No\n              Running\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Designed for running\n              Yes\n              Yes\n              Yes\n              Yes\n              Footpod Capable (For treadmills)\n              Yes\n              Yes\n              Yes\n              Yes\n              Running Dynamics (vertical oscillation, ground contact time, etc...)\n              No\n              No\n              No\n              YEs\n              Running Power\n              Yes with 3rd party devices (not built-in like Vantage V)\n              yes (built-in)\n              VO2Max Estimation\n              Yes\n              Yes\n              Yes\n              Yes\n              Race Predictor\n              No\n              No\n              No\n              YEs\n              Recovery Advisor\n              No\n              Yes\n              Yes\n              Yes\n              Run/Walk Mode\n              No\n              No\n              No\n              YEs\n              Swimming\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Designed for swimming\n              Yes\n              Yes\n              Yes\n              Yes\n              Openwater swimming mode\n              Yes\n              Yes\n              Yes\n              Yes\n              Lap/Indoor Distance Tracking\n              Yes\n              Yes\n              Yes\n              Yes\n              Record HR underwater\n              Yes\n              Yes\n              Yes\n              WITH HRM-TRI/HRM-SWIM\n              Openwater Metrics (Stroke/etc.)\n              Yes\n              Yes\n              Yes\n              Yes\n              Indoor Metrics (Stroke/etc.)\n              Yes\n              Yes\n              Yes\n              Yes\n              Indoor Drill Mode\n              No\n              No\n              No\n              Yes\n              Indoor auto-pause feature\n              Yes\n              Yes\n              No\n              No\n              Change pool size\n              Yes\n              Yes\n              YEs\n              Yes\n              Indoor Min/Max Pool Lengths\n              20M/Y to 250 m/y\n              20M/Y to 250 m/y\n              15m/y to 1,200m/y\n              17M/18Y TO 150Y/M\n              Ability to customize data fields\n              Yes\n              Yes\n              Yes\n              Yes\n              Can change yards to meters\n              Yes\n              Yes\n              Yes\n              YEs\n              Captures per length data - indoors\n              Yes\n              Yes\n              Yes\n              YEs\n              Indoor Alerts\n              N/A\n              N/A\n              No\n              Yes\n              Triathlon\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Designed for triathlon\n              Yes\n              Yes\n              Yes\n              Yes\n              Multisport mode\n              Yes\n              Yes\n              Yes\n              Yes\n              Workouts\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Create/Follow custom workouts\n              Yes\n              Yes\n              No\n              Yes\n              On-unit interval Feature\n              No\n              No\n              Yes\n              Yes\n              Training Calendar Functionality\n              No\n              Yes\n              Yes\n              Yes\n              Functions\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Auto Start/Stop\n              Yes\n              YEs\n              Virtual Partner Feature\n              No (but can give out of zone alerts)\n              No (but can give out of zone alerts)\n              No\n              Yes\n              Virtual Racer Feature\n              No\n              No\n              No\n              Yes\n              Records PR's - Personal Records (diff than history)\n              No\n              No\n              No\n              Yes\n              Day to day watch ability\n              Yes\n              Yes\n              Yes\n              Yes\n              Hunting/Fishing/Ocean Data\n              No\n              No\n              No\n              No\n              Tidal Tables (Tide Information)\n              No\n              No\n              No\n              No\n              Jumpmaster mode (Parachuting)\n              No\n              No\n              No\n              No\n              Geocaching\n              No\n              No\n              No\n              No\n              Weather Display (live data)\n              No\n              No\n              No\n              Yes\n              Navigate\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Follow GPS Track (Courses/Waypoints)\n              No\n              No\n              Yes\n              Yes\n              Markers/Waypoint Direction\n              No\n              No\n              Yes\n              Saved locations only\n              Routable/Visual Maps (like car GPS)\n              No\n              No\n              No\n              No\n              Back to start\n              Feb 2019\n              Feb 2019\n              Yes\n              Yes\n              Impromptu Round Trip Route Creation\n              No\n              No\n              No\n              No\n              Download courses/routes from phone to unit\n              No\n              No\n              Yes\n              Yes\n              Sensors\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Altimeter Type\n              GPS\n              Barometric\n              GPS\n              GPS\n              Compass Type\n              N/A\n              N/A\n              N/A\n              GPS\n              Optical Heart Rate Sensor internally\n              Yes\n              Yes\n              Yes\n              Yes\n              Pulse Oximetry (aka Pulse Ox)\n              No\n              No\n              Heart Rate Strap Compatible\n              Yes\n              Yes\n              Yes\n              Yes\n              ANT+ Heart Rate Strap Capable\n              No\n              No\n              No\n              Yes\n              ANT+ Speed/Cadence Capable\n              No\n              No\n              No\n              Yes\n              ANT+ Footpod Capable\n              No\n              No\n              No\n              Yes\n              ANT+ Power Meter Capable\n              No\n              No\n              No\n              Yes\n              ANT+ Weight Scale Capable\n              No\n              No\n              No\n              No\n              ANT+ Fitness Equipment (Gym)\n              No\n              No\n              No\n              No\n              ANT+ Lighting Control\n              No\n              No\n              No\n              Yes\n              ANT+ Bike Radar Integration\n              No\n              No\n              No\n              Yes\n              ANT+ Trainer Control (FE-C)\n              No\n              No\n              No\n              No\n              ANT+ Remote Control\n              No\n              No\n              No\n              No\n              ANT+ eBike Compatibility\n              No\n              No\n              No\n              No\n              ANT+ Muscle Oxygen (i.e. Moxy/BSX)\n              No\n              No\n              No\n              No\n              ANT+ Gear Shifting (i.e. SRAM ETAP)\n              No\n              No\n              No\n              Shimano Di2 Shifting\n              No\n              No\n              No\n              Yes\n              Bluetooth Smart HR Strap Capable\n              Yes\n              Yes\n              Yes\n              No\n              Bluetooth Smart Speed/Cadence Capable\n              Yes\n              Yes\n              Yes\n              NO\n              Bluetooth Smart Footpod Capable\n              Yes\n              Yes\n              Yes (+ Stryd Running Power Meter)\n              nO\n              Bluetooth Smart Power Meter Capable\n              Yes\n              Yes\n              Yes\n              nO\n              Temp Recording (internal sensor)\n              Yes\n              Yes\n              No\n              No\n              Temp Recording (external sensor)\n              No\n              No\n              No\n              Yes\n              Compatible with Firstbeat HR tools\n              N/A\n              N/A\n              -\n              -\n              Software\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              PC Application\n              Polar Flowsync - Windows/Mac\n              Polar Flowsync - Windows/Mac\n              PC/Mac\n              Garmin Express\n              Web Application\n              Polar Flow\n              Polar Flow\n              Suunto Movescount\n              Garmin Connect\n              Phone App\n              iOS/Android\n              iOS/Android\n              iOS/Android\n              iOS/Android/Windows Phone\n              Ability to Export Settings\n              No\n              No\n              No\n              No\n              Purchase\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Amazon Link\n              Link\n              Link\n              Link\n              Link\n              Clever Training - Save with the VIP program\n              Link\n              Link\n              Link\n              Link\n              Clever Training Europe (Save 10% with DCR10BTF)\n              N/A\n              N/A\n              Link\n              Link\n              DCRainmaker\n              Polar Vantage M\n              Polar Vantage V\n              Suunto Spartan Trainer Wrist HR\n              Garmin Forerunner 735XT\n              Review Link\n              Link\n              Link\n              Link\n              Link\n      Don’t forget, you can make your own charts though if you want against other watches not included above.\n      Summary:\n      In general, I think the Polar Vantage series will continue to be a bit under-featured and under-accuracy compared to most of their endurance sports competitors. However, the Vantage M is in a better spot than the Vantage V from a product to price feature point. As of today it’s still lacking the smartphone notification bits and other pieces, but those are coming shortly – with smartphone notifications set to arrive in just a few weeks. It’s been weird wearing a smartwatch over the last few months that doesn’t buzz when my phone does.\n      While I (along with nearly everyone) have been somewhat lukewarm on the Vantage series, I think the Vantage M for me performs better than the Vantage V – and given it’s roughly half the price, that makes it far more compelling.\n      One of the hidden gem strengths though of the Polar Vantage M over its Suunto’s similarly priced Spartan Trainer series though is the size of the Vantage M. Not to mention its screen clarity/size. The Vantage M also has detachable/swappable wrist straps. In general, I find the Vantage M a more comfortable watch to wear than the Suunto Trainer and it does proper 24×7 HR tracking. Plus Polar has detailed structured workouts whereas Suunto lacks that. Though, I find GPS and HR accuracy better on the Suunto Spartan Trainer.\n      I have no doubt that Polar will continue to add features to the Vantage series as they’ve outlined. The challenge for them will be doing so at a pace that’s meaningful to be competitive. As with the Vantage V, the challenge for the Vantage M is that it doesn’t compensate for its lack of features by solidly nailing accuracy in all categories (like we saw the Polar V800 do). As seen in this review, the Vantage M accuracy (especially HR) is at best ‘meh’, and at worst ‘poor’.\n      Still, I’m looking forward to seeing where things go. And, if you know what you’re getting into in terms of current and planned features, the Vantage M may check off just the right checkboxes for you and your particular needs.\n      Wanna Save 10%? Or found this review useful? Read on!\n    Hopefully you found this review useful.\_ At the end of the day, I’m an athlete just like you looking for the most detail possible on a new purchase – so my review is written from the standpoint of how I used the device.\_ The reviews generally take a lot of hours to put together, so it’s a fair bit of work (and labor of love).\_ As you probably noticed by looking below, I also take time to answer all the questions posted in the comments – and there’s quite a bit of detail in there as well.\n      I’ve partnered with Clever Training to offer all DC Rainmaker readers an exclusive 10% discount across the board on all products (except clearance items).\_ You can pick up the Polar Vantage M (or any accessories) from Clever Training. Then receive 10% off of everything in your cart by adding code DCR10BTF at checkout.\_ By doing so, you not only support the site (and all the work I do here) – but you also get a sweet discount. And, since this item is more than $49, you get free US shipping as well.\n      Polar Vantage V (select dropdown for color/bundle)\n      Polar Vantage M (select dropdown for color/bundle)\n      Additionally, you can also use Amazon to purchase the unit (all colors shown after clicking through to the left) or accessories (though, no discount on Amazon).\_ Or, anything else you pick up on Amazon helps support the site as well (socks, laundry detergent, cowbells).\_ If you’re outside the US, I’ve got links to all of the major individual country Amazon stores on the sidebar towards the top.\_ Though, Clever Training also ships there too, and you get the 10% discount.\n      Thanks for reading!\n"

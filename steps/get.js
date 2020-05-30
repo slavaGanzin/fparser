@@ -2,6 +2,25 @@ const STATUS_OK = 200
 const needle = thenify('needle')
 const fs = thenify('fs')
 const libxml = require('libxmljs')
+const url = require('url')
+
+const c2x = unless(test(/^\/\//), require('css-to-xpath'))
+
+const URI2URL = (URL, xmldoc) => {
+  for (const a of attributes.lazy)
+    for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
+      if (x.attr(a).value()[0] == '#') return
+      x.attr('src', url.resolve(URL, x.attr(a).value()))
+    }
+
+  for (const a of attributes.data)
+    for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
+      if (x.attr(a).value()[0] == '#') return
+      x.attr(a, url.resolve(URL, x.attr(a).value()))
+    }
+
+  return xmldoc
+}
 
 const parse = options => cond([[
   x => x.statusCode >= 300,
@@ -11,7 +30,7 @@ const parse = options => cond([[
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => libxml.parseHtml(input.body),
+  input => URI2URL(options.url, libxml.parseHtml(input.body)),
 // ], [
 //   x => test(/xml/, x.headers['content-type']),
 //   input => libxml.parseXml(input.body),
