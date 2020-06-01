@@ -117,4 +117,4 @@ html:
   #not working
   dropFontTags: true
   doctype: omit
-  dropProprietaryAttributes: true
+  dropProprietaryAttributes: false
