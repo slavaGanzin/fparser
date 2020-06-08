@@ -1,8 +1,7 @@
-get:
-  driver: puppeteer
-
 steps:
-  - get
+  - get:
+      driver: puppeteer
+
   - parallel:
       meta:
         - meta

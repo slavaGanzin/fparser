@@ -60,12 +60,12 @@ get:
       width: 1920
       height: 1080
     args:
-     - '--app=https://www.google.com/' #Magic
+     - --app=https://www.google.com/ #Magic
     devtools:          true
     slowMo:            0
 
     goto:
-      waitFor: networkidle0
+      waitFor: domcontentloaded
 
 
 post:
