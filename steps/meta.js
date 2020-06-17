@@ -96,5 +96,7 @@ module.exports = options => flatMap(e => scrapeMeta({html: e.toString('xhtml'), 
     .replace(/\s+/gim, ' ')
     .slice(0, 500) + `…`
 
+  m.url=decodeURI(m.url)
+
   return m
 }))

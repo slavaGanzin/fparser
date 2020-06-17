@@ -1,5 +1,6 @@
 steps:
   - get:
+      cache: false
       driver: puppeteer
 
   - parallel:
