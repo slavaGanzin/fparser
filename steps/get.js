@@ -55,11 +55,14 @@ const request = options => {
 
   const cacheFile = `${options.cache}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
+  console.log(cacheFile)
+
   const drivers = {
     needle: () => needle.request(options.method, encodeURI(options.url), options.data, options.needle)
     .then(head)
     .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
     .then(logRequest(options))
+    .catch(console.error)
     .then(logErrors),
     puppeteer: () => require('../lib/puppeteer').get(options)
       .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))

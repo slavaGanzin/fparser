@@ -33,6 +33,7 @@ steps:
             - '#article'
 
 
+            - .post-body
             - .article-body
             - .body.markup
             - .f-text-block
