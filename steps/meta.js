@@ -23,7 +23,9 @@ const scrapeMeta = metascraper([
 const oneOf = compose(head, reject(isNil), props)
 
 
-module.exports = options => flatMap(e => scrapeMeta({html: e.toString('xhtml'), url: options.url}).then(doc => {
+module.exports = options => flatMap(e => scrapeMeta({
+    html: e.toString('xhtml'), url: options.url
+}).then(doc => {
   const meta = {}
 
   const $ = selector => e.get(c2x(selector)) || {childNodes: () => [], attr: () => {}}

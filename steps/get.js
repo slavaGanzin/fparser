@@ -55,8 +55,6 @@ const request = options => {
 
   const cacheFile = `${options.cache}/${decodeURI(options.url).replace(/\//g, '∕')}`
 
-  console.log(cacheFile)
-
   const drivers = {
     needle: () => needle.request(options.method, encodeURI(options.url), options.data, options.needle)
     .then(head)
