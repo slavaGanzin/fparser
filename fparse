@@ -14,7 +14,7 @@ global.ARGV
   .option('-f, --forward [action]', 'Forward result to --forward [action] or skip forwarding with -f')
   .option('-r, --range <from>..<to>', 'Process only <from>..<to> records', parseRange)
   .option('-v, --verbose', 'Verbosity level', increaseVerbosity, 0)
-  .option('-P, --nopretty', 'Disable formatting of output')
+  .option('-j, --json', 'Output json')
   .option('-p, --placeholders', 'List placeholders')
   .option('-t, --test', 'Test parser')
   .option('-T, --snapshot', 'Save snapshot')
