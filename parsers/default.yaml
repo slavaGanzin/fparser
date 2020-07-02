@@ -100,23 +100,3 @@ feed:
 language:
   #https://github.com/dachev/node-cld#advanced
   isHtml: true
-
-html:
-  # addMetaCharset: true
-
-  encloseBlockText: true
-  dropEmptyElements: true
-  dropEmptyParas: true
-  encloseText: true
-  escapeCdata: true
-  hideComments: true
-  breakBeforeBr: true
-  indent: true
-  omitOptionalTags: false
-  wrap: 0
-  clean: false
-  showBodyOnly: true
-  #not working
-  dropFontTags: true
-  doctype: omit
-  dropProprietaryAttributes: false
