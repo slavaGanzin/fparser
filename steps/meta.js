@@ -21,7 +21,7 @@ const scrapeMeta = metascraper([
 ])
 
 const first = compose(head, reject(isNil), props)
-const firstPath = curry((paths, data) => reduce((a,p) => a || path(p, data), null, paths))
+const firstPath = curry((test, paths, data) => reduce((a,p) => a || test(path(p, data)), null, paths))
 
 const { date, $filter, $jsonld, toRule } = require('@metascraper/helpers')
 
@@ -33,11 +33,11 @@ module.exports = options => flatMap(e => scrapeMeta({
   const $ = selector => e.get(c2x(selector)) || {childNodes: () => [], attr: () => {}}
 
   const jsonldE = $('script[type="application/ld+json"]')
-  if (jsonldE) {
-    const jsonld = indexBy(prop('@type'), JSON.parse(jsonldE.text())['@graph'])
+  if (jsonldE.text) {
+    const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(jsonldE.text())))
 
-    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath([['Article', 'datePublished'], ['WebPage', 'datePublished']], jsonld))
-    meta['jsonld:title'] = firstPath([['Article', 'headline'], ['WebPage', 'title']], jsonld)
+    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && x, [['Article', 'datePublished'], ['WebPage', 'datePublished'], ['datePublished'], ['dateModified']], jsonld))
+    meta['jsonld:title'] = firstPath(x => x, [['Article', 'headline'], ['WebPage', 'title']], jsonld)
   }
 
 
