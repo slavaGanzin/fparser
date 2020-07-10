@@ -6,7 +6,7 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
 const scrapeMeta = metascraper([
   metascraperTitle(),
-  metascraperDate(),
+  // metascraperDate(),
   metascraperAuthor(),
   metascraperPublisher(),
   metascraperDescription(),
@@ -30,26 +30,26 @@ module.exports = options => flatMap(e => scrapeMeta({
 }).then(metascrapperMeta => {
   const meta = {}
 
-  const $ = selector => e.get(c2x(selector)) || {childNodes: () => [], attr: () => {}}
+  const $ = selector => e.find(c2x(selector))
 
-  const jsonldE = $('script[type="application/ld+json"]')
-  if (jsonldE.text) {
-    const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(jsonldE.text())))
-
+  $('script[type="application/ld+json"]').map(e => {
+    if (!e.text) return
+    const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
+    console.log(jsonld)
     meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), [['Article', 'datePublished'], ['WebPage', 'datePublished'], ['datePublished'], ['dateModified']], jsonld))
     meta['jsonld:title'] = firstPath(x => x, [['Article', 'headline'], ['WebPage', 'title']], jsonld)
-  }
+  })
 
 
-  $('meta').childNodes()
+  $('meta')
     .map(x => {
-      const k = appendURL(x.attr('property') || x.attr('name'))
-      const content = x.attr('content')
-
       if (x.attr('charset'))
-        meta.charset = x.attr('charset')
+        return meta.charset = x.attr('charset').value()
 
-      if (!k) return
+      const k = head(reject(isNil, [x.attr('property'), x.attr('name'), x.attr('http-equiv')])).value()
+      const content = x.attr('content').value()
+
+      if (!k || !content) return
       if (putInArray(k)) {
         meta[k] = isArrayLike(meta[k])
           ? append(content, meta[k])
@@ -58,44 +58,32 @@ module.exports = options => flatMap(e => scrapeMeta({
         meta[k] = content
     })
 
-  $('link').childNodes()
-    .map(x => {
-      const k = join(':', reject(isNil, ['link', x.attr('rel'), x.attr('hreflang')]))
-
-      meta[k] = x.attr('href')
-    })
-
-
-  const dates = concat(
-    $('time').childNodes()
-      .map(x => chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})),
-
-    e.childNodes().map(x => {
-      if (x.childNodes().length) return
-
-      const d = moment(chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true}))
-
-      if (d.isValid() && d.isBefore(moment()) && d.isAfter(moment('1991-01-01')))
-        return d.toDate()
-    })
+  const dates = $('time').map(x =>
+    x.attr('datetime')
+      ? x.attr('datetime').value()
+      : chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})
   )
 
+  if (head(dates)) m['?:published'] = head(dates)
 
-  const d = $('time.published').attr('datetime')
-
-  if (d) meta['time:published'] = new Date(d)
+  $('link')
+    .map(x => {
+      const k = join(':', map(x => x.value(), reject(isNil, [x.attr('rel'), x.attr('hreflang')])))
+      if (x.attr('href')) meta[k] = x.attr('href').value()
+    })
 
   const m = merge(metascrapperMeta, meta)
 
   m['html:title'] = $('title').text ? trim($('title').text()) : ''
 
   m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
-  if (head(dates)) m['?:published'] = head(dates)
 
   if (length(m.publisher) > 100) m.publisher = null
 
   m.pubdate = first(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
+
   m.title = trim(first(['jsonld:title', 'og:title', 'twitter:title', 'html:title'], m))
+
   m.publisher = defaultTo('', first(['og:site_name', 'publisher', 'application-name', '?:host'], m))
     .replace(/,.*/, '')
     .replace(/www\./, '')
