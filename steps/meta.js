@@ -20,13 +20,14 @@ const scrapeMeta = metascraper([
   metascraperAudio(),
 ])
 
-const oneOf = compose(head, reject(isNil), props)
+const first = compose(head, reject(isNil), props)
+const firstPath = curry((paths, data) => reduce((a,p) => a || path(p, data), null, paths))
 
 const { date, $filter, $jsonld, toRule } = require('@metascraper/helpers')
 
 module.exports = options => flatMap(e => scrapeMeta({
     html: e.toString(), url: options.url
-}).then(doc => {
+}).then(metascrapperMeta => {
   const meta = {}
 
   const $ = selector => e.get(c2x(selector)) || {childNodes: () => [], attr: () => {}}
@@ -35,8 +36,10 @@ module.exports = options => flatMap(e => scrapeMeta({
   if (jsonldE) {
     const jsonld = indexBy(prop('@type'), JSON.parse(jsonldE.text())['@graph'])
 
-    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), path(['WebPage', 'datePublished'], jsonld))
+    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath([['Article', 'datePublished'], ['WebPage', 'datePublished']], jsonld))
+    meta['jsonld:title'] = firstPath([['Article', 'headline'], ['WebPage', 'title']], jsonld)
   }
+
 
   $('meta').childNodes()
     .map(x => {
@@ -82,29 +85,27 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   if (d) meta['time:published'] = new Date(d)
 
-  const m = merge(doc, meta)
+  const m = merge(metascrapperMeta, meta)
 
   m['html:title'] = $('title').text ? trim($('title').text()) : ''
 
-  m['?:host'] = url.parse(oneOf(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
+  m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
   if (head(dates)) m['?:published'] = head(dates)
 
   if (length(m.publisher) > 100) m.publisher = null
 
-  m.pubdate = oneOf(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
-  m.title = trim(oneOf(['og:title', 'twitter:title', 'html:title'], m))
-  m.publisher = defaultTo('', oneOf(['og:site_name', 'publisher', 'application-name', '?:host'], m))
+  m.pubdate = first(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
+  m.title = trim(first(['jsonld:title', 'og:title', 'twitter:title', 'html:title'], m))
+  m.publisher = defaultTo('', first(['og:site_name', 'publisher', 'application-name', '?:host'], m))
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  m.thumbs = reject(x => isEmpty(x) || isNil(x), oneOf(['og:image:url', 'twitter:image:url'], m) || [])
+  m.thumbs = reject(x => isEmpty(x) || isNil(x), first(['og:image:url', 'twitter:image:url'], m) || [])
 
   const textFromFirstParagraph = e.get(cssToXpath('p,div'))
-  m.description = (m.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`)
-    .replace(/\s+/gim, ' ')
-    .slice(0, 500) + `…`
+  m.description = (m.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
 
   m.url=decodeURI(m.url)
 
