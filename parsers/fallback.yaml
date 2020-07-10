@@ -3,11 +3,13 @@ steps:
   - parallel:
       html:
         - find:
-            - article
-            - main
-
-            - '#fullarticle'
+            - '#primary'
+            - '#main'
             - '#post'
+            - '#fullarticle'
+            - .c-split-main
+            - main article
+            - main
             - '#block-system-main'
             - '#page_body'
             - '#l-content'
@@ -20,20 +22,27 @@ steps:
             - '#tbl_proxy_list'
             - '#ontheioViewTacking'
             - '#r_memo'
+
+            - article
+
+            - div[itemprop="articleBody"]
             - '#content-anchor-inner'
             - '#mvp-content-main'
             - '#mvp-post-content'
             - '#mailchimp'
-            - '#main'
             - '#root'
             - '#__next'
             - '#articleBody'
-            - '#content'
-            - '#primary'
             - '#article'
-
-
-            - .post-body
+            - .page-main__inner
+            - div[data-elementor-type="single"]
+            - .entry-content
+            - .storycontent
+            - '#content'
+            - .c-entry-content
+            - .article__content__body
+            - .storyBody
+            - .post_content
             - .article-body
             - .body.markup
             - .f-text-block
@@ -41,14 +50,11 @@ steps:
             - .site-container
             - .report-columns
             - .transcript
-            - .entry-content
-            - .c-entry-content
             - div[data-field='content']
             - section[data-test-id='ArticleBodyContent']
             - div[data-piano-inline-content-wrapper]
             - .gtm-story-text
             - .serendipity_entry_body
-            - .article__content__body
             - .uni-content
             - .post__text
             - .post-full__text
@@ -63,7 +69,6 @@ steps:
             - .c-main
             - .newsHolderContainer
             - .mainWrapper
-            - .storyBody
             - .main-post__body
             - .article-content
             - .post-content
@@ -99,6 +104,36 @@ steps:
 
             - body
         - remove:
+            - '#breadcrumbs'
+            - .breadcrumbs
+            - '#follow_buttons'
+            - .follow_buttons
+            - footer
+            - .footer
+            - '#footer'
+            - .topnav
+            - '#topnav'
+            - .c-tags
+            - .tags
+            - aside
+            - '#secondary'
+            - .single-share-bar
+            - .share-bar
+            - .post-meta
+            - .post-meta-info
+            - .story__meta
+            - div[role='complementary']
+            - .side-float
+            - .sharify-container
+            - .sharify
+            - .estimate-time
+            - .social-sharing
+            - .ss-social-sharing
+            - .yoast-seo-breadcrumb
+            - .stackcommerce
+            - .stackcommerce__container
+            - .stackcommerce__container--article
+            - .post__share-links
             - .article-heading
             - link[rel='noopener']
             - link[rel='noreferrer']
@@ -108,6 +143,18 @@ steps:
             - time
             - .card__share-icons
             - .nav__social-media
+            - .trending-block
+            - .popular-posts
+            - .popular-block
+            - .articles
+            - .post-cat-info
+            - .single-post-ad
+            - a[rel='category']
+            - a[rel='tag']
+            - div[rel='category']
+            - div[rel='tag']
+            - .full-post__categories
+            - .full-post__meta
 
             # https://support.google.com/webmasters/answer/96569?hl=en
             - a[rel='license']
@@ -163,6 +210,9 @@ steps:
             - .feedback-display
             - .meta-category
             - .data-share-url
+            - .c-shareIcons
+            - a[data-share-medium]
+            - .c-post-authorPubDate
             - .pk-share-buttons-wrap
             - .post-comments
             - .post-comment
@@ -221,7 +271,6 @@ steps:
             - .bmc-button
             - .themezee-social-sharing
             - .post-author__holder
-            - .entry-header
             - .bibblio-branding
             - .felix-collection
             - .postmeta
@@ -350,7 +399,6 @@ steps:
             - .related-analysts
             - .table-of-contents
             - .secondary-column
-            - '#post-header'
             - '#comments-button'
             - .social-sharing-top
             - .mvp-org-wrap
@@ -374,7 +422,6 @@ steps:
             - .met
             - .referral_widget
             - .staff
-            - .post-header
             - .sponsored
             - .related-ssr
             - .cat-aud
@@ -390,9 +437,7 @@ steps:
             - .article-disclosure
             - .exchange-widget
             - .article__body__tags-related
-            - .images_credits
             - .snippet_container
-            - .disclaimer
             - .switch_container
             - .single-post-social-icons
             - .banner
@@ -402,7 +447,7 @@ steps:
             - .hatom-extra
             - .author-bio
             - .play-games
-            - .single-content-banner
+        #     - .single-content-banner
             - .article-after-content-widget-area
             - '#mvp-content-bot'
             - '#mvp-soc-mob-wrap'
@@ -498,7 +543,6 @@ steps:
             - .views-share-el
             - .main-post__social-footer
             - .social-list
-            - .info
             - .wrapper_for_opinion
             - .article__info_bottom__tags
             - .comments-section
@@ -506,8 +550,6 @@ steps:
             - .subscribe_block
             - .article__coments_btn
             - .article__info_bottom__social
-            - .clearfix
-            - .clear
             - .media__also__news
             - .media__also__news_link
             - .media__also__opinions
@@ -652,9 +694,22 @@ steps:
             - .journey-nav-wrapper
             - .breadcrumbs-nav
             - .breadcrumbs-nav__title
-
+            - .c-post-contributor
+            - .time-rubric
+            - .js-disqus
+            - .js-load-disqus
+            - .stackcommerce__container
+            - '#stackCommerceDeals'
+            - ol[data-scp="breadcrumb"]
+            - .wp-block-jetpack-mailchimp
+            - .side-float
+            - '#secondary'
+            - .side-float
+            - .crp_related
+            - .nav-single
+            - .owl-carousel
+            - .owl-item
 
         - html
-        - chrome
       meta:
         - meta
