@@ -66,7 +66,6 @@ module.exports = options => flatMap(e => scrapeMeta({
       : chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})
   )
 
-  if (head(dates)) m['?:published'] = head(dates)
 
   $('link')
     .map(x => {
@@ -75,6 +74,8 @@ module.exports = options => flatMap(e => scrapeMeta({
     })
 
   const m = merge(metascrapperMeta, meta)
+
+  if (head(dates)) m['?:published'] = head(dates)
 
   m['html:title'] = $('title').text ? trim($('title').text()) : ''
 
