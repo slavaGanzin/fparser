@@ -34,9 +34,13 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   $('script[type="application/ld+json"]').map(e => {
     if (!e.text) return
-    const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
-    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), [['Article', 'datePublished'], ['WebPage', 'datePublished'], ['datePublished'], ['dateModified']], jsonld))
-    meta['jsonld:title'] = firstPath(x => x, [['Article', 'headline'], ['WebPage', 'title']], jsonld)
+    try {
+      const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
+      meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), [['Article', 'datePublished'], ['WebPage', 'datePublished'], ['datePublished'], ['dateModified']], jsonld))
+      meta['jsonld:title'] = firstPath(x => x, [['Article', 'headline'], ['WebPage', 'title']], jsonld)
+    } catch(e) {
+      return
+    }
   })
 
 
