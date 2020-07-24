@@ -27,7 +27,11 @@ const { date, $filter, $jsonld, toRule } = require('@metascraper/helpers')
 
 module.exports = options => flatMap(e => scrapeMeta({
     html: e.toString(), url: options.url
-}).then(metascrapperMeta => {
+})
+.then(unless(x => x.lang, async x =>
+    merge(x, {lang: path(['languages', 0, 'code'], await cld.detect(e.toString(), {isHTML: true}))})
+))
+.then(metascrapperMeta => {
   const meta = {}
 
   const $ = selector => e.find(c2x(selector))
@@ -84,6 +88,7 @@ module.exports = options => flatMap(e => scrapeMeta({
   m['html:title'] = $('title').text ? trim($('title').text()) : ''
 
   m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
+
 
   if (length(m.publisher) > 100) m.publisher = null
 
