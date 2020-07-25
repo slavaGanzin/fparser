@@ -54,7 +54,7 @@ module.exports = options => flatMap(e => scrapeMeta({
         return meta.charset = x.attr('charset').value()
 
       const attr = head(reject(isNil, [x.attr('property'), x.attr('name'), x.attr('http-equiv')]))
-      if (!attr || !attr.value) return
+      if (!attr || !attr.value || !x.attr('content') || !x.attr('content').value) return
       const k = attr.value()
 
       const content = x.attr('content').value()
