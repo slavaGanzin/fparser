@@ -6,7 +6,7 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
 const scrapeMeta = metascraper([
   metascraperTitle(),
-  // metascraperDate(),
+  metascraperDate(),
   metascraperAuthor(),
   metascraperPublisher(),
   metascraperDescription(),
@@ -61,11 +61,11 @@ module.exports = options => flatMap(e => scrapeMeta({
 
       if (!k || !content) return
       if (putInArray(k)) {
-        meta[k] = isArrayLike(meta[k])
+        meta[k.toLocaleLowerCase()] = isArrayLike(meta[k])
           ? append(content, meta[k])
           : [content]
       } else
-        meta[k] = content
+        meta[k.toLocaleLowerCase()] = content
     })
 
   const dates = $('time').map(x =>
