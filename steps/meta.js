@@ -89,7 +89,6 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
 
-
   if (length(m.publisher) > 100) m.publisher = null
 
   m.pubdate = first(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
