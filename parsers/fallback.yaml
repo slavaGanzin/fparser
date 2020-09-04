@@ -135,8 +135,8 @@ steps:
             - .stackcommerce__container--article
             - .post__share-links
             - .article-heading
-            - link[rel='noopener']
-            - link[rel='noreferrer']
+            # - link[rel='noopener']
+            # - link[rel='noreferrer']
             - div[role="banner"]
             - link[rel='stylesheet']
             - .author-wrap
@@ -158,7 +158,7 @@ steps:
 
             # https://support.google.com/webmasters/answer/96569?hl=en
             - a[rel='license']
-            - a[rel='nofollow']
+            # - a[rel='nofollow']
             - a[rel='ugc']
             - a[rel='sponsored']
             # - br ?
@@ -709,6 +709,13 @@ steps:
             - .nav-single
             - .owl-carousel
             - .owl-item
+            - .recipe-more
+            - .share-group
+            - .share-btn
+            - .share-button
+            - .prevnext
+            - .asset-meta
+            - .post-asset-promo
 
         - html
       meta:
