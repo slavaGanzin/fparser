@@ -719,6 +719,7 @@ steps:
             - .post-asset-promo
             - .article-categories
             - .article-tags
+            - .site-shares
 
         - html
       meta:

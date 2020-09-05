@@ -6,7 +6,7 @@ placeholders:
 steps:
   - get:
       cached:  false
-  - find: .b-tile-item
+  - find: .b-block .b-tile-item
   - parallel:
       id:
         - find: .b-tile-item__link
