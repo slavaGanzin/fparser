@@ -33,7 +33,7 @@ const all = ({key}) =>
     .then(x => Promise.all(x))
 
 const skip = arg =>
-  has(arg).then(_has => _has ? Promise.resolve(_has) : save(arg))
+  has(arg).then(_has => _has ? Promise.resolve() : save(arg).then(() => arg.data))
 
 
 module.exports = {

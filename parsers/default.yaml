@@ -8,7 +8,7 @@ db:
   action:             save
   db:                 0
   id:                 $id
-  key:                DEFAULT_KEY
+  key:                $dbKey
   return:             key
   elasticsearch:
     #https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/configuration.html
@@ -40,7 +40,7 @@ get:
     #https://github.com/tomas/needle#request-options
     parse:              false
     accept:             '*/*'
-    compressed:         true
+    compressed:         false
     method:             get
     follow_max:         20
     follow_set_cookies: true
