@@ -91,7 +91,7 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   if (length(m.publisher) > 100) m.publisher = null
 
-  m.pubdate = first(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', '?:published', 'date'], m)
+  m.pubdate = new Date(first(['jsonld:pubdate', 'article:published_time', 'sailthru.date', 'time:published', 'last-updated','?:published', 'date'], m))
   m.author = first(['author', 'og:host', '?:host'], m)
 
   m.title = trim(first(['jsonld:title', 'og:title', 'twitter:title', 'html:title'], m))
