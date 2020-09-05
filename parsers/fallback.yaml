@@ -716,6 +716,8 @@ steps:
             - .prevnext
             - .asset-meta
             - .post-asset-promo
+            - .article-categories
+            - .article-tags
 
         - html
       meta:

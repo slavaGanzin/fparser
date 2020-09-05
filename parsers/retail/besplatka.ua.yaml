@@ -1,0 +1,35 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://besplatka.ua/all/q-$q
+
+steps:
+  - get:
+      cached:  false
+      driver: puppeteer
+  - find: .msg-one
+  - parallel:
+      id:
+        - find: .m-title
+        - attr: href
+      photo:
+        - find: .img-responsive
+        - attr: data-src
+      price:
+        - find: .m-price
+        - text
+        - eval: compose(trim, String)
+      title:
+        - find: .m-title
+        - attr: title
+
+  # - db:
+  #     provider: file
+  #     action: skip
+  #
+  # - telegram:
+  #     token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+  #     chatId: -429955182
+  #     message: |
+  #               $price [ ]($photo)
+  #               [$title]($id)

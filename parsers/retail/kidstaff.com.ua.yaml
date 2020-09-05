@@ -1,0 +1,34 @@
+placeholders:
+  dbKey: diptyque
+  q: diptyque
+  url: https://www.kidstaff.com.ua/search/words-$q
+
+steps:
+  - get:
+      cached:  false
+  - find: .card-hover-win
+  - parallel:
+      id:
+        - find: .card-title a
+        - attr: href
+      title:
+        - find: .card-title strong
+        - text
+      photo:
+        - find: .card-img-wr img
+        - attr: src
+      price:
+        - find: .card-price
+        - text
+        - eval: compose(trim, String)
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)

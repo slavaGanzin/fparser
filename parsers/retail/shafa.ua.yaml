@@ -1,0 +1,34 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://shafa.ua/women?search_text=$q
+
+steps:
+  - get:
+      cached:  false
+  - find: .b-tile-item
+  - parallel:
+      id:
+        - find: .b-tile-item__link
+        - attr: href
+      photo:
+        - find: .b-tile-item__image
+        - attr: data-src
+      price:
+        - find: .b-tile-item__price
+        - text
+        - eval: compose(trim, String)
+      title:
+        - find: .b-tile-item__link
+        - attr: title
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)

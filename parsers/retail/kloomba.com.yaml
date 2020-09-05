@@ -1,0 +1,36 @@
+placeholders:
+  dbKey: diptyque
+  q: diptyque
+  url: https://kloomba.com/market/?q=$q
+
+steps:
+  - get
+  # - find:
+  # - find: .catalog_card
+  - html
+  # - parallel:
+  #     id:
+  #       - find: .catalog_card__inner a
+  #       - attr: href
+  #     title:
+  #       - find: .catalog_card__title
+  #       - text
+  #       - eval: compose(trim, String)
+  #     photo:
+  #       - find: .catalog_card__img img
+  #       - attr: src
+  #     price:
+  #       - find: .catalog_card__price
+  #       - text
+  #       - eval: compose(trim, String)
+
+  # - db:
+  #     provider: file
+  #     action: skip
+  #
+  # - telegram:
+  #     token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+  #     chatId: -429955182
+  #     message: |
+  #               $price [ ]($photo)
+  #               [$title]($id)

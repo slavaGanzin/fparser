@@ -1,0 +1,36 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://www.olx.ua/list/q-$q
+
+steps:
+  - get:
+      cached:  false
+  - find: .offer-wrapper
+  - parallel:
+      id:
+        - find: .detailsLink
+        - attr: href
+        - eval: head
+      photo:
+        - find: img.fleft
+        - attr: src
+      price:
+        - find: .price
+        - text
+        - eval: compose(trim, String)
+      title:
+        - find: .title-cell strong
+        - text
+        - eval: compose(trim, String)
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)
