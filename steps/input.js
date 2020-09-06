@@ -1,1 +1,2 @@
-module.exports = options => () => Promise.resolve(coerceArray(options))
+module.exports = options => () =>
+  Promise.resolve(coerceArray(options))

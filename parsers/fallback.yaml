@@ -6,10 +6,10 @@ steps:
             - '#primary'
             - '#main'
             - '#post'
+            - .post-content
+            - .blog-postPage-content
             - '#fullarticle'
             - .c-split-main
-            - main article
-            - main
             - '#block-system-main'
             - '#page_body'
             - '#l-content'
@@ -22,8 +22,8 @@ steps:
             - '#tbl_proxy_list'
             - '#ontheioViewTacking'
             - '#r_memo'
+            - .blog-content-wrapper
 
-            - article
 
             - div[itemprop="articleBody"]
             - '#content-anchor-inner'
@@ -87,7 +87,6 @@ steps:
             - .article-body-content
             - .article__container
             - .postbody
-            - .post-body
             - .publication-sticky-container
             - .figureTable
             - .js_post-content
@@ -102,8 +101,11 @@ steps:
             - .c-post-content
             - .awr
 
-            - body
+            - main article
+            - main
+            - article
 
+            - body
         - remove:
             - '#breadcrumbs'
             - .breadcrumbs
@@ -136,8 +138,8 @@ steps:
             - .stackcommerce__container--article
             - .post__share-links
             - .article-heading
-            # - link[rel='noopener']
-            # - link[rel='noreferrer']
+            - link[rel='noopener']
+            - link[rel='noreferrer']
             - div[role="banner"]
             - link[rel='stylesheet']
             - .author-wrap
@@ -159,7 +161,7 @@ steps:
 
             # https://support.google.com/webmasters/answer/96569?hl=en
             - a[rel='license']
-            # - a[rel='nofollow']
+            - a[rel='nofollow']
             - a[rel='ugc']
             - a[rel='sponsored']
             # - br ?
@@ -719,8 +721,16 @@ steps:
             - .post-asset-promo
             - .article-categories
             - .article-tags
-            - .site-shares
+            - .ssba #Simple Share Buttons Adder (7.6.21) simplesharebuttons.com
+            - .content-list-wrapper
+            - .ct-share-box
+            - div[data-widget_type="post-info.default"]
+            - .elementor-widget-share-buttons
+            - .elementor-post-navigation
+            - .comment-wrapper
+            - .blog-tag
 
         - html
+        - chrome
       meta:
         - meta
