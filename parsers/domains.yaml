@@ -1,0 +1,35 @@
+placeholders:
+  filter: $url
+
+steps:
+
+  - get
+  - find: a
+  - attr: href
+  - url: href
+  - filter:
+    - http
+  # - db:
+  #     dbKey: urls
+  #     provider: file
+  #     action: skip
+  - tap:
+      name: domains.yaml
+      placeholders:
+        url: $1
+
+  - url: hostname
+  - uniq
+  # - db:
+  #     dbKey: domains
+  #     provider: file
+  #     action: skip
+
+      # links:
+      #   - filter:
+      #     - http
+      #
+      #   - db:
+      #       dbKey: url
+      #       provider: file
+      #       action: skip
