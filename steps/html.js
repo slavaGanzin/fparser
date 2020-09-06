@@ -1,1 +1,4 @@
-module.exports = options => flatMap(e => e.toString(true))
+const highlight = require('cli-highlight').highlight
+
+module.exports = options =>
+  flatMap(e => highlight(e.toString()))
