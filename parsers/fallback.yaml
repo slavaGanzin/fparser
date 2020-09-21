@@ -100,25 +100,48 @@ steps:
             - .main
             - .c-post-content
             - .awr
+            - .bodyContent
+            - '#bodyContent'
+
 
             - main article
             - main
             - article
-
             - body
+
         - remove:
-            - '#breadcrumbs'
-            - .breadcrumbs
-            - '#follow_buttons'
-            - .follow_buttons
+            - header
+            - .header
+            - '#header'
+            - side
+            - aside
+            - .aside
+            - '#aside'
             - footer
             - .footer
             - '#footer'
+            - nav
+            - .nav
+            - '#nav'
+
+            - .relatedContent
+            - .post_social
+            - .post_tag
+            - .social
+            - .post_information
+            - .taxonomy
+            - .classify
+            - .mobile_menu
+
+            - '#breadcrumbs'
+            - '#breadcrumb'
+            - .breadcrumbs
+            - '#follow_buttons'
+            - .follow_buttons
             - .topnav
             - '#topnav'
             - .c-tags
             - .tags
-            - aside
             - '#secondary'
             - .single-share-bar
             - .share-bar
@@ -138,8 +161,8 @@ steps:
             - .stackcommerce__container--article
             - .post__share-links
             - .article-heading
-            - link[rel='noopener']
-            - link[rel='noreferrer']
+            # - link[rel='noopener']
+            # - link[rel='noreferrer']
             - div[role="banner"]
             - link[rel='stylesheet']
             - .author-wrap
@@ -160,10 +183,10 @@ steps:
             - .full-post__meta
 
             # https://support.google.com/webmasters/answer/96569?hl=en
-            - a[rel='license']
-            - a[rel='nofollow']
-            - a[rel='ugc']
-            - a[rel='sponsored']
+            # - a[rel='license']
+            # - a[rel='nofollow']
+            # - a[rel='ugc']
+            # - a[rel='sponsored']
             # - br ?
             - .header_inner
             - .c-entry-hero
@@ -228,7 +251,6 @@ steps:
             - .sidebar
             - .timestamp
             - .author-photo
-            - aside
             - .navigation
             - .tagcloud
             - .post-tag-container
@@ -251,7 +273,6 @@ steps:
             - .article-nav
             - navigation
             - .sharing-buttons
-            - nav
             - .nocontent
             - .jp-relatedposts
             - noscript
@@ -303,8 +324,6 @@ steps:
             - .post-sections
             - .comment-respond
             - .post-entries
-            - .footer
-            - '#footer'
             - .about
             - '#about'
             - .date
@@ -729,8 +748,30 @@ steps:
             - .elementor-post-navigation
             - .comment-wrapper
             - .blog-tag
+            - .newsMetaBlock
+            - .newsPublisher
+            - .newsDate
+            - .newsPubdate
+            - .newsTitle
+            - .navContainer
+            - '#navContainer'
+            - .sharing-bar
+            - '#sharing-bar'
+            - .fl-module-related
+            - .page-nav
+            - .subscribe-widget
+            - .post-meta
+            # substack
+            - .headline
+            - .modal
+            - .comment-input-wrap
+            - .popup
+            - .pop-up
+            - .subscribe-footer
+            - .footer-wrap
+            - .portable-archive
+            # substack end
 
         - html
-        - chrome
       meta:
         - meta
