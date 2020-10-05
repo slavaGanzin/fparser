@@ -1,3 +1,9 @@
 
+const chrome = require('./chrome')
+
 module.exports = options =>
-  flatMap(e => e.toString())
+  flatMap(e => {
+    if (global.ARGV.chrome) chrome()([e.toString()])
+
+    return e.toString()
+  })

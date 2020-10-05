@@ -18,6 +18,7 @@ global.ARGV
   .option('-p, --placeholders', 'List placeholders')
   .option('-t, --test', 'Test parser')
   .option('-T, --snapshot', 'Save snapshot')
+  .option('-C, --chrome', 'launch chrome on html')
 
   .usage('<parsername> [placeholders...]')
   .action((name, ...placeholders) =>
