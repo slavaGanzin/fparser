@@ -3,6 +3,7 @@ steps:
   - parallel:
       html:
         - find:
+            - .MainBlock
             - '#primary'
             - '#main'
             - '#post'
@@ -110,9 +111,15 @@ steps:
             - body
 
         - remove:
-            - header
-            - .header
-            - '#header'
+            # - header
+            # - .header
+            # - '#header'
+            - .article-byline
+            - '#article-byline'
+            - .article-title
+            - '#article-title'
+            - .article-type
+            - '#article-type'
             - side
             - aside
             - .aside
@@ -193,7 +200,7 @@ steps:
             - .article-meta
             - '#article-meta'
             - .social-share
-            - .article-header
+            # - .article-header
             - .tags
             - .socialbar
             - .counter
@@ -770,7 +777,9 @@ steps:
             - .subscribe-footer
             - .footer-wrap
             - .portable-archive
+            - .meta-author-wrap
             # substack end
+            - img[aria-hidden]
 
         - html
       meta:
