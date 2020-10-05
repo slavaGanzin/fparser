@@ -29,7 +29,7 @@ module.exports = options => flatMap(e => scrapeMeta({
     html: e.toString(), url: options.url
 })
 .then(unless(x => x.lang, async x =>
-    merge(x, {lang: pathOr('en', ['languages', 0, 'code'], await require('cld').detect(e.toString(), {isHTML: true}).catch(() => {}) ))})
+    merge(x, {lang: pathOr('en', ['languages', 0, 'code'], await require('cld').detect(e.toString(), {isHTML: true}).catch(() => {}) )})
 ))
 .then(metascrapperMeta => {
   const meta = {}

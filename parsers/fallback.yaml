@@ -780,6 +780,9 @@ steps:
             - .meta-author-wrap
             # substack end
             - img[aria-hidden]
+            - .button-stack
+            - .print-email-buttons
+            - .bottom-post-comment-button
 
         - html
       meta:
