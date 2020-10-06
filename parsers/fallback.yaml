@@ -10,7 +10,6 @@ steps:
             - '*[data-field="content"]'
 
             - .MainBlock
-            - '#primary'
             - '#main'
             - '#post'
             - .post-content
@@ -791,8 +790,22 @@ steps:
             - side
             - style
             - time
-            - time
             - ul.post__hubs
+            - .article-author-box
+            - .cta-section
+            - .page-footer
+            - .Pagination
+            - .pagination
+            - '#pagination'
+            - .blog-pager
+            - .date-header
+            - .quickedit
+            - .promo
+            - header h1
+            - header h2
+            - .post_date
+            - .rate
+
         #     - .single-content-banner
         - html
       meta:

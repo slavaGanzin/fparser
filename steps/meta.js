@@ -85,7 +85,7 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   if (head(dates)) m['?:published'] = head(dates)
 
-  m['html:title'] = $('title').text ? trim($('title').text()) : ''
+  m['html:title'] = head($('title')).text ? trim(head($('title')).text()) : null
 
   m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
 
