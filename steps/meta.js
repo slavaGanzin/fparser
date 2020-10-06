@@ -91,7 +91,7 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   if (length(m.publisher) > 100) m.publisher = null
 
-  m.pubdate = new Date(first(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], m))
+  m.pubdate = new Date(head(reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], m)).sort()))
 
   m.author = first(['author', 'og:host', '?:host'], m)
 

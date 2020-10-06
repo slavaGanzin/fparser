@@ -783,6 +783,11 @@ steps:
             - .button-stack
             - .print-email-buttons
             - .bottom-post-comment-button
+            - .article-header__topic
+            - .site_header
+            - '#site_header'
+            - '#subscribe_menu'
+            - .subscribe_menu
 
         - html
       meta:
