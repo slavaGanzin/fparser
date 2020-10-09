@@ -30,6 +30,7 @@ steps:
             - '#r_memo'
             - .blog-content-wrapper
 
+            - article
 
             - '#content-anchor-inner'
             - '#mvp-content-main'
@@ -336,7 +337,6 @@ steps:
             - .breadcrumbs-nav
             - .breadcrumbs-nav__list-wrapper
             - .breadcrumbs-nav__title
-            - .breakout
             - .btn--load-more
             - .button
             - .button-stack
@@ -722,7 +722,7 @@ steps:
             - .taboola-container
             - .tagcloud
             - .tags
-            - .tags
+            - '#tags'
             - .tags-list
             - .taxonomy
             - .td-a-rec
@@ -805,6 +805,80 @@ steps:
             - header h2
             - .post_date
             - .rate
+            - '#article_headline'
+            - .article_headline
+            - .leave-comment
+            - .ads_inline_640
+            - .loader
+            - '#meta-in'
+            - .article__breadcrumbs
+            - .article__title
+            - .article__meta
+            - .module-sharing-actions
+            - .related-links
+            - .module-topic
+            - '#articleHeader'
+            - .articleHeader
+            - '#dpsp-content-top'
+            - .a2a_kit
+            - .post-excerpt
+            - .sharingTools
+            - .mostReadModule
+            - .bulletinModule
+            - .articleRelated
+            - .jusPublishedModule
+            - .links
+            - '#slidebox'
+            - .slidebox
+            - .icons
+            - .popular-right-now
+            - '#comments'
+            - '#respond'
+            - '#featured'
+            - .featured
+            - .toggler
+            - '#sidebar'
+            - aside
+            - .share-article
+            - .popular
+            - .pptwj
+            - .adex-post-ad
+            - .newsTypeName
+            - .sidebar-column
+            - .fly-sidebar-column
+            - .bottom-article-links-bar
+            - .article-socials
+            - .copy-url
+            - .upper-title
+            - .explore-module
+            - .top-stories-module
+            - .article-related-event
+            - .article-info
+            - .aw-connatix-module
+            - '#aw-social-share-id'
+            - .aw-social-share-container
+            - .section__kickerlabel
+            - .issue-section-wrap
+            - .related-articles-wrapper
+            - .newspaper-plus-author-wrapper
+            - .mgs-post-sharing
+            - .blog-categories-nav
+            - .printfriendly
+            - .toc
+            - .article-sources
+            - .masonry-section
+            - '#height-change-listener'
+            - .Share
+            - .Blog-header
+            - .Blog-meta
+            - .BlogItem-profile
+            - .newArticleShare
+            - .articleAd
+            - .articleRelated
+            - .story__meta
+            - .static-social
+            - .story__author
+            - .headline
 
         #     - .single-content-banner
         - html

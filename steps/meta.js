@@ -36,6 +36,15 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   const $ = selector => e.find(c2x(selector))
 
+  const allText = e => {
+    if (e.name && contains(e.name(), ['script'])) return ''
+    return isEmpty(e.childNodes())
+      ? trim(e.text().replace(/\s+/gim,' '))
+      : reject(isEmpty, map(allText, e.childNodes()))
+  }
+
+  const texts = flatten(allText(e))
+
   $('script[type="application/ld+json"]').map(e => {
     if (!e.text) return
     try {
@@ -83,15 +92,16 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   const m = merge(metascrapperMeta, meta)
 
+  m['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
   if (head(dates)) m['?:published'] = head(dates)
 
-  m['html:title'] = head($('title')).text ? trim(head($('title')).text()) : null
+  m['html:title'] = isNil(head($('title'))) ? null : trim(head($('title')).text())
 
   m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
 
   if (length(m.publisher) > 100) m.publisher = null
 
-  const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], m)))
+  const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date', '?:pubdate:lastresort'], m)))
 
   m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates))
 
