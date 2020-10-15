@@ -103,7 +103,8 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], m)))
 
-  m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
+  // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
+  m.pubdate = head(sortBy(x => x, possibleDates)) || m['?:pubdate:lastresort']
 
   m.author = first(['author', 'og:host', '?:host'], m)
 
