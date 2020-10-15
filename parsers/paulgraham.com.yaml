@@ -11,12 +11,12 @@ steps:
         - find: title
         - text
       html:
-        - find: table[width]
+        - find: table[width] tr td
         - remove:
             # - img:nth-child(1)
             - img[alt]:nth-child(1)
             # - table:nth-child(1)
         - html
         - eval: head
-        # - eval: compose(replace(/<br>\n\s+<br>/g, '</p><p>'), replace(/(.*\n){3}$/g, ''), replace(/^(.*\n){3}/g, ''), x => x || '', head)
+        - eval: replace(/<br>\n*\s*<br>/g, '</p><p>')
         - chrome

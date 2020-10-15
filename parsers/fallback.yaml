@@ -104,7 +104,7 @@ steps:
             - .bodyContent
             - '#bodyContent'
 
-
+            - .article--body
             - main article
             - main
             - article
@@ -879,8 +879,31 @@ steps:
             - .static-social
             - .story__author
             - .headline
+            - .article-subscribe
+            - .socialsharebar
+            - .art-share
+            - .kickertags
+            - '#vs-breadcrumbs'
+            - '#postcomments'
+            - .postbyline
+            - '#comments'
+            - .de_comments
+            - .relatedarticles
+            - .blog__tags
+            - .media-embed--related
+            - .comments-teaser
+            - .author
+            - '#related'
+            - .browsemore
+            - .subscribebox
+            - .postsec
+            - '#more_list'
+            - .fl-module-fl-author-bio
+            - .article__contributor-byline-wrapper
+            - .related-posts-new
 
         #     - .single-content-banner
+        - eval: head
         - html
       meta:
         - meta

@@ -115,7 +115,7 @@ module.exports = options => flatMap(e => scrapeMeta({
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  m.thumbs = reject(x => isEmpty(x) || isNil(x), first(['og:image:url', 'twitter:image:url'], m) || [])
+  m.thumbs = reject(x => isEmpty(x) || isNil(x), first(['og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image', 'twitter:image:url'], m) || [])
 
   const textFromFirstParagraph = e.get(cssToXpath('p,div'))
   m.description = (m.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
