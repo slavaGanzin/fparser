@@ -8,6 +8,7 @@ steps:
             - '*[data-test-id="ArticleBodyContent"]'
             - '*[data-elementor-type="single"]'
             - '*[data-field="content"]'
+            - .serendipity_entry_body
 
             - .MainBlock
             - '#main'
@@ -148,7 +149,6 @@ steps:
             - .td-related-title
             - .td-related-row
 
-            - '#Comments'
             - '#about'
             - '#ac-lre-player-ph'
             - '#after-page-mobile-recirc'
@@ -168,13 +168,10 @@ steps:
             - '#breadcrumbs'
             - '#byline-and-share'
             - '#collection-module-bottom'
-            - '#comments'
-            - '#comments-button'
             - '#content-header'
             - '#content-recommender'
             - '#cutid1-end'
             - '#desk'
-            - '#disqus-comments'
             - '#disqus_thread'
             - '#disqus_thread_outdiv'
             - '#engadget-article-footer'
@@ -224,7 +221,6 @@ steps:
             - .Meta
             - .Post-categories
             - .Post-discuss
-            - .aa-lazy-comments-section
             - .aag-list
             - .about
             - .about-author
@@ -327,7 +323,6 @@ steps:
             - .blog-tag
             - .bmc-button
             - .bmc-button
-            - .bottom-post-comment-button
             - .breadcrumbs
             - .breadcrumbs
             - .breadcrumbs
@@ -345,7 +340,6 @@ steps:
             - .c-aside-embed
             - .c-author
             - .c-bar
-            - .c-comments
             - .c-compact-river
             - .c-entry-group-labels
             - .c-entry-hero
@@ -377,12 +371,6 @@ steps:
             - .clever-ads
             - .cmts
             - .code-block
-            - .comment-count-block
-            - .comment-input-wrap
-            - .comment-respond
-            - .comment-wrapper
-            - .comments
-            - .comments-section
             - .comments_counter
             - .constrain-970
             - .content-header
@@ -415,7 +403,6 @@ steps:
             - .elementor-widget-share-buttons
             - .embed-relatedstory
             - .end-note
-            - .entry-comment-form
             - .entry-content__post-date
             - .entry-date
             - .entry-meta
@@ -431,7 +418,6 @@ steps:
             - .expanded-coverage-module
             - .extra-header
             - .favorite_marker
-            - .fb-comments
             - .fbcomments
             - .feedback-display
             - .felix-collection
@@ -561,9 +547,6 @@ steps:
             - .post-cat-info
             - .post-categories
             - .post-category
-            - .post-comment
-            - .post-comments
-            - .post-comments-show
             - .post-content__publish-date
             - .post-content__social-share-container
             - .post-content__topic-container
@@ -574,8 +557,6 @@ steps:
             - .post-full-title
             - .post-in-content-tags
             - .post-info
-            - .post-meta
-            - .post-meta
             - .post-meta
             - .post-meta-info
             - .post-sections
@@ -662,7 +643,6 @@ steps:
             - .silic-after-content
             - .single-header
             - .single-post-ad
-            - .single-post-comments
             - .single-post-navigation
             - .single-post-newsletter
             - .single-post-sharing-button-list
@@ -807,7 +787,6 @@ steps:
             - .rate
             - '#article_headline'
             - .article_headline
-            - .leave-comment
             - .ads_inline_640
             - .loader
             - '#meta-in'
@@ -832,7 +811,6 @@ steps:
             - .slidebox
             - .icons
             - .popular-right-now
-            - '#comments'
             - '#respond'
             - '#featured'
             - .featured
@@ -886,12 +864,10 @@ steps:
             - '#vs-breadcrumbs'
             - '#postcomments'
             - .postbyline
-            - '#comments'
             - .de_comments
             - .relatedarticles
             - .blog__tags
             - .media-embed--related
-            - .comments-teaser
             - .author
             - '#related'
             - .browsemore
@@ -901,6 +877,13 @@ steps:
             - .fl-module-fl-author-bio
             - .article__contributor-byline-wrapper
             - .related-posts-new
+            - .pubmod-date
+            - .author-byline
+            - .dpsp-pin-it-wrapper
+            - .post-single__date
+            - a[href="#comments"]
+            - /comment/
+            - .article-preview-list
 
         #     - .single-content-banner
         - eval: head
