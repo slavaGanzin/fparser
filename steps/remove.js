@@ -5,6 +5,8 @@ const getSelectors = x =>
   (x.attr('class') ? replace(/\s+/, '', replace(/\s(\w+)/gim, '.$1', ' '+x.attr('class').value())) : '')
 
 const traverse = xmldoc => regexes =>  {
+  if (isEmpty(regexes)) return
+
   const r = new RegExp(join('|', map(replace(/^\/|\/$/gim, ''), regexes)), 'gim')
   return map(x => {
     if (!r.test(getSelectors(x))) return
