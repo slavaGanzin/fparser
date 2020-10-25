@@ -11,6 +11,8 @@ steps:
             - .serendipity_entry_body
 
             - .MainBlock
+            - '#body'
+            - '#home'
             - '#main'
             - '#post'
             - .post-content
