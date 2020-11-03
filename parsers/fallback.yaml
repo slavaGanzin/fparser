@@ -690,7 +690,7 @@ steps:
             - /relate/
             - /author/
             - /subscribe/
-            - /category|categories/
+            - /\scategory\s|\scategories\s/
             - /headline/
             - /\bmeta\b/
             - /popular|recommend/
