@@ -1,8 +1,10 @@
 const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
 const getSelectors = x =>
+' ' +
   (x.attr('id') ? '#'+x.attr('id').value()+' ' : '') +
   (x.attr('class') ? replace(/\s+/, ' ', replace(/\s(\w+)/gim, '.$1', ' '+x.attr('class').value())) : '')
++ ' '
 
 const traverse = xmldoc => regexes =>  {
   if (isEmpty(regexes)) return

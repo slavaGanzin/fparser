@@ -685,16 +685,18 @@ steps:
             - .post-single__date
             - a[href="#comments"]
             - .article-preview-list
+
             - /comment/
             - /share|sharing/
             - /relate/
             - /author/
             - /subscribe/
-            - /\scategory\s|\scategories\s/
+            - /category\s|categories\s/
             - /headline/
-            - /\bmeta\b/
+            - /\bmeta\s/
             - /popular|recommend/
             - /\btag\b|tags/
+            - /related|recent/
 
 
         #     - .single-content-banner
