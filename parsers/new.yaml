@@ -6,8 +6,8 @@ steps:
 
   - parallel:
       html:
-        - find: html
-        # - remove:
-        #    - script
+        - find: body
+        - remove:
+           - script
         - html
         - new

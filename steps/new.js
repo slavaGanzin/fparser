@@ -10,8 +10,8 @@ module.exports = () => flatMap(html => {
   const f = '/tmp/fparser.html'
 
   const cacheFile = debug('fparser:cache:file')(`${CACHE}/${global.CONFIG.placeholders.url.replace(/\//g, '∕')}`)
-  const input = JSON.parse(fs.readFileSync(cacheFile))
-  const cache = absoluteUrls(global.CONFIG.placeholders.url, cheerio.load(input.body)).html()
+  // const input = JSON.parse(fs.readFileSync(cacheFile))
+  const cache = absoluteUrls(global.CONFIG.placeholders.url, cheerio.load(html)).html()
 
   const attributesSelector = `"[${global.attributes.data.join('],[')}]"`
 
