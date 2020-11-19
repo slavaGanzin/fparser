@@ -10,6 +10,7 @@ steps:
             - '*[data-field="content"]'
             - .serendipity_entry_body
 
+            - .blog-content
             - .MainBlock
             - '#body'
             - '#home'
@@ -693,10 +694,11 @@ steps:
             - /subscribe/
             - /category\s|categories\s/
             - /headline/
-            - /\bmeta\s/
+            - /\smeta\s/
             - /popular|recommend/
-            - /\btag\b|tags/
+            - /\stag\s|\stags\s/
             - /related|recent/
+            - /hidden/
 
 
         #     - .single-content-banner
