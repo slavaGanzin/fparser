@@ -4,34 +4,12 @@ const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image']
 const url = require('url')
 const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
-const scrapeMeta = metascraper([
-  metascraperTitle(),
-  metascraperDate(),
-  metascraperAuthor(),
-  metascraperPublisher(),
-  metascraperDescription(),
-  metascraperImage(),
-  metascraperLang(),
-  metascraperLogo(),
-  metascraperLogoFavicon(),
-  //  require('metascraperMediaProvider')(),
-  metascraperUrl(),
-  metascraperVideo(),
-  metascraperAudio(),
-])
+const firstPath = curry((test, paths, data) => reduce((a,p) => a || test(path(p, data)), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
 
-const first = compose(head, reject(isNil), props)
-const firstPath = curry((test, paths, data) => reduce((a,p) => a || test(path(p, data)), null, paths))
-
-const { date, $filter, $jsonld, toRule } = require('@metascraper/helpers')
-
-module.exports = options => flatMap(e => scrapeMeta({
-    html: e.toString(), url: options.url
-})
-.then(unless(x => x.lang, async x =>
-    merge(x, {lang: pathOr('en', ['languages', 0, 'code'], await require('cld').detect(e.toString(), {isHTML: true}).catch(() => {}) )})
-))
-.then(metascrapperMeta => {
+module.exports = options => flatMap(e => {
+// .then(unless(x => x.lang, async x =>
+//     merge(x, {lang: pathOr('en', ['languages', 0, 'code'], await require('cld').detect(e.toString(), {isHTML: true}).catch(() => {}) )})
+// ))
   const meta = {}
 
   const $ = selector => e.find(c2x(selector))
@@ -47,13 +25,20 @@ module.exports = options => flatMap(e => scrapeMeta({
 
   $('script[type="application/ld+json"]').map(e => {
     if (!e.text) return
+    let jsonld
     try {
-      const jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
-      meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), [['Article', 'datePublished'], ['WebPage', 'datePublished'], ['datePublished'], ['dateModified']], jsonld))
-      meta['jsonld:title'] = firstPath(x => x, [['Article', 'headline'], ['WebPage', 'title']], jsonld)
-    } catch(e) {
+      jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
+    } catch (e) {
+      console.error(e, e.text())
       return
     }
+    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
+    meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
+    meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
+    meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
+    meta['jsonld:keywords'] = firstPath(x => x, 'keywords', jsonld)
+    meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
+    meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
   })
 
 
@@ -90,38 +75,36 @@ module.exports = options => flatMap(e => scrapeMeta({
       if (x.attr('href')) meta[k] = x.attr('href').value()
     })
 
-  const m = merge(metascrapperMeta, meta)
+  meta['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
+  if (head(dates)) meta['?:published'] = head(dates)
 
-  m['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
-  if (head(dates)) m['?:published'] = head(dates)
+  meta['html:title'] = isNil(head($('title'))) ? null : trim(head($('title')).text())
 
-  m['html:title'] = isNil(head($('title'))) ? null : trim(head($('title')).text())
+  meta.url = firstPath(x => x , 'jsonld:url', meta)
+  // meta['?:host'] = url.parse(firstPath(x => !isNil(x), 'jsonld:url,url,link:alternate,link:stylesheet', meta)).hostname
 
-  m['?:host'] = url.parse(first(['url', 'link:alternate', 'link:stylesheet'], m)).hostname
+  if (length(meta.publisher) > 100) meta.publisher = null
 
-  if (length(m.publisher) > 100) m.publisher = null
-
-  const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], m)))
+  const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], meta)))
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
-  m.pubdate = head(sortBy(x => x, possibleDates)) || m['?:pubdate:lastresort']
+  meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url', meta) || [])
 
-  m.author = first(['author', 'og:host', '?:host'], m)
+  const textFromFirstParagraph = e.get(cssToXpath('p,div'))
+  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
 
-  m.title = trim(first(['jsonld:title', 'og:title', 'twitter:title', 'html:title'], m))
+  meta.url = decodeURI(meta.url)
 
-  m.publisher = defaultTo('', first(['og:site_name', 'publisher', 'application-name', '?:host'], m))
+  meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
+
+  meta.title = trim(firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta))
+  meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
+  meta.author = firstPath(x => x, 'jsonld:author,author,og:host,?:host', meta)
+  meta.publisher = defaultTo('', firstPath(x => x, 'jsonld:publisher,publisher,og:site_name,application-name,?:host', meta))
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  m.thumbs = reject(x => isEmpty(x) || isNil(x), first(['og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image', 'twitter:image:url'], m) || [])
-
-  const textFromFirstParagraph = e.get(cssToXpath('p,div'))
-  m.description = (m.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
-
-  m.url=decodeURI(m.url)
-
-  return m
-}))
+  return meta
+})
