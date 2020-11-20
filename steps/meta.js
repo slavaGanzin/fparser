@@ -23,23 +23,6 @@ module.exports = options => flatMap(e => {
 
   const texts = flatten(allText(e))
 
-  $('script[type="application/ld+json"]').map(e => {
-    if (!e.text) return
-    let jsonld
-    try {
-      jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
-    } catch (e) {
-      console.error(e, e.text())
-      return
-    }
-    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
-    meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
-    meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
-    meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
-    meta['jsonld:keywords'] = firstPath(x => x, 'keywords', jsonld)
-    meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
-    meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
-  })
 
 
   $('meta')
@@ -72,6 +55,7 @@ module.exports = options => flatMap(e => {
   $('link')
     .map(x => {
       const k = join(':', map(x => x.value(), reject(isNil, [x.attr('rel'), x.attr('hreflang')])))
+      if (contains(k, ['stylesheet'])) return
       if (x.attr('href')) meta[k] = x.attr('href').value()
     })
 
@@ -80,8 +64,29 @@ module.exports = options => flatMap(e => {
 
   meta['html:title'] = isNil(head($('title'))) ? null : trim(head($('title')).text())
 
-  meta.url = firstPath(x => x , 'jsonld:url', meta)
-  // meta['?:host'] = url.parse(firstPath(x => !isNil(x), 'jsonld:url,url,link:alternate,link:stylesheet', meta)).hostname
+
+  meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
+  meta['?:host'] = firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta).hostname.replace(/^www\./, '')
+// ).hostname
+
+  $('script[type="application/ld+json"]').map(e => {
+    if (!e.text) return
+    let jsonld
+    try {
+      jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
+    } catch (e) {
+      console.error(e, e.text())
+      return
+    }
+    meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
+    meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
+    meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
+    meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
+    meta['jsonld:keywords'] = firstPath(x => x, 'keywords', jsonld)
+    meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
+    meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
+  })
+
 
   if (length(meta.publisher) > 100) meta.publisher = null
 
