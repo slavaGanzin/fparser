@@ -63,7 +63,7 @@ module.exports = options => flatMap(e => {
 
 
   meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
-  meta['?:host'] = propOr('hostname', '', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
+  meta['?:host'] = propOr('', 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
 // ).hostname
 
   $('script[type="application/ld+json"]').map(e => {
@@ -80,7 +80,7 @@ module.exports = options => flatMap(e => {
     meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
     meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
-    meta['jsonld:keywords'] = firstPath(x => x, 'keywords', jsonld)
+    meta['jsonld:keywords'] = when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
     meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
   })
@@ -91,19 +91,13 @@ module.exports = options => flatMap(e => {
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url', meta) || [])
-
-  const textFromFirstParagraph = e.get(cssToXpath('p,div'))
-  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
-
   meta.url = decodeURI(meta.url)
-
   meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
-
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
 
   meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
     || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
-    || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').map(x => x.attr('title'))))
+    || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
