@@ -87,7 +87,6 @@ module.exports = options => flatMap(e => {
     meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
   })
 
-
   if (length(meta.publisher) > 100) meta.publisher = null
 
   const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], meta)))
@@ -96,15 +95,19 @@ module.exports = options => flatMap(e => {
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url', meta) || [])
 
   const textFromFirstParagraph = e.get(cssToXpath('p,div'))
-  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
+  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ').trim()
 
   meta.url = decodeURI(meta.url)
 
   meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
 
   meta.title = trim(firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta))
+
+  meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text()))) || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title'])) || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').attr('title')))
+  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
+
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.author = firstPath(x => x, 'jsonld:author,author,og:host,?:host', meta)
+  meta.author = firstPath(x => x, 'jsonld:author,author,?:author,og:host,?:host', meta)
   meta.publisher = defaultTo('', firstPath(x => x, 'jsonld:publisher,publisher,og:site_name,application-name,?:host', meta))
     .replace(/,.*/, '')
     .replace(/www\./, '')
