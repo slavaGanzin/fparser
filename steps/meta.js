@@ -49,8 +49,6 @@ module.exports = options => flatMap(e => {
       : chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})
   )
 
-  console.log(meta)
-
   $('link')
     .map(x => {
       const k = join(':', map(x => x.value(), reject(isNil, [x.attr('rel'), x.attr('hreflang')])))
@@ -117,5 +115,5 @@ module.exports = options => flatMap(e => {
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  return mapObjIndexed(when(is(String), trim), meta)
+  return reject(isNil, mapObjIndexed(when(is(String), trim), meta))
 })
