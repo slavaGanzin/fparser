@@ -78,6 +78,7 @@ module.exports = options => flatMap(e => {
       console.error(e, e.text())
       return
     }
+    if (isEmpty(jsonld)) return
     meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
     meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
