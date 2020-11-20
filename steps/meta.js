@@ -61,7 +61,7 @@ module.exports = options => flatMap(e => {
   meta['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
   if (head(dates)) meta['?:published'] = head(dates)
 
-  meta['html:title'] = isNil(head($('title'))) ? null : trim(head($('title')).text())
+  meta['html:title'] = isNil(head($('title'))) ? null : head($('title')).text()
 
 
   meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
@@ -95,19 +95,19 @@ module.exports = options => flatMap(e => {
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url', meta) || [])
 
   const textFromFirstParagraph = e.get(cssToXpath('p,div'))
-  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ').trim()
+  meta.description = (meta.description || `${textFromFirstParagraph ? textFromFirstParagraph.text() : ''}`).replace(/\s+/gim, ' ')
 
   meta.url = decodeURI(meta.url)
 
   meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
 
-  meta.title = trim(firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta))
+  meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
 
-  meta['?:author'] = trim(head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
+  meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
     || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
-    || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').map(x => x.attr('title')))))
+    || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').map(x => x.attr('title'))))
 
-  meta['?:publisher'] = trim(head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text()))))
+  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
   meta.author = firstPath(x => x, 'jsonld:author,author,?:author,og:host,?:host', meta)
@@ -117,5 +117,5 @@ module.exports = options => flatMap(e => {
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  return meta
+  return mapObjIndexed(when(is(String), trim), meta)
 })
