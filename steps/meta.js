@@ -23,8 +23,6 @@ module.exports = options => flatMap(e => {
 
   const texts = flatten(allText(e))
 
-
-
   $('meta')
     .map(x => {
       if (x.attr('charset'))
@@ -51,6 +49,7 @@ module.exports = options => flatMap(e => {
       : chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})
   )
 
+  console.log(meta)
 
   $('link')
     .map(x => {
@@ -66,7 +65,7 @@ module.exports = options => flatMap(e => {
 
 
   meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
-  meta['?:host'] = firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta).hostname.replace(/^www\./, '')
+  meta['?:host'] = propOr('hostname', '', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
 // ).hostname
 
   $('script[type="application/ld+json"]').map(e => {
@@ -104,8 +103,11 @@ module.exports = options => flatMap(e => {
 
   meta.title = trim(firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta))
 
-  meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text()))) || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title'])) || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').attr('title')))
-  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
+  meta['?:author'] = trim(head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
+    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
+    || prop(1, match(/^(.*?)\s[-|]\satom$/i, $('link[type="xml"]').map(x => x.attr('title')))))
+
+  meta['?:publisher'] = trim(head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text()))))
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
   meta.author = firstPath(x => x, 'jsonld:author,author,?:author,og:host,?:host', meta)
