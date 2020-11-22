@@ -81,12 +81,16 @@ module.exports = options => flatMap(e => {
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
     meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
     meta['jsonld:keywords'] = when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))
+
+    if (find(test(/Tag:/), meta['jsonld:keywords']))
+      meta['jsonld:keywords'] = uniq(map(replace(/.*:([^:]+)/gim, '$1'), filter(test(/Tag:|Topic:/gim), meta['jsonld:keywords'])))
+
+
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
     meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
   })
 
-  if (length(meta.publisher) > 100) meta.publisher = null
-
+  // if (length(meta.publisher) > 100) meta.publisher = null
   const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], meta)))
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
@@ -109,5 +113,5 @@ module.exports = options => flatMap(e => {
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  return reject(isNil, mapObjIndexed(when(is(String), trim), meta))
+  return mapObjIndexed(when(is(String), trim), meta)
 })
