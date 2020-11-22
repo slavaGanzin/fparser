@@ -84,7 +84,7 @@ module.exports = options => flatMap(e => {
     const mediumHack = when(find(test(/Tag:/)), compose(uniq, map(replace(/.*:([^:]+)/gim, '$1')), filter(test(/Tag:|Topic:/gim))))
     meta['jsonld:keywords'] = map(toTitleCase, mediumHack(when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))))
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
-    meta['jsonld:image'] = [firstPath(x => x, 'image.url,image', jsonld)]
+    meta['jsonld:image'] = coerceArray(firstPath(x => x, 'image.url,image', jsonld))
   })
 
   // if (length(meta.publisher) > 100) meta.publisher = null
