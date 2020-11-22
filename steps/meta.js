@@ -84,14 +84,14 @@ module.exports = options => flatMap(e => {
     const mediumHack = when(find(test(/Tag:/)), compose(uniq, map(replace(/.*:([^:]+)/gim, '$1')), filter(test(/Tag:|Topic:/gim))))
     meta['jsonld:keywords'] = map(toTitleCase, mediumHack(when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))))
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
-    meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
+    meta['jsonld:image'] = [firstPath(x => x, 'image.url,image', jsonld)]
   })
 
   // if (length(meta.publisher) > 100) meta.publisher = null
   const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], meta)))
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
-  meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url', meta) || [])
+  meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
   meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)

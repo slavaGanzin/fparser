@@ -54,6 +54,7 @@
     "ramda": "^0.22.1",
     "regex-parser": "^2.2.5",
     "sharp": "^0.23.3",
+    "simply-beautiful": "^0.2.9",
     "telegraf": "^3.38.0",
     "thenify-all": "^1.6.0",
     "to-title-case": "^1.0.0",
