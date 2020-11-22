@@ -1,0 +1,13 @@
+steps:
+  - get
+  - parallel:
+      html:
+        - remove: article > div > section > div > div > div:nth-child(1)
+        - find: article
+        - html
+        # - find: article section div div div *
+        # - html
+        # - eval: compose(join('\n'), slice(2, -1))
+        - chrome
+      meta:
+        - meta
