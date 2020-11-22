@@ -80,12 +80,9 @@ module.exports = options => flatMap(e => {
     meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
     meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
-    meta['jsonld:keywords'] = when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))
 
-    if (find(test(/Tag:/), meta['jsonld:keywords']))
-      meta['jsonld:keywords'] = uniq(map(replace(/.*:([^:]+)/gim, '$1'), filter(test(/Tag:|Topic:/gim), meta['jsonld:keywords'])))
-
-
+    const mediumHack = when(find(test(/Tag:/)), compose(uniq, map(replace(/.*:([^:]+)/gim, '$1')), filter(test(/Tag:|Topic:/gim))))
+    meta['jsonld:keywords'] = map(toTitleCase, mediumHack(when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))))
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
     meta['jsonld:image'] = firstPath(x => x, 'image', jsonld)
   })

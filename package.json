@@ -56,6 +56,7 @@
     "sharp": "^0.23.3",
     "telegraf": "^3.38.0",
     "thenify-all": "^1.6.0",
+    "to-title-case": "^1.0.0",
     "unique-selector": "^0.4.1",
     "xml2json": "^0.10.0",
     "xpath-to-css": "^1.0.2"
