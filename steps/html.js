@@ -5,5 +5,5 @@ module.exports = options =>
   flatMap(e => {
     if (global.ARGV.chrome) chrome()([e.toString()])
 
-    return simplyBeautiful.html(e.toString())
+    return require('simply-beautiful').html(e.toString())
   })
