@@ -1,0 +1,32 @@
+steps:
+    - get
+    - parallel:
+        meta:
+          - meta
+        html:
+          - find: .blogroll
+          - remove:
+            - .share-buttons .cursor-pointer
+            - .text-tags
+            - .read-also
+            - .sidebar sticky-first
+            - .desktop-tg-cta
+            - .share-buttons
+          - html
+
+test:
+  - url: https://bit.ua/2020/12/wtech-vidsvyatkuvalo-2-roky/
+
+expect:
+  -
+    html:
+      text: |2
+             	Wtech відсвяткувало 2 роки: як жінкам забити на стереотипи та успішно будувати кар’єру
+            										Be in trend
+             Текст:	Поліна Вернигор
+             04 Грудня 2020	13:26
+
+      attr:
+
+          - https://bit.ua/category/be-in-trend/
+          - https://bit.ua/author/polina-vernyhor/
