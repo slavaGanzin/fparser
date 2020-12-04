@@ -1,4 +1,3 @@
-
 const chrome = require('./chrome')
 
 module.exports = options =>

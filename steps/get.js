@@ -74,6 +74,7 @@ const request = options => {
       .catch(drivers[options.driver])
 
   return f()
+    .then(tap(x => global.verbosity > 1 && pp(x)))
     .then(parse(options))
     .catch(logCatch(options))
 }

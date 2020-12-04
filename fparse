@@ -5,7 +5,7 @@ const {finish} = require('./lib/finish')
 const parser = require('./lib/parser')
 const PH = require('./lib/placeholders')
 const parseRange = compose(map(Number), split('..'))
-const increaseVerbosity = (_, total) => ++total
+const increaseVerbosity = (_, total) => global.verbosity = ++total
 
 global.ARGV
   .option('-S, --no-skip', 'Do not skip on parse')
