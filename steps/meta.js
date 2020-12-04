@@ -90,7 +90,6 @@ module.exports = options => flatMap(async e => {
     meta['jsonld:image'] = coerceArray(firstPath(x => x, 'image.url,image', jsonld))
   })
 
-  // if (length(meta.publisher) > 100) meta.publisher = null
   const possibleDates = map(x => new Date(x), reject(isNil, props(['article:published_time', 'time:published', 'jsonld:pubdate', 'sailthru.date', 'last-updated','?:published', 'date'], meta)))
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
@@ -107,13 +106,13 @@ module.exports = options => flatMap(async e => {
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = defaultTo('', firstPath(x => x, 'jsonld:publisher,publisher,og:site_name,application-name,?:host', meta))
+  meta.publisher = defaultTo('', firstPath(x => x, 'jsonld:publisher,article:publisher,publisher,og:site_name,application-name,?:host', meta))
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(notEmpty, 'jsonld:author,author,?:author,og:host,?:host,publisher', meta)
+  meta.author = firstPath(notEmpty, 'jsonld:author,article:author,author,?:author,og:host,?:host,publisher', meta)
 
   return mapObjIndexed(when(is(String), trim), meta)
 })
