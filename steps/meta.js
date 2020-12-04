@@ -7,22 +7,24 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 const firstPath = curry((test, paths, data) =>
   reduce((a,p) => a || test(path(p, data)) && path(p, data), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
 
-module.exports = options => flatMap(e => {
+module.exports = options => flatMap(async e => {
 // .then(unless(x => x.lang, async x =>
-//     merge(x, {lang: pathOr('en', ['languages', 0, 'code'], await require('cld').detect(e.toString(), {isHTML: true}).catch(() => {}) )})
+//     merge(x, {})
 // ))
   const meta = {}
 
   const $ = selector => e.find(c2x(selector))
 
   const allText = e => {
-    if (e.name && contains(e.name(), ['script'])) return ''
+    if (e.name && contains(e.name(), ['script', 'style'])) return ''
     return isEmpty(e.childNodes())
       ? trim(e.text().replace(/\s+/gim,' '))
       : reject(isEmpty, map(allText, e.childNodes()))
   }
 
   const texts = flatten(allText(e))
+
+  meta.lang = pathOr('en', ['languages', 0, 'code'], await require('cld').detect(texts.join('\n')).catch(() => {}) )
 
   $('meta')
     .map(x => {
