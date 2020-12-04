@@ -3,15 +3,18 @@ steps:
     - parallel:
         meta:
           - meta
+          - eval: "tap(x => x[0].author = trim(replace(/Текст:/gim, '', x[0].author)))"
         html:
           - find: .blogroll
           - remove:
             - .share-buttons .cursor-pointer
-            - .text-tags
+            - .text-part-tags
             - .read-also
             - .sidebar sticky-first
             - .desktop-tg-cta
             - .share-buttons
+            - .content-banner
+            - .ps-meta
           - html
 
 test:
