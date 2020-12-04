@@ -686,6 +686,7 @@ steps:
             - .post-single__date
             - a[href="#comments"]
             - .article-preview-list
+            - .stk-icon
 
             - /comment/
             - /share|sharing/
