@@ -83,7 +83,7 @@ module.exports = options => flatMap(e => {
     meta['jsonld:publisher'] = firstPath(x => x, 'publisher.name', jsonld)
 
     const mediumHack = when(find(test(/Tag:/)), compose(uniq, map(replace(/.*:([^:]+)/gim, '$1')), filter(test(/Tag:|Topic:/gim))))
-    meta['jsonld:keywords'] = map(toTitleCase, mediumHack(defaultTo([], when(is(String), split(','), firstPath(x => x, 'keywords', jsonld)))))
+    meta['jsonld:keywords'] = mediumHack(defaultTo([], when(is(String), split(','), firstPath(x => x, 'keywords', jsonld))))
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
     meta['jsonld:image'] = coerceArray(firstPath(x => x, 'image.url,image', jsonld))
   })
@@ -95,7 +95,7 @@ module.exports = options => flatMap(e => {
   const notEmpty = complement(isEmpty)
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
-  meta.keywords = flatten(map(split(/\s*,\s*/), coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))
+  meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta)))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
 
   meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
