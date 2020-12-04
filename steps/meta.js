@@ -1,10 +1,11 @@
 //TODO: https://github.com/wanasit/chrono
 const appendURL = when(anyPass(map(x => test(RegExp(`${x}$`)), ['audio', 'video', 'image'])), x => `${x}:url`)
-const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image']))
+const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image', 'article:tag', 'tag', 'keywords', 'article:section']))
 const url = require('url')
 const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
-const firstPath = curry((test, paths, data) => reduce((a,p) => a || test(path(p, data)), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
+const firstPath = curry((test, paths, data) =>
+  reduce((a,p) => a || test(path(p, data)) && path(p, data), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
 
 module.exports = options => flatMap(e => {
 // .then(unless(x => x.lang, async x =>
@@ -93,7 +94,7 @@ module.exports = options => flatMap(e => {
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
-  meta.keywords = firstPath(x=>x, 'jsonld:keywords,keywords', meta)
+  meta.keywords = firstPath(complement(isEmpty), 'jsonld:keywords,article:tag,article:section,keywords', meta)
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
 
   meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
