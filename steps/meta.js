@@ -7,6 +7,8 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 const firstPath = curry((test, paths, data) =>
   reduce((a,p) => a || test(path(p, data)) && path(p, data), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
 
+const notSocial = complement(test(/facebook|twitter|wordpress/))
+
 module.exports = options => flatMap(async e => {
 // .then(unless(x => x.lang, async x =>
 //     merge(x, {})
@@ -106,13 +108,13 @@ module.exports = options => flatMap(async e => {
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = defaultTo('', firstPath(x => x, 'jsonld:publisher,article:publisher,publisher,og:site_name,application-name,?:host', meta))
+  meta.publisher = defaultTo('', firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,og:site_name,application-name,?:host', meta))
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(notEmpty, 'jsonld:author,article:author,author,?:author,og:host,?:host,publisher', meta)
+  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,?:author,og:host,?:host,publisher', meta)
 
   return mapObjIndexed(when(is(String), trim), meta)
 })
