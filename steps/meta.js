@@ -10,12 +10,15 @@ const firstPath = curry((test, paths, data) =>
 const notSocial = complement(test(/facebook|twitter|wordpress/))
 
 module.exports = options => flatMap(async e => {
-// .then(unless(x => x.lang, async x =>
-//     merge(x, {})
-// ))
   const meta = {}
 
   const $ = selector => e.find(c2x(selector))
+
+  meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
+    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
+    || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
+
+  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -101,11 +104,6 @@ module.exports = options => flatMap(async e => {
   meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
 
-  meta['?:author'] = head(reject(isNil,$('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
-    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
-    || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
-
-  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
   meta.publisher = defaultTo('', firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,og:site_name,application-name,?:host', meta))
