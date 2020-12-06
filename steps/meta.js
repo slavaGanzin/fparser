@@ -14,8 +14,9 @@ module.exports = options => flatMap(async e => {
 
   const $ = selector => e.find(c2x(selector))
 
+  meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
   meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
-    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['html:title']))
+    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
@@ -67,7 +68,6 @@ module.exports = options => flatMap(async e => {
   meta['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
   if (head(dates)) meta['?:published'] = head(dates)
 
-  meta['html:title'] = isNil(head($('title'))) ? null : head($('title')).text()
 
 
   meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
@@ -102,7 +102,7 @@ module.exports = options => flatMap(async e => {
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
   meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
-  meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,html:title', meta)
+  meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
 
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']

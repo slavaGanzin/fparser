@@ -695,7 +695,7 @@ steps:
             - /subscribe/
             - /category\s|categories\s/
             - /headline/
-            - /\smeta\s/
+            - /\bmeta\b/
             - /popular|recommend/
             - /\stag\s|\stags\s/
             - /related|recent/
