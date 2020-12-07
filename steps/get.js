@@ -7,17 +7,19 @@ const url = require('url')
 const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
 const URI2URL = (URL, xmldoc) => {
-  for (const a of attributes.lazy)
+  for (const a of attributes.lazy) {
     for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
       if (x.attr(a).value()[0] == '#') continue
       x.attr('src', url.resolve(URL, x.attr(a).value()))
     }
+  }
 
-  for (const a of attributes.data)
+  for (const a of attributes.data) {
     for (const x of reject(isNil, coerceArray(xmldoc.find(c2x(`[${a}]`))))) {
       if (x.attr(a).value()[0] == '#') continue
       x.attr(a, url.resolve(URL, x.attr(a).value()))
     }
+  }
 
   return xmldoc
 }
@@ -57,13 +59,13 @@ const request = options => {
 
   const drivers = {
     needle: () => needle.request(options.method, encodeURI(options.url), options.data, options.needle)
-    .then(head)
-    .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
-    .then(logRequest(options))
-    .catch(console.error)
-    .then(logErrors),
-    puppeteer: () => require('../lib/puppeteer').get(options)
+      .then(head)
       .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2))))
+      .then(logRequest(options))
+      .catch(console.error)
+      .then(logErrors),
+    puppeteer: () => require('../lib/puppeteer').get(options)
+      .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2)))),
   }
 
   const f = !options.cached || global.ARGV && global.ARGV.httpCache == false

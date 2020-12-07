@@ -7,7 +7,7 @@ const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 const firstPath = curry((test, paths, data) =>
   reduce((a,p) => a || test(path(p, data)) && path(p, data), null, map(split(/\s*\.\s*/g), split(/\s*,\s*/, paths))))
 
-const notSocial = complement(test(/facebook|twitter|wordpress/))
+const notSocial = complement(test(/facebook|twitter|wordpress|google/))
 
 module.exports = options => flatMap(async e => {
   const meta = {}
