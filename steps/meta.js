@@ -14,6 +14,7 @@ module.exports = options => flatMap(async e => {
 
   const $ = selector => e.find(c2x(selector))
 
+  meta['?:host'] = propOr('', 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
   meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
     || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
@@ -58,6 +59,9 @@ module.exports = options => flatMap(async e => {
       : chronoNode.parseDate(x.text(), new Date(''), {forwardDate: true})
   )
 
+  meta['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
+
+  if (head(dates)) meta['?:published'] = head(dates)
   $('link')
     .map(x => {
       const k = join(':', map(x => x.value(), reject(isNil, [x.attr('rel'), x.attr('hreflang')])))
@@ -65,13 +69,10 @@ module.exports = options => flatMap(async e => {
       if (x.attr('href')) meta[k] = x.attr('href').value()
     })
 
-  meta['?:pubdate:lastresort'] = head(map(x => x.date(), reject(({tags}) => isEmpty(tags) || tags.ENRelativeDateFormatParser || tags.ENCasualDateParser, chronoNode.parse(texts.join('\n', new Date(), {forwardDate: false}).toString()))))
-  if (head(dates)) meta['?:published'] = head(dates)
 
 
 
   meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
-  meta['?:host'] = propOr('', 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
 // ).hostname
 
   $('script[type="application/ld+json"]').map(e => {
@@ -112,7 +113,7 @@ module.exports = options => flatMap(async e => {
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,?:author,og:host,?:host,publisher', meta)
+  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,?:author,og:host,?:host,publisher', meta)
 
   return mapObjIndexed(when(is(String), trim), meta)
 })

@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "lib/parser.js",
   "scripts": {
-    "test": "eslint --fix . >/dev/null; bin/test",
-    "postinstall": "rm -rf .git/hooks; ln -s hooks .git/hooks"
+    "test": "eslint --fix . >/dev/null; bin/test"
   },
   "repository": {
     "type": "git",
