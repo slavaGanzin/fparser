@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-fish -c """
 eslint --fix . > /dev/null
 git update-index --again
 git push
-""" &
