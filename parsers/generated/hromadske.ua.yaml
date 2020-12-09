@@ -1,0 +1,12 @@
+steps:
+    - get
+    - parallel:
+        meta:
+          - meta
+        html:
+          - find: .PostContent-body
+          - html
+          - chrome
+
+test:
+  - url: https://hromadske.ua/posts/yak-ahmetovu-narahuvali-predyavu-na-milyard-intervyu-z-avtorami-filmu-spadkoyemec
