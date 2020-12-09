@@ -1,10 +1,7 @@
 const c2x = unless(test(/^\/\//), require('css-to-xpath'))
 
 const getSelectors = x =>
-  ` ${
-    x.attr('id') ? `#${x.attr('id').value()} ` : ''
-  }${x.attr('class') ? replace(/\s+/, ' ', replace(/\s(\w+)/gim, '.$1', ` ${x.attr('class').value()}`)) : ''
-  } `
+  ` ${x.attr('id') ? `#${x.attr('id').value()} ` : ''}${x.attr('class') ? replace(/\s+/, ' ', replace(/\s(\w+)/gim, '.$1', ` ${x.attr('class').value()}`)) : ''} `
 
 const traverse = xmldoc => regexes => {
   if (isEmpty(regexes)) return
@@ -25,7 +22,7 @@ const mapOverSelectors = xmldoc => map(selector => map(x => {
 
 module.exports = selectors => flatMap(
   tap(xmldoc => evolve({
-    0: traverse(xmldoc),
-    1: mapOverSelectors(xmldoc)},
-  partition(x => x.startsWith('/'), coerceArray(selectors))))
+    0: mapOverSelectors(xmldoc),
+    1: traverse(xmldoc),
+  }, reverse(partition(x => x.startsWith('/'), coerceArray(selectors)))))
 )
