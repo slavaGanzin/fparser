@@ -62,8 +62,5 @@
     "unique-selector": "^0.4.1",
     "xml2json": "^0.10.0",
     "xpath-to-css": "^1.0.2"
-  },
-  "devDependencies": {
-    "locus": "github:buildize/locus"
   }
 }
