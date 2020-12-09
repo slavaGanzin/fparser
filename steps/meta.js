@@ -14,13 +14,13 @@ module.exports = options => flatMap(async e => {
 
   const $ = selector => e.find(c2x(selector))
 
-  meta['?:host'] = propOr('', 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet', meta)).replace(/^www\./, '')
+  meta['?:host'] = propOr(options.url, 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet,cannonical', meta)).replace(/^www\./, '')
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
   meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
-    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
+    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -107,13 +107,14 @@ module.exports = options => flatMap(async e => {
 
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = defaultTo('', firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,og:site_name,application-name,?:host', meta))
+  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,?:publisher,og:site_name,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,?:author,og:host,?:host,publisher', meta)
+  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,?:author,publisher,?:publisher, og:host,?:host', meta)
+  meta.publisher = meta.publisher || meta.author
 
   return mapObjIndexed(when(is(String), trim), meta)
 })
