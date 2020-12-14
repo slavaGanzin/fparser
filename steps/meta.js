@@ -106,6 +106,7 @@ module.exports = options => flatMap(async e => {
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
 
 
+
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
   meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,?:publisher,og:site_name,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
