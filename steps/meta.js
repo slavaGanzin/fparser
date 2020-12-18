@@ -80,8 +80,8 @@ module.exports = options => flatMap(async e => {
     let jsonld
     try {
       jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(e.text())))
-    } catch (e) {
-      console.error(e, e.text())
+    } catch (error) {
+      pe({error, text: e.text()})
       return
     }
     if (isEmpty(jsonld)) return
