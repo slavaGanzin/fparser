@@ -7,9 +7,9 @@ steps:
       action: queue
       size: 1
       key: q:links
-      
+
   # - eval: map(values)
-  
+
   - get
   # # - parallel:
   #     # id:
@@ -33,10 +33,9 @@ steps:
       key: q:links
       id: $randomHash
       return: data
-              
+
       # content:
       #   - html
-      #   - readability
       #   - markdown
   # - db:
   #     key: links

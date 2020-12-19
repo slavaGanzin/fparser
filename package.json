@@ -47,7 +47,6 @@
     "moment": "^2.24.0",
     "needle": "^2.4.0",
     "njt": "^0.4.0",
-    "node-readability": "^2.2.0",
     "prettydiff": "^101.2.6",
     "prettyjson": "^1.2.1",
     "promise-limit": "^2.4.0",

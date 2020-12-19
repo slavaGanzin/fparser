@@ -4,7 +4,6 @@ placeholders:
 steps:
   - get
   - html
-  - readability
   - markdown
 
   - db:
