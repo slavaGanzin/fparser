@@ -19,8 +19,8 @@ module.exports = options => flatMap(async e => {
   meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
-  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"]').map(x => x.text())))
-    || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
+  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.logo__text,.logo-text,.publisher').map(x => x.text())))
+    || replace(/^.*?[-|:]\s+(.*)$/, '$1', meta['?:title'])
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -100,7 +100,7 @@ module.exports = options => flatMap(async e => {
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   const notEmpty = complement(isEmpty)
-  meta.thumbs = reject(any(isEmpty, isNil), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
+  meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
   meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
