@@ -19,8 +19,10 @@ module.exports = options => flatMap(async e => {
   meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
+  const titleSeparators = '[-|:•—]'
+
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.logo__text,.logo-text,.publisher').map(x => x.text())))
-    || replace(/^.*?[-|:]\s+(.*)$/, '$1', meta['?:title'])
+    || replace(RegExp(`^.*?${titleSeparators}\\s*(.*)$`, 'gim'), '$1', meta['?:title'])
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -114,8 +116,11 @@ module.exports = options => flatMap(async e => {
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:creator,twitter:data1,?:author,publisher,?:publisher, og:host,?:host', meta)
+  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,twitter:creator,?:author,publisher,?:publisher, og:host,?:host', meta)
   meta.publisher = meta.publisher || meta.author
+
+  const authorPublisher = RegExp('\\s*'+titleSeparators+'\\s*('+meta.author+'|'+meta.publisher+')', 'gim')
+  meta.title = replace(tap(console.log, authorPublisher), '', meta.title)
 
   return mapObjIndexed(when(is(String), trim), meta)
 })
