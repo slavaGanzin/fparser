@@ -110,7 +110,7 @@ module.exports = options => flatMap(async e => {
 
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,?:publisher,og:site_name,og:site_name,application-name,?:host', meta) || '')
+  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,og:site_name,?:publisher,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
@@ -120,7 +120,7 @@ module.exports = options => flatMap(async e => {
   meta.publisher = meta.publisher || meta.author
 
   const authorPublisher = RegExp('\\s*'+titleSeparators+'\\s*('+meta.author+'|'+meta.publisher+')', 'gim')
-  meta.title = replace(tap(console.log, authorPublisher), '', meta.title)
+  meta.title = replace(authorPublisher, '', meta.title)
 
   return mapObjIndexed(when(is(String), trim), meta)
 })

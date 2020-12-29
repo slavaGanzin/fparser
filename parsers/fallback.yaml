@@ -715,4 +715,4 @@ steps:
       meta:
         - meta
 
-  - eval: map(unless(x => contains(x.cover, x.html), x => { x.html = x.cover + x.html; return x }))
+  - eval: map(unless(x => !x.cover || contains(x.cover, x.html), x => { x.html = x.cover + x.html; return x }))
