@@ -16,10 +16,10 @@ module.exports = options => flatMap(async e => {
 
   meta['?:host'] = propOr(options.url, 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet,cannonical', meta)).replace(/^www\./, '')
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
-  meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author').map(x => x.text())))
+  meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
 
-  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.author').map(x => x.text())))
+  meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"]').map(x => x.text())))
     || prop(1, match(/^.*?[-|]\s+(.*)$/, meta['?:title']))
 
   const allText = e => {
@@ -100,7 +100,7 @@ module.exports = options => flatMap(async e => {
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   const notEmpty = complement(isEmpty)
-  meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
+  meta.thumbs = reject(any(isEmpty, isNil), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
   meta.url = decodeURI(meta.url)
   meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
@@ -108,13 +108,13 @@ module.exports = options => flatMap(async e => {
 
 
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,?:publisher,og:site_name,application-name,?:host', meta) || '')
+  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,?:publisher,og:site_name,og:site_name,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,?:author,publisher,?:publisher, og:host,?:host', meta)
+  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:creator,twitter:data1,?:author,publisher,?:publisher, og:host,?:host', meta)
   meta.publisher = meta.publisher || meta.author
 
   return mapObjIndexed(when(is(String), trim), meta)

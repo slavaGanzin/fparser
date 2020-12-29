@@ -1,6 +1,11 @@
 steps:
   - get
   - parallel:
+      cover:
+        - find:
+            - .post-cover
+        - html
+
       html:
         - find:
             - '*[itemtype="https://schema.org/Article"]'
@@ -12,6 +17,8 @@ steps:
 
             - .newsFull_body
 
+            - .b-article
+            - .main-content
             - .blog-content
             - .MainBlock
             - '#body'
@@ -707,3 +714,5 @@ steps:
         - html
       meta:
         - meta
+
+  - eval: map(unless(x => contains(x.cover, x.html), x => { x.html = x.cover + x.html; return x }))

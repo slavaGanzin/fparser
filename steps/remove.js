@@ -10,7 +10,7 @@ const traverse = xmldoc => regexes => {
 
   return map(x => {
     if (!r.test(getSelectors(x))) return
-    if (global.verbosity > 0) pp({[`remove ${r} ${getSelectors(x).match(r)}`]: x.toString()})
+    if (global.verbosity > 0) pp({[`remove /${getSelectors(x).match(r)}/`]: x.toString()})
     x.remove()
   }, xmldoc.find(c2x('*')))
 }
