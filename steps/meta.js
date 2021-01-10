@@ -15,7 +15,7 @@ module.exports = options => flatMap(async e => {
   const $ = selector => e.find(c2x(selector))
 
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
-  meta['?:author'] = replace(/(.*\n)+(.+)/gim, '$2', head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
+  meta['?:author'] = unless(isNil, replace(/(.*\n)+(.+)/gim, '$2'), head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title'))))))
 
   const titleSeparators = '[-|:•—]'
@@ -31,7 +31,6 @@ module.exports = options => flatMap(async e => {
   }
 
   const texts = flatten(allText(e))
-
   meta.lang = pathOr('en', ['languages', 0, 'code'], await require('cld').detect(texts.join('\n')).catch(() => {}) )
 
   $('meta')
@@ -70,7 +69,8 @@ module.exports = options => flatMap(async e => {
       if (x.attr('href')) meta[k] = x.attr('href').value()
     })
 
-  meta.url = decodeURI(firstPath(x => x && !test(/comments|feed/,x) , 'jsonld:url,og:url,cannonical,alternative,url,link:alternate,link:stylesheet', meta))
+  meta['?:url'] = options.url
+  meta.url = decodeURI(firstPath(x => x && !test(/comments|feed/,x) , 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta))
   meta['?:host'] = url.parse(meta.url).hostname.replace(/^www\./, '')
 
   $('script[type="application/ld+json"]').map(e => {
@@ -117,5 +117,5 @@ module.exports = options => flatMap(async e => {
   const authorPublisher = RegExp('\\s*'+titleSeparators+'\\s*('+meta.author+'|'+meta.publisher+')', 'gim')
   meta.title = replace(authorPublisher, '', meta.title)
 
-  return mapObjIndexed(when(is(String), trim), meta)
+  return mapObjIndexed(when(is(String), trim), pickBy(x => x, meta))
 })
