@@ -14,10 +14,9 @@ module.exports = options => flatMap(async e => {
 
   const $ = selector => e.find(c2x(selector))
 
-  meta['?:host'] = propOr(options.url, 'hostname', firstPath(tryCatch(url.parse, () => null), 'url,link:alternate,link:stylesheet,cannonical', meta)).replace(/^www\./, '')
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
-  meta['?:author'] = head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
-    || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))
+  meta['?:author'] = replace(/(.*\n)+(.+)/gim, '$2', head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author').map(x => x.text())))
+    || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title'))))))
 
   const titleSeparators = '[-|:•—]'
 
@@ -71,11 +70,8 @@ module.exports = options => flatMap(async e => {
       if (x.attr('href')) meta[k] = x.attr('href').value()
     })
 
-
-
-
-  meta.url = firstPath(x => x , 'jsonld:url,og:url', meta)
-// ).hostname
+  meta.url = decodeURI(firstPath(x => x && !test(/comments|feed/,x) , 'jsonld:url,og:url,cannonical,alternative,url,link:alternate,link:stylesheet', meta))
+  meta['?:host'] = url.parse(meta.url).hostname.replace(/^www\./, '')
 
   $('script[type="application/ld+json"]').map(e => {
     if (!e.text) return
@@ -102,21 +98,20 @@ module.exports = options => flatMap(async e => {
 
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   const notEmpty = complement(isEmpty)
+
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
-  meta.url = decodeURI(meta.url)
   meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
 
-
-
+  const notTitle = complement(test(new RegExp(meta.title, 'gim')))
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = (firstPath(both(notEmpty, notSocial), 'jsonld:publisher,article:publisher,publisher,og:site_name,?:publisher,application-name,?:host', meta) || '')
+  meta.publisher = (firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:publisher,article:publisher,publisher,og:site_name,?:publisher,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
 
-  meta.author = firstPath(both(notEmpty, notSocial), 'jsonld:author,article:author,author,twitter:data1,twitter:creator,?:author,publisher,?:publisher, og:host,?:host', meta)
+  meta.author = firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:author,article:author,author,twitter:data1,twitter:creator,?:author,publisher,?:publisher, og:host,?:host', meta)
   meta.publisher = meta.publisher || meta.author
 
   const authorPublisher = RegExp('\\s*'+titleSeparators+'\\s*('+meta.author+'|'+meta.publisher+')', 'gim')

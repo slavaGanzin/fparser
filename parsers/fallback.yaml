@@ -4,6 +4,7 @@ steps:
       cover:
         - find:
             - .post-cover
+            - .entry-image
         - html
 
       html:
@@ -13,20 +14,21 @@ steps:
             - '*[data-test-id="ArticleBodyContent"]'
             - '*[data-elementor-type="single"]'
             - '*[data-field="content"]'
+
             - .serendipity_entry_body
-
+            - .entry-content
             - .newsFull_body
-
             - .b-article
             - .main-content
             - .blog-content
             - .MainBlock
+            - .post-content
+            - .blog-postPage-content
+
             - '#body'
             - '#home'
             - '#main'
             - '#post'
-            - .post-content
-            - .blog-postPage-content
             - '#fullarticle'
             - .c-split-main
             - '#block-system-main'
@@ -157,6 +159,8 @@ steps:
             # substack
             # substack end
             - .td-crumb-container
+            - .rmp-results-widget
+            - .rmp-widgets-container
 
             - '#about'
             - '#ac-lre-player-ph'
@@ -691,6 +695,8 @@ steps:
             - a[href="#comments"]
             - .article-preview-list
             - '#next'
+            - .post-meta
+            - .post-meta-item
 
             - /\balso\b|read.after/
             - /comment/
@@ -698,9 +704,10 @@ steps:
             - /relate/
             - /author/
             - /subscribe/
-            - /\bcategory\b|\bcategories\b/
+            - /\scategory\s|\scategories\s/
             # - /\blabels?\b/
             - /headline/
+            - /webnavoz/
             - /\smeta\s/
             - /popular|recommend/
             - /\stag\s|\stags\s/
