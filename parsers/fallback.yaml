@@ -707,6 +707,7 @@ steps:
             - /\scategory\s|\scategories\s/
             # - /\blabels?\b/
             - /headline/
+            - /\bcta\b/
             - /webnavoz/
             - /\smeta\s/
             - /popular|recommend/

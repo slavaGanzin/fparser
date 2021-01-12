@@ -1,8 +1,6 @@
-const chrome = require('./chrome')
-
 module.exports = options =>
   flatMap(e => {
-    if (global.ARGV.chrome) chrome()([e.toString()])
+    if (global.ARGV.chrome) require('./chrome')()([e.toString()])
 
-    return require('simply-beautiful').html(e.toString())
+    return e.toString()
   })

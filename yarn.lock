@@ -2346,11 +2346,6 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-simply-beautiful@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/simply-beautiful/-/simply-beautiful-0.2.9.tgz#036eb2e8aa28970849ab55362fa878788767148e"
-  integrity sha512-u3pfL4oFktG6Uz83QQT3ONRmxtOLnalUREquNjqeR68m9cwSRmxAYlliy5VqPMk9k/0Ops5oHici9wANc9AgAg==
-
 snapdragon-cheerio@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/snapdragon-cheerio/-/snapdragon-cheerio-1.1.0.tgz#16f3bd3fa1615f85c5f826504c5bb406cd340eb7"
