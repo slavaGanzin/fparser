@@ -5,6 +5,7 @@ steps:
         - find:
             - .post-cover
             - .entry-image
+            - .featured-image
         - html
 
       html:
