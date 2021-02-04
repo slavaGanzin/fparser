@@ -16,6 +16,7 @@ steps:
             - '*[data-elementor-type="single"]'
             - '*[data-field="content"]'
 
+            # - article.post
             - .serendipity_entry_body
             - .entry-content
             - .newsFull_body
