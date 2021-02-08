@@ -104,7 +104,7 @@ module.exports = options => flatMap(async e => {
   meta.keywords = map(compose(toTitleCase, removeWraps), flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
 
-  const notTitle = complement(test(new RegExp(meta.title, 'gim')))
+  const notTitle = complement(test(new RegExp(meta.title.replace(/\W/g,'.'), 'gim')))
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
   meta.publisher = (firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:publisher,article:publisher,publisher,og:site_name,?:publisher,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
