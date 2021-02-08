@@ -77,7 +77,7 @@ module.exports = options => flatMap(async e => {
     if (!e.text) return
     let jsonld
     try {
-      jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(replace(/\/\/.*|<!--.*|-->/g, '', e.text()))))
+      jsonld = when(is(Array), indexBy(prop('@type')), when(has('@graph'), prop('@graph'), JSON.parse(replace(/<!--(.*\n?)*-->/gm, '', e.text()))))
     } catch (error) {
       pe({error, text: e.text()})
       return
@@ -99,8 +99,9 @@ module.exports = options => flatMap(async e => {
   // m.pubdate = head(sortBy(x => Math.abs(mean(possibleDates) - x), possibleDates)) || m['?:pubdate:lastresort']
   const notEmpty = complement(isEmpty)
 
+  const removeWraps = replace(/^("|')(.*)("|')$/,'$2')
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
-  meta.keywords = map(toTitleCase, flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
+  meta.keywords = map(compose(toTitleCase, removeWraps), flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title', meta)
 
   const notTitle = complement(test(new RegExp(meta.title, 'gim')))

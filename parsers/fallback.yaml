@@ -147,6 +147,7 @@ steps:
             - '*[role="complementary"]'
             - '*[style="display:none"]'
             - 'figure[data-recommend-id]'
+            - .pi-container #https://99percentinvisible.org/article/symbiotic-synanthropes-barn-owl-holes-extend-hospitality-to-rodent-hunters/
             # - link[rel='noreferrer']
             # - '#header'
             # - .article-header
