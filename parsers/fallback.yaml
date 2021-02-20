@@ -3,10 +3,12 @@ steps:
   - parallel:
       cover:
         - find:
-            - .post-cover
-            - .entry-image
-            - .featured-image
+            - .post-cover img
+            - .entry-image img
+            - .featured-image img
+            - header img
         - html
+        - eval: head
 
       html:
         - find:
@@ -130,6 +132,7 @@ steps:
 
         - remove:
             - script
+            - .site-header
             # - link[rel='noopener']
             - '*[aria-hidden]'
             - '*[data-ajax-update="#ymla-section"]'
@@ -236,7 +239,6 @@ steps:
             - .ad-mobile
             - .ad-mobile-dynamic
             - .ad-slot
-            - .ad-tag
             - .ad-teads-outstream
             - .ad-unit
             - .ad-wrapper
@@ -301,7 +303,6 @@ steps:
             - .bibblio-branding
             - .block_comments
             - .blog-furtherreading
-            - .blog-tag
             - .bmc-button
             - .bmc-button
             - .breadcrumbs
@@ -486,7 +487,6 @@ steps:
             - .post-full-title
             - .post-info
             - .post-sections
-            - .post-tag-container
             - .post-utility
             - .post__byline
             - .post__slug
@@ -495,7 +495,6 @@ steps:
             - .post_avatar
             - .post_information
             - .post_social
-            - .post_tag
             - .postnavigation
             - .posts-nav-link
             - .posttitle
@@ -700,24 +699,32 @@ steps:
             - '#next'
             - .post-meta
             - .post-meta-item
+            - .td-post-views
 
             - /\balso\b|read.after/
             - /comment/
             - /share|sharing|social/
             - /relate/
+            - /popup/
             - /author/
             - /subscribe/
             - /\scategory\s|\scategories\s/
             # - /\blabels?\b/
+            - /breadcrumb/
+            - /login|singin/
             - /headline/
+            - /navigation/
             - /\bcta\b/
             - /webnavoz/
             - /\smeta\s/
-            - /popular|recommend/
-            - /\stag\s|\stags\s/
-            - /related|recent/
+            - /popular|recommend|views/
+            - /\Wtag\W|\Wtags\W|\Wcategory\W|\Wcategories\W/
+            - /recent/
             - /mistake/
             - /post-date/
+            - /sidebar/
+            - /sponsorposts/
+            - /tonefuse/
 
 
         #     - .single-content-banner

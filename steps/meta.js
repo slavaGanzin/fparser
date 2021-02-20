@@ -18,10 +18,10 @@ module.exports = options => flatMap(async e => {
   meta['?:author'] = when(is(String), compose(trim, replace(/^by\s+/gim, '')), unless(isNil, replace(/(.*\n)+(.+)/gim, '$2'), head(reject(isNil, $('[itemprop*="author"],[rel="author"],.author.meta-author,.post-author,.post-meta-data').map(x => x.text())))
     || prop(1, match(/^(.*?)\s[-|]\satom$/i, join(' ' ,$('link[type="xml"]').map(x => x.attr('title')))))))
 
-  const titleSeparators = '[-|:•—]'
+  const titleSeparators = '[-|•—-]'
 
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.logo__text,.logo-text,.publisher').map(x => x.text())))
-    || replace(RegExp(`^.*?${titleSeparators}\\s*(.*)$`, 'gim'), '$1', meta['?:title'])
+    || replace(RegExp(`^.*${titleSeparators}\\s*(.*?)$`, 'gim'), '$1', meta['?:title'])
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -70,7 +70,7 @@ module.exports = options => flatMap(async e => {
     })
 
   meta['?:url'] = options.url
-  meta.url = decodeURI(firstPath(x => x && !test(/comments|feed/,x) , 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta))
+  meta.url = decodeURI(firstPath(x => x, 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta))
   meta['?:host'] = propOr("", 'hostname', url.parse(meta.url)).replace(/^www\./, '')
 
   $('script[type="application/ld+json"]').map(e => {
@@ -82,7 +82,7 @@ module.exports = options => flatMap(async e => {
       pe({error, text: e.text()})
       return
     }
-    if (isEmpty(jsonld)) return
+    if (isEmpty(jsonld) || contains(jsonld['@type'], ['Organization', 'BreadcrumbList'])) return
     meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x!='0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
     meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)
@@ -106,11 +106,13 @@ module.exports = options => flatMap(async e => {
 
   const notTitle = complement(test(new RegExp(meta.title.replace(/\W/g,'.'), 'gim')))
   meta.pubdate = head(sortBy(x => x, possibleDates)) || meta['?:pubdate:lastresort']
-  meta.publisher = (firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:publisher,article:publisher,publisher,og:site_name,?:publisher,application-name,?:host', meta) || '')
+  meta.publisher = (firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:publisher,article:publisher,og:site_name,publisher,?:publisher,application-name,?:host', meta) || '')
     .replace(/,.*/, '')
     .replace(/www\./, '')
     .replace(/https?:/, '')
     .replace(/^\/\//, '')
+
+  meta.description = firstPath(allPass([notEmpty, notTitle]), 'og:description,twitter:description,description', meta)
 
   meta.author = firstPath(allPass([notEmpty, notSocial, notTitle]), 'jsonld:author,article:author,author,twitter:data1,twitter:creator,?:author,publisher,?:publisher, og:host,?:host', meta)
   meta.publisher = meta.publisher || meta.author
@@ -118,5 +120,5 @@ module.exports = options => flatMap(async e => {
   const authorPublisher = RegExp('\\s*'+titleSeparators+'\\s*('+meta.author+'|'+meta.publisher+')', 'gim')
   meta.title = replace(authorPublisher, '', meta.title)
 
-  return mapObjIndexed(when(is(String), trim), pickBy(x => x, meta))
+  return mapObjIndexed(compose(when(is(Array), reject(isNil)), when(is(String), trim)), pickBy(x => x, meta))
 })

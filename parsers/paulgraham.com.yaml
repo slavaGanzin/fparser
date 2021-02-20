@@ -17,6 +17,6 @@ steps:
             - img[alt]:nth-child(1)
             # - table:nth-child(1)
         - html
+        - eval: map(replace(/<br>\n*\s*<br>/g, '</p>\n<p>'))
         - eval: head
-        - eval: replace(/<br>\n*\s*<br>/g, '</p><p>')
         - chrome
