@@ -1,4 +1,5 @@
 //TODO: https://github.com/wanasit/chrono
+// https://schema.org/Article
 const appendURL = when(anyPass(map(x => test(RegExp(`${x}$`)), ['audio', 'video', 'image'])), x => `${x}:url`)
 const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image', 'article:tag', 'tag', 'keywords', 'article:section']))
 const url = require('url')
@@ -11,6 +12,7 @@ const notSocial = complement(test(/facebook|twitter|wordpress|google/))
 
 module.exports = options => flatMap(async e => {
   const meta = {}
+  meta.headers = e.headers
 
   const $ = selector => e.find(c2x(selector))
 
@@ -21,7 +23,7 @@ module.exports = options => flatMap(async e => {
   const titleSeparators = '[-|•—-]'
 
   meta['?:publisher'] = head(reject(isNil, $('[itemprop*="publisher"],[rel="publisher"],.logo__text,.logo-text,.publisher').map(x => x.text())))
-    || replace(RegExp(`^.*${titleSeparators}\\s*(.*?)$`, 'gim'), '$1', meta['?:title'])
+    || when(is(String), replace(RegExp(`^.*${titleSeparators}\\s*(.*?)$`, 'gim'), '$1'), meta['?:title'])
 
   const allText = e => {
     if (e.name && contains(e.name(), ['script', 'style'])) return ''
@@ -70,7 +72,7 @@ module.exports = options => flatMap(async e => {
     })
 
   meta['?:url'] = options.url
-  meta.url = decodeURI(firstPath(x => x, 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta))
+  meta.url = decodeURI(firstPath(x => x, 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta)) || options.url
   meta['?:host'] = propOr("", 'hostname', url.parse(meta.url)).replace(/^www\./, '')
 
   $('script[type="application/ld+json"]').map(e => {

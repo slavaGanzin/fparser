@@ -1,0 +1,439 @@
+steps:
+  - get
+  - parallel:
+      domain:
+        - input: $url
+        - url: host
+      meta:
+        - meta
+        - eval: x => JSON.stringify(x, null, ' ')
+        - match:
+            Membership:
+              Ghost: ghost-members-ssr
+
+            Syndication:
+              Substack: served-by.*Substack
+
+            AWStats: AWStats
+            Abicart: Abicart,Textalk Webshop
+            Adobe GoLive: Adobe GoLive
+            Adobe RoboHelp: Adobe RoboHelp
+            Amaya: Amaya
+            Ametys: (Ametys|Anyware Technologies)
+            Amiro.CMS: Amiro
+            AsciiDoc: AsciiDoc
+            Atlassian Bitbucket: Bitbucket
+            Atlassian Confluence: Confluence
+            Atlassian Jira: JIRA
+            BIGACE: BIGACE
+            BOOM: boom site builder
+            Backdrop: Backdrop CMS
+            Banshee: Banshee PHP
+            # Base: \d+
+            Big Cartel: Big Cartel
+            Blogger: Blogger
+            Bluefish: Bluefish
+            Bolt: Bolt
+            BrowserCMS: BrowserCMS
+            Bugzilla: Bugzilla
+            CMS Made Simple: CMS Made Simple
+            CMSimple: CMSimple
+            CPG Dragonfly: CPG Dragonfly
+            CakePHP: CakePHP
+            Cargo: Cargo
+            # Cecil: Cecil
+            Chamilo: Chamilo
+            Chevereto: Chevereto
+            Ckan: ckan
+            CloudCart: CloudCart LLC
+            Coaster CMS: Coaster CMS v
+            Concrete5: concrete5
+            Contao: Contao Open Source CMS
+            Contenido: Contenido
+            Contensis: Contensis CMS Version
+            ContentBox: ContentBox powered by ColdBox
+            Cotonti: Cotonti
+            CubeCart: cubecart
+            DNN: DotNetNuke
+            Danneo CMS: Danneo CMS
+            DataLife Engine: DataLife Engine
+            Discourse: Discourse
+            Discuz! X: Discuz! X
+            DocFX: toc.html
+            Docusaurus: Docusaurus
+            Dokeos: Dokeos
+            DokuWiki: DokuWiki
+            Doxygen: Doxygen
+            AquilaCMS: AquilaCMS
+            Drupal: Drupal
+            Dynamicweb: Dynamicweb
+            EPiServer: EPiServer
+            EPrints: EPrints
+            EasyDigitalDownloads: Easy Digital Downloads
+            Eleanor CMS: Eleanor
+            Fastcommerce: Fastcommerce
+            FlexCMP: FlexCMP
+            Fork CMS: Fork CMS
+            ForoshGostar: Forosh\s?Gostar.*|Arsina Webshop.*
+            Foswiki: Foswiki
+            FrontPage: FrontPage
+            Frontity: Frontity
+            GX WebManager: GX WebManager
+            Gatsby: Gatsby
+            Gerrit: Gerrit Code Review
+            GetSimple CMS: GetSimple
+            GitBook: GitBook
+            GitLab: GitLab
+            GitLab CI/CD: GitLab
+            Gitea: go,git,self-hosted,gitea
+            GoDaddy Website Builder: Go Daddy Website Builder
+            Gogs: go, git, self-hosted, gogs
+            Google Web Toolkit: Google Web Toolkit
+            Graffiti CMS: Graffiti CMS
+            GrandNode: grandnode
+            Grav: GravCMS
+            Gridsome: Gridsome
+            Halo: Halo
+            Hexo: Hexo
+            Hinza Advanced CMS: hinzacms
+            Hotaru CMS: Hotaru CMS
+            HubSpot: HubSpot
+            Hugo: Hugo
+            ImpressCMS: ImpressCMS
+            ImpressPages: ImpressPages
+            Indexhibit: Indexhibit
+            InstantCMS: InstantCMS
+            JAlbum: JAlbum
+            Jalios: Jalios
+            Jekyll: Jekyll
+            Jibres: Jibres
+            JobberBase: Jobberbase
+            CMS.Joomla: Joomla!
+            Kamva: Camva|Kamva
+            Kentico CMS: Kentico CMS
+            Koala Framework: Koala Web Framework CMS
+            Koha: Koha
+            Koken: Koken
+            Kolibri CMS: Kolibri
+            Komodo CMS: Komodo CMS
+            Koobi: Koobi
+            LEPTON: LEPTON
+            Laterpay: deobfuscateText
+            Lede: lede-admin
+            LightMon Engine: LightMon Engine
+            Loja Mestre: lojamestre
+            MODX: MODX
+            Mambo: Mambo
+            MasterkinG32 Framework: MasterkinG
+            Matomo Analytics: app-id=737216887|matomo
+            MaxSite CMS: MaxSite CMS
+            MediaWiki: MediaWiki
+            Melis Platform: Melis Platform
+            # Methode: \d+
+            Microsoft Excel: Excel
+            Microsoft PowerPoint: PowerPoint
+            Microsoft Publisher: Microsoft Publisher
+            Microsoft SharePoint: Microsoft SharePoint
+            Microsoft Word: Microsoft Word
+            Miestro: miestro
+            Miresoone: Miresoone
+            Misskey: Misskey
+            MkDocs: mkdocs
+            Mobirise: Mobirise
+            Modified: by modified eCommerce Shopsoftware
+            Mondo Media: Mondo Shop
+            Moodle: moodle
+            Movable Type: Movable Type
+            Mozard Suite: Mozard
+            Mura CMS: Mura CMS
+            MyWebsite: MyWebsite
+            Mynetcap: Mynetcap
+            NitroPack: NitroPack
+            NivCMS: NivCMS
+            Nosto: Nosto
+            October CMS: OctoberCMS
+            Octopress: Octopress
+            Odoo: Odoo
+            Onshop: Onshop Ecommerce
+            Open Classifieds: open-classifieds
+            Open Journal Systems: Open Journal Systems
+            Open eShop: open-eshop
+            OpenGrok: OpenGrok
+            OpenNemas: OpenNemas
+            Orchard CMS: Orchard
+            Oxatis: Oxatis
+            PHP-Nuke: PHP-Nuke
+            Pagekit: Pagekit
+            Pars Elecom Portal: Pars Elecom Portal
+            PeerTube: PeerTube
+            Percussion: Percussion|Rhythmyx
+            Phoenix: phoenix
+            Pingoteam: Pingoteam
+            Planet: Planet
+            Pligg: Pligg
+            Plone: Plone
+            PrestaShop: PrestaShop
+            Proximis Unified Commerce: Proximis Unified Commerce
+            Quick.CMS: Quick.CMS
+            Quick.Cart: Quick.Cart
+            RBS Change: RBS Change
+            RCMS: RCMS|ReallyCMS
+            RainLoop: RainLoop
+            Rayo: Rayo
+            Redmine: Redmine
+            RiteCMS: RiteCMS
+            Roadiz CMS: Roadiz
+            RockRMS: Rock
+            Ruby on Rails: authenticity_token
+            SIMsite: simsite
+            SPIP: spip
+            Saber: Saber
+            Sarka-SPIP: Sarka-SPIP
+            Sazito: Sazito
+            SeamlessCMS: Seamless.*CMS
+            Serendipity: Serendipity
+            Service Provider Pro: app.spp.co
+            Shopatron: Shopatron
+            Shopfa: ShopFA
+            Shoptet: Shoptet
+            Shopware: Shopware
+            SilverStripe: SilverStripe
+            SiteEdit: SiteEdit
+            Sitefinity: Sitefinity
+            Sivuviidakko: Sivuviidakko
+            SmartSite: Redacteur SmartInstant
+            Smartstore: Smart[sS]tore
+            SoftTr: SoftTr E-Ticaret Sitesi Yazılımı
+            SolidPixels: solidpixels
+            Solusquare OmniCommerce Cloud: Solusquare
+            SonarQubes: SonarQubes
+            Sotel: sotel
+            Splunk: Splunk Inc
+            Squiz Matrix: Squiz Matrix
+            Storyblok: storyblok
+            Subrion: Subrion
+            Svbtle: Svbtle.com
+            Swiftlet: Swiftlet
+            Sympa: Sympa
+            Synology DiskStation: Synology DiskStation
+            TYPO3 CMS: TYPO3
+            TeamCity: TeamCity
+            Textpattern CMS: Textpattern
+            TiddlyWiki: TiddlyWiki
+            Tiki Wiki CMS Groupware: Tiki
+            TomatoCart: TomatoCart
+            TypePad: typepad
+            Typecho: Typecho
+            Umbraco: umbraco
+            Varbase: Varbase
+            Virtuoso: OpenLink Software
+            Visualsoft: Visualsoft
+            VuePress: VuePress
+            WEBDEV: WEBDEV
+            Web2py: Web2py
+            WebGUI: WebGUI
+            WebSite X5: Incomedia WebSite
+            Webflow: Webflow
+            WebsPlanet: WebsPlanet
+            Website Creator: hosttech
+            WebsiteBaker: WebsiteBaker
+            Webzi: Webzi
+            WikkaWiki: WikkaWiki
+            WooCommerce: WooCommerce
+            X-Cart: X-Cart
+            XAMPP: Kai Oswald Seidler
+            XOOPS: XOOPS
+            XWiki: xwiki
+            Xanario: xanario shopsoftware
+            Xonic: xonic-solutions
+            XpressEngine: XpressEngine
+            Yepcomm: Yepcomm Tecnologia
+            Yottaa: Yotta
+            Zabbix: ZABBIX SIA
+            Zen Cart: Zen Cart
+            Zinnia: Zinnia
+            a-blog cms: a-blog cms
+            cgit: cgit
+            eSyndiCat: eSyndiCat
+            eZ Platform: eZ Platform
+            eZ Publish: eZ Publish
+            experiencedCMS: experiencedCMS
+            # git: git
+            gitweb: gitweb
+            govCMS: Drupal
+            iEXExchanger: iEXExchanger
+            iPresta: iPresta
+            iWeb: iWeb
+            imperia CMS: IMPERIA
+            jQuery-pjax: pjax
+            nopCommerce: nopCommerce
+            ownCloud: app-id=543672169
+            phpBB: phpBB Group
+            phpSQLiteCMS: phpSQLiteCMS
+            phpwind: phpwind
+            plentymarkets: plentymarkets
+            sNews: sNews
+            uKnowva: uKnowva
+            vBulletin: vBulletin
+            vibecommerce: vibecommerce
+            webEdition: webEdition
+            wisyCMS: wisy CMS
+            wpBakery: WPBakery
+            wpCache: wpCache
+            xtCommerce: xt:Commerce
+
+
+            CMS:
+              Ghost: Ghost
+              WordPress: WordPress
+              Wix: Wix.com
+
+            proxy:
+              heroku: vegur
+
+            server:
+              nginx: nginx
+              Openresty: openresty
+              Cloudflare: cloudflare
+              Express: express
+      html:
+        - html
+        # https://www.capterra.com/categories
+        - match:
+
+            Capabilities:
+              OpenGraph: 'meta.*og:'
+              JSONLD: ld\+json
+              Google Site Verification: google-site-verification
+              formula rendering: latex.php
+              related posts: related.*posts
+              syntax highlighting: syntax.*highlight|prism.js
+              paywall: isAccessibleForFree|class.{,5}paywall|id.{,5}paywall
+
+            Ads:
+              AdButler.com: adbutler.com
+              AdSense: adsense
+              Doubleclick: doubleclick.net
+              yandex RTB: yandex.*RTB
+              Carbonads: carbonads.net
+
+            CDN:
+              Cloudflare: cdnjs.cloudflare.com
+              Substack: cdn.substack
+              Stack Exchange: sstatic.net
+              BootstrapCDN: bootstrapcdn.com
+
+            CMS:
+              Squarespace: squarespace.com
+              Wordpress Widgets: widgets.wp.com
+              Wordpress: wp-content|wp-includes
+
+            Embed:
+              gravatar: gravatar
+              Pinterest: pinimg.com
+              Twitter: platform.twitter.com
+              Youtube: youtube(-nocookie)?.com
+              Wistia: fast.wistia.com|distillery.wistia.com|embedwistia
+
+            ?:
+              faceboookconnect: connect.facebook.net
+
+            fonts:
+              Google Fonts: fonts.gstatic|fonts.googleapis|googleapis.com.*webfont
+              typekit: use.typekit.net
+              Font Awesome: fontawesome
+
+            JS:
+              jQuery: jquery
+
+            Payment:
+              Stripe: stripe.com
+
+            CRM:
+              Pipedrive: pipedrive.com
+
+            Search:
+              Algolia: algoliasearch
+              Google: google.com/cse
+
+            SEO:
+              Google Tag Manager: googletagmanager.com
+
+            Membership:
+              Membermouse: plugins/membermouse
+              Kajabi: kajabi.com #????
+              Memberful: memberful.com
+              Memberspace: window.memberspace|cdn.memberspace
+              Membersuite: membersuite.com
+              WildApricot: sf.wildapricot.org #www.wsscsw.org
+              Ghost: tryghost.*portal.min.js
+
+            Syndication:
+              Follow.it: follow.it
+              AMP: \.amp\.
+              displayNews: displaynews
+              rss: application.*(rss|atom)
+              Substack: cdn.substack
+
+            Tracking:
+              Wistia: fast.wistia.com|distillery.wistia.com|embedwistia
+              Comscore: COMSCORE.beacon
+              Scorecard Research: scorecardresearch
+              Plausible: plausible.io
+              Facebook Graph: graph.facebook.com
+              Google Analytics: google-analytics
+              LiveInternet: LiveInternet
+              New Relic: bam-cell.nr-data.net
+              Pinterest API: api.pinterest
+              Trackcmp: trackcmp.net
+              typekit: p.typekit.net.*gif
+              Wordpress Stats: pixel.wp.com|ws.stats.com
+              Substack: window._analyticsConfig
+              Dataunlocker: dataunlocker
+
+            Affiliate:
+              firstpromoter: firstpromoter.com
+
+            Marketing:
+              Klaviyo: klaviyo.com
+              Tidio: tidio.com
+
+            Galleries:
+              Covet: covet.pics
+
+
+            eCommerce:
+              Shopify: cdn.shopify.com
+              Shogun: lib.getshogun.com
+
+            Recommendation:
+              Taboola: taboola.com
+            Virus Protection:
+              Norton Safeweb: norton-safeweb
+
+            Stock:
+              Unsplash: images.unsplash.com
+
+            Monetization:
+              Web Monetization: meta.*monetization
+
+            Legal:
+              Iubenda: iubenda.com
+
+            Share:
+              sharethis: sharethis.com
+
+            Discussion:
+              Discourse: discourseUrl|https://discourse
+
+
+
+      # js:
+      #   - find: script
+      #   - html
+      #   - eval: join('\n')
+      #   - match:
+      #       Tracking:
+      #         Dataunlocker: dataunlocker.com
+      #
+  - eval: "map(x => ({tech: map(keys, mergeAll(props(['meta', 'html', 'js'], x))), domain: x.domain}))"
