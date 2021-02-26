@@ -7,8 +7,8 @@ steps:
             - .entry-image img
             - .featured-image img
             - header img
-        - html
         - eval: head
+        - html
 
       html:
         - find:
@@ -708,7 +708,7 @@ steps:
             - /popup/
             - /author/
             - /subscribe/
-            - /\scategory\s|\scategories\s/
+            - /\scategories\s|\scategory\s/
             # - /\blabels?\b/
             - /breadcrumb/
             - /login|singin/
@@ -718,7 +718,7 @@ steps:
             - /webnavoz/
             - /\smeta\s/
             - /popular|recommend|views/
-            - /\Wtag\W|\Wtags\W|\Wcategory\W|\Wcategories\W/
+            - /\Wtag\W|\Wtags\W|\Wcategories\W/
             - /recent/
             - /mistake/
             - /post-date/

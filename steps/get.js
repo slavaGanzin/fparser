@@ -32,7 +32,7 @@ const parse = options => cond([[
   input => input.body,
 ], [
   x => test(/html/, x.headers['content-type']),
-  input => URI2URL(options.url, libxml.parseHtml(input.body)),
+  input => tap(x => x.headers = input.headers, URI2URL(options.url, libxml.parseHtml(input.body)))
 // ], [
 //   x => test(/xml/, x.headers['content-type']),
 //   input => libxml.parseXml(input.body),
