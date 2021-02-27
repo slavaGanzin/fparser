@@ -1,7 +1,7 @@
 env:
   node:                          true
   commonjs:                      true
-  es6:                           true
+  es2021:                        true
 
 extends:                         eslint:recommended
 
@@ -16,131 +16,131 @@ rules:
   no-implicit-globals:           warn
 
 
-  block-scoped-var:              error
-  no-shadow:                     error
-  dot-notation:                  error
-  no-else-return:                error
-  no-empty-pattern:              error
-  no-extra-bind:                 error
-  no-implicit-coercion:          error
-  no-use-before-define:          error
-  no-floating-decimal:           error
-  no-invalid-this:               error
-  no-var:                        error
-  prefer-spread:                 error
-  no-labels:                     error
-  no-lone-blocks:                error
-  no-multi-str:                  error
-  no-self-assign:                error
-  no-self-compare:               error
-  no-sequences:                  error
-  no-unused-expressions:         error
-  no-useless-call:               error
-  no-useless-concat:             error
-  no-useless-escape:             error
-  no-useless-return:             error
-  no-void:                       error
-  no-with:                       error
-  no-throw-literal:              error
-  vars-on-top:                   error
-  wrap-iife:                     error
-  yoda:                          error
-  init-declarations:             error
-  no-shadow-restricted-names:    error
-  no-undef-init:                 error
-  callback-return:               error
-  global-require:                error
-  handle-callback-err:           error
-  no-mixed-requires:             error
-  no-path-concat:                error
-  no-sync:                       error
-  array-bracket-spacing:         error
-  block-spacing:                 error
-  brace-style:                   error
-  func-name-matching:            error
-  func-names:                    error
-  keyword-spacing:               error
-  line-comment-position:         error
-  lines-around-directive:        error
-  max-lines:                     error
-  no-inline-comments:            error
-  no-continue:                   error
-  no-bitwise:                    error
-  newline-per-chained-call:      error
-  new-parens:                    error
-  newline-after-var:             error
-  no-array-constructor:          error
-  no-lonely-if:                  error
-  no-mixed-operators:            error
-  no-multi-assign:               error
-  no-multiple-empty-lines:       error
-  no-negated-condition:          error
-  no-nested-ternary:             error
-  no-tabs:                       error
-  no-unneeded-ternary:           error
-  no-trailing-spaces:            error
-  no-whitespace-before-property: error
-  space-before-blocks:           error
-  space-before-function-paren:   error
-  space-infix-ops:               error
-  space-unary-ops:               error
-  arrow-body-style:              error
-  arrow-spacing:                 error
-  no-useless-computed-key:       error
-  no-useless-rename:             error
-  object-shorthand:              error
-  prefer-arrow-callback:         error
-  prefer-destructuring:          error
-  prefer-template:               error
-  template-curly-spacing:        error
-  object-curly-spacing:          error
+  block-scoped-var:              warn
+  no-shadow:                     warn
+  dot-notation:                  warn
+  no-else-return:                warn
+  no-empty-pattern:              warn
+  no-extra-bind:                 warn
+  no-implicit-coercion:          warn
+  no-use-before-define:          warn
+  no-floating-decimal:           warn
+  no-invalid-this:               warn
+  no-var:                        warn
+  prefer-spread:                 warn
+  no-labels:                     warn
+  no-lone-blocks:                warn
+  no-multi-str:                  warn
+  no-self-assign:                warn
+  no-self-compare:               warn
+  no-sequences:                  warn
+  no-unused-expressions:         warn
+  no-useless-call:               warn
+  no-useless-concat:             warn
+  no-useless-escape:             warn
+  no-useless-return:             warn
+  no-void:                       warn
+  no-with:                       warn
+  no-throw-literal:              warn
+  vars-on-top:                   warn
+  wrap-iife:                     warn
+  yoda:                          warn
+  init-declarations:             warn
+  no-shadow-restricted-names:    warn
+  no-undef-init:                 warn
+  callback-return:               warn
+  global-require:                warn
+  handle-callback-err:           warn
+  no-mixed-requires:             warn
+  no-path-concat:                warn
+  no-sync:                       warn
+  array-bracket-spacing:         warn
+  block-spacing:                 warn
+  brace-style:                   warn
+  func-name-matching:            warn
+  func-names:                    warn
+  keyword-spacing:               warn
+  line-comment-position:         warn
+  lines-around-directive:        warn
+  max-lines:                     warn
+  no-inline-comments:            warn
+  no-continue:                   warn
+  no-bitwise:                    warn
+  newline-per-chained-call:      warn
+  new-parens:                    warn
+  newline-after-var:             warn
+  no-array-constructor:          warn
+  no-lonely-if:                  warn
+  no-mixed-operators:            warn
+  no-multi-assign:               warn
+  no-multiple-empty-lines:       warn
+  no-negated-condition:          warn
+  no-nested-ternary:             warn
+  no-tabs:                       warn
+  no-unneeded-ternary:           warn
+  no-trailing-spaces:            warn
+  no-whitespace-before-property: warn
+  space-before-blocks:           warn
+  space-before-function-paren:   warn
+  space-infix-ops:               warn
+  space-unary-ops:               warn
+  arrow-body-style:              warn
+  arrow-spacing:                 warn
+  no-useless-computed-key:       warn
+  no-useless-rename:             warn
+  object-shorthand:              warn
+  prefer-arrow-callback:         warn
+  prefer-destructuring:          warn
+  prefer-template:               warn
+  template-curly-spacing:        warn
+  object-curly-spacing:          warn
 
   rest-spread-spacing:
-    - error
+    - warn
     - never
   arrow-parens:
-    - error
+    - warn
     - as-needed
   space-in-parens:
-    - error
+    - warn
     - never
   padded-blocks:
-    - error
+    - warn
     - never
   operator-linebreak:
-    - error
+    - warn
     - before
   one-var:
-    - error
+    - warn
     - never
   max-params:
-    - error
+    - warn
     - 3
   max-depth:
-    - error
+    - warn
     - 2
   max-statements:
-    - error
+    - warn
     - 5
   max-nested-callbacks:
-    - error
+    - warn
     - 2
   key-spacing:
-    - error
+    - warn
     - align: value
   func-style:
-    - error
+    - warn
     - declaration
     - allowArrowFunctions: true
   consistent-this:
-    - error
+    - warn
     - do-not-use-that
   comma-spacing:
-    - error
+    - warn
     - before: false
       after: true
   comma-style:
-    - error
+    - warn
     - last
   comma-dangle:
     - warn
@@ -150,7 +150,7 @@ rules:
     - exceptions:
         VariableDeclarator: true
   no-cond-assign:
-    - error
+    - warn
     - always
   no-extra-parens:
     - warn
@@ -162,20 +162,20 @@ rules:
     - warn
     - properties: always
   complexity:
-    - error
+    - warn
     - 3
   linebreak-style:
-    - error
+    - warn
     - unix
   dot-location:
-    - error
+    - warn
     - property
   curly:
-    - error
+    - warn
     - multi-or-nest
   semi:
     - warn
     - never
   quote-props:
-    - error
+    - warn
     - as-needed

@@ -9,7 +9,7 @@ const dispatch = (options, actions) => data =>
       actions[options.action](evolve({
         key: PH.apply(data),
         id:  compose(replace('$randomHash', hash({length: 40})), PH.apply(data)),
-      }, merge(options, {data: preData})))
+      }, merge(options, {data: preData}))),
     )
     .then(options.post)
     .then(head)

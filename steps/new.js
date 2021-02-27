@@ -249,7 +249,7 @@ expect:
     .get('/run', (req, res) => fparser({name: global.CONFIG.placeholders.url})
       .then(x => res.header("Access-Control-Allow-Origin", "*") // update to match the domain you will make the request from
         .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-        .send(x))
+        .send(x)),
     )
     .use(require('body-parser').urlencoded({extended: false}))
     .post('/exit', () => {

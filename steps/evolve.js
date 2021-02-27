@@ -5,6 +5,6 @@ module.exports = options =>
     compose(
       then(mapObjIndexed(headIfOneElement)),
       promiseAllObject,
-      evolve(mapObjIndexed(run, options))
-    )
+      evolve(mapObjIndexed(run, options)),
+    ),
   )

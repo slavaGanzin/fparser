@@ -37,7 +37,7 @@ const queue = ({key, size}) =>
         .then(values =>
           redis.hmset(`${key}:processing`, fromPairs(zip(_keys, values)))
             .then(() => redis.hdel(key, _keys))
-            .then(always(values))
+            .then(always(values)),
         )
     })
 

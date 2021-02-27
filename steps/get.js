@@ -42,7 +42,7 @@ const parse = options => cond([[
 
 const debugRequest = tap(compose(
   debug('body'),
-  pick(['statusCode', 'headers'])
+  pick(['statusCode', 'headers']),
 ))
 const logErrors = when(x => x.statusCode != STATUS_OK, debugRequest)
 const logRequest = options => debug(options.method)(options.url)

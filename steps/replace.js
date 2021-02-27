@@ -2,7 +2,7 @@ const regexParser = require('regex-parser')
 
 const parse = compose(
   ([r, s = '']) => replace(regexParser(r), s),
-  split(/,?\s/)
+  split(/,?\s/),
 )
 
 module.exports = options =>

@@ -24,5 +24,5 @@ module.exports = selectors => flatMap(
   tap(xmldoc => evolve({
     0: mapOverSelectors(xmldoc),
     1: traverse(xmldoc),
-  }, reverse(partition(x => x.startsWith('/'), coerceArray(selectors)))))
+  }, reverse(partition(x => x.startsWith('/'), coerceArray(selectors))))),
 )
