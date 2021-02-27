@@ -3,7 +3,8 @@ steps:
   - parallel:
       domain:
         - input: $url
-        - url: host
+        - url: hostname
+
       meta:
         - meta
         - eval: x => JSON.stringify(x, null, ' ')
@@ -13,6 +14,7 @@ steps:
 
             Syndication:
               Substack: served-by.*Substack
+              Blogger: Blogger
 
             AWStats: AWStats
             Abicart: Abicart,Textalk Webshop
@@ -31,7 +33,6 @@ steps:
             Banshee: Banshee PHP
             # Base: \d+
             Big Cartel: Big Cartel
-            Blogger: Blogger
             Bluefish: Bluefish
             Bolt: Bolt
             BrowserCMS: BrowserCMS
@@ -108,7 +109,6 @@ steps:
             Jekyll: Jekyll
             Jibres: Jibres
             JobberBase: Jobberbase
-            CMS.Joomla: Joomla!
             Kamva: Camva|Kamva
             Kentico CMS: Kentico CMS
             Koala Framework: Koala Web Framework CMS
@@ -287,6 +287,7 @@ steps:
               Ghost: Ghost
               WordPress: WordPress
               Wix: Wix.com
+              Joomla: Joomla
 
             proxy:
               heroku: vegur
@@ -308,12 +309,13 @@ steps:
               formula rendering: latex.php
               related posts: related.*posts
               syntax highlighting: syntax.*highlight|prism.js
-              paywall: isAccessibleForFree|class.{,5}paywall|id.{,5}paywall
+              paywall: isAccessibleForFree|class.{,5}paywall|id.{,5}paywall|amp-access|amp-subscription
+              Google Cast: gstatic.com.*sender
 
             Ads:
               AdButler.com: adbutler.com
               AdSense: adsense
-              Doubleclick: doubleclick.net
+              Doubleclick: doubleclick.net|googlesyndication.com
               yandex RTB: yandex.*RTB
               Carbonads: carbonads.net
 
@@ -323,6 +325,9 @@ steps:
               Stack Exchange: sstatic.net
               BootstrapCDN: bootstrapcdn.com
 
+            Forms:
+              Typeform: typeform.com
+
             CMS:
               Squarespace: squarespace.com
               Wordpress Widgets: widgets.wp.com
@@ -331,11 +336,11 @@ steps:
             Embed:
               gravatar: gravatar
               Pinterest: pinimg.com
-              Twitter: platform.twitter.com
+              Twitter: platform.twitter.com|twimg.com.*widget
               Youtube: youtube(-nocookie)?.com
               Wistia: fast.wistia.com|distillery.wistia.com|embedwistia
 
-            ?:
+            Authentication:
               faceboookconnect: connect.facebook.net
 
             fonts:
@@ -347,7 +352,11 @@ steps:
               jQuery: jquery
 
             Payment:
+              Braintree: braintreepayments.com
               Stripe: stripe.com
+              Paypal: paypal.com.*client-id
+              Coinbase: commerce.coinbase.com
+              Buy Me a Coffee: buymeacoffee.com
 
             CRM:
               Pipedrive: pipedrive.com
@@ -369,6 +378,7 @@ steps:
               Ghost: tryghost.*portal.min.js
 
             Syndication:
+              Mailchimp: mailchimp.com/embed
               Follow.it: follow.it
               AMP: \.amp\.
               displayNews: displaynews
@@ -376,6 +386,7 @@ steps:
               Substack: cdn.substack
 
             Tracking:
+              New Relic: newrelic.com|bam-cell.nr-data.net
               Wistia: fast.wistia.com|distillery.wistia.com|embedwistia
               Comscore: COMSCORE.beacon
               Scorecard Research: scorecardresearch
@@ -383,7 +394,6 @@ steps:
               Facebook Graph: graph.facebook.com
               Google Analytics: google-analytics
               LiveInternet: LiveInternet
-              New Relic: bam-cell.nr-data.net
               Pinterest API: api.pinterest
               Trackcmp: trackcmp.net
               typekit: p.typekit.net.*gif
@@ -402,9 +412,10 @@ steps:
               Covet: covet.pics
 
 
-            eCommerce:
-              Shopify: cdn.shopify.com
+            Ecommerce:
+              Shopify: cdn.shopify.com|shopifycdn.com
               Shogun: lib.getshogun.com
+              Ultracart: ultracart.com
 
             Recommendation:
               Taboola: taboola.com
@@ -425,6 +436,7 @@ steps:
 
             Discussion:
               Discourse: discourseUrl|https://discourse
+              Disqus: discus.com/embed
 
 
 
