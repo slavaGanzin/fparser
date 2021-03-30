@@ -58,6 +58,7 @@
     "thenify-all": "^1.6.0",
     "to-title-case": "^1.0.0",
     "unique-selector": "^0.4.1",
+    "web-auto-extractor": "^1.0.17",
     "xml2json": "^0.10.0",
     "xpath-to-css": "^1.0.2"
   }

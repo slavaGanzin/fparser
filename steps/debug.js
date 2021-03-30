@@ -1,2 +1,2 @@
 module.exports = message =>
-  flatMap(tap(debug(`:${defaultTo('debug', message)}`)))
+  flatMap(global.verbosity > 0 ? pp : identity)

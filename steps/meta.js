@@ -12,6 +12,8 @@ const firstPath = curry((test, paths, data) =>
 const notSocial = complement(test(/facebook|twitter|wordpress|google/))
 
 module.exports = options => flatMap(async e => {
+  // console.log(webAutoExtractor.default().parse(e.toString()))
+  // return
   const meta = {}
 
   meta.headers = e.headers
@@ -62,6 +64,7 @@ module.exports = options => flatMap(async e => {
         meta[k.toLocaleLowerCase()] = content
     })
 
+
   const dates = $('time').map(x =>
     x.attr('datetime')
       ? x.attr('datetime').value()
@@ -93,7 +96,7 @@ module.exports = options => flatMap(async e => {
       pe({error, text: e.text()})
       return
     }
-    if (isEmpty(jsonld) || contains(jsonld['@type'], ['Organization', 'BreadcrumbList'])) return
+    if (isEmpty(jsonld) || contains(jsonld['@type'], ['Person', 'Organization', 'BreadcrumbList'])) return
     meta['jsonld:pubdate'] = unless(isNil, x => new Date(x).toISOString(), firstPath(x => x != '0000-00-00T00:00:00Z' && tryCatch(Date, () => null)(x), 'Article.datePublished,WebPage.datePublished,datePublished,dateModified', jsonld))
     meta['jsonld:title'] = firstPath(x => x, 'Article.headline, WebPage.title,headline,title,name', jsonld)
     meta['jsonld:author'] = firstPath(x => x, 'author.name,creator', jsonld)

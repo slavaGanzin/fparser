@@ -52,6 +52,7 @@ const logCatch = options => x => {
 }
 
 const request = options => {
+  options.cache = require('path').resolve(replace('~', require('os').homedir(), options.cache))
   fs.mkdir(options.cache).then(identity)
     .catch(identity)
 

@@ -7,7 +7,9 @@ steps:
             - .entry-image img
             - .featured-image img
             - header img
+        #     - meta[property="og:image"]
         - eval: head
+        # - eval: x => String(x).replace(/<meta.*content/, '<img src')
         - html
 
       html:
@@ -167,6 +169,7 @@ steps:
             - .td-crumb-container
             - .rmp-results-widget
             - .rmp-widgets-container
+            - .widget
 
             - '#about'
             - '#ac-lre-player-ph'
@@ -718,7 +721,7 @@ steps:
             - /webnavoz/
             - /\smeta\s/
             - /popular|recommend|views/
-            - /\Wtag\W|\Wtags\W|\Wcategories\W/
+            - /\Wtags\W|\Wcategories\W/
             - /recent/
             - /mistake/
             - /post-date/
