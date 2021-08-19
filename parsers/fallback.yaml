@@ -733,6 +733,7 @@ steps:
         #     - .single-content-banner
         - eval: head
         - html
+        - sanitize
       meta:
         - meta
 

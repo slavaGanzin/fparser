@@ -7,5 +7,5 @@ module.exports = options => flatMap(y =>
 
     if (m.length > 1) m = tail(m)
 
-    if (!isEmpty(m)) return map(trim, m)
+    if (!isEmpty(m)) return map(compose(trim, x => x || ''), m)
   }, options))))

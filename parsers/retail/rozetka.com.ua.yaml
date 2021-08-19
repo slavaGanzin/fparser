@@ -1,0 +1,36 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://rozetka.com.ua/search/?text=$q
+
+steps:
+  - get:
+      cached:  false
+      driver: puppeteer
+  # - find: "app-goods-tile-default"
+  - html
+  # - parallel:
+  #     id:
+  #       - find: .g-id
+  #       - text
+  #     photo:
+  #       - find: ".goods-tile__picture img"
+  #       - attr: src
+  #     price:
+  #       - find: "[data-qaid='product_price']"
+  #       - text
+  #       - eval: compose(trim, String)
+  #     title:
+  #       - find: "[data-qaid='product_name']"
+  #       - text
+
+  # - db:
+  #     provider: file
+  #     action: skip
+  #
+  # - telegram:
+  #     token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+  #     chatId: -429955182
+  #     message: |
+  #               $price [ ]($photo)
+  #               [$title]($id)

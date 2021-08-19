@@ -1,0 +1,34 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://mastergroom.com.ua/search/?query=$q
+
+steps:
+  - get:
+      cached:  false
+
+  - find: .prod
+  - parallel:
+      id:
+        - find: "[itemprop='name'] a"
+        - attr: href
+      photo:
+        - find: .prod_img img
+        - attr: src
+      price:
+        - find: .right
+        - text
+      title:
+        - find: "[itemprop='name']"
+        - text
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)

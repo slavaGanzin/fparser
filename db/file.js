@@ -11,7 +11,7 @@ const full = (key, id) => join(dir(key, id), basename(id))
 
 const save = ({data, key, id}) =>
   mkdirp(dir(key, id))
-    .then(() => fs.writeFile(full(key, id), data))
+    .then(() => fs.writeFile(full(key, id), JSON.stringify(data)))
     .then(always(full(key, id)))
 
 const download = ({data, key, id}) =>

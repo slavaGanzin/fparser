@@ -1,4 +1,7 @@
+// https://github.com/joshbuchea/HEAD
+//https://developers.facebook.com/docs/instant-articles/guides/articlecreate
 //TODO: https://github.com/wanasit/chrono
+
 // https://schema.org/Article
 const appendURL = when(anyPass(map(x => test(RegExp(`${x}$`)), ['audio', 'video', 'image'])), x => `${x}:url`)
 const putInArray = anyPass(map(x => test(RegExp(x)), ['audio', 'video', 'image', 'article:tag', 'tag', 'keywords', 'article:section']))
@@ -12,12 +15,11 @@ const firstPath = curry((test, paths, data) =>
 const notSocial = complement(test(/facebook|twitter|wordpress|google/))
 
 module.exports = options => flatMap(async e => {
-  // console.log(webAutoExtractor.default().parse(e.toString()))
-  // return
   const meta = {}
 
   meta.headers = e.headers
 
+  if (!e.find) return meta
   const $ = selector => e.find(c2x(selector))
 
   meta['?:title'] = isNil(head($('title'))) ? null : head($('title')).text()
@@ -86,6 +88,8 @@ module.exports = options => flatMap(async e => {
   meta.url = addSlashes(decodeURI(firstPath(x => x, 'jsonld:url,og:url,cannonical,alternative,url,?:url', meta)))
   meta['?:host'] = propOr("", 'hostname', url.parse(meta.url)).replace(/^www\./, '')
 
+  meta['html:keywords'] = $('.topic-tag-link').map(x => x.text().trim())
+
   $('script[type="application/ld+json"]').map(e => {
     if (!e.text) return
     let jsonld
@@ -105,6 +109,7 @@ module.exports = options => flatMap(async e => {
     const mediumHack = when(find(test(/Tag:/)), compose(uniq, map(replace(/.*:([^:]+)/gim, '$1')), filter(test(/Tag:|Topic:/gim))))
 
     meta['jsonld:keywords'] = mediumHack(defaultTo([], when(is(String), split(/\s*,\s*/), firstPath(x => x, 'keywords', jsonld))))
+
     meta['jsonld:url'] = firstPath(x => x, 'url,mainEntityOfPage', jsonld)
     meta['jsonld:image'] = coerceArray(firstPath(x => x, 'image.url,image', jsonld))
   })
@@ -117,7 +122,7 @@ module.exports = options => flatMap(async e => {
   const removeWraps = replace(/^("|')(.*)("|')$/, '$2')
 
   meta.thumbs = reject(x => isEmpty(x) || isNil(x), firstPath(x => x, 'og:image:secure_url,og:image,og:image:url,twitter:image,twitter:image:url,jsonld:image', meta) || [])
-  meta.keywords = map(compose(toTitleCase, removeWraps), flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords', meta))))))
+  meta.keywords = map(compose(toTitleCase, removeWraps), flatten(map(split(/\s*,\s*/), reject(isNil, coerceArray(firstPath(notEmpty, 'jsonld:keywords,article:tag,article:section,keywords,html:keywords,hackityhack', meta))))))
   meta.title = firstPath(x => x, 'jsonld:title,og:title,twitter:title,?:title,og:site_name', meta)
 
   const titleRegex = new RegExp(String(meta.title).replace(/\W/g, '.*'), 'gim')

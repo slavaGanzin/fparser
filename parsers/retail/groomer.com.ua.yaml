@@ -1,0 +1,40 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: "https://groomer.com.ua/index.php?route=common/search&filter_search=$q"
+
+steps:
+  - get:
+      cached:  false
+      parse:   false
+
+  - eval: compose(prop('html'), JSON.parse)
+  - parseHTML
+  - find: .main-search-category-product
+  - parallel:
+      id:
+        - attr: href
+      photo:
+        - find: img
+        - attr: src
+      price:
+        - remove: .old-price
+        - find: .price
+        - text
+        - eval: compose(trim, String)
+      title:
+        - find: img
+        - attr: title
+        # - find: .name
+        # - text
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)

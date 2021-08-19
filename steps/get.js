@@ -65,6 +65,7 @@ const request = options => {
       .then(logRequest(options))
       .catch(console.error)
       .then(logErrors),
+    parse:     x => x,
     puppeteer: () => require('../lib/puppeteer').get(options)
       .then(tap(({body, headers, statusCode}) => fs.writeFile(cacheFile, JSON.stringify({body: body.toString(), headers, statusCode}, null, 2)))),
   }

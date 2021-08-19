@@ -166,6 +166,7 @@ steps:
               Substack: window._analyticsConfig
               Dataunlocker: dataunlocker
               SmartLook: smartlook.com/recorder #https://www.smartlook.com/
+              WordPress: pixel.wp.com
 
             Referral:
               GrowSurf: growsurf.js #https://growsurf.com/

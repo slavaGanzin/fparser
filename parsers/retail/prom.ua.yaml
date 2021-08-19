@@ -1,0 +1,35 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://prom.ua/search?search_term=$q
+
+steps:
+  - get:
+      cached:  false
+  - find: "[data-qaid='product_gallery'] [data-qaid='product_block']"
+  - parallel:
+      id:
+        - find: '[data-qaid="product_link"]'
+        - attr: href
+        - eval: x => replace(/\?.*/,'',String(x))
+      photo:
+        - find: "picture[data-qaid='image_link'] img"
+        - attr: src
+      price:
+        - find: "[data-qaid='product_price']"
+        - text
+        - eval: compose(trim, String)
+      title:
+        - find: '[data-qaid="product_link"]'
+        - attr: title
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)
