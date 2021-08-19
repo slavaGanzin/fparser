@@ -1,0 +1,36 @@
+placeholders:
+  dbKey: diptyque
+  q: diptique
+  url: https://bigl.ua/search?search_term=$q
+
+steps:
+  - get:
+      cached:  false
+
+  - find: "[data-product-item-id]"
+  - parallel:
+      id:
+        - find: "[data-qaid='name']"
+        - attr: href
+        - eval: x => replace(/\?.*/,'',String(x))
+      photo:
+        - find: picture img
+        - attr: src
+      price:
+        - find: .bgl-product-price__item #"[data-qaid='product-price']"
+        - text
+      title:
+        - find: "[data-qaid='name']"
+        - text
+        - eval: compose(trim, String)
+
+  - db:
+      provider: file
+      action: skip
+
+  - telegram:
+      token: 1347399255:AAGAY9CqTiKV7W1Lm7NRZfO8lbjmQzA5-ss
+      chatId: -429955182
+      message: |
+                $price [ ]($photo)
+                [$title]($id)
